@@ -2,4 +2,6 @@
 
 ## Conventions
 
-- only code in the 'src' folder is being pretified, though some code sits outside that
+- only code in the 'src' folder is being prettified, though some code sits outside that
+  - files that can be prettied: `md,json,yaml,js,jsx,ts,tsx,mdx,css`
+    - files that can be executed (for tailwind for example): `js,ts,jsx,tsx,mdx`

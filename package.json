@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier \"./src/**/*.{md,json,yaml,js,jsx,ts,tsx}\" --write"
+    "prettier": "prettier \"./src/**/*.{md,json,yaml,js,jsx,ts,tsx,mdx,css}\" --write"
   },
   "dependencies": {
     "next": "15.1.4",
