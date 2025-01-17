@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run test",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint && tsc --noEmit",
     "prettier": "prettier \"./src/**/*.{md,json,yaml,js,jsx,ts,tsx,mdx,css}\" --write",
     "test": "jest"
   },
