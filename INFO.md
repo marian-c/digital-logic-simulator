@@ -4,6 +4,8 @@
 
 - only code in the 'src' folder is being prettified, though some code sits outside that
   - files that can be prettied: `md,json,yaml,js,jsx,ts,tsx,mdx,css` 
-    - `package.json`: prettier task, 
+    - `package.json`: prettier task
+    - `package.json`: lint staged
     - `.editorconfig`
   - files that can be executed (for tailwind for example): `js,ts,jsx,tsx,mdx`
+    - `tailwind.config.ts`
