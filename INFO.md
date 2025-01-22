@@ -1,5 +1,11 @@
 - Node is held at version 20 to avoid some possible incompatibilities, for example when installing prettier, it shows some errors
 - `ts-node` is also needed for jest to read .ts config files
+- events in react attributes of type callbacks, I've manually typed, for example:
+
+```typescript jsx
+onInput={(e: ChangeEvent<HTMLInputElement>)
+```
+
 ## Conventions
 
 - only code in the 'src' folder is being prettified, though some code sits outside that

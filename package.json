@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev-turbo": "next dev  --turbopack",
     "prebuild": "npm run test",
     "build": "next build",
     "start": "next start",
