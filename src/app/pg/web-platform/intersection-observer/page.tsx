@@ -1,5 +1,5 @@
 'use client';
-import React, { ChangeEvent } from 'react';
+import React, { type ChangeEvent } from 'react';
 
 export default function PageIntersectionObserver() {
   const [offset, setOffset] = React.useState(0);

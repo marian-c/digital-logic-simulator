@@ -4,7 +4,11 @@
  */
 
 import type {Config} from 'jest';
-import nextJest from 'next/jest.js'
+// See comment at the end of the file
+// import nextJest from 'next/jest.js'
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const nextJest = require('next/jest.js')
+
 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
@@ -201,4 +205,21 @@ const config: Config = {
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
-export default createJestConfig(config)
+// XXX: I can not use ESM module syntax because jest loads the .config.ts configs with the help of ts-node
+//   which it configures in a way incompatible with verbatimModuleSyntax. Instead of turning that off,
+//   I'm not using esm here
+// - error that I got:
+//  `TS1286: ESM syntax is not allowed in a CommonJS module when 'verbatimModuleSyntax' is enabled.`
+// - Jest code that offends
+// ```
+// compilerOptions: {
+//   module: 'CommonJS'
+// },
+// moduleTypes: {
+//   '**': 'cjs'
+// }
+// ```
+// Maybe more info: https://github.com/kulshekhar/ts-jest/issues/4081
+
+// export default createJestConfig(config)
+module.exports = createJestConfig(config)
