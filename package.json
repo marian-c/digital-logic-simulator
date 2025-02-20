@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "dev-turbo": "next dev  --turbopack",
+    "dev-turbo": "next dev --turbopack",
     "prebuild": "npm run test",
-    "build": "next build",
+    "build": "npm run build-only",
+    "build-only": "next build",
     "start": "next start",
     "lint": "next lint && tsc --noEmit",
     "prettier": "prettier \"./src/**/*.{md,json,yaml,js,jsx,ts,tsx,mdx,css}\" --write",

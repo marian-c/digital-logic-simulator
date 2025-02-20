@@ -1,3 +1,3 @@
-export function sampleLog() {
-  console.log('sample-log');
+export function sampleLog(v: string) {
+  console.log('sample-log', v);
 }
