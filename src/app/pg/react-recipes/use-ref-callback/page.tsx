@@ -8,11 +8,13 @@ export default function PageUseRefCallback() {
     }
   }, []);
   const [value, setValue] = React.useState(false);
+  const [counter, setCounter] = React.useState(1);
 
   return (
     <>
-      <h2>Do something when an element mounts</h2>
+      <h2>Do something when an inner element mounts {counter}</h2>
       <button onClick={() => setValue(!value)}>Toggle</button>
+      <button onClick={() => setCounter(counter + 1)}>Increment</button>
       {value && <div ref={refCb}>Here we go</div>}
     </>
   );

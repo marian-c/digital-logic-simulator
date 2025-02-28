@@ -1,0 +1,30 @@
+export type Page = { hasIndex: boolean; children: Array<Page>; id: string; label: string };
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function generatePagesTree(pages: string[]): Page {
+  console.log('pages', pages);
+
+  const result: Page = { hasIndex: false, children: [], id: '', label: '' };
+  pages.forEach((page) => {
+    const segments = page.substring(2).split('/');
+    segments.pop();
+    let node = result;
+    let id = '';
+    segments.forEach((segment, idx) => {
+      id += `${idx ? '/' : ''}${segment}`;
+      let tentativeNode = node.children.find((child) => {
+        return child.id === segment;
+      });
+
+      if (!tentativeNode) {
+        const newNode: Page = { hasIndex: false, children: [], id, label: segment };
+        node.children.push(newNode);
+        tentativeNode = newNode;
+      }
+      node = tentativeNode;
+    });
+    node.hasIndex = true;
+  });
+
+  return result;
+}

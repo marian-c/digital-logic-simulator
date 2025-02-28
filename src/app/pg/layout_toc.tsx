@@ -1,26 +1,21 @@
+// because of the usePathname hook
 'use client';
 
-import type { FunctionComponentWithChildren } from '@/r-ui/types';
-import { usePathname } from 'next/navigation';
-import Link from 'next/link';
-import React from 'react';
+import { usePathname, useSelectedLayoutSegments } from 'next/navigation';
 
-export default (function PgLayoutToc() {
-  React.useEffect(() => {
-    console.log('TOC mounted');
+import React from 'react';
+import type { FunctionComponent } from '@/types/r-ui';
+import { PgToc } from '@/components/_organisms/PgToc';
+
+export const PgLayoutToc: FunctionComponent<{ pages: string[] }> = ({ pages }) => {
+  const selectedLayoutSegments = useSelectedLayoutSegments();
+  const pathname = usePathname();
+  const rootPathname = React.useMemo(() => {
+    let innerPathname = '/';
+    if (selectedLayoutSegments.length) {
+      innerPathname += `${selectedLayoutSegments.join('/')}/`;
+    }
+    return pathname.substring(0, pathname.length - innerPathname.length + 1);
   }, []);
-  const pn = usePathname();
-  console.log('TOC RENDER', pn);
-  return (
-    <div>
-      <ul>
-        <li>
-          <Link href="/pg/sample-for-test">Sample for test</Link>
-        </li>
-        <li>
-          <Link href="/pg/web-platform/intersection-observer">Intersection observer</Link>
-        </li>
-      </ul>
-    </div>
-  );
-} satisfies FunctionComponentWithChildren as FunctionComponentWithChildren);
+  return <PgToc pages={pages} rootPathname={rootPathname} />;
+};

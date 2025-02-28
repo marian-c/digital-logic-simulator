@@ -1,5 +1,7 @@
-import type { FunctionComponentWithChildren } from '@/r-ui/types';
-import Layout_toc from '@/app/pg/layout_toc';
+import type { FunctionComponentWithChildren } from '@/types/r-ui';
+import { PgLayoutToc } from '@/app/pg/layout_toc';
+
+const ctxPages = require.context('.', true, /page\.tsx$/).keys();
 
 type Props = {
   params: Promise<Record<string, string>>;
@@ -10,7 +12,7 @@ export default (async function test({ children }) {
     <div>
       <div>
         Left
-        <Layout_toc />
+        <PgLayoutToc pages={ctxPages} />
       </div>
       {children}
     </div>

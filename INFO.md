@@ -6,6 +6,10 @@
 onInput={(e: ChangeEvent<HTMLInputElement>)
 ```
 
+- "@types/webpack-env" is needed to type the method: `require.context`
+- when using `--turbopack` for `next dev` the second argument for `require.context` does not cause it to recurse into
+  the folder structure.
+
 ## Conventions
 
 - only code in the 'src' folder is being prettified, though some code sits outside that
