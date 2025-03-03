@@ -10,10 +10,10 @@ export function generatePagesTree(pages: string[]): Page {
     segments.pop();
     let node = result;
     let id = '';
-    segments.forEach((segment, idx) => {
-      id += `${idx ? '/' : ''}${segment}`;
+    segments.forEach((segment) => {
+      id += `${id ? '/' : ''}${segment}`;
       let tentativeNode = node.children.find((child) => {
-        return child.id === segment;
+        return child.id === id;
       });
 
       if (!tentativeNode) {
@@ -25,6 +25,8 @@ export function generatePagesTree(pages: string[]): Page {
     });
     node.hasIndex = true;
   });
+
+  console.log('result', result);
 
   return result;
 }
