@@ -1,6 +1,6 @@
 import type { FunctionComponent } from '@/types/r-ui';
-import { Reader } from '@/components/_organisms/Reader';
-import { singuratate } from '@/components/_organisms/Reader/samples';
+import { Reader } from '../../_organisms/ReaderAbandoned';
+import { singuratate } from '@/components/_organisms/ReaderAbandoned/samples';
 
 /**
  * This will handle the reader initialization
@@ -9,5 +9,5 @@ import { singuratate } from '@/components/_organisms/Reader/samples';
  * - show the actual reader
  */
 export const Eminescu: FunctionComponent = () => {
-  return <Reader contents={singuratate} />;
+  return <Reader contents={singuratate} shouldUseFullHeight />;
 };

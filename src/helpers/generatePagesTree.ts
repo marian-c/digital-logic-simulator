@@ -2,8 +2,6 @@ export type Page = { hasIndex: boolean; children: Array<Page>; id: string; label
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function generatePagesTree(pages: string[]): Page {
-  console.log('pages', pages);
-
   const result: Page = { hasIndex: false, children: [], id: '', label: '' };
   pages.forEach((page) => {
     const segments = page.substring(2).split('/');
@@ -25,8 +23,5 @@ export function generatePagesTree(pages: string[]): Page {
     });
     node.hasIndex = true;
   });
-
-  console.log('result', result);
-
   return result;
 }
