@@ -10,12 +10,16 @@ type ItemTitle = {
   data: string;
 };
 
-type ItemEntry = {
-  kind: 'entry';
+type ItemLine = {
+  kind: 'line';
+  data: string;
+};
+type ItemParagraph = {
+  kind: 'paragraph';
   data: string;
 };
 
-export type Item = ItemEntry | ItemTitle | ItemSeparator;
+export type Item = ItemLine | ItemParagraph | ItemTitle | ItemSeparator;
 
 type Props = {
   contents: Item[];

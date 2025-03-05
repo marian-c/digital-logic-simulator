@@ -53,5 +53,5 @@
   "exclude": [
     "node_modules",
     ".IGNORED"
-  ]
+  ],
 }

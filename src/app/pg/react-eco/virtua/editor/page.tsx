@@ -28,7 +28,7 @@ function Demo() {
             <div
               key={i}
               style={{
-                scrollSnapAlign: 'start',
+                scrollSnapAlign: 'center',
                 width: width,
                 borderRight: 'solid 1px red',
                 background: 'gray',
