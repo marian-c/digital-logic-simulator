@@ -1,6 +1,6 @@
-import { Reader } from '../../../../../components/_organisms/ReaderAbandoned';
-import { singuratate } from '@/components/_organisms/ReaderAbandoned/samples';
+import { ReaderAbandoned } from '../../../../../components/_organisms/ReaderAbandoned';
+import { singuratate } from '@/data/samples/samples';
 
 export default function PagePgOrganismReaderFullHeight() {
-  return <Reader contents={singuratate} shouldUseFullHeight={true} />;
+  return <ReaderAbandoned contents={singuratate} shouldUseFullHeight={true} />;
 }

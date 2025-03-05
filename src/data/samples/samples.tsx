@@ -1,4 +1,4 @@
-import type { Item } from '@/components/_organisms/ReaderAbandoned/index';
+import type { Item } from '@/types/book';
 
 export const singuratate: Item[] = [
   { kind: 'title', data: 'Singurătate' },

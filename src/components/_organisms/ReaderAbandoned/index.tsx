@@ -1,25 +1,7 @@
 'use client';
+import type { Item } from '@/types/book';
 import type { FunctionComponent } from '@/types/r-ui';
 import React, { type RefCallback } from 'react';
-
-type ItemSeparator = {
-  kind: 'separator';
-};
-type ItemTitle = {
-  kind: 'title';
-  data: string;
-};
-
-type ItemLine = {
-  kind: 'line';
-  data: string;
-};
-type ItemParagraph = {
-  kind: 'paragraph';
-  data: string;
-};
-
-export type Item = ItemLine | ItemParagraph | ItemTitle | ItemSeparator;
 
 type Props = {
   contents: Item[];
@@ -29,7 +11,7 @@ type Props = {
   // initalLocation?: string
 };
 
-export const Reader: FunctionComponent<Props> = ({
+export const ReaderAbandoned: FunctionComponent<Props> = ({
   contents,
   shouldUseFullHeight,
   wrapperClassName,
