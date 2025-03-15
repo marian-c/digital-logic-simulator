@@ -16,6 +16,6 @@ export const PgLayoutToc: FunctionComponent<{ pages: string[] }> = ({ pages }) =
       innerPathname += `${selectedLayoutSegments.join('/')}/`;
     }
     return pathname.substring(0, pathname.length - innerPathname.length + 1);
-  }, []);
+  }, [selectedLayoutSegments, pathname]);
   return <PgToc pages={pages} rootPathname={rootPathname} />;
 };

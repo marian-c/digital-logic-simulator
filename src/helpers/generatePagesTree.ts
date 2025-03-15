@@ -1,6 +1,5 @@
 export type Page = { hasIndex: boolean; children: Array<Page>; id: string; label: string };
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function generatePagesTree(pages: string[]): Page {
   const result: Page = { hasIndex: false, children: [], id: '', label: '' };
   pages.forEach((page) => {
