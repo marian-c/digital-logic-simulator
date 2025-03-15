@@ -19,3 +19,11 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/*
+Helpful to add to the body in case we don't want it to scroll
+in certain situation, for example if we have a full viewport element
+*/
+.noscroll {
+  overflow: hidden;
+}
