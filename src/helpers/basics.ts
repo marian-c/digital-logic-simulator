@@ -5,3 +5,6 @@ export const canUseDOM: boolean = !!(
   window.document &&
   window.document.createElement
 );
+
+export const noop = () => {};
+export const isSetTrue = (arg: boolean | undefined | null) => !!arg;
