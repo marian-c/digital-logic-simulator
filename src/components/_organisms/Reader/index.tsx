@@ -90,7 +90,11 @@ export const Reader: FunctionComponent<Props> = ({
           }
         }}
         onClick={() => {
-          setIsPageOnly(!isPageOnly);
+          // when the click has happened, maybe it was a selection, in which case we don't want to mess with the chrome
+          const hasSelection = !document.getSelection()?.getRangeAt(0).collapsed;
+          if (!hasSelection) {
+            setIsPageOnly(!isPageOnly);
+          }
         }}
       >
         <pre>{JSON.stringify({ wrapperSize, headerSize, footerSize }, undefined, 2)}</pre>
