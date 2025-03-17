@@ -65,6 +65,8 @@ export const Reader: FunctionComponent<Props> = ({
   const firstMount = useFirstMount();
   const isLoading = firstMount || !contents;
 
+  const [isPageOnly, setIsPageOnly] = React.useState(true);
+
   const { wrapperSize, footerSize, headerSize, wrapperRef, headerRef, footerRef } = useLayout();
 
   useNoScroll(isSetTrue, fullViewport);
@@ -72,13 +74,33 @@ export const Reader: FunctionComponent<Props> = ({
   return (
     <div
       ref={wrapperRef}
-      className={`${fullViewport ? 'h-dvh inset-0 bottom-[-1px] fixed' : ''} ${wrapperClassName ?? ''} bg-zinc-200 border border-red-100`}
+      className={`${fullViewport ? 'h-dvh inset-0 bottom-[-1px] fixed' : ''} ${wrapperClassName ?? ''} touch-manipulation bg-zinc-200 border border-red-100`}
     >
-      <div ref={headerRef}>TODO: title here</div>
-      <div>
+      <div
+        ref={headerRef}
+        className={`absolute top-0 transition-transform ${isPageOnly ? '-translate-y-full' : 'translate-y-0'} `}
+      >
+        TODO: title here ${isPageOnly}
+      </div>
+      <div
+        onMouseDown={(e) => {
+          // disable selection on double click
+          if (e.detail !== 1) {
+            e.preventDefault();
+          }
+        }}
+        onClick={() => {
+          setIsPageOnly(!isPageOnly);
+        }}
+      >
         <pre>{JSON.stringify({ wrapperSize, headerSize, footerSize }, undefined, 2)}</pre>
       </div>
-      <div ref={footerRef}>Footer</div>
+      <div
+        ref={footerRef}
+        className={`absolute bottom-0 transition-transform ${isPageOnly ? 'translate-y-full' : 'translate-y-0'} `}
+      >
+        Footer
+      </div>
     </div>
   );
 };

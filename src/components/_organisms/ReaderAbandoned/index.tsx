@@ -71,7 +71,7 @@ export const ReaderAbandoned: FunctionComponent<Props> = ({
       className={`${shouldUseFullHeight ? 'h-dvh' : ''} ${wrapperClassName} border border-red-100 relative`}
     >
       <div
-        className="w-full h-full border border-black overflow-auto snap-x snap-mandatory gap-0 columns-[99999px]"
+        className="w-full h-full border border-black overflow-auto snap-x snap-mandatory gap-0 columns-[99999px] scroll-smooth"
         ref={refCb}
       >
         {contents.map((contentElement, contentIndex) => {
