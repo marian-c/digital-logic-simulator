@@ -3,7 +3,7 @@ import type { FunctionComponent } from '@/types/r-ui';
 import { singuratate } from '@/data/books/samples/samples';
 import { Reader } from '@/components/_organisms/Reader';
 import { useLocalStorageItemInCollectionInitialNoFirstMount } from '@/hooks/useLocalStorage';
-import { getBooksIdentifier } from '@/data/books';
+import { getBookIdentifier } from '@/data/books';
 import React, { type RefCallback } from 'react';
 
 /**
@@ -16,7 +16,7 @@ import React, { type RefCallback } from 'react';
 export const Eminescu: FunctionComponent = () => {
   const userStateForThisBook = useLocalStorageItemInCollectionInitialNoFirstMount(
     'reader_books',
-    getBooksIdentifier('eminescu'),
+    getBookIdentifier('eminescu', 'poezii'),
     { currentPage: 0 },
   );
 

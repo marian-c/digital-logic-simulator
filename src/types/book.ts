@@ -16,3 +16,5 @@ type ItemParagraph = {
 };
 
 export type Item = ItemLine | ItemParagraph | ItemTitle | ItemSeparator;
+
+export type BookContents = { items: Item[] };

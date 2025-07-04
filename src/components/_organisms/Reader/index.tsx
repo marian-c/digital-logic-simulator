@@ -48,22 +48,15 @@ function useNoScroll<TArgs extends unknown[]>(fn: (...args: TArgs) => boolean, .
   }, args);
 }
 
-const ReaderInner: FunctionComponent<{}> = () => {
-  return <div>Reader inner</div>;
-};
-
 /**
  * if the contents are missing, then it's the loading state
  */
-export const Reader: FunctionComponent<Props> = ({
-  contents,
-  fullViewport,
-  wrapperClassName,
-  initialPageNumber,
-}) => {
+export const Reader: FunctionComponent<Props> = ({ contents, fullViewport, wrapperClassName }) => {
   // this renders twice
   const firstMount = useFirstMount();
   const isLoading = firstMount || !contents;
+
+  console.log(isLoading);
 
   const [isPageOnly, setIsPageOnly] = React.useState(true);
 

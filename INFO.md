@@ -19,3 +19,8 @@ onInput={(e: ChangeEvent<HTMLInputElement>)
     - `.editorconfig`
   - files that can be executed (for tailwind for example): `js,ts,jsx,tsx,mdx`
     - `tailwind.config.ts`
+
+## Notes
+
+- to support more advanced scenarios for i18n, one can use this workaround: 
+  https://github.com/vercel/next.js/discussions/49415#discussioncomment-10388757
