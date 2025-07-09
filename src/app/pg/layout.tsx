@@ -9,12 +9,12 @@ type Props = {
 
 export default (async function test({ children }) {
   return (
-    <div>
-      <div>
+    <div className="flex">
+      <div className="border-r-2 border-gray-200">
         Left
         <PgLayoutToc pages={ctxPages} />
       </div>
-      {children}
+      <div className="pl-2">{children}</div>
     </div>
   );
 } satisfies FunctionComponentWithChildren<Props> as FunctionComponentWithChildren<Props>);
