@@ -32,10 +32,19 @@ interface AndBoxElement extends ProvidedBoxElementBase {
   providedKind: 'and';
 }
 
-interface ConnectorElement extends BaseElement {
+interface ConnectorElementBase extends BaseElement {
   elementKind: 'connector';
+  connectorKind: 'smart' | 'plain';
 }
 
+interface SmartConnectorElement extends ConnectorElementBase {
+  connectorKind: 'smart';
+}
+interface PlainConnectorElement extends ConnectorElementBase {
+  connectorKind: 'plain';
+}
+
+type ConnectorElement = SmartConnectorElement | PlainConnectorElement;
 type ProvidedBoxElement = NotBoxElement | AndBoxElement;
 type BoxElement = ProvidedBoxElement | CustomBoxElement;
 type Elem = BoxElement | ConnectorElement;
@@ -50,10 +59,14 @@ export interface Sketch {
  * MUTATES
  */
 export const addIds = (sketch: Sketch): Sketch => {
-  let id = 1;
-  sketch.theBox.id = id++;
+  let id = sketch.nextId;
+  if (!sketch.theBox.id) {
+    sketch.theBox.id = id++;
+  }
   sketch.theBox.elements.forEach(function handleElement(e) {
-    e.id = id++;
+    if (!e.id) {
+      e.id = id++;
+    }
     if (e.elementKind === 'box' && e.boxKind === 'custom') {
       e.elements.forEach(handleElement);
     }
@@ -64,9 +77,11 @@ export const addIds = (sketch: Sketch): Sketch => {
 };
 
 export function getSample(): Sketch {
+  let nextId = 1;
+  const boxId1 = nextId++;
+  const boxId2 = nextId++;
   const _sample: Sketch = {
     title: 'Sample',
-    nextId: 0,
     theBox: {
       id: 0,
       elementKind: 'box',
@@ -78,7 +93,7 @@ export function getSample(): Sketch {
       },
       elements: [
         {
-          id: 0,
+          id: boxId1,
           elementKind: 'box',
           boxKind: 'provided',
           providedKind: 'not',
@@ -89,7 +104,7 @@ export function getSample(): Sketch {
           },
         },
         {
-          id: 0,
+          id: boxId2,
           elementKind: 'box',
           boxKind: 'provided',
           providedKind: 'not',
@@ -112,6 +127,7 @@ export function getSample(): Sketch {
         },
       ],
     },
+    nextId: nextId++,
   };
 
   return addIds(_sample);

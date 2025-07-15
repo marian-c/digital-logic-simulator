@@ -158,8 +158,7 @@ export default function PagePgDnd() {
                       );
                     case 'and':
                       // TODO
-                      return;
-                      <></>;
+                      return <></>;
                     default:
                       assertNever(element);
                   }
