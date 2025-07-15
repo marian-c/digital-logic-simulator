@@ -76,8 +76,28 @@ export function getSample(): Sketch {
           boxKind: 'provided',
           providedKind: 'not',
           pos: {
-            x: 100,
-            y: 100,
+            x: 0,
+            y: 0,
+          },
+        },
+        {
+          id: 0,
+          elementKind: 'box',
+          boxKind: 'provided',
+          providedKind: 'not',
+          pos: {
+            x: 400,
+            y: 300,
+          },
+        },
+        {
+          id: 0,
+          elementKind: 'box',
+          boxKind: 'provided',
+          providedKind: 'not',
+          pos: {
+            x: 795,
+            y: 595,
           },
         },
       ],
