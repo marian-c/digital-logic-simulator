@@ -10,11 +10,12 @@ interface BaseElement {
 interface BoxElementBase extends BaseElement {
   elementKind: 'box';
   boxKind: 'provided' | 'custom';
+  userLabel: string;
 }
 
 interface ProvidedBoxElementBase extends BoxElementBase {
   boxKind: 'provided';
-  providedKind: 'not';
+  providedKind: 'not' | 'and';
 }
 interface CustomBoxElement extends BoxElementBase {
   boxKind: 'custom';
@@ -26,11 +27,16 @@ interface NotBoxElement extends ProvidedBoxElementBase {
   providedKind: 'not';
 }
 
+interface AndBoxElement extends ProvidedBoxElementBase {
+  boxKind: 'provided';
+  providedKind: 'and';
+}
+
 interface ConnectorElement extends BaseElement {
   elementKind: 'connector';
 }
 
-type ProvidedBoxElement = NotBoxElement;
+type ProvidedBoxElement = NotBoxElement | AndBoxElement;
 type BoxElement = ProvidedBoxElement | CustomBoxElement;
 type Elem = BoxElement | ConnectorElement;
 
@@ -65,6 +71,7 @@ export function getSample(): Sketch {
       id: 0,
       elementKind: 'box',
       boxKind: 'custom',
+      userLabel: 'The sketch',
       pos: {
         x: 0,
         y: 0,
@@ -75,6 +82,7 @@ export function getSample(): Sketch {
           elementKind: 'box',
           boxKind: 'provided',
           providedKind: 'not',
+          userLabel: 'first',
           pos: {
             x: 0,
             y: 0,
@@ -85,6 +93,7 @@ export function getSample(): Sketch {
           elementKind: 'box',
           boxKind: 'provided',
           providedKind: 'not',
+          userLabel: 'second',
           pos: {
             x: 400,
             y: 300,
@@ -95,6 +104,7 @@ export function getSample(): Sketch {
           elementKind: 'box',
           boxKind: 'provided',
           providedKind: 'not',
+          userLabel: 'third',
           pos: {
             x: 795,
             y: 595,

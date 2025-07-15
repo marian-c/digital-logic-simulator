@@ -1,8 +1,15 @@
 'use client';
 
 import React from 'react';
-import { defaultHeight, defaultWidth } from '@/app/pg/dnd/constants';
+import {
+  defaultHeight,
+  defaultWidth,
+  notGateColor,
+  notGateHeight,
+  notGateWidth,
+} from '@/app/pg/dnd/constants';
 import { getSample, type Sketch } from '@/app/pg/dnd/types';
+import { assertNever } from '@/helpers/basics';
 
 type State = {
   activeElementId: number;
@@ -17,6 +24,9 @@ function onElementMouseDown(
 ) {
   // XXX: this gets recreated on every render
   return function (event: React.MouseEvent<SVGRectElement, MouseEvent>) {
+    if (event.button !== 0) {
+      return;
+    }
     console.log('onElementMouseDown', event);
     setter((oldState): State => {
       return {
@@ -112,17 +122,55 @@ export default function PagePgDnd() {
         onMouseMove={onContainerMouseMove}
       >
         {data.theBox.elements.map((element) => {
-          return (
-            <rect
-              key={element.id}
-              x={element.pos.x}
-              y={element.pos.y}
-              width={100}
-              height={100}
-              fill="pink"
-              onMouseDown={onElementMouseDown(setState, element.id)}
-            />
-          );
+          switch (element.elementKind) {
+            case 'connector':
+              // TODO
+              return <></>;
+              break;
+            case 'box':
+              switch (element.boxKind) {
+                case 'custom':
+                  // TODO
+                  return <></>;
+                  break;
+                case 'provided':
+                  switch (element.providedKind) {
+                    case 'not':
+                      return (
+                        <g
+                          key={element.id}
+                          transform={`translate(${element.pos.x}, ${element.pos.y})`}
+                        >
+                          <g onMouseDown={onElementMouseDown(setState, element.id)}>
+                            <rect
+                              key={element.id}
+                              fill={notGateColor}
+                              width={notGateWidth}
+                              height={notGateHeight}
+                            />
+                            <text x="13" y="20" fill="white" fontWeight="bold">
+                              NOT
+                            </text>
+                          </g>
+                          <circle cx="0" cy="15" r="8" />
+                          <circle cx={notGateWidth} cy="15" r="8" />
+                        </g>
+                      );
+                    case 'and':
+                      // TODO
+                      return;
+                      <></>;
+                    default:
+                      assertNever(element);
+                  }
+                  break;
+                default:
+                  assertNever(element);
+              }
+              break;
+            default:
+              assertNever(element);
+          }
         })}
       </svg>
       <div>
