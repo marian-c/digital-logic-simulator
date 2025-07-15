@@ -16,6 +16,7 @@ type State = {
   lastActiveElementId: number;
   mouseDownX: number;
   mouseDownY: number;
+  zoomFactor: number;
 };
 
 function onElementMouseDown(
@@ -84,6 +85,7 @@ export default function PagePgDnd() {
     lastActiveElementId: 0,
     mouseDownX: 0,
     mouseDownY: 0,
+    zoomFactor: 1,
   });
   React.useEffect(() => {
     const cbMouseUp = onDocumentMouseUp(setState);
@@ -99,8 +101,8 @@ export default function PagePgDnd() {
         const elFound = data.theBox.elements.find((el) => el.id === state.activeElementId);
         if (elFound) {
           // XXX: this just mutates
-          elFound.pos.x += event.clientX - state.mouseDownX;
-          elFound.pos.y += event.clientY - state.mouseDownY;
+          elFound.pos.x += (event.clientX - state.mouseDownX) / state.zoomFactor;
+          elFound.pos.y += (event.clientY - state.mouseDownY) / state.zoomFactor;
           setData({ ...data });
         } // XXX: else throw?
 
@@ -115,67 +117,90 @@ export default function PagePgDnd() {
       <svg
         width={defaultWidth}
         height={defaultHeight}
-        viewBox={`0 0 ${defaultWidth} ${defaultHeight}`}
-        overflow="scroll"
-        className="border border-amber-500"
+        className="border border-amber-500 select-none"
         // onMouseMove={onContainerMouseMove(state, setState, setData)}
         onMouseMove={onContainerMouseMove}
       >
-        {data.theBox.elements.map((element) => {
-          switch (element.elementKind) {
-            case 'connector':
-              // TODO
-              return <></>;
-              break;
-            case 'box':
-              switch (element.boxKind) {
-                case 'custom':
-                  // TODO
-                  return <></>;
-                  break;
-                case 'provided':
-                  switch (element.providedKind) {
-                    case 'not':
-                      return (
-                        <g
-                          key={element.id}
-                          transform={`translate(${element.pos.x}, ${element.pos.y})`}
-                        >
-                          <g onMouseDown={onElementMouseDown(setState, element.id)}>
-                            <rect
-                              key={element.id}
-                              fill={notGateColor}
-                              width={notGateWidth}
-                              height={notGateHeight}
-                            />
-                            <text x="13" y="20" fill="white" fontWeight="bold">
-                              NOT
-                            </text>
+        <svg
+          width={defaultWidth}
+          height={defaultHeight}
+          viewBox={`0 0 ${defaultWidth / state.zoomFactor} ${defaultHeight / state.zoomFactor}`}
+        >
+          {data.theBox.elements.map((element) => {
+            switch (element.elementKind) {
+              case 'connector':
+                // TODO
+                return <></>;
+                break;
+              case 'box':
+                switch (element.boxKind) {
+                  case 'custom':
+                    // TODO
+                    return <></>;
+                    break;
+                  case 'provided':
+                    switch (element.providedKind) {
+                      case 'not':
+                        return (
+                          <g
+                            key={element.id}
+                            transform={`translate(${element.pos.x}, ${element.pos.y})`}
+                          >
+                            <g onMouseDown={onElementMouseDown(setState, element.id)}>
+                              <rect
+                                key={element.id}
+                                fill={notGateColor}
+                                width={notGateWidth}
+                                height={notGateHeight}
+                              />
+                              <text x="13" y="20" fill="white" fontWeight="bold">
+                                NOT
+                              </text>
+                            </g>
+                            <circle cx="0" cy="15" r="8" />
+                            <circle cx={notGateWidth} cy="15" r="8" />
                           </g>
-                          <circle cx="0" cy="15" r="8" />
-                          <circle cx={notGateWidth} cy="15" r="8" />
-                        </g>
-                      );
-                    case 'and':
-                      // TODO
-                      return <></>;
-                    default:
-                      assertNever(element);
-                  }
-                  break;
-                default:
-                  assertNever(element);
-              }
-              break;
-            default:
-              assertNever(element);
-          }
-        })}
+                        );
+                      case 'and':
+                        // TODO
+                        return <></>;
+                      default:
+                        assertNever(element);
+                    }
+                    break;
+                  default:
+                    assertNever(element);
+                }
+                break;
+              default:
+                assertNever(element);
+            }
+          })}
+        </svg>
+        <rect fill="lightgray" width="100%" height={20} y={defaultHeight - 20} />
       </svg>
       <div>
         active element id: {state.activeElementId}
         <br />
         lastActiveElementId: {state.lastActiveElementId}
+        <br />
+        Zoom factor: {state.zoomFactor}
+        <br />
+        <button
+          onClick={() => {
+            setState({ ...state, zoomFactor: state.zoomFactor + 0.1 });
+          }}
+        >
+          Zoom in
+        </button>
+        <br />
+        <button
+          onClick={() => {
+            setState({ ...state, zoomFactor: state.zoomFactor - 0.1 });
+          }}
+        >
+          Zoom out
+        </button>
       </div>
     </div>
   );
