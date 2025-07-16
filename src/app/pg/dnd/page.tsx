@@ -4,6 +4,7 @@ import React from 'react';
 import {
   defaultHeight,
   defaultWidth,
+  gridSize,
   notGateColor,
   notGateHeight,
   notGateWidth,
@@ -117,7 +118,12 @@ export default function PagePgDnd() {
       <svg
         width={defaultWidth}
         height={defaultHeight}
-        className="border border-amber-500 select-none"
+        style={{
+          backgroundSize: `${gridSize * state.zoomFactor}px ${gridSize * state.zoomFactor}px`, // TODO: use vars, might be faster
+          backgroundPositionX: '-0.5px',
+          backgroundPositionY: '-0.5px',
+        }}
+        className="border border-amber-500 select-none bg-white bg-grid"
         // onMouseMove={onContainerMouseMove(state, setState, setData)}
         onMouseMove={onContainerMouseMove}
       >

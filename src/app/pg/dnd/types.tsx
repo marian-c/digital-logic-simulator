@@ -110,8 +110,8 @@ export function getSample(): Sketch {
           providedKind: 'not',
           userLabel: 'second',
           pos: {
-            x: 400,
-            y: 300,
+            x: 500,
+            y: 500,
           },
         },
         {
@@ -121,8 +121,8 @@ export function getSample(): Sketch {
           providedKind: 'not',
           userLabel: 'third',
           pos: {
-            x: 795,
-            y: 595,
+            x: 40,
+            y: 40,
           },
         },
       ],
