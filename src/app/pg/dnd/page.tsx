@@ -14,6 +14,8 @@ import { assertNever } from '@/helpers/basics';
 
 type State = {
   activeElementId: number;
+  activeElementPosX: number;
+  activeElementPosY: number;
   lastActiveElementId: number;
   mouseDownX: number;
   mouseDownY: number;
@@ -21,6 +23,7 @@ type State = {
 };
 
 function onElementMouseDown(
+  data: Sketch,
   setter: React.Dispatch<React.SetStateAction<State>>,
   elementId: number,
 ) {
@@ -30,10 +33,13 @@ function onElementMouseDown(
       return;
     }
     console.log('onElementMouseDown', event);
+    const element = data.theBox.elements.find((e) => e.id === elementId);
     setter((oldState): State => {
       return {
         ...oldState,
         activeElementId: elementId,
+        activeElementPosX: element?.pos.x || 0,
+        activeElementPosY: element?.pos.y || 0,
         lastActiveElementId: elementId,
         mouseDownX: event.clientX,
         mouseDownY: event.clientY,
@@ -83,6 +89,8 @@ export default function PagePgDnd() {
   });
   const [state, setState] = React.useState<State>({
     activeElementId: 0,
+    activeElementPosX: 0,
+    activeElementPosY: 0,
     lastActiveElementId: 0,
     mouseDownX: 0,
     mouseDownY: 0,
@@ -100,14 +108,22 @@ export default function PagePgDnd() {
     (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
       if (state.activeElementId) {
         const elFound = data.theBox.elements.find((el) => el.id === state.activeElementId);
+        const x = state.activeElementPosX + (event.clientX - state.mouseDownX) / state.zoomFactor;
+        const y = state.activeElementPosY + (event.clientY - state.mouseDownY) / state.zoomFactor;
         if (elFound) {
           // XXX: this just mutates
-          elFound.pos.x += (event.clientX - state.mouseDownX) / state.zoomFactor;
-          elFound.pos.y += (event.clientY - state.mouseDownY) / state.zoomFactor;
+          elFound.pos.x = Math.round(x / 10) * 10;
+          elFound.pos.y = Math.round(y / 10) * 10;
           setData({ ...data });
         } // XXX: else throw?
 
-        setState({ ...state, mouseDownX: event.clientX, mouseDownY: event.clientY });
+        setState({
+          ...state,
+          mouseDownX: event.clientX,
+          mouseDownY: event.clientY,
+          activeElementPosX: x,
+          activeElementPosY: y,
+        });
       }
     },
     [state, data],
@@ -152,7 +168,7 @@ export default function PagePgDnd() {
                             key={element.id}
                             transform={`translate(${element.pos.x}, ${element.pos.y})`}
                           >
-                            <g onMouseDown={onElementMouseDown(setState, element.id)}>
+                            <g onMouseDown={onElementMouseDown(data, setState, element.id)}>
                               <rect
                                 key={element.id}
                                 fill={notGateColor}
