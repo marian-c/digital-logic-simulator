@@ -15,10 +15,10 @@ import { assertNever } from '@/helpers/basics';
 import roundPathCorners from '@/app/pg/dnd/rouding';
 
 type State = {
-  activeElementId: number;
-  activeElementPosX: number;
-  activeElementPosY: number;
-  lastActiveElementId: number;
+  activeBoxId: number;
+  activeBoxPosX: number;
+  activeBoxPosY: number;
+  lastActiveBoxId: number;
   mouseDownX: number;
   mouseDownY: number;
   zoomFactor: number;
@@ -35,14 +35,14 @@ function onElementMouseDown(
       return;
     }
     console.log('onElementMouseDown', event);
-    const element = data.theBox.elements.find((e) => e.id === elementId);
+    const element = data.theBox.boxElements.find((e) => e.id === elementId);
     setter((oldState): State => {
       return {
         ...oldState,
-        activeElementId: elementId,
-        activeElementPosX: element?.pos.x || 0,
-        activeElementPosY: element?.pos.y || 0,
-        lastActiveElementId: elementId,
+        activeBoxId: elementId,
+        activeBoxPosX: element?.pos.x || 0,
+        activeBoxPosY: element?.pos.y || 0,
+        lastActiveBoxId: elementId,
         mouseDownX: event.clientX,
         mouseDownY: event.clientY,
       };
@@ -55,7 +55,7 @@ function onDocumentMouseUp(setter: React.Dispatch<React.SetStateAction<State>>) 
   return function () {
     console.log('onDocumentMouseUp');
     setter((oldState): State => {
-      return { ...oldState, activeElementId: 0 };
+      return { ...oldState, activeBoxId: 0 };
     });
   };
 }
@@ -90,10 +90,10 @@ export default function PagePgDnd() {
     return getSample();
   });
   const [state, setState] = React.useState<State>({
-    activeElementId: 0,
-    activeElementPosX: 0,
-    activeElementPosY: 0,
-    lastActiveElementId: 0,
+    activeBoxId: 0,
+    activeBoxPosX: 0,
+    activeBoxPosY: 0,
+    lastActiveBoxId: 0,
     mouseDownX: 0,
     mouseDownY: 0,
     zoomFactor: 1,
@@ -108,10 +108,10 @@ export default function PagePgDnd() {
 
   const onContainerMouseMove = React.useCallback(
     (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-      if (state.activeElementId) {
-        const elFound = data.theBox.elements.find((el) => el.id === state.activeElementId);
-        const x = state.activeElementPosX + (event.clientX - state.mouseDownX) / state.zoomFactor;
-        const y = state.activeElementPosY + (event.clientY - state.mouseDownY) / state.zoomFactor;
+      if (state.activeBoxId) {
+        const elFound = data.theBox.boxElements.find((el) => el.id === state.activeBoxId);
+        const x = state.activeBoxPosX + (event.clientX - state.mouseDownX) / state.zoomFactor;
+        const y = state.activeBoxPosY + (event.clientY - state.mouseDownY) / state.zoomFactor;
         if (elFound) {
           // XXX: this just mutates
           elFound.pos.x = Math.round(x / 10) * 10;
@@ -123,8 +123,8 @@ export default function PagePgDnd() {
           ...state,
           mouseDownX: event.clientX,
           mouseDownY: event.clientY,
-          activeElementPosX: x,
-          activeElementPosY: y,
+          activeBoxPosX: x,
+          activeBoxPosY: y,
         });
       }
     },
@@ -150,159 +150,150 @@ export default function PagePgDnd() {
           height={defaultHeight}
           viewBox={`0 0 ${defaultWidth / state.zoomFactor} ${defaultHeight / state.zoomFactor}`}
         >
-          {data.theBox.elements.map((element) => {
-            switch (element.elementKind) {
-              case 'connector':
-                switch (element.connectorKind) {
-                  case 'plain': {
-                    const startElement = data.theBox.elements.find(
-                      (e) => e.id === element.startElementId,
+          {data.theBox.boxElements.map((box) => {
+            switch (box.boxKind) {
+              case 'custom':
+                // TODO
+                throw new Error('Implement this');
+                break;
+              case 'provided':
+                switch (box.providedKind) {
+                  case 'not':
+                    return (
+                      <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
+                        <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
+                          <rect
+                            key={box.id}
+                            fill={notGateColor}
+                            width={notGateWidth}
+                            height={notGateHeight}
+                          />
+                          <text x="13" y="20" fill="white" fontWeight="bold">
+                            NOT
+                          </text>
+                        </g>
+                        <circle cx="0" cy="15" r="8" />
+                        <circle cx={notGateWidth} cy="15" r="8" />
+                      </g>
                     );
-                    const endElement = data.theBox.elements.find(
-                      (e) => e.id === element.endElementId,
-                    );
-                    if (startElement?.elementKind !== 'box' || endElement?.elementKind !== 'box') {
-                      // TODO better handling, show an error, this just crashes
-                      throw new Error('only connecting boxes');
-                    }
+                  case 'and':
+                    // TODO
+                    throw new Error('Implement this');
+                  default:
+                    assertNever(box);
+                }
+                break;
+              default:
+                assertNever(box);
+            }
+          })}
+          {data.theBox.connectorElements.map((connectorElement) => {
+            switch (connectorElement.connectorKind) {
+              case 'plain': {
+                const startElement = data.theBox.boxElements.find(
+                  (e) => e.id === connectorElement.startElementId,
+                );
+                const endElement = data.theBox.boxElements.find(
+                  (e) => e.id === connectorElement.endElementId,
+                );
+                if (startElement?.elementKind !== 'box' || endElement?.elementKind !== 'box') {
+                  // TODO better handling, show an error, this just crashes
+                  throw new Error('only connecting boxes');
+                }
 
-                    let actualStartPosition = { x: 0, y: 0 };
-                    switch (startElement.boxKind) {
-                      case 'provided':
-                        switch (startElement.providedKind) {
-                          case 'not':
-                            actualStartPosition = {
-                              x: startElement.pos.x + notGateWidth,
-                              y: startElement.pos.y + notGateHeight / 2,
-                            };
-                            break;
-                          case 'and':
-                            // TODO:
-                            throw new Error('Implement this');
-                            break;
-                          default:
-                            assertNever(startElement);
-                        }
+                let actualStartPosition = { x: 0, y: 0 };
+                switch (startElement.boxKind) {
+                  case 'provided':
+                    switch (startElement.providedKind) {
+                      case 'not':
+                        actualStartPosition = {
+                          x: startElement.pos.x + notGateWidth,
+                          y: startElement.pos.y + notGateHeight / 2,
+                        };
                         break;
-                      case 'custom':
+                      case 'and':
                         // TODO:
                         throw new Error('Implement this');
                         break;
                       default:
                         assertNever(startElement);
                     }
+                    break;
+                  case 'custom':
+                    // TODO:
+                    throw new Error('Implement this');
+                    break;
+                  default:
+                    assertNever(startElement);
+                }
 
-                    let actualEndPosition = { x: 0, y: 0 };
-                    switch (endElement.boxKind) {
-                      case 'provided':
-                        switch (endElement.providedKind) {
-                          case 'not':
-                            actualEndPosition = {
-                              x: endElement.pos.x,
-                              y: endElement.pos.y + notGateHeight / 2,
-                            };
-                            break;
-                          case 'and':
-                            // TODO:
-                            throw new Error('Implement this');
-                            break;
-                          default:
-                            assertNever(endElement);
-                        }
+                let actualEndPosition = { x: 0, y: 0 };
+                switch (endElement.boxKind) {
+                  case 'provided':
+                    switch (endElement.providedKind) {
+                      case 'not':
+                        actualEndPosition = {
+                          x: endElement.pos.x,
+                          y: endElement.pos.y + notGateHeight / 2,
+                        };
                         break;
-                      case 'custom':
+                      case 'and':
                         // TODO:
                         throw new Error('Implement this');
                         break;
                       default:
                         assertNever(endElement);
                     }
-                    console.log(
-                      'asd',
-                      roundPathCorners(
-                        `M ${actualStartPosition.x} ${actualStartPosition.y} ` +
-                          `L ${actualStartPosition.x + plainConnectorExtensionMin} ${actualStartPosition.y} ` +
-                          `L ${actualEndPosition.x - plainConnectorExtensionMin} ${actualEndPosition.y}  ` +
-                          `L ${actualEndPosition.x} ${actualEndPosition.y} `,
-                        plainConnectorExtensionMin / 2,
-                        false,
-                      ),
-                    );
-                    return (
-                      <path
-                        key={element.id}
-                        fill="none"
-                        stroke="black"
-                        strokeWidth={3}
-                        shapeRendering="geometricPrecision"
-                        d={roundPathCorners(
-                          `M${actualStartPosition.x} ${actualStartPosition.y} ` +
-                            `L${actualStartPosition.x + plainConnectorExtensionMin} ${actualStartPosition.y} ` +
-                            `L${actualEndPosition.x - plainConnectorExtensionMin} ${actualEndPosition.y} ` +
-                            `L${actualEndPosition.x} ${actualEndPosition.y} `,
-                          plainConnectorExtensionMin / 2,
-                          false,
-                        )}
-                      />
-                    );
-                  }
-                  case 'smart':
-                    return <></>;
-                  default:
-                    assertNever(element);
-                }
-                break;
-              case 'box':
-                switch (element.boxKind) {
+                    break;
                   case 'custom':
-                    // TODO
+                    // TODO:
                     throw new Error('Implement this');
                     break;
-                  case 'provided':
-                    switch (element.providedKind) {
-                      case 'not':
-                        return (
-                          <g
-                            key={element.id}
-                            transform={`translate(${element.pos.x}, ${element.pos.y})`}
-                          >
-                            <g onMouseDown={onElementMouseDown(data, setState, element.id)}>
-                              <rect
-                                key={element.id}
-                                fill={notGateColor}
-                                width={notGateWidth}
-                                height={notGateHeight}
-                              />
-                              <text x="13" y="20" fill="white" fontWeight="bold">
-                                NOT
-                              </text>
-                            </g>
-                            <circle cx="0" cy="15" r="8" />
-                            <circle cx={notGateWidth} cy="15" r="8" />
-                          </g>
-                        );
-                      case 'and':
-                        // TODO
-                        throw new Error('Implement this');
-                      default:
-                        assertNever(element);
-                    }
-                    break;
                   default:
-                    assertNever(element);
+                    assertNever(endElement);
                 }
-                break;
+                console.log(
+                  'asd',
+                  roundPathCorners(
+                    `M ${actualStartPosition.x} ${actualStartPosition.y} ` +
+                      `L ${actualStartPosition.x + plainConnectorExtensionMin} ${actualStartPosition.y} ` +
+                      `L ${actualEndPosition.x - plainConnectorExtensionMin} ${actualEndPosition.y}  ` +
+                      `L ${actualEndPosition.x} ${actualEndPosition.y} `,
+                    plainConnectorExtensionMin / 2,
+                    false,
+                  ),
+                );
+                return (
+                  <path
+                    key={connectorElement.id}
+                    fill="none"
+                    stroke="black"
+                    strokeWidth={3}
+                    shapeRendering="geometricPrecision"
+                    d={roundPathCorners(
+                      `M${actualStartPosition.x} ${actualStartPosition.y} ` +
+                        `L${actualStartPosition.x + plainConnectorExtensionMin} ${actualStartPosition.y} ` +
+                        `L${actualEndPosition.x - plainConnectorExtensionMin} ${actualEndPosition.y} ` +
+                        `L${actualEndPosition.x} ${actualEndPosition.y} `,
+                      plainConnectorExtensionMin / 2,
+                      false,
+                    )}
+                  />
+                );
+              }
+              case 'smart':
+                return <></>;
               default:
-                assertNever(element);
+                assertNever(connectorElement);
             }
           })}
         </svg>
         <rect fill="lightgray" width="100%" height={20} y={defaultHeight - 20} />
       </svg>
       <div>
-        active element id: {state.activeElementId}
+        active element id: {state.activeBoxId}
         <br />
-        lastActiveElementId: {state.lastActiveElementId}
+        lastActiveElementId: {state.lastActiveBoxId}
         <br />
         Zoom factor: {state.zoomFactor}
         <br />

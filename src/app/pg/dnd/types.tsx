@@ -1,5 +1,5 @@
 interface BaseElement {
-  elementKind: 'box' | 'connector';
+  elementKind: 'box' | 'connector'; // this is not that useful anymore
   id: number;
 }
 
@@ -19,7 +19,8 @@ interface ProvidedBoxElementBase extends BoxElementBase {
 }
 interface CustomBoxElement extends BoxElementBase {
   boxKind: 'custom';
-  elements: Elem[];
+  boxElements: BoxElement[];
+  connectorElements: ConnectorElement[];
 }
 
 interface NotBoxElement extends ProvidedBoxElementBase {
@@ -48,10 +49,9 @@ interface PlainConnectorElement extends ConnectorElementBase {
   connectorKind: 'plain';
 }
 
-type ConnectorElement = SmartConnectorElement | PlainConnectorElement;
 type ProvidedBoxElement = NotBoxElement | AndBoxElement;
 type BoxElement = ProvidedBoxElement | CustomBoxElement;
-type Elem = BoxElement | ConnectorElement;
+type ConnectorElement = SmartConnectorElement | PlainConnectorElement;
 
 export interface Sketch {
   title: string;
@@ -67,15 +67,17 @@ export const addIds = (sketch: Sketch): Sketch => {
   if (!sketch.theBox.id) {
     sketch.theBox.id = id++;
   }
-  sketch.theBox.elements.forEach(function handleElement(e) {
-    if (!e.id) {
-      e.id = id++;
-    }
-    if (e.elementKind === 'box' && e.boxKind === 'custom') {
-      e.elements.forEach(handleElement);
-    }
-    return e;
-  });
+  [...sketch.theBox.boxElements, ...sketch.theBox.connectorElements].forEach(
+    function handleElement(e) {
+      if (!e.id) {
+        e.id = id++;
+      }
+      if (e.elementKind === 'box' && e.boxKind === 'custom') {
+        e.boxElements.forEach(handleElement);
+      }
+      return e;
+    },
+  );
   sketch.nextId = id;
   return sketch;
 };
@@ -96,18 +98,7 @@ export function getSample(): Sketch {
         x: 0,
         y: 0,
       },
-      elements: [
-        {
-          id: boxId1,
-          elementKind: 'box',
-          boxKind: 'provided',
-          providedKind: 'not',
-          userLabel: 'first',
-          pos: {
-            x: 0,
-            y: 0,
-          },
-        },
+      connectorElements: [
         {
           id: 0,
           elementKind: 'connector',
@@ -126,6 +117,19 @@ export function getSample(): Sketch {
           startElementOutputId: 0,
           endElementInputId: 0,
         } satisfies ConnectorElement,
+      ],
+      boxElements: [
+        {
+          id: boxId1,
+          elementKind: 'box',
+          boxKind: 'provided',
+          providedKind: 'not',
+          userLabel: 'first',
+          pos: {
+            x: 0,
+            y: 0,
+          },
+        },
         {
           id: boxId2,
           elementKind: 'box',
