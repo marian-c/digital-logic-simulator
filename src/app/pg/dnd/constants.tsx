@@ -7,3 +7,6 @@ export const notGateHeight = 30;
 export const notGateColor = '#2c7ca3';
 
 export const gridSize = 40;
+
+export const plainConnectorExtensionMin = 20;
+export const plainConnectorExtensionMax = 50;

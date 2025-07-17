@@ -1,16 +1,16 @@
 interface BaseElement {
   elementKind: 'box' | 'connector';
   id: number;
-  pos: {
-    x: number;
-    y: number;
-  };
 }
 
 interface BoxElementBase extends BaseElement {
   elementKind: 'box';
   boxKind: 'provided' | 'custom';
   userLabel: string;
+  pos: {
+    x: number;
+    y: number;
+  };
 }
 
 interface ProvidedBoxElementBase extends BoxElementBase {
@@ -35,6 +35,10 @@ interface AndBoxElement extends ProvidedBoxElementBase {
 interface ConnectorElementBase extends BaseElement {
   elementKind: 'connector';
   connectorKind: 'smart' | 'plain';
+  startElementId: number;
+  endElementId: number;
+  startElementOutputId: number;
+  endElementInputId: number;
 }
 
 interface SmartConnectorElement extends ConnectorElementBase {
@@ -80,6 +84,7 @@ export function getSample(): Sketch {
   let nextId = 1;
   const boxId1 = nextId++;
   const boxId2 = nextId++;
+  const boxId3 = nextId++;
   const _sample: Sketch = {
     title: 'Sample',
     theBox: {
@@ -104,6 +109,24 @@ export function getSample(): Sketch {
           },
         },
         {
+          id: 0,
+          elementKind: 'connector',
+          connectorKind: 'plain',
+          startElementId: boxId1,
+          endElementId: boxId2,
+          startElementOutputId: 0,
+          endElementInputId: 0,
+        } satisfies ConnectorElement,
+        {
+          id: 0,
+          elementKind: 'connector',
+          connectorKind: 'plain',
+          startElementId: boxId1,
+          endElementId: boxId3,
+          startElementOutputId: 0,
+          endElementInputId: 0,
+        } satisfies ConnectorElement,
+        {
           id: boxId2,
           elementKind: 'box',
           boxKind: 'provided',
@@ -115,7 +138,7 @@ export function getSample(): Sketch {
           },
         },
         {
-          id: 0,
+          id: boxId3,
           elementKind: 'box',
           boxKind: 'provided',
           providedKind: 'not',

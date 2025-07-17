@@ -8,9 +8,11 @@ import {
   notGateColor,
   notGateHeight,
   notGateWidth,
+  plainConnectorExtensionMin,
 } from '@/app/pg/dnd/constants';
 import { getSample, type Sketch } from '@/app/pg/dnd/types';
 import { assertNever } from '@/helpers/basics';
+import roundPathCorners from '@/app/pg/dnd/rouding';
 
 type State = {
   activeElementId: number;
@@ -151,14 +153,110 @@ export default function PagePgDnd() {
           {data.theBox.elements.map((element) => {
             switch (element.elementKind) {
               case 'connector':
-                // TODO
-                return <></>;
+                switch (element.connectorKind) {
+                  case 'plain': {
+                    const startElement = data.theBox.elements.find(
+                      (e) => e.id === element.startElementId,
+                    );
+                    const endElement = data.theBox.elements.find(
+                      (e) => e.id === element.endElementId,
+                    );
+                    if (startElement?.elementKind !== 'box' || endElement?.elementKind !== 'box') {
+                      // TODO better handling, show an error, this just crashes
+                      throw new Error('only connecting boxes');
+                    }
+
+                    let actualStartPosition = { x: 0, y: 0 };
+                    switch (startElement.boxKind) {
+                      case 'provided':
+                        switch (startElement.providedKind) {
+                          case 'not':
+                            actualStartPosition = {
+                              x: startElement.pos.x + notGateWidth,
+                              y: startElement.pos.y + notGateHeight / 2,
+                            };
+                            break;
+                          case 'and':
+                            // TODO:
+                            throw new Error('Implement this');
+                            break;
+                          default:
+                            assertNever(startElement);
+                        }
+                        break;
+                      case 'custom':
+                        // TODO:
+                        throw new Error('Implement this');
+                        break;
+                      default:
+                        assertNever(startElement);
+                    }
+
+                    let actualEndPosition = { x: 0, y: 0 };
+                    switch (endElement.boxKind) {
+                      case 'provided':
+                        switch (endElement.providedKind) {
+                          case 'not':
+                            actualEndPosition = {
+                              x: endElement.pos.x,
+                              y: endElement.pos.y + notGateHeight / 2,
+                            };
+                            break;
+                          case 'and':
+                            // TODO:
+                            throw new Error('Implement this');
+                            break;
+                          default:
+                            assertNever(endElement);
+                        }
+                        break;
+                      case 'custom':
+                        // TODO:
+                        throw new Error('Implement this');
+                        break;
+                      default:
+                        assertNever(endElement);
+                    }
+                    console.log(
+                      'asd',
+                      roundPathCorners(
+                        `M ${actualStartPosition.x} ${actualStartPosition.y} ` +
+                          `L ${actualStartPosition.x + plainConnectorExtensionMin} ${actualStartPosition.y} ` +
+                          `L ${actualEndPosition.x - plainConnectorExtensionMin} ${actualEndPosition.y}  ` +
+                          `L ${actualEndPosition.x} ${actualEndPosition.y} `,
+                        plainConnectorExtensionMin / 2,
+                        false,
+                      ),
+                    );
+                    return (
+                      <path
+                        key={element.id}
+                        fill="none"
+                        stroke="black"
+                        strokeWidth={3}
+                        shapeRendering="geometricPrecision"
+                        d={roundPathCorners(
+                          `M${actualStartPosition.x} ${actualStartPosition.y} ` +
+                            `L${actualStartPosition.x + plainConnectorExtensionMin} ${actualStartPosition.y} ` +
+                            `L${actualEndPosition.x - plainConnectorExtensionMin} ${actualEndPosition.y} ` +
+                            `L${actualEndPosition.x} ${actualEndPosition.y} `,
+                          plainConnectorExtensionMin / 2,
+                          false,
+                        )}
+                      />
+                    );
+                  }
+                  case 'smart':
+                    return <></>;
+                  default:
+                    assertNever(element);
+                }
                 break;
               case 'box':
                 switch (element.boxKind) {
                   case 'custom':
                     // TODO
-                    return <></>;
+                    throw new Error('Implement this');
                     break;
                   case 'provided':
                     switch (element.providedKind) {
@@ -185,7 +283,7 @@ export default function PagePgDnd() {
                         );
                       case 'and':
                         // TODO
-                        return <></>;
+                        throw new Error('Implement this');
                       default:
                         assertNever(element);
                     }
