@@ -5,7 +5,7 @@ interface BaseElement {
 
 interface BoxElementBase extends BaseElement {
   elementKind: 'box';
-  boxKind: 'provided' | 'custom';
+  boxKind: 'provided' | 'custom' | 'input' | 'output';
   userLabel: string;
   pos: {
     x: number;
@@ -21,6 +21,13 @@ interface CustomBoxElement extends BoxElementBase {
   boxKind: 'custom';
   boxElements: BoxElement[];
   connectorElements: ConnectorElement[];
+}
+interface InputBoxElement extends BoxElementBase {
+  boxKind: 'input';
+}
+
+interface OutputBoxElement extends BoxElementBase {
+  boxKind: 'output';
 }
 
 interface NotBoxElement extends ProvidedBoxElementBase {
@@ -50,7 +57,7 @@ interface PlainConnectorElement extends ConnectorElementBase {
 }
 
 type ProvidedBoxElement = NotBoxElement | AndBoxElement;
-type BoxElement = ProvidedBoxElement | CustomBoxElement;
+type BoxElement = ProvidedBoxElement | CustomBoxElement | InputBoxElement | OutputBoxElement;
 type ConnectorElement = SmartConnectorElement | PlainConnectorElement;
 
 export interface Sketch {
@@ -119,12 +126,22 @@ export function getSample(): Sketch {
         } satisfies ConnectorElement,
       ],
       boxElements: [
+        // {
+        //   id: 0,
+        //   elementKind: 'box',
+        //   boxKind: 'input',
+        //   userLabel: '',
+        //   pos: {
+        //     x: 0,
+        //     y: 0,
+        //   },
+        // },
         {
           id: boxId1,
           elementKind: 'box',
           boxKind: 'provided',
           providedKind: 'not',
-          userLabel: 'first',
+          userLabel: '',
           pos: {
             x: 0,
             y: 0,
@@ -135,7 +152,7 @@ export function getSample(): Sketch {
           elementKind: 'box',
           boxKind: 'provided',
           providedKind: 'not',
-          userLabel: 'second',
+          userLabel: '',
           pos: {
             x: 500,
             y: 500,
@@ -146,7 +163,7 @@ export function getSample(): Sketch {
           elementKind: 'box',
           boxKind: 'provided',
           providedKind: 'not',
-          userLabel: 'third',
+          userLabel: '',
           pos: {
             x: 40,
             y: 40,
