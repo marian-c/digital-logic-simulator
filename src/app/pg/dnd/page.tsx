@@ -156,6 +156,16 @@ export default function PagePgDnd() {
                 // TODO
                 throw new Error('Implement this');
                 break;
+
+              case 'input':
+                // TODO
+                throw new Error('Implement this');
+                break;
+
+              case 'output':
+                // TODO
+                throw new Error('Implement this');
+                break;
               case 'provided':
                 switch (box.providedKind) {
                   case 'not':
