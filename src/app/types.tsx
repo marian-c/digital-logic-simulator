@@ -91,6 +91,7 @@ export const addIds = (sketch: Sketch): Sketch => {
 
 export function getSample(): Sketch {
   let nextId = 1;
+  const inputId = nextId++;
   const boxId1 = nextId++;
   const boxId2 = nextId++;
   const boxId3 = nextId++;
@@ -106,6 +107,16 @@ export function getSample(): Sketch {
         y: 0,
       },
       connectorElements: [
+        // TODO: Connect input with a box
+        // {
+        //   id: 0,
+        //   elementKind: 'connector',
+        //   connectorKind: 'plain',
+        //   startElementId: inputId,
+        //   endElementId: boxId1,
+        //   startElementOutputId: 0,
+        //   endElementInputId: 0,
+        // } satisfies ConnectorElement,
         {
           id: 0,
           elementKind: 'connector',
@@ -126,16 +137,16 @@ export function getSample(): Sketch {
         } satisfies ConnectorElement,
       ],
       boxElements: [
-        // {
-        //   id: 0,
-        //   elementKind: 'box',
-        //   boxKind: 'input',
-        //   userLabel: '',
-        //   pos: {
-        //     x: 0,
-        //     y: 0,
-        //   },
-        // },
+        {
+          id: inputId,
+          elementKind: 'box',
+          boxKind: 'input',
+          userLabel: '',
+          pos: {
+            x: 0,
+            y: 0,
+          },
+        },
         {
           id: boxId1,
           elementKind: 'box',
@@ -143,7 +154,7 @@ export function getSample(): Sketch {
           providedKind: 'not',
           userLabel: '',
           pos: {
-            x: 0,
+            x: 120,
             y: 0,
           },
         },
@@ -165,7 +176,7 @@ export function getSample(): Sketch {
           providedKind: 'not',
           userLabel: '',
           pos: {
-            x: 40,
+            x: 140,
             y: 40,
           },
         },

@@ -5,10 +5,17 @@ import {
   defaultHeight,
   defaultWidth,
   gridSize,
+  inputLineColor,
+  inputLineHeight,
+  inputLineWidth,
+  inputOffMainCircleColor,
+  inputMainCircleRadius,
   notGateColor,
   notGateHeight,
   notGateWidth,
   plainConnectorExtensionMin,
+  inputSmallCircleColor,
+  connectorCircleRadius,
 } from '@/app/constants';
 import { getSample, type Sketch } from '@/app/types';
 import { assertNever } from '@/helpers/basics';
@@ -29,6 +36,7 @@ function onElementMouseDown(
   setter: React.Dispatch<React.SetStateAction<State>>,
   elementId: number,
 ) {
+  console.log('--- rerender');
   // XXX: this gets recreated on every render
   return function (event: React.MouseEvent<SVGRectElement, MouseEvent>) {
     if (event.button !== 0) {
@@ -158,9 +166,33 @@ export default function Home() {
                 break;
 
               case 'input':
-                // TODO
-                throw new Error('Implement this');
-                break;
+                return (
+                  <g
+                    key={box.id}
+                    transform={`translate(${box.pos.x + inputMainCircleRadius}, ${box.pos.y + inputMainCircleRadius})`}
+                  >
+                    <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
+                      <circle
+                        key={box.id}
+                        fill={inputSmallCircleColor}
+                        r={connectorCircleRadius}
+                        cx={inputMainCircleRadius + connectorCircleRadius + inputLineWidth - 4}
+                      />
+                      <rect
+                        fill={inputLineColor}
+                        width={inputLineWidth}
+                        height={inputLineHeight}
+                        x={inputMainCircleRadius - 2}
+                        y={-inputLineHeight / 2}
+                      />
+                      <circle
+                        key={box.id}
+                        fill={inputOffMainCircleColor}
+                        r={inputMainCircleRadius}
+                      />
+                    </g>
+                  </g>
+                );
 
               case 'output':
                 // TODO
@@ -182,8 +214,8 @@ export default function Home() {
                             NOT
                           </text>
                         </g>
-                        <circle cx="0" cy="15" r="8" />
-                        <circle cx={notGateWidth} cy="15" r="8" />
+                        <circle cx="0" cy="15" r={connectorCircleRadius} />
+                        <circle cx={notGateWidth} cy="15" r={connectorCircleRadius} />
                       </g>
                     );
                   case 'and':
