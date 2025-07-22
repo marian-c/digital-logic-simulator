@@ -109,7 +109,7 @@ export function getSample(): Sketch {
       connectorElements: [
         // TODO: Connect input with a box
         // {
-        //   id: 0,
+        //   id: nextId++,
         //   elementKind: 'connector',
         //   connectorKind: 'plain',
         //   startElementId: inputId,
@@ -118,7 +118,7 @@ export function getSample(): Sketch {
         //   endElementInputId: 0,
         // } satisfies ConnectorElement,
         {
-          id: 0,
+          id: nextId++,
           elementKind: 'connector',
           connectorKind: 'plain',
           startElementId: boxId1,
@@ -127,7 +127,7 @@ export function getSample(): Sketch {
           endElementInputId: 0,
         } satisfies ConnectorElement,
         {
-          id: 0,
+          id: nextId++,
           elementKind: 'connector',
           connectorKind: 'plain',
           startElementId: boxId1,

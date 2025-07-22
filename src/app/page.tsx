@@ -36,7 +36,6 @@ function onElementMouseDown(
   setter: React.Dispatch<React.SetStateAction<State>>,
   elementId: number,
 ) {
-  console.log('--- rerender');
   // XXX: this gets recreated on every render
   return function (event: React.MouseEvent<SVGRectElement, MouseEvent>) {
     if (event.button !== 0) {
@@ -173,7 +172,6 @@ export default function Home() {
                   >
                     <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
                       <circle
-                        key={box.id}
                         fill={inputSmallCircleColor}
                         r={connectorCircleRadius}
                         cx={inputMainCircleRadius + connectorCircleRadius + inputLineWidth - 4}
@@ -185,11 +183,7 @@ export default function Home() {
                         x={inputMainCircleRadius - 2}
                         y={-inputLineHeight / 2}
                       />
-                      <circle
-                        key={box.id}
-                        fill={inputOffMainCircleColor}
-                        r={inputMainCircleRadius}
-                      />
+                      <circle fill={inputOffMainCircleColor} r={inputMainCircleRadius} />
                     </g>
                   </g>
                 );
@@ -204,12 +198,7 @@ export default function Home() {
                     return (
                       <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
                         <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
-                          <rect
-                            key={box.id}
-                            fill={notGateColor}
-                            width={notGateWidth}
-                            height={notGateHeight}
-                          />
+                          <rect fill={notGateColor} width={notGateWidth} height={notGateHeight} />
                           <text x="13" y="20" fill="white" fontWeight="bold">
                             NOT
                           </text>
