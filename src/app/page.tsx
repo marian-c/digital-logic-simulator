@@ -10,11 +10,17 @@ import {
   inputLineWidth,
   inputOffMainCircleColor,
   inputMainCircleRadius,
+  inputSmallCircleColor,
+  outputLineColor,
+  outputLineHeight,
+  outputLineWidth,
+  outputOffMainCircleColor,
+  outputMainCircleRadius,
+  outputSmallCircleColor,
   notGateColor,
   notGateHeight,
   notGateWidth,
   plainConnectorExtensionMin,
-  inputSmallCircleColor,
   connectorCircleRadius,
 } from '@/app/constants';
 import { getSample, type Sketch } from '@/app/types';
@@ -189,9 +195,28 @@ export default function Home() {
                 );
 
               case 'output':
-                // TODO
-                throw new Error('Implement this');
-                break;
+                return (
+                  <g
+                    key={box.id}
+                    transform={`translate(${box.pos.x + outputMainCircleRadius}, ${box.pos.y + outputMainCircleRadius})`}
+                  >
+                    <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
+                      <circle
+                        fill={outputSmallCircleColor}
+                        r={connectorCircleRadius}
+                        cx={-outputMainCircleRadius - connectorCircleRadius - outputLineWidth + 4}
+                      />
+                      <rect
+                        fill={outputLineColor}
+                        width={outputLineWidth}
+                        height={outputLineHeight}
+                        x={-outputMainCircleRadius - outputLineWidth + 2}
+                        y={-outputLineHeight / 2}
+                      />
+                      <circle fill={outputOffMainCircleColor} r={outputMainCircleRadius} />
+                    </g>
+                  </g>
+                );
               case 'provided':
                 switch (box.providedKind) {
                   case 'not':

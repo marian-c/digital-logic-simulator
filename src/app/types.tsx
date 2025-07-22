@@ -92,6 +92,7 @@ export const addIds = (sketch: Sketch): Sketch => {
 export function getSample(): Sketch {
   let nextId = 1;
   const inputId = nextId++;
+  const outputId = nextId++;
   const boxId1 = nextId++;
   const boxId2 = nextId++;
   const boxId3 = nextId++;
@@ -139,12 +140,24 @@ export function getSample(): Sketch {
       boxElements: [
         {
           id: inputId,
+          // TODO: change elementkind?
           elementKind: 'box',
           boxKind: 'input',
           userLabel: '',
           pos: {
             x: 0,
             y: 0,
+          },
+        },
+        {
+          id: outputId,
+          // TODO: change elementkind?
+          elementKind: 'box',
+          boxKind: 'output',
+          userLabel: '',
+          pos: {
+            x: 700,
+            y: 300,
           },
         },
         {
