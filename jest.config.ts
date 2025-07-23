@@ -202,6 +202,10 @@ const config: Config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+
+
+  // jest does not support prettier version 3 and above
+  prettierPath: 'prettier-for-jest',
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

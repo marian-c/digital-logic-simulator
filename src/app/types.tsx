@@ -17,13 +17,15 @@ interface ProvidedBoxElementBase extends BoxElementBase {
   boxKind: 'provided';
   providedKind: 'not' | 'and';
 }
-interface CustomBoxElement extends BoxElementBase {
+export interface CustomBoxElement extends BoxElementBase {
   boxKind: 'custom';
   boxElements: BoxElement[];
   connectorElements: ConnectorElement[];
 }
-interface InputBoxElement extends BoxElementBase {
+export interface InputBoxElement extends BoxElementBase {
   boxKind: 'input';
+  // user can set this, false by default
+  state: boolean;
 }
 
 interface OutputBoxElement extends BoxElementBase {
@@ -35,9 +37,10 @@ interface NotBoxElement extends ProvidedBoxElementBase {
   providedKind: 'not';
 }
 
-interface AndBoxElement extends ProvidedBoxElementBase {
+export interface AndBoxElement extends ProvidedBoxElementBase {
   boxKind: 'provided';
   providedKind: 'and';
+  state: boolean;
 }
 
 interface ConnectorElementBase extends BaseElement {
@@ -47,18 +50,19 @@ interface ConnectorElementBase extends BaseElement {
   endElementId: number;
   startElementOutputId: number;
   endElementInputId: number;
+  state: boolean;
 }
 
-interface SmartConnectorElement extends ConnectorElementBase {
+export interface SmartConnectorElement extends ConnectorElementBase {
   connectorKind: 'smart';
 }
-interface PlainConnectorElement extends ConnectorElementBase {
+export interface PlainConnectorElement extends ConnectorElementBase {
   connectorKind: 'plain';
 }
 
-type ProvidedBoxElement = NotBoxElement | AndBoxElement;
-type BoxElement = ProvidedBoxElement | CustomBoxElement | InputBoxElement | OutputBoxElement;
-type ConnectorElement = SmartConnectorElement | PlainConnectorElement;
+export type ProvidedBoxElement = NotBoxElement | AndBoxElement;
+export type BoxElement = ProvidedBoxElement | CustomBoxElement | InputBoxElement | OutputBoxElement;
+export type ConnectorElement = SmartConnectorElement | PlainConnectorElement;
 
 export interface Sketch {
   title: string;
@@ -74,17 +78,17 @@ export const addIds = (sketch: Sketch): Sketch => {
   if (!sketch.theBox.id) {
     sketch.theBox.id = id++;
   }
-  [...sketch.theBox.boxElements, ...sketch.theBox.connectorElements].forEach(
-    function handleElement(e) {
-      if (!e.id) {
-        e.id = id++;
-      }
-      if (e.elementKind === 'box' && e.boxKind === 'custom') {
-        e.boxElements.forEach(handleElement);
-      }
-      return e;
-    },
-  );
+  [...sketch.theBox.boxElements, ...sketch.theBox.connectorElements].forEach(function handleElement(
+    e,
+  ) {
+    if (!e.id) {
+      e.id = id++;
+    }
+    if (e.elementKind === 'box' && e.boxKind === 'custom') {
+      e.boxElements.forEach(handleElement);
+    }
+    return e;
+  });
   sketch.nextId = id;
   return sketch;
 };
