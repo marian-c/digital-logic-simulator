@@ -22,6 +22,8 @@ import {
   notGateWidth,
   plainConnectorExtensionMin,
   connectorCircleRadius,
+  inputLinePositionAdjustment,
+  outputLinePositionAdjustment,
 } from '@/app/constants';
 import { getSample, type Sketch } from '@/app/types';
 import { assertNever } from '@/helpers/basics';
@@ -180,13 +182,18 @@ export default function Home() {
                       <circle
                         fill={inputSmallCircleColor}
                         r={connectorCircleRadius}
-                        cx={inputMainCircleRadius + connectorCircleRadius + inputLineWidth - 4}
+                        cx={
+                          inputMainCircleRadius +
+                          connectorCircleRadius +
+                          inputLineWidth -
+                          inputLinePositionAdjustment * 2
+                        }
                       />
                       <rect
                         fill={inputLineColor}
                         width={inputLineWidth}
                         height={inputLineHeight}
-                        x={inputMainCircleRadius - 2}
+                        x={inputMainCircleRadius - inputLinePositionAdjustment}
                         y={-inputLineHeight / 2}
                       />
                       <circle fill={inputOffMainCircleColor} r={inputMainCircleRadius} />
@@ -204,13 +211,18 @@ export default function Home() {
                       <circle
                         fill={outputSmallCircleColor}
                         r={connectorCircleRadius}
-                        cx={-outputMainCircleRadius - connectorCircleRadius - outputLineWidth + 4}
+                        cx={
+                          -outputMainCircleRadius -
+                          connectorCircleRadius -
+                          outputLineWidth +
+                          outputLinePositionAdjustment * 2
+                        }
                       />
                       <rect
                         fill={outputLineColor}
                         width={outputLineWidth}
                         height={outputLineHeight}
-                        x={-outputMainCircleRadius - outputLineWidth + 2}
+                        x={-outputMainCircleRadius - outputLineWidth + outputLinePositionAdjustment}
                         y={-outputLineHeight / 2}
                       />
                       <circle fill={outputOffMainCircleColor} r={outputMainCircleRadius} />
@@ -279,11 +291,25 @@ export default function Home() {
                     // TODO:
                     throw new Error('Implement this');
                     break;
+
+                  case 'input':
+                    actualStartPosition = {
+                      x:
+                        startElement.pos.x +
+                        inputMainCircleRadius * 2 +
+                        inputLineWidth +
+                        connectorCircleRadius / 2 -
+                        inputLinePositionAdjustment,
+                      y: startElement.pos.y + inputMainCircleRadius,
+                    };
+                    break;
+
                   default:
-                    assertNever(startElement);
+                    assertNever(startElement, undefined, `Start element not implemented`);
                 }
 
                 let actualEndPosition = { x: 0, y: 0 };
+                console.log('endElement:', endElement);
                 switch (endElement.boxKind) {
                   case 'provided':
                     switch (endElement.providedKind) {
@@ -305,8 +331,19 @@ export default function Home() {
                     // TODO:
                     throw new Error('Implement this');
                     break;
+
+                  case 'output':
+                    actualEndPosition = {
+                      x:
+                        endElement.pos.x -
+                        inputMainCircleRadius * 2 -
+                        connectorCircleRadius / 2 +
+                        outputLinePositionAdjustment,
+                      y: endElement.pos.y + inputMainCircleRadius,
+                    };
+                    break;
                   default:
-                    assertNever(endElement);
+                    assertNever(endElement, undefined, `End element not implemented`);
                 }
                 console.log(
                   'asd',
