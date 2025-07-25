@@ -226,7 +226,7 @@ describe('Simulation', () => {
     `);
   });
 
-  test.skip("Input and 'and' but not connected", () => {
+  test("Input and 'and' but not connected", () => {
     const result = simulate(
       prepare({
         boxes: [
@@ -291,7 +291,7 @@ describe('Simulation', () => {
     `);
   });
 
-  test.skip("Input and 'and' connected and off", () => {
+  test("Input and 'and' connected and off", () => {
     const result = simulate(
       prepare({
         boxes: [
@@ -363,6 +363,132 @@ describe('Simulation', () => {
             "endElementInputId": 0,
             "id": 3,
             "startElementId": 1,
+            "startElementOutputId": 0,
+            "state": false,
+          },
+        ],
+        "elementKind": "box",
+        "id": 100000,
+        "pos": {
+          "x": 0,
+          "y": 0,
+        },
+        "userLabel": "",
+      }
+    `);
+  });
+
+  test("Input and 'and' connected and on", () => {
+    const result = simulate(
+      prepare({
+        boxes: [
+          {
+            id: 1,
+            elementKind: 'box',
+            boxKind: 'provided',
+            providedKind: 'and',
+            pos: { x: 0, y: 0 },
+            userLabel: '',
+            state: false,
+          } satisfies AndBoxElement,
+          {
+            id: 2,
+            elementKind: 'box',
+            boxKind: 'input',
+            pos: { x: 0, y: 0 },
+            userLabel: '',
+            state: true,
+          } satisfies InputBoxElement,
+          {
+            id: 3,
+            elementKind: 'box',
+            boxKind: 'input',
+            pos: { x: 0, y: 0 },
+            userLabel: '',
+            state: true,
+          } satisfies InputBoxElement,
+        ],
+        connectors: [
+          {
+            id: 4,
+            elementKind: 'connector',
+            connectorKind: 'plain',
+            startElementId: 2,
+            endElementId: 1,
+            startElementOutputId: 0,
+            endElementInputId: 0,
+            state: false,
+          } satisfies PlainConnectorElement,
+          {
+            id: 4,
+            elementKind: 'connector',
+            connectorKind: 'plain',
+            startElementId: 3,
+            endElementId: 1,
+            startElementOutputId: 0,
+            endElementInputId: 1,
+            state: false,
+          } satisfies PlainConnectorElement,
+        ],
+      }),
+    );
+    expect(result).toMatchInlineSnapshot(`
+      {
+        "boxElements": [
+          {
+            "boxKind": "provided",
+            "elementKind": "box",
+            "id": 1,
+            "pos": {
+              "x": 0,
+              "y": 0,
+            },
+            "providedKind": "and",
+            "state": true,
+            "userLabel": "",
+          },
+          {
+            "boxKind": "input",
+            "elementKind": "box",
+            "id": 2,
+            "pos": {
+              "x": 0,
+              "y": 0,
+            },
+            "state": true,
+            "userLabel": "",
+          },
+          {
+            "boxKind": "input",
+            "elementKind": "box",
+            "id": 3,
+            "pos": {
+              "x": 0,
+              "y": 0,
+            },
+            "state": true,
+            "userLabel": "",
+          },
+        ],
+        "boxKind": "custom",
+        "connectorElements": [
+          {
+            "connectorKind": "plain",
+            "elementKind": "connector",
+            "endElementId": 1,
+            "endElementInputId": 0,
+            "id": 4,
+            "startElementId": 2,
+            "startElementOutputId": 0,
+            "state": false,
+          },
+          {
+            "connectorKind": "plain",
+            "elementKind": "connector",
+            "endElementId": 1,
+            "endElementInputId": 1,
+            "id": 4,
+            "startElementId": 3,
             "startElementOutputId": 0,
             "state": false,
           },

@@ -30,11 +30,13 @@ export interface InputBoxElement extends BoxElementBase {
 
 interface OutputBoxElement extends BoxElementBase {
   boxKind: 'output';
+  state: boolean;
 }
 
 interface NotBoxElement extends ProvidedBoxElementBase {
   boxKind: 'provided';
   providedKind: 'not';
+  state: boolean;
 }
 
 export interface AndBoxElement extends ProvidedBoxElementBase {
