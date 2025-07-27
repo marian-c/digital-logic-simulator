@@ -1,13 +1,13 @@
 export const defaultWidth = 800;
 export const defaultHeight = 600;
 
-export const connectorCircleRadius = 8;
+export const connectorCircleRadius = 6;
 
 export const notGateWidth = 60;
 export const notGateHeight = 30;
 export const notGateColor = '#2c7ca3';
 
-export const inputMainCircleRadius = 15;
+export const inputMainCircleRadius = 10;
 export const inputLineWidth = 28;
 export const inputLineHeight = 6;
 export const inputOffMainCircleColor = '#38404c';

@@ -174,10 +174,7 @@ export default function Home() {
 
               case 'input':
                 return (
-                  <g
-                    key={box.id}
-                    transform={`translate(${box.pos.x + inputMainCircleRadius}, ${box.pos.y + inputMainCircleRadius})`}
-                  >
+                  <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
                     <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
                       <circle
                         fill={inputSmallCircleColor}
@@ -203,10 +200,7 @@ export default function Home() {
 
               case 'output':
                 return (
-                  <g
-                    key={box.id}
-                    transform={`translate(${box.pos.x + outputMainCircleRadius}, ${box.pos.y + outputMainCircleRadius})`}
-                  >
+                  <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
                     <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
                       <circle
                         fill={outputSmallCircleColor}
@@ -294,13 +288,8 @@ export default function Home() {
 
                   case 'input':
                     actualStartPosition = {
-                      x:
-                        startElement.pos.x +
-                        inputMainCircleRadius * 2 +
-                        inputLineWidth +
-                        connectorCircleRadius / 2 -
-                        inputLinePositionAdjustment,
-                      y: startElement.pos.y + inputMainCircleRadius,
+                      x: startElement.pos.x + inputLineWidth + inputMainCircleRadius,
+                      y: startElement.pos.y,
                     };
                     break;
 
@@ -334,12 +323,8 @@ export default function Home() {
 
                   case 'output':
                     actualEndPosition = {
-                      x:
-                        endElement.pos.x -
-                        inputMainCircleRadius * 2 -
-                        connectorCircleRadius / 2 +
-                        outputLinePositionAdjustment,
-                      y: endElement.pos.y + inputMainCircleRadius,
+                      x: endElement.pos.x - outputLineWidth - outputMainCircleRadius,
+                      y: endElement.pos.y,
                     };
                     break;
                   default:
@@ -349,8 +334,12 @@ export default function Home() {
                   'asd',
                   roundPathCorners(
                     `M ${actualStartPosition.x} ${actualStartPosition.y} ` +
-                      `L ${actualStartPosition.x + plainConnectorExtensionMin} ${actualStartPosition.y} ` +
-                      `L ${actualEndPosition.x - plainConnectorExtensionMin} ${actualEndPosition.y}  ` +
+                      `L ${actualStartPosition.x + plainConnectorExtensionMin} ${
+                        actualStartPosition.y
+                      } ` +
+                      `L ${actualEndPosition.x - plainConnectorExtensionMin} ${
+                        actualEndPosition.y
+                      }  ` +
                       `L ${actualEndPosition.x} ${actualEndPosition.y} `,
                     plainConnectorExtensionMin / 2,
                     false,
@@ -365,8 +354,12 @@ export default function Home() {
                     shapeRendering="geometricPrecision"
                     d={roundPathCorners(
                       `M${actualStartPosition.x} ${actualStartPosition.y} ` +
-                        `L${actualStartPosition.x + plainConnectorExtensionMin} ${actualStartPosition.y} ` +
-                        `L${actualEndPosition.x - plainConnectorExtensionMin} ${actualEndPosition.y} ` +
+                        `L${actualStartPosition.x + plainConnectorExtensionMin} ${
+                          actualStartPosition.y
+                        } ` +
+                        `L${actualEndPosition.x - plainConnectorExtensionMin} ${
+                          actualEndPosition.y
+                        } ` +
                         `L${actualEndPosition.x} ${actualEndPosition.y} `,
                       plainConnectorExtensionMin / 2,
                       false,
