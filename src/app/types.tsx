@@ -91,6 +91,8 @@ export const addIds = (sketch: Sketch): Sketch => {
 
 export function getSample(): Sketch {
   let nextId = 1;
+  const inputId = nextId++;
+  const outputId = nextId++;
   const boxId1 = nextId++;
   const boxId2 = nextId++;
   const boxId3 = nextId++;
@@ -107,7 +109,16 @@ export function getSample(): Sketch {
       },
       connectorElements: [
         {
-          id: 0,
+          id: nextId++,
+          elementKind: 'connector',
+          connectorKind: 'plain',
+          startElementId: inputId,
+          endElementId: boxId1,
+          startElementOutputId: 0,
+          endElementInputId: 0,
+        } satisfies ConnectorElement,
+        {
+          id: nextId++,
           elementKind: 'connector',
           connectorKind: 'plain',
           startElementId: boxId1,
@@ -116,7 +127,7 @@ export function getSample(): Sketch {
           endElementInputId: 0,
         } satisfies ConnectorElement,
         {
-          id: 0,
+          id: nextId++,
           elementKind: 'connector',
           connectorKind: 'plain',
           startElementId: boxId1,
@@ -124,18 +135,39 @@ export function getSample(): Sketch {
           startElementOutputId: 0,
           endElementInputId: 0,
         } satisfies ConnectorElement,
+        {
+          id: nextId++,
+          elementKind: 'connector',
+          connectorKind: 'plain',
+          startElementId: boxId3,
+          endElementId: outputId,
+          startElementOutputId: 1,
+          endElementInputId: 0,
+        } satisfies ConnectorElement,
       ],
       boxElements: [
-        // {
-        //   id: 0,
-        //   elementKind: 'box',
-        //   boxKind: 'input',
-        //   userLabel: '',
-        //   pos: {
-        //     x: 0,
-        //     y: 0,
-        //   },
-        // },
+        {
+          id: inputId,
+          // TODO: change elementkind?
+          elementKind: 'box',
+          boxKind: 'input',
+          userLabel: '',
+          pos: {
+            x: 0,
+            y: 0,
+          },
+        },
+        {
+          id: outputId,
+          // TODO: change elementkind?
+          elementKind: 'box',
+          boxKind: 'output',
+          userLabel: '',
+          pos: {
+            x: 700,
+            y: 300,
+          },
+        },
         {
           id: boxId1,
           elementKind: 'box',
@@ -143,7 +175,7 @@ export function getSample(): Sketch {
           providedKind: 'not',
           userLabel: '',
           pos: {
-            x: 0,
+            x: 120,
             y: 0,
           },
         },
@@ -165,7 +197,7 @@ export function getSample(): Sketch {
           providedKind: 'not',
           userLabel: '',
           pos: {
-            x: 40,
+            x: 140,
             y: 40,
           },
         },

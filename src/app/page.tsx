@@ -5,10 +5,25 @@ import {
   defaultHeight,
   defaultWidth,
   gridSize,
+  inputLineColor,
+  inputLineHeight,
+  inputLineWidth,
+  inputOffMainCircleColor,
+  inputMainCircleRadius,
+  inputSmallCircleColor,
+  outputLineColor,
+  outputLineHeight,
+  outputLineWidth,
+  outputOffMainCircleColor,
+  outputMainCircleRadius,
+  outputSmallCircleColor,
   notGateColor,
   notGateHeight,
   notGateWidth,
   plainConnectorExtensionMin,
+  connectorCircleRadius,
+  inputLinePositionAdjustment,
+  outputLinePositionAdjustment,
 } from '@/app/constants';
 import { getSample, type Sketch } from '@/app/types';
 import { assertNever } from '@/helpers/basics';
@@ -158,32 +173,69 @@ export default function Home() {
                 break;
 
               case 'input':
-                // TODO
-                throw new Error('Implement this');
-                break;
+                return (
+                  <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
+                    <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
+                      <circle
+                        fill={inputSmallCircleColor}
+                        r={connectorCircleRadius}
+                        cx={
+                          inputMainCircleRadius +
+                          connectorCircleRadius +
+                          inputLineWidth -
+                          inputLinePositionAdjustment * 2
+                        }
+                      />
+                      <rect
+                        fill={inputLineColor}
+                        width={inputLineWidth}
+                        height={inputLineHeight}
+                        x={inputMainCircleRadius - inputLinePositionAdjustment}
+                        y={-inputLineHeight / 2}
+                      />
+                      <circle fill={inputOffMainCircleColor} r={inputMainCircleRadius} />
+                    </g>
+                  </g>
+                );
 
               case 'output':
-                // TODO
-                throw new Error('Implement this');
-                break;
+                return (
+                  <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
+                    <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
+                      <circle
+                        fill={outputSmallCircleColor}
+                        r={connectorCircleRadius}
+                        cx={
+                          -outputMainCircleRadius -
+                          connectorCircleRadius -
+                          outputLineWidth +
+                          outputLinePositionAdjustment * 2
+                        }
+                      />
+                      <rect
+                        fill={outputLineColor}
+                        width={outputLineWidth}
+                        height={outputLineHeight}
+                        x={-outputMainCircleRadius - outputLineWidth + outputLinePositionAdjustment}
+                        y={-outputLineHeight / 2}
+                      />
+                      <circle fill={outputOffMainCircleColor} r={outputMainCircleRadius} />
+                    </g>
+                  </g>
+                );
               case 'provided':
                 switch (box.providedKind) {
                   case 'not':
                     return (
                       <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
                         <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
-                          <rect
-                            key={box.id}
-                            fill={notGateColor}
-                            width={notGateWidth}
-                            height={notGateHeight}
-                          />
+                          <rect fill={notGateColor} width={notGateWidth} height={notGateHeight} />
                           <text x="13" y="20" fill="white" fontWeight="bold">
                             NOT
                           </text>
                         </g>
-                        <circle cx="0" cy="15" r="8" />
-                        <circle cx={notGateWidth} cy="15" r="8" />
+                        <circle cx="0" cy="15" r={connectorCircleRadius} />
+                        <circle cx={notGateWidth} cy="15" r={connectorCircleRadius} />
                       </g>
                     );
                   case 'and':
@@ -213,6 +265,9 @@ export default function Home() {
 
                 let actualStartPosition = { x: 0, y: 0 };
                 switch (startElement.boxKind) {
+                  case 'output':
+                    throw new Error('Validation output can not be a start element');
+                    break;
                   case 'provided':
                     switch (startElement.providedKind) {
                       case 'not':
@@ -233,11 +288,20 @@ export default function Home() {
                     // TODO:
                     throw new Error('Implement this');
                     break;
+
+                  case 'input':
+                    actualStartPosition = {
+                      x: startElement.pos.x + inputLineWidth + inputMainCircleRadius,
+                      y: startElement.pos.y,
+                    };
+                    break;
+
                   default:
-                    assertNever(startElement);
+                    assertNever(startElement, undefined, `Start element not implemented`);
                 }
 
                 let actualEndPosition = { x: 0, y: 0 };
+                console.log('endElement:', endElement);
                 switch (endElement.boxKind) {
                   case 'provided':
                     switch (endElement.providedKind) {
@@ -259,15 +323,28 @@ export default function Home() {
                     // TODO:
                     throw new Error('Implement this');
                     break;
+
+                  case 'output':
+                    actualEndPosition = {
+                      x: endElement.pos.x - outputLineWidth - outputMainCircleRadius,
+                      y: endElement.pos.y,
+                    };
+                    break;
+                  case 'input':
+                    throw new Error('Inputs can not be an end element');
                   default:
-                    assertNever(endElement);
+                    assertNever(endElement, undefined, `End element not implemented`);
                 }
                 console.log(
                   'asd',
                   roundPathCorners(
                     `M ${actualStartPosition.x} ${actualStartPosition.y} ` +
-                      `L ${actualStartPosition.x + plainConnectorExtensionMin} ${actualStartPosition.y} ` +
-                      `L ${actualEndPosition.x - plainConnectorExtensionMin} ${actualEndPosition.y}  ` +
+                      `L ${actualStartPosition.x + plainConnectorExtensionMin} ${
+                        actualStartPosition.y
+                      } ` +
+                      `L ${actualEndPosition.x - plainConnectorExtensionMin} ${
+                        actualEndPosition.y
+                      }  ` +
                       `L ${actualEndPosition.x} ${actualEndPosition.y} `,
                     plainConnectorExtensionMin / 2,
                     false,
@@ -282,8 +359,12 @@ export default function Home() {
                     shapeRendering="geometricPrecision"
                     d={roundPathCorners(
                       `M${actualStartPosition.x} ${actualStartPosition.y} ` +
-                        `L${actualStartPosition.x + plainConnectorExtensionMin} ${actualStartPosition.y} ` +
-                        `L${actualEndPosition.x - plainConnectorExtensionMin} ${actualEndPosition.y} ` +
+                        `L${actualStartPosition.x + plainConnectorExtensionMin} ${
+                          actualStartPosition.y
+                        } ` +
+                        `L${actualEndPosition.x - plainConnectorExtensionMin} ${
+                          actualEndPosition.y
+                        } ` +
                         `L${actualEndPosition.x} ${actualEndPosition.y} `,
                       plainConnectorExtensionMin / 2,
                       false,
