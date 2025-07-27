@@ -265,6 +265,9 @@ export default function Home() {
 
                 let actualStartPosition = { x: 0, y: 0 };
                 switch (startElement.boxKind) {
+                  case 'output':
+                    throw new Error('Validation output can not be a start element');
+                    break;
                   case 'provided':
                     switch (startElement.providedKind) {
                       case 'not':
@@ -327,6 +330,8 @@ export default function Home() {
                       y: endElement.pos.y,
                     };
                     break;
+                  case 'input':
+                    throw new Error('Inputs can not be an end element');
                   default:
                     assertNever(endElement, undefined, `End element not implemented`);
                 }
