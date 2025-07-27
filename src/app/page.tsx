@@ -24,10 +24,10 @@ import {
   connectorCircleRadius,
   inputLinePositionAdjustment,
   outputLinePositionAdjustment,
-} from '@/app/constants';
-import { getSample, type Sketch } from '@/app/types';
+} from '@/app/_page/constants';
+import { getSample, type Sketch } from '@/app/_page/types';
 import { assertNever } from '@/helpers/basics';
-import roundPathCorners from '@/app/rounding';
+import roundPathCorners from '@/app/_page/rounding';
 
 type State = {
   activeBoxId: number;
