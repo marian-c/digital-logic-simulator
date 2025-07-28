@@ -123,7 +123,7 @@ export function getSample(): Sketch {
           startElementOutputId: 0,
           endElementInputId: 0,
           state: false,
-        } satisfies ConnectorElement,
+        },
         {
           id: nextId++,
           elementKind: 'connector',
@@ -163,8 +163,8 @@ export function getSample(): Sketch {
           boxKind: 'input',
           userLabel: '',
           pos: {
-            x: 0,
-            y: 0,
+            x: 120,
+            y: 170,
           },
           state: false,
         },
@@ -175,8 +175,8 @@ export function getSample(): Sketch {
           boxKind: 'output',
           userLabel: '',
           pos: {
-            x: 700,
-            y: 300,
+            x: 530,
+            y: 240,
           },
           state: false,
         },
@@ -187,8 +187,8 @@ export function getSample(): Sketch {
           providedKind: 'not',
           userLabel: '',
           pos: {
-            x: 120,
-            y: 0,
+            x: 200,
+            y: 230,
           },
           state: false,
         },
@@ -199,8 +199,8 @@ export function getSample(): Sketch {
           providedKind: 'not',
           userLabel: '',
           pos: {
-            x: 500,
-            y: 500,
+            x: 300,
+            y: 290,
           },
           state: false,
         },
@@ -211,8 +211,8 @@ export function getSample(): Sketch {
           providedKind: 'not',
           userLabel: '',
           pos: {
-            x: 140,
-            y: 40,
+            x: 300,
+            y: 180,
           },
           state: false,
         },
