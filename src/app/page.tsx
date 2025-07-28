@@ -28,6 +28,7 @@ import {
 import { getSample, type Sketch } from '@/app/_page/types';
 import { assertNever } from '@/helpers/basics';
 import roundPathCorners from '@/app/_page/rounding';
+import { simulate } from '@/app/_page/simulation';
 
 type State = {
   activeBoxId: number;
@@ -49,7 +50,6 @@ function onElementMouseDown(
     if (event.button !== 0) {
       return;
     }
-    console.log('onElementMouseDown', event);
     const element = data.theBox.boxElements.find((e) => e.id === elementId);
     setter((oldState): State => {
       return {
@@ -68,7 +68,6 @@ function onElementMouseDown(
 function onDocumentMouseUp(setter: React.Dispatch<React.SetStateAction<State>>) {
   // XXX: this gets recreated on every render
   return function () {
-    console.log('onDocumentMouseUp');
     setter((oldState): State => {
       return { ...oldState, activeBoxId: 0 };
     });
@@ -101,9 +100,23 @@ function onDocumentMouseUp(setter: React.Dispatch<React.SetStateAction<State>>) 
 // }
 
 export default function Home() {
-  const [data, setData] = React.useState<Sketch>(() => {
-    return getSample();
+  const [data, _setData] = React.useState<Sketch>(() => {
+    const sample = getSample();
+    const simulated = simulate(sample.theBox);
+    // XXX: mutates
+    sample.theBox = simulated;
+    return sample;
   });
+
+  const setData = React.useCallback(
+    (newData: Sketch) => {
+      // XXX: mutates
+      newData.theBox = simulate(newData.theBox);
+      _setData(newData);
+    },
+    [_setData],
+  );
+
   const [state, setState] = React.useState<State>({
     activeBoxId: 0,
     activeBoxPosX: 0,
@@ -177,7 +190,7 @@ export default function Home() {
                   <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
                     <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
                       <circle
-                        fill={inputSmallCircleColor}
+                        fill={box.state ? 'crimson' : 'dimgray'}
                         r={connectorCircleRadius}
                         cx={
                           inputMainCircleRadius +
@@ -203,7 +216,7 @@ export default function Home() {
                   <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
                     <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
                       <circle
-                        fill={outputSmallCircleColor}
+                        fill={box.state ? 'crimson' : 'dimgray'}
                         r={connectorCircleRadius}
                         cx={
                           -outputMainCircleRadius -
@@ -234,8 +247,23 @@ export default function Home() {
                             NOT
                           </text>
                         </g>
-                        <circle cx="0" cy="15" r={connectorCircleRadius} />
-                        <circle cx={notGateWidth} cy="15" r={connectorCircleRadius} />
+                        <circle
+                          cx="0"
+                          cy="15"
+                          r={connectorCircleRadius}
+                          fill={
+                            data.theBox.connectorElements.find((c) => c.endElementId === box.id)
+                              ?.state
+                              ? 'crimson'
+                              : 'dimgray'
+                          }
+                        />
+                        <circle
+                          cx={notGateWidth}
+                          cy="15"
+                          r={connectorCircleRadius}
+                          fill={box.state ? 'crimson' : 'dimgray'}
+                        />
                       </g>
                     );
                   case 'and':
@@ -301,7 +329,6 @@ export default function Home() {
                 }
 
                 let actualEndPosition = { x: 0, y: 0 };
-                console.log('endElement:', endElement);
                 switch (endElement.boxKind) {
                   case 'provided':
                     switch (endElement.providedKind) {
@@ -335,26 +362,11 @@ export default function Home() {
                   default:
                     assertNever(endElement, undefined, `End element not implemented`);
                 }
-                console.log(
-                  'asd',
-                  roundPathCorners(
-                    `M ${actualStartPosition.x} ${actualStartPosition.y} ` +
-                      `L ${actualStartPosition.x + plainConnectorExtensionMin} ${
-                        actualStartPosition.y
-                      } ` +
-                      `L ${actualEndPosition.x - plainConnectorExtensionMin} ${
-                        actualEndPosition.y
-                      }  ` +
-                      `L ${actualEndPosition.x} ${actualEndPosition.y} `,
-                    plainConnectorExtensionMin / 2,
-                    false,
-                  ),
-                );
                 return (
                   <path
                     key={connectorElement.id}
                     fill="none"
-                    stroke="black"
+                    stroke={connectorElement.state ? 'crimson' : 'dimgray'}
                     strokeWidth={3}
                     shapeRendering="geometricPrecision"
                     d={roundPathCorners(
