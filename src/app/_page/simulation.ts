@@ -1,4 +1,4 @@
-import type { CustomBoxElement } from '@/app/types';
+import type { CustomBoxElement } from '@/app/_page/types';
 import { assertNever } from '@/helpers/basics';
 
 /**

@@ -6,8 +6,8 @@ import {
   type CustomBoxElement,
   type InputBoxElement,
   type PlainConnectorElement,
-} from '@/app/types';
-import { simulate } from '@/app/_/simulation';
+} from '@/app/_page/types';
+import { simulate } from '@/app/_page/simulation';
 
 function prepare(data: { boxes: BoxElement[]; connectors: ConnectorElement[] }): CustomBoxElement {
   const nextId = 100000;
