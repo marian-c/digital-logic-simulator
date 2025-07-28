@@ -122,6 +122,7 @@ export function getSample(): Sketch {
           endElementId: boxId1,
           startElementOutputId: 0,
           endElementInputId: 0,
+          state: false,
         } satisfies ConnectorElement,
         {
           id: nextId++,
@@ -131,6 +132,7 @@ export function getSample(): Sketch {
           endElementId: boxId2,
           startElementOutputId: 0,
           endElementInputId: 0,
+          state: false,
         } satisfies ConnectorElement,
         {
           id: nextId++,
@@ -140,6 +142,7 @@ export function getSample(): Sketch {
           endElementId: boxId3,
           startElementOutputId: 0,
           endElementInputId: 0,
+          state: false,
         } satisfies ConnectorElement,
         {
           id: nextId++,
@@ -149,6 +152,7 @@ export function getSample(): Sketch {
           endElementId: outputId,
           startElementOutputId: 1,
           endElementInputId: 0,
+          state: false,
         } satisfies ConnectorElement,
       ],
       boxElements: [
@@ -162,6 +166,7 @@ export function getSample(): Sketch {
             x: 0,
             y: 0,
           },
+          state: false,
         },
         {
           id: outputId,
@@ -173,6 +178,7 @@ export function getSample(): Sketch {
             x: 700,
             y: 300,
           },
+          state: false,
         },
         {
           id: boxId1,
@@ -184,6 +190,7 @@ export function getSample(): Sketch {
             x: 120,
             y: 0,
           },
+          state: false,
         },
         {
           id: boxId2,
@@ -195,6 +202,7 @@ export function getSample(): Sketch {
             x: 500,
             y: 500,
           },
+          state: false,
         },
         {
           id: boxId3,
@@ -206,6 +214,7 @@ export function getSample(): Sketch {
             x: 140,
             y: 40,
           },
+          state: false,
         },
       ],
     },

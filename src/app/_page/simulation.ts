@@ -56,7 +56,7 @@ export function simulate(circuit: CustomBoxElement): CustomBoxElement {
         if (!originBox) {
           throw new Error('should not happen');
         }
-        return (boxToHandle.state = handleBox(originBox));
+        return (boxToHandle.state = connectors[0].state = handleBox(originBox));
       case 'custom':
         throw new Error('Implement this');
       case 'provided':
@@ -74,6 +74,7 @@ export function simulate(circuit: CustomBoxElement): CustomBoxElement {
                 throw new Error('should not happen');
               }
               const result = handleBox(box);
+              connector.state = result;
               if (idx === 0) {
                 state1 = result;
               } else {
@@ -93,13 +94,14 @@ export function simulate(circuit: CustomBoxElement): CustomBoxElement {
             if (!originBox) {
               throw new Error('should not happen');
             }
-            return (boxToHandle.state = !handleBox(originBox));
+            const result = handleBox(originBox);
+            connectors[0].state = result;
+            return (boxToHandle.state = !result);
           }
         }
       default:
         assertNever(boxToHandle);
     }
   });
-
   return circuit;
 }

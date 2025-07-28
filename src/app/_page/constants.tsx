@@ -12,7 +12,6 @@ export const inputLineWidth = 28;
 export const inputLineHeight = 6;
 export const inputOffMainCircleColor = '#38404c';
 export const inputLineColor = '#010101';
-export const inputSmallCircleColor = inputLineColor;
 export const inputLinePositionAdjustment = 2;
 
 export const outputMainCircleRadius = inputMainCircleRadius;
@@ -20,7 +19,6 @@ export const outputLineWidth = inputLineWidth;
 export const outputLineHeight = inputLineHeight;
 export const outputOffMainCircleColor = inputOffMainCircleColor;
 export const outputLineColor = inputLineColor;
-export const outputSmallCircleColor = outputLineColor;
 export const outputLinePositionAdjustment = 2;
 
 export const gridSize = 40;
