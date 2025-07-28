@@ -1,5 +1,6 @@
 import 'react';
 import type { ReactLayoutHandler } from '@/types/rnw';
+import type { Sketch } from '@/app/_page/types';
 
 declare module 'react' {
   interface CSSProperties {
@@ -9,6 +10,9 @@ declare module 'react' {
 }
 
 declare global {
+  interface Window {
+    __sketch__?: Sketch;
+  }
   interface Element {
     // code ported from RNW uses this
     __reactLayoutHandler?: ReactLayoutHandler | undefined;

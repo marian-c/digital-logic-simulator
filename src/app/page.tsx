@@ -103,6 +103,8 @@ export default function Home() {
     const simulated = simulate(sample.theBox);
     // XXX: mutates
     sample.theBox = simulated;
+    // XXX: what about pre-rendering
+    window.__sketch__ = sample;
     return sample;
   });
 
@@ -110,6 +112,7 @@ export default function Home() {
     (newData: Sketch) => {
       // XXX: mutates
       newData.theBox = simulate(newData.theBox);
+      window.__sketch__ = newData;
       _setData(newData);
     },
     [_setData],
