@@ -10,14 +10,12 @@ export const notGateColor = '#2c7ca3';
 export const inputMainCircleRadius = 10;
 export const inputLineWidth = 28;
 export const inputLineHeight = 6;
-export const inputOffMainCircleColor = '#38404c';
 export const inputLineColor = '#010101';
 export const inputLinePositionAdjustment = 2;
 
 export const outputMainCircleRadius = inputMainCircleRadius;
 export const outputLineWidth = inputLineWidth;
 export const outputLineHeight = inputLineHeight;
-export const outputOffMainCircleColor = inputOffMainCircleColor;
 export const outputLineColor = inputLineColor;
 export const outputLinePositionAdjustment = 2;
 
