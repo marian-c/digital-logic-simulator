@@ -67,7 +67,13 @@ export default function Home() {
     zoomFactor: 1,
   });
 
+  const refHasDragged = React.useRef(false);
+
   const onDocumentMouseUp = React.useCallback(() => {
+    console.log('document mouseup');
+    setTimeout(() => {
+      refHasDragged.current = false;
+    });
     setState((oldState): State => {
       return { ...oldState, activeBoxId: 0 };
     });
@@ -105,6 +111,7 @@ export default function Home() {
   const onContainerMouseMove = React.useCallback(
     (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
       if (state.activeBoxId) {
+        refHasDragged.current = true;
         console.log('onContainerMouseMove');
         const elFound = data.theBox.boxElements.find((el) => el.id === state.activeBoxId);
         const x = state.activeBoxPosX + (event.clientX - state.mouseDownX) / state.zoomFactor;
@@ -181,7 +188,11 @@ export default function Home() {
                       />
                       <circle
                         onClick={() => {
-                          console.log('click');
+                          console.log(refHasDragged.current);
+                          if (!refHasDragged.current) {
+                            box.state = !box.state;
+                            setData({ ...data });
+                          }
                         }}
                         fill={box.state ? 'crimson' : 'dimgray'}
                         stroke="black"
