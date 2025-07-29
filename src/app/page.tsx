@@ -8,12 +8,10 @@ import {
   inputLineColor,
   inputLineHeight,
   inputLineWidth,
-  inputOffMainCircleColor,
   inputMainCircleRadius,
   outputLineColor,
   outputLineHeight,
   outputLineWidth,
-  outputOffMainCircleColor,
   outputMainCircleRadius,
   notGateColor,
   notGateHeight,
@@ -37,65 +35,6 @@ type State = {
   mouseDownY: number;
   zoomFactor: number;
 };
-
-function onElementMouseDown(
-  data: Sketch,
-  setter: React.Dispatch<React.SetStateAction<State>>,
-  elementId: number,
-) {
-  // XXX: this gets recreated on every render
-  return function (event: React.MouseEvent<SVGRectElement, MouseEvent>) {
-    if (event.button !== 0) {
-      return;
-    }
-    const element = data.theBox.boxElements.find((e) => e.id === elementId);
-    setter((oldState): State => {
-      return {
-        ...oldState,
-        activeBoxId: elementId,
-        activeBoxPosX: element?.pos.x || 0,
-        activeBoxPosY: element?.pos.y || 0,
-        lastActiveBoxId: elementId,
-        mouseDownX: event.clientX,
-        mouseDownY: event.clientY,
-      };
-    });
-  };
-}
-
-function onDocumentMouseUp(setter: React.Dispatch<React.SetStateAction<State>>) {
-  // XXX: this gets recreated on every render
-  return function () {
-    setter((oldState): State => {
-      return { ...oldState, activeBoxId: 0 };
-    });
-  };
-}
-
-// function onContainerMouseMove(
-//   state: State,
-//   setState: React.Dispatch<React.SetStateAction<State>>,
-//   setData: React.Dispatch<React.SetStateAction<Sketch>>,
-// ) {
-//   // XXX: this gets recreated on every render
-//   return function (event: React.MouseEvent<SVGSVGElement, MouseEvent>) {
-//     if (state.activeElementId) {
-//       console.log('move active element', state.activeElementId);
-//       setData((oldData): Sketch => {
-//         const elFound = oldData.theBox.elements.find((el) => el.id === state.activeElementId);
-//         if (elFound) {
-//           // XXX: this just mutates
-//           elFound.pos.x += event.clientX - state.mouseDownX;
-//           elFound.pos.y += event.clientY - state.mouseDownY;
-//           console.log('-- new pos', elFound.pos);
-//           return { ...oldData };
-//         } // XXX: else throw?
-//         return oldData;
-//       });
-//       setState({ ...state, mouseDownX: event.clientX, mouseDownY: event.clientY });
-//     }
-//   };
-// }
 
 export default function Home() {
   const [data, _setData] = React.useState<Sketch>(() => {
@@ -127,17 +66,46 @@ export default function Home() {
     mouseDownY: 0,
     zoomFactor: 1,
   });
-  React.useEffect(() => {
-    const cbMouseUp = onDocumentMouseUp(setState);
-    document.addEventListener('mouseup', cbMouseUp);
-    return () => {
-      document.removeEventListener('mouseup', cbMouseUp);
-    };
+
+  const onDocumentMouseUp = React.useCallback(() => {
+    setState((oldState): State => {
+      return { ...oldState, activeBoxId: 0 };
+    });
   }, []);
+
+  React.useEffect(() => {
+    document.addEventListener('mouseup', onDocumentMouseUp);
+    return () => {
+      document.removeEventListener('mouseup', onDocumentMouseUp);
+    };
+  }, [onDocumentMouseUp]);
+
+  const onElementMouseDown = (
+    event: React.MouseEvent<SVGElement, MouseEvent>,
+    elementId: number,
+  ) => {
+    if (event.button !== 0) {
+      return;
+    }
+    console.log('OnMouseDown');
+    const element = data.theBox.boxElements.find((e) => e.id === elementId);
+    setState((oldState): State => {
+      return {
+        ...oldState,
+        activeBoxId: elementId,
+        activeBoxPosX: element?.pos.x || 0,
+        activeBoxPosY: element?.pos.y || 0,
+        lastActiveBoxId: elementId,
+        mouseDownX: event.clientX,
+        mouseDownY: event.clientY,
+      };
+    });
+  };
 
   const onContainerMouseMove = React.useCallback(
     (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
       if (state.activeBoxId) {
+        console.log('onContainerMouseMove');
         const elFound = data.theBox.boxElements.find((el) => el.id === state.activeBoxId);
         const x = state.activeBoxPosX + (event.clientX - state.mouseDownX) / state.zoomFactor;
         const y = state.activeBoxPosY + (event.clientY - state.mouseDownY) / state.zoomFactor;
@@ -189,7 +157,11 @@ export default function Home() {
               case 'input':
                 return (
                   <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
-                    <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
+                    <g
+                      onMouseDown={(e) => {
+                        onElementMouseDown(e, box.id);
+                      }}
+                    >
                       <circle
                         fill={box.state ? 'crimson' : 'dimgray'}
                         r={connectorCircleRadius}
@@ -207,7 +179,14 @@ export default function Home() {
                         x={inputMainCircleRadius - inputLinePositionAdjustment}
                         y={-inputLineHeight / 2}
                       />
-                      <circle fill={inputOffMainCircleColor} r={inputMainCircleRadius} />
+                      <circle
+                        onClick={() => {
+                          console.log('click');
+                        }}
+                        fill={box.state ? 'crimson' : 'dimgray'}
+                        stroke="black"
+                        r={inputMainCircleRadius}
+                      />
                     </g>
                   </g>
                 );
@@ -215,7 +194,11 @@ export default function Home() {
               case 'output':
                 return (
                   <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
-                    <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
+                    <g
+                      onMouseDown={(e) => {
+                        onElementMouseDown(e, box.id);
+                      }}
+                    >
                       <circle
                         fill={box.state ? 'crimson' : 'dimgray'}
                         r={connectorCircleRadius}
@@ -233,7 +216,11 @@ export default function Home() {
                         x={-outputMainCircleRadius - outputLineWidth + outputLinePositionAdjustment}
                         y={-outputLineHeight / 2}
                       />
-                      <circle fill={outputOffMainCircleColor} r={outputMainCircleRadius} />
+                      <circle
+                        fill={box.state ? 'crimson' : 'dimgray'}
+                        stroke="black"
+                        r={outputMainCircleRadius}
+                      />
                     </g>
                   </g>
                 );
@@ -242,7 +229,11 @@ export default function Home() {
                   case 'not':
                     return (
                       <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
-                        <g onMouseDown={onElementMouseDown(data, setState, box.id)}>
+                        <g
+                          onMouseDown={(e) => {
+                            onElementMouseDown(e, box.id);
+                          }}
+                        >
                           <rect fill={notGateColor} width={notGateWidth} height={notGateHeight} />
                           <text x="13" y="20" fill="white" fontWeight="bold">
                             NOT
