@@ -296,20 +296,25 @@ export default function Home() {
                 switch (box.providedKind) {
                   case 'not':
                     return (
-                      <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
+                      <g
+                        data-desc="the-not-box"
+                        key={box.id}
+                        transform={`translate(${box.pos.x}, ${box.pos.y})`}
+                      >
                         <g
                           onMouseDown={(e) => {
                             onElementMouseDown(e, box.id);
                           }}
                         >
                           <rect fill={notGateColor} width={notGateWidth} height={notGateHeight} />
-                          <text x="13" y="20" fill="white" fontWeight="bold">
+                          <text x="14" y="15" fill="white" fontWeight="bold" fontSize={14}>
                             NOT
                           </text>
                         </g>
                         <circle
+                          data-desc="connectorAnchorPoint kind-input"
                           cx="0"
-                          cy="15"
+                          cy={notGateHeight / 2}
                           r={connectorCircleRadius}
                           fill={
                             data.theBox.connectorElements.find((c) => c.endElementId === box.id)
@@ -319,8 +324,9 @@ export default function Home() {
                           }
                         />
                         <circle
+                          data-desc="connectorAnchorPoint kind-output"
                           cx={notGateWidth}
-                          cy="15"
+                          cy={notGateHeight / 2}
                           r={connectorCircleRadius}
                           fill={box.state ? 'crimson' : 'dimgray'}
                         />
