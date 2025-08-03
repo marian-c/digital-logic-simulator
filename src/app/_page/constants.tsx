@@ -7,6 +7,8 @@ export const notGateWidth = 60;
 export const notGateHeight = 30;
 export const notGateColor = '#2c7ca3';
 
+export const inputCircleToCircleDist = 40;
+
 export const inputMainCircleRadius = 10;
 export const inputLineWidth = 28;
 export const inputLineHeight = 6;

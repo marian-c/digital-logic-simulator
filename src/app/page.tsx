@@ -5,8 +5,6 @@ import {
   defaultHeight,
   defaultWidth,
   gridSize,
-  inputLineColor,
-  inputLineHeight,
   inputLineWidth,
   inputMainCircleRadius,
   outputLineColor,
@@ -18,8 +16,8 @@ import {
   notGateWidth,
   plainConnectorExtensionMin,
   connectorCircleRadius,
-  inputLinePositionAdjustment,
   outputLinePositionAdjustment,
+  inputCircleToCircleDist,
 } from '@/app/_page/constants';
 import { getSample, type Sketch } from '@/app/_page/types';
 import { assertNever } from '@/helpers/basics';
@@ -28,11 +26,13 @@ import { simulate } from '@/app/_page/simulation';
 
 type State = {
   activeBoxId: number;
-  activeBoxPosX: number;
-  activeBoxPosY: number;
   lastActiveBoxId: number;
-  mouseDownX: number;
-  mouseDownY: number;
+  activeConnectorStartBoxId: number;
+
+  activePosX: number; // not-snapped coordinates
+  activePosY: number; // not-snapped coordinates
+  mouseDownX: number; // to calculate mouse move delta
+  mouseDownY: number; // to calculate mouse move delta
   zoomFactor: number;
 };
 
@@ -59,9 +59,10 @@ export default function Home() {
 
   const [state, setState] = React.useState<State>({
     activeBoxId: 0,
-    activeBoxPosX: 0,
-    activeBoxPosY: 0,
     lastActiveBoxId: 0,
+    activeConnectorStartBoxId: 0,
+    activePosX: 0,
+    activePosY: 0,
     mouseDownX: 0,
     mouseDownY: 0,
     zoomFactor: 1,
@@ -75,7 +76,7 @@ export default function Home() {
       refHasDragged.current = false;
     });
     setState((oldState): State => {
-      return { ...oldState, activeBoxId: 0 };
+      return { ...oldState, activeBoxId: 0, activeConnectorStartBoxId: 0 };
     });
   }, []);
 
@@ -99,23 +100,82 @@ export default function Home() {
       return {
         ...oldState,
         activeBoxId: elementId,
-        activeBoxPosX: element?.pos.x || 0,
-        activeBoxPosY: element?.pos.y || 0,
         lastActiveBoxId: elementId,
+        activePosX: element?.pos.x || 0,
+        activePosY: element?.pos.y || 0,
         mouseDownX: event.clientX,
         mouseDownY: event.clientY,
       };
     });
   };
 
+  const onConnectorStartMouseDown = (
+    event: React.MouseEvent<SVGElement, MouseEvent>,
+    elementId: number,
+  ) => {
+    if (event.button !== 0) {
+      return;
+    }
+    // if there's a connector here already do nothing
+    if (data.theBox.connectorElements.find((c) => c.startElementId === elementId)) {
+      return;
+    }
+    const box = data.theBox.boxElements.find((c) => c.id === elementId);
+    if (!box) {
+      // should not happen
+      throw new Error('No element with id ' + elementId);
+    }
+    const connectionPoint = {
+      x: 0,
+      y: 0,
+    };
+    // where do we start from
+    switch (box.boxKind) {
+      case 'input':
+        connectionPoint.x = box.pos.x + inputCircleToCircleDist;
+        connectionPoint.y = box.pos.y;
+        break;
+      case 'output':
+        throw new Error('Implement this');
+        break;
+      case 'custom':
+        throw new Error('Implement this');
+        break;
+      case 'provided':
+        throw new Error('Implement this');
+        break;
+      default:
+        assertNever(box);
+    }
+    setState({
+      ...state,
+      activeConnectorStartBoxId: elementId,
+      activePosX: connectionPoint.x,
+      activePosY: connectionPoint.y,
+      mouseDownX: event.clientX,
+      mouseDownY: event.clientY,
+    });
+  };
+
   const onContainerMouseMove = React.useCallback(
     (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+      const x = state.activePosX + (event.clientX - state.mouseDownX) / state.zoomFactor;
+      const y = state.activePosY + (event.clientY - state.mouseDownY) / state.zoomFactor;
+
+      if (state.activeConnectorStartBoxId) {
+        setState({
+          ...state,
+          mouseDownX: event.clientX,
+          mouseDownY: event.clientY,
+          activePosX: x,
+          activePosY: y,
+        });
+      }
+
       if (state.activeBoxId) {
         refHasDragged.current = true;
-        console.log('onContainerMouseMove');
         const elFound = data.theBox.boxElements.find((el) => el.id === state.activeBoxId);
-        const x = state.activeBoxPosX + (event.clientX - state.mouseDownX) / state.zoomFactor;
-        const y = state.activeBoxPosY + (event.clientY - state.mouseDownY) / state.zoomFactor;
+
         if (elFound) {
           // XXX: this just mutates
           elFound.pos.x = Math.round(x / 10) * 10;
@@ -127,8 +187,8 @@ export default function Home() {
           ...state,
           mouseDownX: event.clientX,
           mouseDownY: event.clientY,
-          activeBoxPosX: x,
-          activeBoxPosY: y,
+          activePosX: x,
+          activePosY: y,
         });
       }
     },
@@ -164,41 +224,38 @@ export default function Home() {
               case 'input':
                 return (
                   <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
-                    <g
+                    <rect
+                      fill="black"
+                      stroke="black"
+                      width={inputCircleToCircleDist}
+                      height={6}
+                      x={0}
+                      y={-3}
+                    />
+                    <circle
                       onMouseDown={(e) => {
                         onElementMouseDown(e, box.id);
                       }}
-                    >
-                      <circle
-                        fill={box.state ? 'crimson' : 'dimgray'}
-                        r={connectorCircleRadius}
-                        cx={
-                          inputMainCircleRadius +
-                          connectorCircleRadius +
-                          inputLineWidth -
-                          inputLinePositionAdjustment * 2
+                      onClick={() => {
+                        console.log(refHasDragged.current);
+                        if (!refHasDragged.current) {
+                          box.state = !box.state;
+                          setData({ ...data });
                         }
-                      />
-                      <rect
-                        fill={inputLineColor}
-                        width={inputLineWidth}
-                        height={inputLineHeight}
-                        x={inputMainCircleRadius - inputLinePositionAdjustment}
-                        y={-inputLineHeight / 2}
-                      />
-                      <circle
-                        onClick={() => {
-                          console.log(refHasDragged.current);
-                          if (!refHasDragged.current) {
-                            box.state = !box.state;
-                            setData({ ...data });
-                          }
-                        }}
-                        fill={box.state ? 'crimson' : 'dimgray'}
-                        stroke="black"
-                        r={inputMainCircleRadius}
-                      />
-                    </g>
+                      }}
+                      fill={box.state ? 'crimson' : 'dimgray'}
+                      stroke="black"
+                      r={inputMainCircleRadius}
+                    />
+                    <circle
+                      data-desc="connectorAnchorPoint"
+                      onMouseDown={(e) => {
+                        onConnectorStartMouseDown(e, box.id);
+                      }}
+                      fill={box.state ? 'crimson' : 'dimgray'}
+                      r={6}
+                      cx={inputCircleToCircleDist}
+                    />
                   </g>
                 );
 
@@ -393,6 +450,52 @@ export default function Home() {
                 assertNever(connectorElement);
             }
           })}
+          {(() => {
+            if (!state.activeConnectorStartBoxId) {
+              return null;
+            }
+            const startBox = data.theBox.boxElements.find(
+              (b) => b.id === state.activeConnectorStartBoxId,
+            );
+            if (!startBox) {
+              // should not happen
+              throw new Error('Box not found');
+            }
+            const startPoint = { x: 0, y: 0 };
+            const endPoint = {
+              x: Math.round(state.activePosX / 10) * 10,
+              y: Math.round(state.activePosY / 10) * 10,
+            };
+            switch (startBox.boxKind) {
+              case 'input':
+                startPoint.x = startBox.pos.x + inputCircleToCircleDist;
+                startPoint.y = startBox.pos.y;
+                break;
+              case 'custom':
+              case 'output':
+              case 'provided':
+                throw new Error('Not implemented');
+                break;
+              default:
+                assertNever(startBox);
+            }
+            return (
+              <path
+                fill="none"
+                stroke={'blue'}
+                strokeWidth={3}
+                shapeRendering="geometricPrecision"
+                d={roundPathCorners(
+                  `M${startPoint.x} ${startPoint.y} ` +
+                    `L${startPoint.x + plainConnectorExtensionMin} ${startPoint.y} ` +
+                    `L${endPoint.x - plainConnectorExtensionMin} ${endPoint.y} ` +
+                    `L${endPoint.x} ${endPoint.y} `,
+                  plainConnectorExtensionMin / 2,
+                  false,
+                )}
+              />
+            );
+          })()}
         </svg>
         <rect fill="lightgray" width="100%" height={20} y={defaultHeight - 20} />
       </svg>
