@@ -27,7 +27,8 @@ import { simulate } from '@/app/_page/simulation';
 type State = {
   activeBoxId: number;
   lastActiveBoxId: number;
-  activeConnectorStartBoxId: number;
+  activeConnectorStartBoxId: number; // TODO: index of point
+  activeConnectorEndBoxId: number; // TODO: index of point
 
   activePosX: number; // not-snapped coordinates
   activePosY: number; // not-snapped coordinates
@@ -37,6 +38,8 @@ type State = {
 };
 
 export default function Home() {
+  // TODO: everything should use the second form of setState
+
   const [data, _setData] = React.useState<Sketch>(() => {
     const sample = getSample();
     const simulated = simulate(sample.theBox);
@@ -61,6 +64,7 @@ export default function Home() {
     activeBoxId: 0,
     lastActiveBoxId: 0,
     activeConnectorStartBoxId: 0,
+    activeConnectorEndBoxId: 0,
     activePosX: 0,
     activePosY: 0,
     mouseDownX: 0,
@@ -70,15 +74,36 @@ export default function Home() {
 
   const refHasDragged = React.useRef(false);
 
+  const { activeConnectorStartBoxId, activeConnectorEndBoxId } = state;
   const onDocumentMouseUp = React.useCallback(() => {
-    console.log('document mouseup');
     setTimeout(() => {
+      // dragging out activate things like inputs without the setTimeout
       refHasDragged.current = false;
     });
+
+    if (activeConnectorEndBoxId) {
+      data.theBox.connectorElements.push({
+        id: data.nextId++,
+        elementKind: 'connector',
+        connectorKind: 'plain',
+        state: false,
+        startElementId: activeConnectorStartBoxId,
+        endElementId: activeConnectorEndBoxId,
+        startElementOutputId: 0,
+        endElementInputId: 0,
+      });
+      setData({ ...data });
+    }
+
     setState((oldState): State => {
-      return { ...oldState, activeBoxId: 0, activeConnectorStartBoxId: 0 };
+      return {
+        ...oldState,
+        activeBoxId: 0,
+        activeConnectorStartBoxId: 0,
+        activeConnectorEndBoxId: 0,
+      };
     });
-  }, []);
+  }, [activeConnectorStartBoxId, activeConnectorEndBoxId, data, setData]);
 
   React.useEffect(() => {
     document.addEventListener('mouseup', onDocumentMouseUp);
@@ -87,6 +112,27 @@ export default function Home() {
     };
   }, [onDocumentMouseUp]);
 
+  const onReceivingPointMouseOver = (
+    _event: React.MouseEvent<SVGElement, MouseEvent>,
+    elementId: number,
+  ) => {
+    if (state.activeConnectorStartBoxId === 0) {
+      // do nothing if we're not dragging
+      return;
+    }
+    // is this port free?
+    const connector = data.theBox.connectorElements.find((c) => c.endElementId === elementId);
+    if (connector) {
+      // port is not free
+      return;
+    }
+    setState({ ...state, activeConnectorEndBoxId: elementId });
+  };
+
+  const onReceivingPointMouseOut = () => {
+    setState({ ...state, activeConnectorEndBoxId: 0 });
+  };
+
   const onElementMouseDown = (
     event: React.MouseEvent<SVGElement, MouseEvent>,
     elementId: number,
@@ -94,7 +140,6 @@ export default function Home() {
     if (event.button !== 0) {
       return;
     }
-    console.log('OnMouseDown');
     const element = data.theBox.boxElements.find((e) => e.id === elementId);
     setState((oldState): State => {
       return {
@@ -163,12 +208,14 @@ export default function Home() {
       const y = state.activePosY + (event.clientY - state.mouseDownY) / state.zoomFactor;
 
       if (state.activeConnectorStartBoxId) {
-        setState({
-          ...state,
-          mouseDownX: event.clientX,
-          mouseDownY: event.clientY,
-          activePosX: x,
-          activePosY: y,
+        setState((oldState) => {
+          return {
+            ...oldState,
+            mouseDownX: event.clientX,
+            mouseDownY: event.clientY,
+            activePosX: x,
+            activePosY: y,
+          };
         });
       }
 
@@ -194,7 +241,6 @@ export default function Home() {
     },
     [state, data],
   );
-
   return (
     <div className="flex flex-row gap-x-3">
       <svg
@@ -214,135 +260,55 @@ export default function Home() {
           height={defaultHeight}
           viewBox={`0 0 ${defaultWidth / state.zoomFactor} ${defaultHeight / state.zoomFactor}`}
         >
-          {data.theBox.boxElements.map((box) => {
-            switch (box.boxKind) {
-              case 'custom':
-                // TODO
-                throw new Error('Implement this');
-                break;
-
+          {/*render connectors first because they would go over connection points, and we make use of mouseOver events
+               for those points
+          */}
+          {(() => {
+            if (!state.activeConnectorStartBoxId) {
+              return null;
+            }
+            const startBox = data.theBox.boxElements.find(
+              (b) => b.id === state.activeConnectorStartBoxId,
+            );
+            if (!startBox) {
+              // should not happen
+              throw new Error('Box not found');
+            }
+            const startPoint = { x: 0, y: 0 };
+            const endPoint = {
+              x: Math.round(state.activePosX / 10) * 10,
+              y: Math.round(state.activePosY / 10) * 10,
+            };
+            switch (startBox.boxKind) {
               case 'input':
-                return (
-                  <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
-                    <rect
-                      fill="black"
-                      stroke="black"
-                      width={inputCircleToCircleDist}
-                      height={6}
-                      x={0}
-                      y={-3}
-                    />
-                    <circle
-                      onMouseDown={(e) => {
-                        onElementMouseDown(e, box.id);
-                      }}
-                      onClick={() => {
-                        console.log(refHasDragged.current);
-                        if (!refHasDragged.current) {
-                          box.state = !box.state;
-                          setData({ ...data });
-                        }
-                      }}
-                      fill={box.state ? 'crimson' : 'dimgray'}
-                      stroke="black"
-                      r={inputMainCircleRadius}
-                    />
-                    <circle
-                      data-desc="connectorAnchorPoint"
-                      onMouseDown={(e) => {
-                        onConnectorStartMouseDown(e, box.id);
-                      }}
-                      fill={box.state ? 'crimson' : 'dimgray'}
-                      r={6}
-                      cx={inputCircleToCircleDist}
-                    />
-                  </g>
-                );
-
+                startPoint.x = startBox.pos.x + inputCircleToCircleDist;
+                startPoint.y = startBox.pos.y;
+                break;
+              case 'custom':
               case 'output':
-                return (
-                  <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
-                    <g
-                      onMouseDown={(e) => {
-                        onElementMouseDown(e, box.id);
-                      }}
-                    >
-                      <circle
-                        fill={box.state ? 'crimson' : 'dimgray'}
-                        r={connectorCircleRadius}
-                        cx={
-                          -outputMainCircleRadius -
-                          connectorCircleRadius -
-                          outputLineWidth +
-                          outputLinePositionAdjustment * 2
-                        }
-                      />
-                      <rect
-                        fill={outputLineColor}
-                        width={outputLineWidth}
-                        height={outputLineHeight}
-                        x={-outputMainCircleRadius - outputLineWidth + outputLinePositionAdjustment}
-                        y={-outputLineHeight / 2}
-                      />
-                      <circle
-                        fill={box.state ? 'crimson' : 'dimgray'}
-                        stroke="black"
-                        r={outputMainCircleRadius}
-                      />
-                    </g>
-                  </g>
-                );
               case 'provided':
-                switch (box.providedKind) {
-                  case 'not':
-                    return (
-                      <g
-                        data-desc="the-not-box"
-                        key={box.id}
-                        transform={`translate(${box.pos.x}, ${box.pos.y})`}
-                      >
-                        <g
-                          onMouseDown={(e) => {
-                            onElementMouseDown(e, box.id);
-                          }}
-                        >
-                          <rect fill={notGateColor} width={notGateWidth} height={notGateHeight} />
-                          <text x="14" y="15" fill="white" fontWeight="bold" fontSize={14}>
-                            NOT
-                          </text>
-                        </g>
-                        <circle
-                          data-desc="connectorAnchorPoint kind-input"
-                          cx="0"
-                          cy={notGateHeight / 2}
-                          r={connectorCircleRadius}
-                          fill={
-                            data.theBox.connectorElements.find((c) => c.endElementId === box.id)
-                              ?.state
-                              ? 'crimson'
-                              : 'dimgray'
-                          }
-                        />
-                        <circle
-                          data-desc="connectorAnchorPoint kind-output"
-                          cx={notGateWidth}
-                          cy={notGateHeight / 2}
-                          r={connectorCircleRadius}
-                          fill={box.state ? 'crimson' : 'dimgray'}
-                        />
-                      </g>
-                    );
-                  case 'and':
-                    // TODO
-                    throw new Error('Implement this');
-                  default:
-                    assertNever(box);
-                }
+                throw new Error('Not implemented');
                 break;
               default:
-                assertNever(box);
+                assertNever(startBox);
             }
-          })}
+            return (
+              <path
+                fill="none"
+                stroke={state.activeConnectorEndBoxId ? 'green' : 'blue'}
+                strokeWidth={3}
+                shapeRendering="geometricPrecision"
+                d={roundPathCorners(
+                  `M${startPoint.x} ${startPoint.y} ` +
+                    `L${startPoint.x + plainConnectorExtensionMin} ${startPoint.y} ` +
+                    `L${endPoint.x - plainConnectorExtensionMin} ${endPoint.y} ` +
+                    `L${endPoint.x} ${endPoint.y} `,
+                  plainConnectorExtensionMin / 2,
+                  false,
+                )}
+              />
+            );
+          })()}
           {data.theBox.connectorElements.map((connectorElement) => {
             switch (connectorElement.connectorKind) {
               case 'plain': {
@@ -354,7 +320,9 @@ export default function Home() {
                 );
                 if (startElement?.elementKind !== 'box' || endElement?.elementKind !== 'box') {
                   // TODO better handling, show an error, this just crashes
-                  throw new Error('only connecting boxes');
+                  throw new Error(
+                    `only connecting boxes start: ${startElement?.elementKind}, end: ${endElement?.elementKind}`,
+                  );
                 }
 
                 let actualStartPosition = { x: 0, y: 0 };
@@ -430,6 +398,7 @@ export default function Home() {
                 }
                 return (
                   <path
+                    data-desc={`connector-id-${connectorElement.id}`}
                     key={connectorElement.id}
                     fill="none"
                     stroke={connectorElement.state ? 'crimson' : 'dimgray'}
@@ -456,52 +425,139 @@ export default function Home() {
                 assertNever(connectorElement);
             }
           })}
-          {(() => {
-            if (!state.activeConnectorStartBoxId) {
-              return null;
-            }
-            const startBox = data.theBox.boxElements.find(
-              (b) => b.id === state.activeConnectorStartBoxId,
-            );
-            if (!startBox) {
-              // should not happen
-              throw new Error('Box not found');
-            }
-            const startPoint = { x: 0, y: 0 };
-            const endPoint = {
-              x: Math.round(state.activePosX / 10) * 10,
-              y: Math.round(state.activePosY / 10) * 10,
-            };
-            switch (startBox.boxKind) {
-              case 'input':
-                startPoint.x = startBox.pos.x + inputCircleToCircleDist;
-                startPoint.y = startBox.pos.y;
-                break;
+          {data.theBox.boxElements.map((box) => {
+            switch (box.boxKind) {
               case 'custom':
+                // TODO
+                throw new Error('Implement this');
+                break;
+
+              case 'input':
+                return (
+                  <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
+                    <rect
+                      fill="black"
+                      stroke="black"
+                      width={inputCircleToCircleDist}
+                      height={6}
+                      x={0}
+                      y={-3}
+                    />
+                    <circle
+                      cursor={'pointer'}
+                      onMouseDown={(e) => {
+                        onElementMouseDown(e, box.id);
+                      }}
+                      onClick={() => {
+                        if (!refHasDragged.current) {
+                          box.state = !box.state;
+                          setData({ ...data });
+                        }
+                      }}
+                      fill={box.state ? 'crimson' : 'dimgray'}
+                      stroke="black"
+                      r={inputMainCircleRadius}
+                    />
+                    <circle
+                      data-desc="connectorAnchorPoint kind-output"
+                      onMouseDown={(e) => {
+                        onConnectorStartMouseDown(e, box.id);
+                      }}
+                      fill={box.state ? 'crimson' : 'dimgray'}
+                      r={6}
+                      cx={inputCircleToCircleDist}
+                    />
+                  </g>
+                );
+
               case 'output':
+                return (
+                  <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
+                    <g
+                      onMouseDown={(e) => {
+                        onElementMouseDown(e, box.id);
+                      }}
+                    >
+                      <circle
+                        fill={box.state ? 'crimson' : 'dimgray'}
+                        r={connectorCircleRadius}
+                        cx={
+                          -outputMainCircleRadius -
+                          connectorCircleRadius -
+                          outputLineWidth +
+                          outputLinePositionAdjustment * 2
+                        }
+                      />
+                      <rect
+                        fill={outputLineColor}
+                        width={outputLineWidth}
+                        height={outputLineHeight}
+                        x={-outputMainCircleRadius - outputLineWidth + outputLinePositionAdjustment}
+                        y={-outputLineHeight / 2}
+                      />
+                      <circle
+                        fill={box.state ? 'crimson' : 'dimgray'}
+                        stroke="black"
+                        r={outputMainCircleRadius}
+                      />
+                    </g>
+                  </g>
+                );
               case 'provided':
-                throw new Error('Not implemented');
+                switch (box.providedKind) {
+                  case 'not':
+                    return (
+                      <g
+                        data-desc="the-not-box"
+                        key={box.id}
+                        transform={`translate(${box.pos.x}, ${box.pos.y})`}
+                      >
+                        <g
+                          onMouseDown={(e) => {
+                            onElementMouseDown(e, box.id);
+                          }}
+                        >
+                          <rect fill={notGateColor} width={notGateWidth} height={notGateHeight} />
+                          <text x="14" y="15" fill="white" fontWeight="bold" fontSize={14}>
+                            NOT
+                          </text>
+                        </g>
+                        <circle
+                          onMouseOver={(e) => {
+                            onReceivingPointMouseOver(e, box.id);
+                          }}
+                          onMouseOut={onReceivingPointMouseOut}
+                          data-desc="connectorAnchorPoint kind-input"
+                          cx="0"
+                          cy={notGateHeight / 2}
+                          r={connectorCircleRadius}
+                          fill={
+                            data.theBox.connectorElements.find((c) => c.endElementId === box.id)
+                              ?.state
+                              ? 'crimson'
+                              : 'dimgray'
+                          }
+                        />
+                        <circle
+                          data-desc="connectorAnchorPoint kind-output"
+                          cx={notGateWidth}
+                          cy={notGateHeight / 2}
+                          r={connectorCircleRadius}
+                          fill={box.state ? 'crimson' : 'dimgray'}
+                        />
+                      </g>
+                    );
+                  case 'and':
+                    // TODO
+                    throw new Error('Implement this');
+                  default:
+                    assertNever(box);
+                }
                 break;
               default:
-                assertNever(startBox);
+                assertNever(box);
             }
-            return (
-              <path
-                fill="none"
-                stroke={'blue'}
-                strokeWidth={3}
-                shapeRendering="geometricPrecision"
-                d={roundPathCorners(
-                  `M${startPoint.x} ${startPoint.y} ` +
-                    `L${startPoint.x + plainConnectorExtensionMin} ${startPoint.y} ` +
-                    `L${endPoint.x - plainConnectorExtensionMin} ${endPoint.y} ` +
-                    `L${endPoint.x} ${endPoint.y} `,
-                  plainConnectorExtensionMin / 2,
-                  false,
-                )}
-              />
-            );
-          })()}
+          })}
         </svg>
         <rect fill="lightgray" width="100%" height={20} y={defaultHeight - 20} />
       </svg>
