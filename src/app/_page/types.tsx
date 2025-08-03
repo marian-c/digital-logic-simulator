@@ -169,6 +169,17 @@ export function getSample(): Sketch {
           state: false,
         },
         {
+          id: 0,
+          elementKind: 'box',
+          boxKind: 'input',
+          userLabel: '',
+          pos: {
+            x: 120,
+            y: 270,
+          },
+          state: false,
+        },
+        {
           id: outputId,
           // TODO: change elementkind?
           elementKind: 'box',

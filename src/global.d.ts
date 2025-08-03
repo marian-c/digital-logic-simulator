@@ -3,6 +3,9 @@ import type { ReactLayoutHandler } from '@/types/rnw';
 import type { Sketch } from '@/app/_page/types';
 
 declare module 'react' {
+  interface SVGProps {
+    ['data-desc']?: string;
+  }
   interface CSSProperties {
     // allow css variables to be set on style props
     [key: `--${string}`]: string | number;
