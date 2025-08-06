@@ -30,6 +30,8 @@ type State = {
   activeConnectorStartBoxId: number; // TODO: index of point
   activeConnectorEndBoxId: number; // TODO: index of point
 
+  focusedElementId: number;
+
   activePosX: number; // not-snapped coordinates
   activePosY: number; // not-snapped coordinates
   mouseDownX: number; // to calculate mouse move delta
@@ -65,6 +67,7 @@ export default function Home() {
     lastActiveBoxId: 0,
     activeConnectorStartBoxId: 0,
     activeConnectorEndBoxId: 0,
+    focusedElementId: 0,
     activePosX: 0,
     activePosY: 0,
     mouseDownX: 0,
@@ -241,6 +244,24 @@ export default function Home() {
     },
     [state, data],
   );
+
+  const focusElement = (elementId: number) => {
+    setState({ ...state, focusedElementId: elementId });
+  };
+
+  const deleteFocusedElement = () => {
+    const focused = state.focusedElementId;
+    if (!focused) {
+      return;
+    }
+
+    data.theBox.boxElements = data.theBox.boxElements.filter((e) => e.id !== focused);
+    data.theBox.connectorElements = data.theBox.connectorElements.filter(
+      (e) => e.id !== focused && e.startElementId !== focused && e.endElementId !== focused,
+    );
+    setData({ ...data });
+  };
+
   return (
     <div className="flex flex-row gap-x-3">
       <svg
@@ -255,6 +276,16 @@ export default function Home() {
         // onMouseMove={onContainerMouseMove(state, setState, setData)}
         onMouseMove={onContainerMouseMove}
       >
+        <defs>
+          <filter id="f1" width="" height="">
+            <feOffset in="SourceAlpha" dx="0" dy="0" />
+            <feGaussianBlur stdDeviation="2" />
+            <feBlend in="SourceGraphic" in2="blurOut" />
+          </filter>
+          <filter id="f2" width="" height="">
+            <feDropShadow dx="0" dy="0" stdDeviation="1" floodColor="orange" />
+          </filter>
+        </defs>
         <svg
           width={defaultWidth}
           height={defaultHeight}
@@ -401,9 +432,13 @@ export default function Home() {
                     data-desc={`connector-id-${connectorElement.id}`}
                     key={connectorElement.id}
                     fill="none"
+                    filter={state.focusedElementId === connectorElement.id ? 'url(#f1)' : 'none'}
                     stroke={connectorElement.state ? 'crimson' : 'dimgray'}
                     strokeWidth={3}
                     shapeRendering="geometricPrecision"
+                    onClick={() => {
+                      focusElement(connectorElement.id);
+                    }}
                     d={roundPathCorners(
                       `M${actualStartPosition.x} ${actualStartPosition.y} ` +
                         `L${actualStartPosition.x + plainConnectorExtensionMin} ${
@@ -434,30 +469,41 @@ export default function Home() {
 
               case 'input':
                 return (
-                  <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
-                    <rect
-                      fill="black"
-                      stroke="black"
-                      width={inputCircleToCircleDist}
-                      height={6}
-                      x={0}
-                      y={-3}
-                    />
-                    <circle
-                      cursor={'pointer'}
+                  <g
+                    key={box.id}
+                    data-desc="input"
+                    transform={`translate(${box.pos.x}, ${box.pos.y})`}
+                    onClick={() => {
+                      focusElement(box.id);
+                    }}
+                    filter={state.focusedElementId === box.id ? 'url(#f1)' : 'none'}
+                  >
+                    <g
                       onMouseDown={(e) => {
                         onElementMouseDown(e, box.id);
                       }}
-                      onClick={() => {
-                        if (!refHasDragged.current) {
-                          box.state = !box.state;
-                          setData({ ...data });
-                        }
-                      }}
-                      fill={box.state ? 'crimson' : 'dimgray'}
-                      stroke="black"
-                      r={inputMainCircleRadius}
-                    />
+                    >
+                      <rect
+                        fill="black"
+                        stroke="black"
+                        width={inputCircleToCircleDist}
+                        height={6}
+                        x={0}
+                        y={-3}
+                      />
+                      <circle
+                        cursor={'pointer'}
+                        onClick={() => {
+                          if (!refHasDragged.current) {
+                            box.state = !box.state;
+                            setData({ ...data });
+                          }
+                        }}
+                        fill={box.state ? 'crimson' : 'dimgray'}
+                        stroke="black"
+                        r={inputMainCircleRadius}
+                      />
+                    </g>
                     <circle
                       data-desc="connectorAnchorPoint kind-output"
                       onMouseDown={(e) => {
@@ -472,7 +518,14 @@ export default function Home() {
 
               case 'output':
                 return (
-                  <g key={box.id} transform={`translate(${box.pos.x}, ${box.pos.y})`}>
+                  <g
+                    key={box.id}
+                    transform={`translate(${box.pos.x}, ${box.pos.y})`}
+                    onClick={() => {
+                      focusElement(box.id);
+                    }}
+                    filter={state.focusedElementId === box.id ? 'url(#f1)' : 'none'}
+                  >
                     <g
                       onMouseDown={(e) => {
                         onElementMouseDown(e, box.id);
@@ -511,6 +564,10 @@ export default function Home() {
                         data-desc="the-not-box"
                         key={box.id}
                         transform={`translate(${box.pos.x}, ${box.pos.y})`}
+                        filter={state.focusedElementId === box.id ? 'url(#f1)' : 'none'}
+                        onClick={() => {
+                          focusElement(box.id);
+                        }}
                       >
                         <g
                           onMouseDown={(e) => {
@@ -562,10 +619,23 @@ export default function Home() {
         <rect fill="lightgray" width="100%" height={20} y={defaultHeight - 20} />
       </svg>
       <div>
+        Focused element id: {state.focusedElementId}
+        <button
+          className="border border-amber-500"
+          disabled={!state.focusedElementId}
+          onClick={() => {
+            deleteFocusedElement();
+          }}
+        >
+          Delete
+        </button>
+        <br />
         active element id: {state.activeBoxId}
         <br />
         lastActiveElementId: {state.lastActiveBoxId}
         <br />
+        Active connector start: {state.activeConnectorStartBoxId}, end:{' '}
+        {state.activeConnectorEndBoxId}
         Zoom factor: {state.zoomFactor}
         <br />
         <button
