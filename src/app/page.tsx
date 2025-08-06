@@ -190,7 +190,16 @@ export default function Home() {
         throw new Error('Implement this');
         break;
       case 'provided':
-        throw new Error('Implement this');
+        switch (box.providedKind) {
+          case 'and':
+            throw new Error('Implement this');
+          case 'not':
+            connectionPoint.x = box.pos.x + notGateWidth;
+            connectionPoint.y = box.pos.y + notGateHeight / 2;
+            break;
+          default:
+            assertNever(box);
+        }
         break;
       default:
         assertNever(box);
@@ -317,8 +326,20 @@ export default function Home() {
                 break;
               case 'custom':
               case 'output':
-              case 'provided':
                 throw new Error('Not implemented');
+              case 'provided':
+                switch (startBox.providedKind) {
+                  case 'not':
+                    startPoint.x = startBox.pos.x + notGateWidth;
+                    startPoint.y = startBox.pos.y + notGateHeight / 2;
+                    break;
+                  case 'and':
+                    // TODO:
+                    throw new Error('Implement this');
+                    break;
+                  default:
+                    assertNever(startBox);
+                }
                 break;
               default:
                 assertNever(startBox);
@@ -505,7 +526,7 @@ export default function Home() {
                       />
                     </g>
                     <circle
-                      data-desc="connectorAnchorPoint kind-output"
+                      data-desc="connectorAnchorPoint kind-output for-input"
                       onMouseDown={(e) => {
                         onConnectorStartMouseDown(e, box.id);
                       }}
@@ -596,7 +617,10 @@ export default function Home() {
                           }
                         />
                         <circle
-                          data-desc="connectorAnchorPoint kind-output"
+                          data-desc="connectorAnchorPoint kind-output for-not"
+                          onMouseDown={(e) => {
+                            onConnectorStartMouseDown(e, box.id);
+                          }}
                           cx={notGateWidth}
                           cy={notGateHeight / 2}
                           r={connectorCircleRadius}
