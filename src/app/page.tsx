@@ -39,6 +39,8 @@ type State = {
   zoomFactor: number;
 };
 
+const GRID_NUM_SIZE = 8;
+
 export default function Home() {
   // TODO: everything should use the second form of setState
 
@@ -300,6 +302,17 @@ export default function Home() {
           height={defaultHeight}
           viewBox={`0 0 ${defaultWidth / state.zoomFactor} ${defaultHeight / state.zoomFactor}`}
         >
+          {/* TODO: adding numbers to the grid for debugging the scrolling, are they worth to keep them on the final version? */}
+          {new Array(20).fill(null).map((_, i) => (
+            <text key={i} x={2} y={10 + 40 * i} fontSize={GRID_NUM_SIZE}>
+              {i}
+            </text>
+          ))}
+          {new Array(20).fill(null).map((_, i) => (
+            <text key={i} x={2 + 40 * i} y={GRID_NUM_SIZE + 2} fontSize={GRID_NUM_SIZE}>
+              {i}
+            </text>
+          ))}
           {/*render connectors first because they would go over connection points, and we make use of mouseOver events
                for those points
           */}
