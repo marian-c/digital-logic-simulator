@@ -37,6 +37,14 @@ type State = {
   mouseDownX: number; // to calculate mouse move delta
   mouseDownY: number; // to calculate mouse move delta
   zoomFactor: number;
+
+  // To calculate the scroll
+  previousCenterX: number;
+  previousCenterY: number;
+  centerX: number;
+  centerY: number;
+  mouseScrollDownX: number;
+  mouseScrollDownY: number;
 };
 
 const GRID_NUM_SIZE = 8;
@@ -75,11 +83,34 @@ export default function Home() {
     mouseDownX: 0,
     mouseDownY: 0,
     zoomFactor: 1,
+    previousCenterX: -0.5,
+    previousCenterY: -0.5,
+    centerX: -0.5,
+    centerY: -0.5,
+    mouseScrollDownX: 0,
+    mouseScrollDownY: 0,
   });
 
   const refHasDragged = React.useRef(false);
+  const refIsDraggingContainer = React.useRef(false);
 
-  const { activeConnectorStartBoxId, activeConnectorEndBoxId } = state;
+  const {
+    activeConnectorStartBoxId,
+    activeConnectorEndBoxId,
+    centerX: backgroundPositionX,
+    centerY: backgroundPositionY,
+  } = state;
+
+  const getMousePosition = React.useCallback(
+    (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+      return [
+        state.activePosX + (event.clientX - state.mouseDownX) / state.zoomFactor,
+        state.activePosY + (event.clientY - state.mouseDownY) / state.zoomFactor,
+      ];
+    },
+    [state.activePosX, state.activePosY, state.mouseDownX, state.mouseDownY, state.zoomFactor],
+  );
+
   const onDocumentMouseUp = React.useCallback(() => {
     setTimeout(() => {
       // dragging out activate things like inputs without the setTimeout
@@ -108,6 +139,8 @@ export default function Home() {
         activeConnectorEndBoxId: 0,
       };
     });
+
+    refIsDraggingContainer.current = false;
   }, [activeConnectorStartBoxId, activeConnectorEndBoxId, data, setData]);
 
   React.useEffect(() => {
@@ -145,6 +178,10 @@ export default function Home() {
     if (event.button !== 0) {
       return;
     }
+
+    // Prevent the container to get the event
+    event.stopPropagation();
+
     const element = data.theBox.boxElements.find((e) => e.id === elementId);
     setState((oldState): State => {
       return {
@@ -216,10 +253,29 @@ export default function Home() {
     });
   };
 
+  const onContainerMouseDown = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    if (event.button !== 1) {
+      return;
+    }
+
+    const [x, y] = getMousePosition(event);
+
+    setState({
+      ...state,
+      previousCenterX: state.centerX,
+      previousCenterY: state.centerY,
+      mouseScrollDownX: x,
+      mouseScrollDownY: y,
+    });
+
+    setTimeout(() => {
+      refIsDraggingContainer.current = true;
+    });
+  };
+
   const onContainerMouseMove = React.useCallback(
     (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-      const x = state.activePosX + (event.clientX - state.mouseDownX) / state.zoomFactor;
-      const y = state.activePosY + (event.clientY - state.mouseDownY) / state.zoomFactor;
+      const [x, y] = getMousePosition(event);
 
       if (state.activeConnectorStartBoxId) {
         setState((oldState) => {
@@ -251,9 +307,19 @@ export default function Home() {
           activePosX: x,
           activePosY: y,
         });
+      } else if (refIsDraggingContainer.current) {
+        const [x, y] = getMousePosition(event);
+        const dx = x - state.mouseScrollDownX;
+        const dy = y - state.mouseScrollDownY;
+
+        setState({
+          ...state,
+          centerX: state.previousCenterX + dx,
+          centerY: state.previousCenterY + dy,
+        });
       }
     },
-    [state, data],
+    [getMousePosition, state, data, setData],
   );
 
   const focusElement = (elementId: number) => {
@@ -280,12 +346,13 @@ export default function Home() {
         height={defaultHeight}
         style={{
           backgroundSize: `${gridSize * state.zoomFactor}px ${gridSize * state.zoomFactor}px`, // TODO: use vars, might be faster
-          backgroundPositionX: '-0.5px',
-          backgroundPositionY: '-0.5px',
+          backgroundPositionX: `${backgroundPositionX}px`,
+          backgroundPositionY: `${backgroundPositionY}px`,
         }}
         className="border border-amber-500 select-none bg-white bg-grid"
         // onMouseMove={onContainerMouseMove(state, setState, setData)}
         onMouseMove={onContainerMouseMove}
+        onMouseDown={onContainerMouseDown}
       >
         <defs>
           <filter id="f1" width="" height="">
@@ -301,6 +368,8 @@ export default function Home() {
           width={defaultWidth}
           height={defaultHeight}
           viewBox={`0 0 ${defaultWidth / state.zoomFactor} ${defaultHeight / state.zoomFactor}`}
+          x={backgroundPositionX}
+          y={backgroundPositionY}
         >
           {/* TODO: adding numbers to the grid for debugging the scrolling, are they worth to keep them on the final version? */}
           {new Array(20).fill(null).map((_, i) => (
