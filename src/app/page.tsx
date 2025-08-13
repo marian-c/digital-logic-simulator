@@ -76,6 +76,37 @@ export default function Home() {
   });
 
   const refHasDragged = React.useRef(false);
+  const refMouseX = React.useRef(0);
+  const refMouseY = React.useRef(0);
+
+  // TODO: this is for testing purposes, remove
+  addEventListener('keydown', (e) => {
+    if (e.key === 'n' || e.key === 'N') {
+      const id = data.nextId + 1;
+      setData({
+        ...data,
+        nextId: id,
+        theBox: {
+          ...data.theBox,
+          boxElements: [
+            ...data.theBox.boxElements,
+            {
+              id,
+              elementKind: 'box',
+              boxKind: 'provided',
+              providedKind: 'not',
+              userLabel: '',
+              pos: {
+                x: refMouseX.current,
+                y: refMouseY.current,
+              },
+              state: false,
+            },
+          ],
+        },
+      });
+    }
+  });
 
   const { activeConnectorStartBoxId, activeConnectorEndBoxId } = state;
   const onDocumentMouseUp = React.useCallback(() => {
@@ -218,6 +249,8 @@ export default function Home() {
     (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
       const x = state.activePosX + (event.clientX - state.mouseDownX) / state.zoomFactor;
       const y = state.activePosY + (event.clientY - state.mouseDownY) / state.zoomFactor;
+      refMouseX.current = x;
+      refMouseY.current = y;
 
       if (state.activeConnectorStartBoxId) {
         setState((oldState) => {
