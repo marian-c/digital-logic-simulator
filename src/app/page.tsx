@@ -19,7 +19,7 @@ import {
   outputLinePositionAdjustment,
   inputCircleToCircleDist,
 } from '@/app/_page/constants';
-import { getSample, type Sketch } from '@/app/_page/types';
+import { getSample, type BoxElement, type Sketch } from '@/app/_page/types';
 import { assertNever } from '@/helpers/basics';
 import roundPathCorners from '@/app/_page/rounding';
 import { simulate } from '@/app/_page/simulation';
@@ -79,30 +79,60 @@ export default function Home() {
   const refMouseX = React.useRef(0);
   const refMouseY = React.useRef(0);
 
-  // TODO: this is for testing purposes, remove
+  // TODO: make a ui for this later?
   addEventListener('keydown', (e) => {
-    if (e.key === 'n' || e.key === 'N') {
-      const id = data.nextId + 1;
+    let newBoxElement: BoxElement | undefined;
+    const id = data.nextId + 1;
+    const pos = {
+      x: refMouseX.current,
+      y: refMouseY.current,
+    };
+    switch (e.key) {
+      // Not
+      case 'n':
+        newBoxElement = {
+          id,
+          elementKind: 'box',
+          boxKind: 'provided',
+          providedKind: 'not',
+          userLabel: '',
+          pos,
+          state: false,
+        };
+        break;
+
+      // Input
+      case 'i':
+        newBoxElement = {
+          id,
+          elementKind: 'box',
+          boxKind: 'input',
+          userLabel: '',
+          pos,
+          state: false,
+        };
+        break;
+
+      // Output
+      case 'o':
+        newBoxElement = {
+          id,
+          elementKind: 'box',
+          boxKind: 'output',
+          userLabel: '',
+          pos,
+          state: false,
+        };
+        break;
+    }
+
+    if (newBoxElement) {
       setData({
         ...data,
-        nextId: id,
+        nextId: newBoxElement.id,
         theBox: {
           ...data.theBox,
-          boxElements: [
-            ...data.theBox.boxElements,
-            {
-              id,
-              elementKind: 'box',
-              boxKind: 'provided',
-              providedKind: 'not',
-              userLabel: '',
-              pos: {
-                x: refMouseX.current,
-                y: refMouseY.current,
-              },
-              state: false,
-            },
-          ],
+          boxElements: [...data.theBox.boxElements, newBoxElement],
         },
       });
     }
