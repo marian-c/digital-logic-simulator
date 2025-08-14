@@ -24,6 +24,8 @@ import { assertNever } from '@/helpers/basics';
 import roundPathCorners from '@/app/_page/rounding';
 import { simulate } from '@/app/_page/simulation';
 
+type UIElement = 'scrollbarH' | 'scrollbarV';
+
 type State = {
   activeBoxId: number;
   lastActiveBoxId: number;
@@ -37,10 +39,33 @@ type State = {
   mouseDownX: number; // to calculate mouse move delta
   mouseDownY: number; // to calculate mouse move delta
   zoomFactor: number;
+
+  // To calculate the scroll
+  focusedUIElement: UIElement | null;
+  previousCenterX: number;
+  previousCenterY: number;
+  centerX: number;
+  centerY: number;
+  mouseScrollDownX: number;
+  mouseScrollDownY: number;
 };
 
+const TOP_LEFT_LIMIT_X = -0.5;
+const TOP_LEFT_LIMIT_Y = -0.5;
+const BOTTOM_RIGHT_LIMIT_X = -500;
+const BOTTOM_RIGHT_LIMIT_Y = -500;
+
+const SCROLLBAR_LENGTH = 40;
+const SCROLLBAR_WIDTH = 20;
+
+const limitCenterX = (value: number) =>
+  Math.max(Math.min(value, TOP_LEFT_LIMIT_X), BOTTOM_RIGHT_LIMIT_X);
+
+const limitCenterY = (value: number) =>
+  Math.max(Math.min(value, TOP_LEFT_LIMIT_Y), BOTTOM_RIGHT_LIMIT_Y);
+
 export default function Home() {
-  // TODO: everything should use the second form of setState
+  // TODO: (!!!) everything should use the second form of setState (!!!)
 
   const [data, _setData] = React.useState<Sketch>(() => {
     const sample = getSample();
@@ -73,11 +98,30 @@ export default function Home() {
     mouseDownX: 0,
     mouseDownY: 0,
     zoomFactor: 1,
+    focusedUIElement: null,
+    previousCenterX: TOP_LEFT_LIMIT_X,
+    previousCenterY: TOP_LEFT_LIMIT_Y,
+    centerX: TOP_LEFT_LIMIT_X,
+    centerY: TOP_LEFT_LIMIT_Y,
+    mouseScrollDownX: 0,
+    mouseScrollDownY: 0,
   });
 
   const refHasDragged = React.useRef(false);
+  const refIsDraggingContainer = React.useRef(false);
 
-  const { activeConnectorStartBoxId, activeConnectorEndBoxId } = state;
+  const { activeConnectorStartBoxId, activeConnectorEndBoxId, centerX, centerY } = state;
+
+  const getMousePosition = React.useCallback(
+    (event: React.MouseEvent) => {
+      return [
+        state.activePosX + (event.clientX - state.mouseDownX) / state.zoomFactor,
+        state.activePosY + (event.clientY - state.mouseDownY) / state.zoomFactor,
+      ];
+    },
+    [state.activePosX, state.activePosY, state.mouseDownX, state.mouseDownY, state.zoomFactor],
+  );
+
   const onDocumentMouseUp = React.useCallback(() => {
     setTimeout(() => {
       // dragging out activate things like inputs without the setTimeout
@@ -104,8 +148,11 @@ export default function Home() {
         activeBoxId: 0,
         activeConnectorStartBoxId: 0,
         activeConnectorEndBoxId: 0,
+        focusedUIElement: null,
       };
     });
+
+    refIsDraggingContainer.current = false;
   }, [activeConnectorStartBoxId, activeConnectorEndBoxId, data, setData]);
 
   React.useEffect(() => {
@@ -143,6 +190,10 @@ export default function Home() {
     if (event.button !== 0) {
       return;
     }
+
+    // Prevent the container to get the event
+    event.stopPropagation();
+
     const element = data.theBox.boxElements.find((e) => e.id === elementId);
     setState((oldState): State => {
       return {
@@ -214,10 +265,43 @@ export default function Home() {
     });
   };
 
+  const onContainerMouseDown = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    if (event.button !== 1) {
+      return;
+    }
+
+    const [x, y] = getMousePosition(event);
+
+    setState({
+      ...state,
+      previousCenterX: state.centerX,
+      previousCenterY: state.centerY,
+      mouseScrollDownX: x,
+      mouseScrollDownY: y,
+    });
+
+    setTimeout(() => {
+      refIsDraggingContainer.current = true;
+    });
+  };
+
+  const getCenterXFromScrollbarMoveEvent = (event: React.MouseEvent) =>
+    limitCenterX(
+      BOTTOM_RIGHT_LIMIT_X *
+        // % of screen width scrolled with the mouse
+        (event.clientX / (defaultWidth - SCROLLBAR_WIDTH)),
+    );
+
+  const getCenterYFromScrollbarMoveEvent = (event: React.MouseEvent) =>
+    limitCenterY(
+      BOTTOM_RIGHT_LIMIT_Y *
+        // % of screen height scrolled with the mouse
+        (event.clientY / (defaultHeight - SCROLLBAR_WIDTH)),
+    );
+
   const onContainerMouseMove = React.useCallback(
-    (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
-      const x = state.activePosX + (event.clientX - state.mouseDownX) / state.zoomFactor;
-      const y = state.activePosY + (event.clientY - state.mouseDownY) / state.zoomFactor;
+    (event: React.MouseEvent) => {
+      const [x, y] = getMousePosition(event);
 
       if (state.activeConnectorStartBoxId) {
         setState((oldState) => {
@@ -249,9 +333,36 @@ export default function Home() {
           activePosX: x,
           activePosY: y,
         });
+      } else if (refIsDraggingContainer.current) {
+        const dx = x - state.mouseScrollDownX;
+        const dy = y - state.mouseScrollDownY;
+
+        setState({
+          ...state,
+          centerX: limitCenterX(state.previousCenterX + dx),
+          centerY: limitCenterY(state.previousCenterY + dy),
+        });
+      } else if (state.focusedUIElement) {
+        switch (state.focusedUIElement) {
+          // TODO: This can be a bit cleaner, as the scrollbar 'jumps' when it's moved
+          // slightly, as the position the scrollbar was clicked is not taken into account
+          case 'scrollbarH':
+            setState((updatedState) => ({
+              ...updatedState,
+              centerX: getCenterXFromScrollbarMoveEvent(event),
+            }));
+            break;
+
+          case 'scrollbarV':
+            setState((updatedState) => ({
+              ...updatedState,
+              centerY: getCenterYFromScrollbarMoveEvent(event),
+            }));
+            break;
+        }
       }
     },
-    [state, data],
+    [getMousePosition, state, data, setData],
   );
 
   const focusElement = (elementId: number) => {
@@ -271,6 +382,19 @@ export default function Home() {
     setData({ ...data });
   };
 
+  const onUIElementMouseDown = (event: React.MouseEvent, uiElement: UIElement) => {
+    if (event.button !== 0) {
+      return;
+    }
+
+    event.stopPropagation();
+
+    setState((updatedState) => ({
+      ...updatedState,
+      focusedUIElement: uiElement,
+    }));
+  };
+
   return (
     <div className="flex flex-row gap-x-3">
       <svg
@@ -278,12 +402,13 @@ export default function Home() {
         height={defaultHeight}
         style={{
           backgroundSize: `${gridSize * state.zoomFactor}px ${gridSize * state.zoomFactor}px`, // TODO: use vars, might be faster
-          backgroundPositionX: '-0.5px',
-          backgroundPositionY: '-0.5px',
+          backgroundPositionX: `${centerX}px`,
+          backgroundPositionY: `${centerY}px`,
         }}
         className="border border-amber-500 select-none bg-white bg-grid"
         // onMouseMove={onContainerMouseMove(state, setState, setData)}
         onMouseMove={onContainerMouseMove}
+        onMouseDown={onContainerMouseDown}
       >
         <defs>
           <filter id="f1" width="" height="">
@@ -298,7 +423,7 @@ export default function Home() {
         <svg
           width={defaultWidth}
           height={defaultHeight}
-          viewBox={`0 0 ${defaultWidth / state.zoomFactor} ${defaultHeight / state.zoomFactor}`}
+          viewBox={`${-centerX} ${-centerY} ${defaultWidth / state.zoomFactor} ${defaultHeight / state.zoomFactor}`}
         >
           {/*render connectors first because they would go over connection points, and we make use of mouseOver events
                for those points
@@ -640,8 +765,74 @@ export default function Home() {
             }
           })}
         </svg>
-        <rect fill="lightgray" width="100%" height={20} y={defaultHeight - 20} />
+        {/* Vertical scrollbar */}
+        <rect
+          fill="lightgray"
+          width={SCROLLBAR_WIDTH}
+          height="100%"
+          x={defaultWidth - SCROLLBAR_WIDTH}
+          y={0}
+          onMouseDown={(event) => {
+            onUIElementMouseDown(event, 'scrollbarV');
+            setState((updatedState) => ({
+              ...updatedState,
+              centerY: getCenterYFromScrollbarMoveEvent(event),
+            }));
+          }}
+        />
+        <rect
+          fill="red"
+          width={SCROLLBAR_WIDTH}
+          height={SCROLLBAR_LENGTH}
+          x={defaultWidth - SCROLLBAR_WIDTH}
+          y={
+            ((TOP_LEFT_LIMIT_Y - state.centerY) /
+              Math.abs(BOTTOM_RIGHT_LIMIT_Y - TOP_LEFT_LIMIT_Y)) *
+            (defaultHeight - SCROLLBAR_LENGTH - SCROLLBAR_WIDTH)
+          }
+          onMouseDown={(event) => {
+            onUIElementMouseDown(event, 'scrollbarV');
+          }}
+        ></rect>
+        {/* Horizontal scrollbar */}
+        <rect
+          fill="lightgray"
+          width="100%"
+          height={SCROLLBAR_WIDTH}
+          x={0}
+          y={defaultHeight - SCROLLBAR_WIDTH}
+          onMouseDown={(event) => {
+            onUIElementMouseDown(event, 'scrollbarH');
+            setState((updatedState) => ({
+              ...updatedState,
+              centerX: getCenterXFromScrollbarMoveEvent(event),
+            }));
+          }}
+        />
+        <rect
+          fill="red"
+          width={SCROLLBAR_LENGTH}
+          height={SCROLLBAR_WIDTH}
+          x={
+            ((TOP_LEFT_LIMIT_X - state.centerX) /
+              Math.abs(BOTTOM_RIGHT_LIMIT_X - TOP_LEFT_LIMIT_X)) *
+            (defaultWidth - SCROLLBAR_LENGTH - SCROLLBAR_WIDTH)
+          }
+          y={defaultHeight - SCROLLBAR_WIDTH}
+          onMouseDown={(event) => {
+            onUIElementMouseDown(event, 'scrollbarH');
+          }}
+        ></rect>
+        {/* Scrollbar intersection */}
+        <rect
+          fill="black"
+          width={SCROLLBAR_WIDTH}
+          height={SCROLLBAR_WIDTH}
+          x={defaultWidth - SCROLLBAR_WIDTH}
+          y={defaultHeight - SCROLLBAR_WIDTH}
+        ></rect>
       </svg>
+
       <div>
         Focused element id: {state.focusedElementId}
         <button
@@ -660,6 +851,7 @@ export default function Home() {
         <br />
         Active connector start: {state.activeConnectorStartBoxId}, end:{' '}
         {state.activeConnectorEndBoxId}
+        <br />
         Zoom factor: {state.zoomFactor}
         <br />
         <button
@@ -677,6 +869,8 @@ export default function Home() {
         >
           Zoom out
         </button>
+        <br />
+        Center: [{centerX}, {centerY}]
       </div>
     </div>
   );
