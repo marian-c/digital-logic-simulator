@@ -65,7 +65,7 @@ const limitCenterY = (value: number) =>
   Math.max(Math.min(value, TOP_LEFT_LIMIT_Y), BOTTOM_RIGHT_LIMIT_Y);
 
 export default function Home() {
-  // TODO: everything should use the second form of setState
+  // TODO: (!!!) everything should use the second form of setState (!!!)
 
   const [data, _setData] = React.useState<Sketch>(() => {
     const sample = getSample();
@@ -290,8 +290,22 @@ export default function Home() {
     });
   };
 
+  const getCenterXFromScrollbarMoveEvent = (event: React.MouseEvent) =>
+    limitCenterX(
+      BOTTOM_RIGHT_LIMIT_X *
+        // % of screen width scrolled with the mouse
+        (event.clientX / (defaultWidth - SCROLLBAR_WIDTH)),
+    );
+
+  const getCenterYFromScrollbarMoveEvent = (event: React.MouseEvent) =>
+    limitCenterY(
+      BOTTOM_RIGHT_LIMIT_Y *
+        // % of screen height scrolled with the mouse
+        (event.clientY / (defaultHeight - SCROLLBAR_WIDTH)),
+    );
+
   const onContainerMouseMove = React.useCallback(
-    (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    (event: React.MouseEvent) => {
       const [x, y] = getMousePosition(event);
 
       if (state.activeConnectorStartBoxId) {
@@ -338,25 +352,17 @@ export default function Home() {
           // TODO: This can be a bit cleaner, as the scrollbar 'jumps' when it's moved
           // slightly, as the position the scrollbar was clicked is not taken into account
           case 'scrollbarH':
-            setState({
-              ...state,
-              centerX: limitCenterX(
-                BOTTOM_RIGHT_LIMIT_X *
-                  // % of screen width scrolled with the mouse
-                  (event.clientX / (defaultWidth - SCROLLBAR_WIDTH)),
-              ),
-            });
+            setState((updatedState) => ({
+              ...updatedState,
+              centerX: getCenterXFromScrollbarMoveEvent(event),
+            }));
             break;
 
           case 'scrollbarV':
-            setState({
-              ...state,
-              centerY: limitCenterY(
-                BOTTOM_RIGHT_LIMIT_Y *
-                  // % of screen height scrolled with the mouse
-                  (event.clientY / (defaultHeight - SCROLLBAR_WIDTH)),
-              ),
-            });
+            setState((updatedState) => ({
+              ...updatedState,
+              centerY: getCenterYFromScrollbarMoveEvent(event),
+            }));
             break;
         }
       }
@@ -388,10 +394,10 @@ export default function Home() {
 
     event.stopPropagation();
 
-    setState({
-      ...state,
+    setState((updatedState) => ({
+      ...updatedState,
       focusedUIElement: uiElement,
-    });
+    }));
   };
 
   return (
@@ -773,6 +779,13 @@ export default function Home() {
           height="100%"
           x={defaultWidth - SCROLLBAR_WIDTH}
           y={0}
+          onMouseDown={(event) => {
+            onUIElementMouseDown(event, 'scrollbarV');
+            setState((updatedState) => ({
+              ...updatedState,
+              centerY: getCenterYFromScrollbarMoveEvent(event),
+            }));
+          }}
         />
         <rect
           fill="red"
@@ -795,6 +808,13 @@ export default function Home() {
           height={SCROLLBAR_WIDTH}
           x={0}
           y={defaultHeight - SCROLLBAR_WIDTH}
+          onMouseDown={(event) => {
+            onUIElementMouseDown(event, 'scrollbarH');
+            setState((updatedState) => ({
+              ...updatedState,
+              centerX: getCenterXFromScrollbarMoveEvent(event),
+            }));
+          }}
         />
         <rect
           fill="red"
