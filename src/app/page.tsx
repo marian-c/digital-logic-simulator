@@ -49,6 +49,8 @@ type State = {
 
 const CENTER_TOP_LEFT_X = -0.5;
 const CENTER_TOP_LEFT_Y = -0.5;
+const CENTER_BOTTOM_RIGHT_X = -500;
+const CENTER_BOTTOM_RIGHT_Y = -500;
 
 export default function Home() {
   // TODO: everything should use the second form of setState
@@ -315,8 +317,14 @@ export default function Home() {
 
         setState({
           ...state,
-          centerX: Math.min(state.previousCenterX + dx, CENTER_TOP_LEFT_X),
-          centerY: Math.min(state.previousCenterY + dy, CENTER_TOP_LEFT_Y),
+          centerX: Math.max(
+            Math.min(state.previousCenterX + dx, CENTER_TOP_LEFT_X),
+            CENTER_BOTTOM_RIGHT_X,
+          ),
+          centerY: Math.max(
+            Math.min(state.previousCenterY + dy, CENTER_TOP_LEFT_Y),
+            CENTER_BOTTOM_RIGHT_Y,
+          ),
         });
       }
     },
