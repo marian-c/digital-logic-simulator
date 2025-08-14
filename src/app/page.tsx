@@ -110,12 +110,7 @@ export default function Home() {
   const refHasDragged = React.useRef(false);
   const refIsDraggingContainer = React.useRef(false);
 
-  const {
-    activeConnectorStartBoxId,
-    activeConnectorEndBoxId,
-    centerX: backgroundPositionX,
-    centerY: backgroundPositionY,
-  } = state;
+  const { activeConnectorStartBoxId, activeConnectorEndBoxId, centerX, centerY } = state;
 
   const getMousePosition = React.useCallback(
     (event: React.MouseEvent) => {
@@ -407,8 +402,8 @@ export default function Home() {
         height={defaultHeight}
         style={{
           backgroundSize: `${gridSize * state.zoomFactor}px ${gridSize * state.zoomFactor}px`, // TODO: use vars, might be faster
-          backgroundPositionX: `${backgroundPositionX}px`,
-          backgroundPositionY: `${backgroundPositionY}px`,
+          backgroundPositionX: `${centerX}px`,
+          backgroundPositionY: `${centerY}px`,
         }}
         className="border border-amber-500 select-none bg-white bg-grid"
         // onMouseMove={onContainerMouseMove(state, setState, setData)}
@@ -428,9 +423,7 @@ export default function Home() {
         <svg
           width={defaultWidth}
           height={defaultHeight}
-          viewBox={`0 0 ${defaultWidth / state.zoomFactor} ${defaultHeight / state.zoomFactor}`}
-          x={backgroundPositionX}
-          y={backgroundPositionY}
+          viewBox={`${-centerX} ${-centerY} ${defaultWidth / state.zoomFactor} ${defaultHeight / state.zoomFactor}`}
         >
           {/*render connectors first because they would go over connection points, and we make use of mouseOver events
                for those points
