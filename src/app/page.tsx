@@ -47,7 +47,8 @@ type State = {
   mouseScrollDownY: number;
 };
 
-const GRID_NUM_SIZE = 8;
+const CENTER_TOP_LEFT_X = -0.5;
+const CENTER_TOP_LEFT_Y = -0.5;
 
 export default function Home() {
   // TODO: everything should use the second form of setState
@@ -83,10 +84,10 @@ export default function Home() {
     mouseDownX: 0,
     mouseDownY: 0,
     zoomFactor: 1,
-    previousCenterX: -0.5,
-    previousCenterY: -0.5,
-    centerX: -0.5,
-    centerY: -0.5,
+    previousCenterX: CENTER_TOP_LEFT_X,
+    previousCenterY: CENTER_TOP_LEFT_Y,
+    centerX: CENTER_TOP_LEFT_X,
+    centerY: CENTER_TOP_LEFT_Y,
     mouseScrollDownX: 0,
     mouseScrollDownY: 0,
   });
@@ -314,8 +315,8 @@ export default function Home() {
 
         setState({
           ...state,
-          centerX: state.previousCenterX + dx,
-          centerY: state.previousCenterY + dy,
+          centerX: Math.min(state.previousCenterX + dx, CENTER_TOP_LEFT_X),
+          centerY: Math.min(state.previousCenterY + dy, CENTER_TOP_LEFT_Y),
         });
       }
     },
@@ -371,17 +372,6 @@ export default function Home() {
           x={backgroundPositionX}
           y={backgroundPositionY}
         >
-          {/* TODO: adding numbers to the grid for debugging the scrolling, are they worth to keep them on the final version? */}
-          {new Array(20).fill(null).map((_, i) => (
-            <text key={i} x={2} y={10 + 40 * i} fontSize={GRID_NUM_SIZE}>
-              {i}
-            </text>
-          ))}
-          {new Array(20).fill(null).map((_, i) => (
-            <text key={i} x={2 + 40 * i} y={GRID_NUM_SIZE + 2} fontSize={GRID_NUM_SIZE}>
-              {i}
-            </text>
-          ))}
           {/*render connectors first because they would go over connection points, and we make use of mouseOver events
                for those points
           */}
