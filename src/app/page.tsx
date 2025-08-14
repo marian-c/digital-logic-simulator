@@ -851,6 +851,7 @@ export default function Home() {
         <br />
         Active connector start: {state.activeConnectorStartBoxId}, end:{' '}
         {state.activeConnectorEndBoxId}
+        <br />
         Zoom factor: {state.zoomFactor}
         <br />
         <button
@@ -868,6 +869,8 @@ export default function Home() {
         >
           Zoom out
         </button>
+        <br />
+        Center: [{centerX}, {centerY}]
       </div>
     </div>
   );
