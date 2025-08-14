@@ -52,6 +52,9 @@ const CENTER_TOP_LEFT_Y = -0.5;
 const CENTER_BOTTOM_RIGHT_X = -500;
 const CENTER_BOTTOM_RIGHT_Y = -500;
 
+const SCROLLBAR_LENGTH = 40;
+const SCROLLBAR_WIDTH = 20;
+
 export default function Home() {
   // TODO: everything should use the second form of setState
 
@@ -720,8 +723,54 @@ export default function Home() {
             }
           })}
         </svg>
-        <rect fill="lightgray" width="100%" height={20} y={defaultHeight - 20} />
+        {/* Vertical scrollbar */}
+        <rect
+          fill="lightgray"
+          width={SCROLLBAR_WIDTH}
+          height="100%"
+          x={defaultWidth - SCROLLBAR_WIDTH}
+          y={0}
+        />
+        <rect
+          fill="red"
+          width={SCROLLBAR_WIDTH}
+          height={SCROLLBAR_LENGTH}
+          x={defaultWidth - SCROLLBAR_WIDTH}
+          y={
+            ((CENTER_TOP_LEFT_Y - state.centerY) /
+              Math.abs(CENTER_BOTTOM_RIGHT_Y - CENTER_TOP_LEFT_Y)) *
+            (defaultHeight - SCROLLBAR_LENGTH - SCROLLBAR_WIDTH)
+          }
+        ></rect>
+        {/* Horizontal scrollbar */}
+        <rect
+          fill="lightgray"
+          width="100%"
+          height={SCROLLBAR_WIDTH}
+          x={0}
+          y={defaultHeight - SCROLLBAR_WIDTH}
+        />
+        <rect
+          fill="red"
+          width={SCROLLBAR_LENGTH}
+          height={SCROLLBAR_WIDTH}
+          x={
+            ((CENTER_TOP_LEFT_X - state.centerX) /
+              Math.abs(CENTER_BOTTOM_RIGHT_X - CENTER_TOP_LEFT_X)) *
+            (defaultWidth - SCROLLBAR_LENGTH - SCROLLBAR_WIDTH)
+          }
+          y={defaultHeight - SCROLLBAR_WIDTH}
+        ></rect>
+        {/* Scrollbar intersection */}
+        <rect
+          fill="black"
+          width={SCROLLBAR_WIDTH}
+          height={SCROLLBAR_WIDTH}
+          x={defaultWidth - SCROLLBAR_WIDTH}
+          y={defaultHeight - SCROLLBAR_WIDTH}
+        ></rect>
       </svg>
+
       <div>
         Focused element id: {state.focusedElementId}
         <button
