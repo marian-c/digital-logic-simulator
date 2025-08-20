@@ -19,7 +19,7 @@ import {
   outputLinePositionAdjustment,
   inputCircleToCircleDist,
 } from '@/app/_page/constants';
-import { getSample, type Sketch } from '@/app/_page/types';
+import { getSample, type BoxElement, type Sketch } from '@/app/_page/types';
 import { assertNever } from '@/helpers/basics';
 import roundPathCorners from '@/app/_page/rounding';
 import { simulate } from '@/app/_page/simulation';
@@ -76,6 +76,8 @@ export default function Home() {
   });
 
   const refHasDragged = React.useRef(false);
+  const refMouseX = React.useRef(0);
+  const refMouseY = React.useRef(0);
 
   const { activeConnectorStartBoxId, activeConnectorEndBoxId } = state;
   const onDocumentMouseUp = React.useCallback(() => {
@@ -85,6 +87,7 @@ export default function Home() {
     });
 
     if (activeConnectorEndBoxId) {
+      console.log('release', data.nextId);
       data.theBox.connectorElements.push({
         id: data.nextId++,
         elementKind: 'connector',
@@ -114,6 +117,73 @@ export default function Home() {
       document.removeEventListener('mouseup', onDocumentMouseUp);
     };
   }, [onDocumentMouseUp]);
+
+  const onDocumentKeyDown = React.useCallback(
+    (e: KeyboardEvent) => {
+      let newBoxElement: BoxElement | undefined;
+      const id = data.nextId;
+      const pos = {
+        x: refMouseX.current,
+        y: refMouseY.current,
+      };
+      switch (e.key) {
+        // Not
+        case 'n':
+          newBoxElement = {
+            id,
+            elementKind: 'box',
+            boxKind: 'provided',
+            providedKind: 'not',
+            userLabel: '',
+            pos,
+            state: false,
+          };
+          break;
+
+        // Input
+        case 'i':
+          newBoxElement = {
+            id,
+            elementKind: 'box',
+            boxKind: 'input',
+            userLabel: '',
+            pos,
+            state: false,
+          };
+          break;
+
+        // Output
+        case 'o':
+          newBoxElement = {
+            id,
+            elementKind: 'box',
+            boxKind: 'output',
+            userLabel: '',
+            pos,
+            state: false,
+          };
+          break;
+      }
+
+      if (newBoxElement) {
+        setData({
+          ...data,
+          nextId: newBoxElement.id + 1,
+          theBox: {
+            ...data.theBox,
+            boxElements: [...data.theBox.boxElements, newBoxElement],
+          },
+        });
+      }
+    },
+    [data],
+  );
+  React.useEffect(() => {
+    document.addEventListener('keydown', onDocumentKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onDocumentKeyDown);
+    };
+  }, [onDocumentKeyDown]);
 
   const onReceivingPointMouseOver = (
     _event: React.MouseEvent<SVGElement, MouseEvent>,
@@ -218,6 +288,8 @@ export default function Home() {
     (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
       const x = state.activePosX + (event.clientX - state.mouseDownX) / state.zoomFactor;
       const y = state.activePosY + (event.clientY - state.mouseDownY) / state.zoomFactor;
+      refMouseX.current = x;
+      refMouseY.current = y;
 
       if (state.activeConnectorStartBoxId) {
         setState((oldState) => {
