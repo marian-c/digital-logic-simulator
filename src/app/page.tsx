@@ -553,6 +553,10 @@ export default function Home() {
                       }}
                     >
                       <circle
+                        onMouseOver={(e) => {
+                          onReceivingPointMouseOver(e, box.id);
+                        }}
+                        onMouseOut={onReceivingPointMouseOut}
                         fill={box.state ? 'crimson' : 'dimgray'}
                         r={connectorCircleRadius}
                         cx={
