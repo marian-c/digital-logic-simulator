@@ -4,7 +4,7 @@ let basePath = '';
 
 
 if (process.env.GITHUB_REPOSITORY) {
-  basePath = process.env.GITHUB_REPOSITORY.split('/')[0];
+  basePath = process.env.GITHUB_REPOSITORY.split('/')[1];
 }
 
 
