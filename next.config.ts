@@ -1,10 +1,10 @@
 import { type NextConfig } from "next";
 
-let basePath = '';
+let basePath = '/';
 
 
 if (process.env.GITHUB_REPOSITORY) {
-  basePath = process.env.GITHUB_REPOSITORY.split('/')[1];
+  basePath += process.env.GITHUB_REPOSITORY.split('/')[1];
 }
 
 
