@@ -24,3 +24,4 @@ onInput={(e: ChangeEvent<HTMLInputElement>)
 
 - to support more advanced scenarios for i18n, one can use this workaround: 
   https://github.com/vercel/next.js/discussions/49415#discussioncomment-10388757
+- Feature wise, here's some inspiration: https://www.youtube.com/playlist?list=PLFt_AvWsXl0dAgFi3ywrO-4vdAnw6IjVo
