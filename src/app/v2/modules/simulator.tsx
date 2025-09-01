@@ -2,7 +2,8 @@ import { Header } from '@/app/v2/molecules/header';
 import { CanvasV2 } from '@/app/v2/modules/canvas';
 import { Sidebar } from './sidebar';
 
-export function Simulator() {
+function SimulatorInner() {
+  // control the loading process
   return (
     <div className="flex-grow flex flex-col">
       <div>
@@ -15,4 +16,8 @@ export function Simulator() {
       </div>
     </div>
   );
+}
+
+export function Simulator() {
+  return <SimulatorInner />;
 }

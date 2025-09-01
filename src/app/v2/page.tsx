@@ -1,5 +1,21 @@
+'use client';
 import { Simulator } from '@/app/v2/modules/simulator';
 import { config } from '@/config';
+import { examples } from '@/app/v2/data/loadExampels';
+
+type OptionKind = 'default' | 'blank' | 'example' | 'user';
+type ValueKind = `${OptionKind}-${string}`;
+
+const options: { label: string; value: ValueKind }[] = [
+  { label: 'Load sketch..', value: 'default-default' satisfies ValueKind as ValueKind },
+].concat(
+  examples.map((e) => {
+    return {
+      label: e,
+      value: `example-${e}`,
+    };
+  }),
+);
 
 export default function V2() {
   return (
@@ -13,10 +29,15 @@ export default function V2() {
           )
         </div>
         <div>
-          <select>
-            <option>Load example</option>
-            <option>Example 1</option>
-            <option>Example 2</option>
+          <select
+            value="default-default"
+            onChange={() => {
+              console.log('change');
+            }}
+          >
+            {options.map((option) => {
+              return <option key={option.value}>{option.label}</option>;
+            })}
           </select>
         </div>
       </div>
