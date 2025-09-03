@@ -5,11 +5,11 @@ import { Sidebar } from './sidebar';
 function SimulatorInner() {
   // control the loading process
   return (
-    <div className="flex-grow flex flex-col">
+    <div className="flex flex-grow flex-col">
       <div>
         <Header />
       </div>
-      <div className="flex-grow flex">
+      <div className="flex flex-grow">
         <CanvasV2 />
 
         <Sidebar />

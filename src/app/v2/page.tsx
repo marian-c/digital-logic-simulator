@@ -19,8 +19,8 @@ const options: { label: string; value: ValueKind }[] = [
 
 export default function V2() {
   return (
-    <div className="flex flex-col min-h-[100vh]">
-      <div className="flex flex-row justify-between">
+    <div className="min-h-full flex flex-col">
+      <div className="flex justify-between">
         <div>
           <h1 className="inline font-bold">Digital logic simulator</h1> (
           <a className="text-blue-500" href={config.sourceCodeUrl}>
@@ -41,7 +41,7 @@ export default function V2() {
           </select>
         </div>
       </div>
-      <div className="flex-grow border border-amber-500 flex">
+      <div className="flex flex-grow border border-amber-500">
         <Simulator />
       </div>
     </div>
