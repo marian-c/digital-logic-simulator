@@ -1,21 +1,18 @@
 import { Header } from '@/app/v2/molecules/header';
 import { CanvasV2 } from '@/app/v2/modules/canvas';
 import { Sidebar } from './sidebar';
-import {
-  useLocalStorageCustom,
-  useLocalStorageItemInCollectionInitialNoFirstMount,
-} from '@/hooks/useLocalStorage';
+import { useLocalStorageCustom } from '@/hooks/useLocalStorage';
 import { defaultExampleName } from '@/app/v2/data/loadExampleNames';
 import { type Example, loadExample } from '@/app/v2/data/loadExample.';
 import type { FunctionComponentWithChildren } from '@/types/r-ui';
 import type { Sketch } from '@/app/v2/types/data';
 
 // TODO: maybe get the sketch from the context
-const SimulatorInner: FunctionComponentWithChildren<{ sketch: Sketch }> = function () {
+const SimulatorInner: FunctionComponentWithChildren<{ sketch: Sketch }> = function ({ sketch }) {
   return (
     <div className="flex flex-grow flex-col">
       <div>
-        <Header />
+        <Header sketch={sketch} />
       </div>
       <div className="flex flex-grow">
         <CanvasV2 />
