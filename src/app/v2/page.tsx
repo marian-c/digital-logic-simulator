@@ -10,9 +10,10 @@ const options: { label: string; value: ValueKind }[] = [
   { label: 'Load sketch..', value: 'default-default' satisfies ValueKind as ValueKind },
 ].concat(
   examples.map((e) => {
+    const name = e.name;
     return {
-      label: e,
-      value: `example-${e}`,
+      label: name,
+      value: `example-${name}`,
     };
   }),
 );

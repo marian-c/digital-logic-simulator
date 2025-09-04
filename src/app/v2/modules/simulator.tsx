@@ -19,5 +19,10 @@ function SimulatorInner() {
 }
 
 export function Simulator() {
+  // what is the data?
+  /**
+   * has the user selected an example yet?
+   * load the default example (if not)
+   */
   return <SimulatorInner />;
 }
