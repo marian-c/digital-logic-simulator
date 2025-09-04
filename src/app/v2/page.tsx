@@ -19,7 +19,7 @@ const options: { label: string; value: ValueKind }[] = [
 
 export default function V2() {
   return (
-    <div className="min-h-full flex flex-col">
+    <div className="min-h-dvh flex flex-col">
       <div className="flex justify-between">
         <div>
           <h1 className="inline font-bold">Digital logic simulator</h1> (

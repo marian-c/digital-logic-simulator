@@ -1,6 +1,6 @@
 export function Sidebar() {
   return (
-    <div className="flex flex-col flex-grow w-80 overflow-auto border border-green-500 bg-yellow-800">
+    <div className="flex flex-col w-80 overflow-auto border border-green-500 bg-yellow-800">
       <div className="overflow-auto flex-grow h-0">
         Sidebar
         <br></br>
