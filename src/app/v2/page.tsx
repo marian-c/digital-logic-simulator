@@ -3,6 +3,7 @@ import { Simulator } from '@/app/v2/modules/simulator';
 import { config } from '@/config';
 import { examples } from '@/app/v2/data/loadExampleNames';
 import { localStorageSetItemInCollection, type SketchSelection } from '@/helpers/localStorage';
+import React from 'react';
 
 type OptionKind = 'default' | 'blank' | 'example' | 'user';
 type ValueKind = `${OptionKind}-${string}`;
@@ -20,6 +21,8 @@ const options: { label: string; value: ValueKind }[] = [
 );
 
 function V2Inner() {
+  const [selectedSketchName, setSelectedSketchName] = React.useState<string | undefined>();
+
   return (
     <div className="min-h-dvh flex flex-col">
       <div className="flex justify-between">
@@ -48,6 +51,7 @@ function V2Inner() {
                 // TODO: surface this error somehow
                 throw new Error(`name '${name}' prefix not recognized`);
               }
+              setSelectedSketchName(v.name);
               localStorageSetItemInCollection('sketchSelection', 'default', v);
             }}
           >
@@ -62,7 +66,7 @@ function V2Inner() {
         </div>
       </div>
       <div className="flex flex-grow border border-amber-500">
-        <Simulator />
+        <Simulator selectedSketchName={selectedSketchName} />
       </div>
     </div>
   );

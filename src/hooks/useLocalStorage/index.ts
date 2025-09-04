@@ -62,11 +62,12 @@ export function useLocalStorageCustom<T extends LocalStorageKey>(
   identifier: string,
   emptyValue: LocalStorageStructure[T],
   defaultValue: LocalStorageStructure[T],
+  cacheKey: string,
 ): LocalStorageStructure[T] {
   const firstMount = useFirstMount();
   const value = React.useMemo(() => {
     return localStorageGetItemInCollection(key, identifier);
-  }, []);
+  }, [cacheKey]);
   if (firstMount) {
     return emptyValue;
   }

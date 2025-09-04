@@ -23,7 +23,9 @@ const SimulatorInner: FunctionComponentWithChildren<{ sketch: Sketch }> = functi
   );
 };
 
-export function Simulator() {
+export const Simulator: FunctionComponentWithChildren<{ selectedSketchName?: string }> = function ({
+  selectedSketchName,
+}) {
   console.log('RENDER Simulator');
   // what is the data?
   const selectedExample = useLocalStorageCustom(
@@ -31,6 +33,7 @@ export function Simulator() {
     'default',
     { kind: 'empty' },
     { kind: 'example', name: defaultExampleName },
+    selectedSketchName ?? defaultExampleName,
   );
   let sketch: null | Example = null;
   switch (selectedExample.kind) {
@@ -46,5 +49,10 @@ export function Simulator() {
     return <div>LOADING</div>;
   }
 
-  return <SimulatorInner sketch={sketch?.sketch ?? undefined} />;
-}
+  return (
+    <SimulatorInner
+      key={selectedSketchName ?? defaultExampleName}
+      sketch={sketch?.sketch ?? undefined}
+    />
+  );
+};
