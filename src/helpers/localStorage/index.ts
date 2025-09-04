@@ -40,10 +40,8 @@ export function localStorageGetItemInCollection<T extends LocalStorageKey>(
   identifier: string,
 ): LocalStorageStructure[T] | null {
   if (!isBrowser) {
-    console.log('is server');
     return null;
   }
-  console.log('is browser');
   const data = localStorage.getItem('__mcw__' + key + '__' + identifier);
   if (data) {
     return JSON.parse(data);

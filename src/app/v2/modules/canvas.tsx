@@ -3,8 +3,6 @@ import { useElementLayoutWithRef } from '@/hooks/useElementLayout/useElementLayo
 import React from 'react';
 
 export function CanvasV2() {
-  console.log('Render - canvasV2');
-
   const [size, setSize] = React.useState({ width: 0, height: 0 });
 
   // on first render this will be 0-0, and will render again

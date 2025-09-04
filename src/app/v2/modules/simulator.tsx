@@ -26,7 +26,6 @@ const SimulatorInner: FunctionComponentWithChildren<{ sketch: Sketch }> = functi
 export const Simulator: FunctionComponentWithChildren<{ selectedSketchName?: string }> = function ({
   selectedSketchName,
 }) {
-  console.log('RENDER Simulator');
   // what is the data?
   const selectedExample = useLocalStorageCustom(
     'sketchSelection',

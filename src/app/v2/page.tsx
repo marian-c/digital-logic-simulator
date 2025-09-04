@@ -37,9 +37,6 @@ function V2Inner() {
           <select
             value="default-default"
             onChange={(e) => {
-              // TODO: we need to distinguish examples from user created sketches
-              console.log('change ', e.target.value);
-
               const name = e.target.value;
               let v: SketchSelection = { kind: 'empty' };
               // TODO: use the template type ValueKind here somehow?
