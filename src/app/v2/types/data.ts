@@ -1,6 +1,6 @@
 // actual sketch and box connections
 export type Sketch = {
-  todo: true;
+  name: string;
 };
 
 // positions of poxes and what not

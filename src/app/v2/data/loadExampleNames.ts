@@ -7,7 +7,7 @@ export const examples = examplesBase.map((e) => {
   let isDefault = false;
   if (name.endsWith('-default')) {
     defaultExampleName = name;
-    name = e.slice(0, -8);
+    name = name.slice(0, -8);
     isDefault = true;
   }
 

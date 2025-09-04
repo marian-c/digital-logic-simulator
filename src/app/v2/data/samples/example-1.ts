@@ -1,7 +1,7 @@
 import type { Sketch, SketchInputs, SketchPositions, SketchState } from '@/app/v2/types/data';
 
 export const sketch: Sketch = {
-  todo: true,
+  name: 'example 1',
 };
 
 export const positions: SketchPositions = {

@@ -1,7 +1,7 @@
 'use client';
 import { Simulator } from '@/app/v2/modules/simulator';
 import { config } from '@/config';
-import { examples } from '@/app/v2/data/loadExamples';
+import { examples } from '@/app/v2/data/loadExampleNames';
 
 type OptionKind = 'default' | 'blank' | 'example' | 'user';
 type ValueKind = `${OptionKind}-${string}`;

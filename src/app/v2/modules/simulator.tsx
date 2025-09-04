@@ -5,10 +5,13 @@ import {
   useLocalStorageCustom,
   useLocalStorageItemInCollectionInitialNoFirstMount,
 } from '@/hooks/useLocalStorage';
-import { defaultExampleName } from '@/app/v2/data/loadExamples';
+import { defaultExampleName } from '@/app/v2/data/loadExampleNames';
+import { type Example, loadExample } from '@/app/v2/data/loadExample.';
+import type { FunctionComponentWithChildren } from '@/types/r-ui';
+import type { Sketch } from '@/app/v2/types/data';
 
-function SimulatorInner() {
-  // control the loading process
+// TODO: maybe get the sketch from the context
+const SimulatorInner: FunctionComponentWithChildren<{ sketch: Sketch }> = function () {
   return (
     <div className="flex flex-grow flex-col">
       <div>
@@ -21,7 +24,7 @@ function SimulatorInner() {
       </div>
     </div>
   );
-}
+};
 
 export function Simulator() {
   console.log('RENDER Simulator');
@@ -32,6 +35,19 @@ export function Simulator() {
     { kind: 'empty' },
     { kind: 'example', name: defaultExampleName },
   );
-  console.log('selectedExample', selectedExample);
-  return <SimulatorInner />;
+  let sketch: null | Example = null;
+  switch (selectedExample.kind) {
+    case 'example':
+      sketch = loadExample(selectedExample.name);
+      break;
+    case 'user':
+      throw new Error('not implemented yet');
+    case 'empty':
+      break;
+  }
+  if (!sketch) {
+    return <div>LOADING</div>;
+  }
+
+  return <SimulatorInner sketch={sketch?.sketch ?? undefined} />;
 }
