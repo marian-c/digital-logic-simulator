@@ -2,6 +2,7 @@
 import { Simulator } from '@/app/v2/modules/simulator';
 import { config } from '@/config';
 import { examples } from '@/app/v2/data/loadExampleNames';
+import { localStorageSetItemInCollection, type SketchSelection } from '@/helpers/localStorage';
 
 type OptionKind = 'default' | 'blank' | 'example' | 'user';
 type ValueKind = `${OptionKind}-${string}`;
@@ -32,12 +33,30 @@ function V2Inner() {
         <div>
           <select
             value="default-default"
-            onChange={() => {
-              console.log('change');
+            onChange={(e) => {
+              // TODO: we need to distinguish examples from user created sketches
+              console.log('change ', e.target.value);
+
+              const name = e.target.value;
+              let v: SketchSelection = { kind: 'empty' };
+              // TODO: use the template type ValueKind here somehow?
+              if (name.startsWith('example-')) {
+                v = { kind: 'example', name: name.slice(8) };
+              } else if (name.startsWith('user-')) {
+                v = { kind: 'user', name: name.slice(5) };
+              } else {
+                // TODO: surface this error somehow
+                throw new Error(`name '${name}' prefix not recognized`);
+              }
+              localStorageSetItemInCollection('sketchSelection', 'default', v);
             }}
           >
             {options.map((option) => {
-              return <option key={option.value}>{option.label}</option>;
+              return (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              );
             })}
           </select>
         </div>

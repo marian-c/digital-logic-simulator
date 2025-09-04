@@ -18,7 +18,7 @@ interface SketchSelectionUser extends SketchSelectionBase {
   name: string;
 }
 
-type SketchSelection = SketchSelectionEmpty | SketchSelectionExample | SketchSelectionUser;
+export type SketchSelection = SketchSelectionEmpty | SketchSelectionExample | SketchSelectionUser;
 
 export type LocalStorageStructure = {
   sketchSelection: SketchSelection;
