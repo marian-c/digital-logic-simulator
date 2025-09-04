@@ -4,7 +4,7 @@ export type Sketch = {
 };
 
 // positions of poxes and what not
-export type SketchPosition = {
+export type SketchPositions = {
   todo: true;
 };
 

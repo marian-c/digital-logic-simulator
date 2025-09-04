@@ -17,7 +17,7 @@ const options: { label: string; value: ValueKind }[] = [
   }),
 );
 
-export default function V2() {
+function V2Inner() {
   return (
     <div className="flex flex-col min-h-[100vh]">
       <div className="flex flex-row justify-between">
@@ -46,4 +46,8 @@ export default function V2() {
       </div>
     </div>
   );
+}
+
+export default function V2() {
+  return <V2Inner />;
 }
