@@ -1,6 +1,11 @@
-import type { Sketch, SketchInputs, SketchPositions, SketchState } from '@/app/v2/types/data';
+import type {
+  SketchStructure,
+  SketchInputs,
+  SketchPositions,
+  SketchState,
+} from '@/app/v2/types/data';
 
-export const sketch: Sketch = {
+export const structure: SketchStructure = {
   name: 'example 3',
   isExample: true,
 };

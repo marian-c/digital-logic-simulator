@@ -1,4 +1,11 @@
 import { isBrowser } from '@/helpers/basics';
+import type {
+  Sketch,
+  SketchInputs,
+  SketchPositions,
+  SketchState,
+  SketchStructure,
+} from '@/app/v2/types/data';
 
 type Kind = 'user' | 'example' | 'empty';
 
@@ -13,15 +20,18 @@ interface SketchSelectionExample extends SketchSelectionBase {
   kind: 'example';
   name: string;
 }
-interface SketchSelectionUser extends SketchSelectionBase {
+export interface SketchSelectionUser extends SketchSelectionBase {
   kind: 'user';
   name: string;
 }
 
-export type SketchSelection = SketchSelectionEmpty | SketchSelectionExample | SketchSelectionUser;
+export type SelectedSketch = SketchSelectionEmpty | SketchSelectionExample | SketchSelectionUser;
 
 export type LocalStorageStructure = {
-  sketchSelection: SketchSelection;
+  selectedSketch: SelectedSketch;
+  userSketchesNames: string[];
+  // userSketches is indexed by userSketchesNames
+  userSketches: Sketch;
 };
 
 export type LocalStorageKey = keyof LocalStorageStructure;

@@ -1,10 +1,10 @@
 // actual sketch and box connections
-export type Sketch = {
+export type SketchStructure = {
   name: string;
   isExample: boolean;
 };
 
-// positions of poxes and what not
+// positions of boxes and what not
 export type SketchPositions = {
   todo: true;
 };
@@ -18,3 +18,21 @@ export type SketchInputs = {
 export type SketchState = {
   todo: true;
 };
+
+export type Sketch = {
+  structure: SketchStructure;
+  positions: SketchPositions;
+  inputs: SketchInputs;
+  state: SketchState;
+};
+export function emptySketch({ name }: { name: string }): Sketch {
+  return {
+    structure: {
+      name,
+      isExample: false,
+    },
+    positions: { todo: true },
+    inputs: { todo: true },
+    state: { todo: true },
+  };
+}

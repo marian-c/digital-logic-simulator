@@ -3,20 +3,26 @@ import { CanvasV2 } from '@/app/v2/modules/canvas';
 import { Sidebar } from './sidebar';
 import { useLocalStorageCustom } from '@/hooks/useLocalStorage';
 import { defaultExampleName } from '@/app/v2/data/loadExampleNames';
-import { type Example, loadExample } from '@/app/v2/data/loadExample.';
+import { loadExampleSketch } from '@/app/v2/data/loadExample.';
 import type { FunctionComponentWithChildren } from '@/types/r-ui';
 import type { Sketch } from '@/app/v2/types/data';
+import { localStorageGetItemInCollection } from '@/helpers/localStorage';
+import { assertNever } from '@/helpers/basics';
 
 // TODO: maybe get the sketch from the context
-const SimulatorInner: FunctionComponentWithChildren<{ sketch: Sketch }> = function ({ sketch }) {
+const SimulatorInner: FunctionComponentWithChildren<Sketch> = function ({
+  structure,
+  // positions,
+  // inputs,
+  // state,
+}) {
   return (
     <div className="flex flex-grow flex-col">
       <div>
-        <Header sketch={sketch} />
+        <Header structure={structure} />
       </div>
       <div className="flex flex-grow">
         <CanvasV2 />
-
         <Sidebar />
       </div>
     </div>
@@ -26,23 +32,29 @@ const SimulatorInner: FunctionComponentWithChildren<{ sketch: Sketch }> = functi
 export const Simulator: FunctionComponentWithChildren<{ selectedSketchName?: string }> = function ({
   selectedSketchName,
 }) {
-  // what is the data?
   const selectedExample = useLocalStorageCustom(
-    'sketchSelection',
+    'selectedSketch',
     'default',
     { kind: 'empty' },
     { kind: 'example', name: defaultExampleName },
     selectedSketchName ?? defaultExampleName,
   );
-  let sketch: null | Example = null;
+  let sketch: Sketch | null = null;
   switch (selectedExample.kind) {
     case 'example':
-      sketch = loadExample(selectedExample.name);
+      sketch = loadExampleSketch(selectedExample.name);
       break;
     case 'user':
-      throw new Error('not implemented yet');
+      const userSketch = localStorageGetItemInCollection('userSketches', selectedExample.name);
+      if (!userSketch) {
+        throw new Error('user not found');
+      }
+      sketch = userSketch;
+      break;
     case 'empty':
       break;
+    default:
+      assertNever(selectedExample);
   }
   if (!sketch) {
     return <div>LOADING</div>;
@@ -51,7 +63,10 @@ export const Simulator: FunctionComponentWithChildren<{ selectedSketchName?: str
   return (
     <SimulatorInner
       key={selectedSketchName ?? defaultExampleName}
-      sketch={sketch?.sketch ?? undefined}
+      structure={sketch.structure}
+      positions={sketch.positions}
+      inputs={sketch.inputs}
+      state={sketch.state}
     />
   );
 };
