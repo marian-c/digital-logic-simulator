@@ -1,6 +1,11 @@
 import { Header } from '@/app/v2/molecules/header';
 import { CanvasV2 } from '@/app/v2/modules/canvas';
 import { Sidebar } from './sidebar';
+import {
+  useLocalStorageCustom,
+  useLocalStorageItemInCollectionInitialNoFirstMount,
+} from '@/hooks/useLocalStorage';
+import { defaultExampleName } from '@/app/v2/data/loadExamples';
 
 function SimulatorInner() {
   // control the loading process
@@ -19,10 +24,14 @@ function SimulatorInner() {
 }
 
 export function Simulator() {
+  console.log('RENDER Simulator');
   // what is the data?
-  /**
-   * has the user selected an example yet?
-   * load the default example (if not)
-   */
+  const selectedExample = useLocalStorageCustom(
+    'sketchSelection',
+    'default',
+    { kind: 'empty' },
+    { kind: 'example', name: defaultExampleName },
+  );
+  console.log('selectedExample', selectedExample);
   return <SimulatorInner />;
 }

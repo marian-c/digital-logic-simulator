@@ -1,9 +1,27 @@
 import { isBrowser } from '@/helpers/basics';
 
+type Kind = 'user' | 'example' | 'empty';
+
+type SketchSelectionBase = {
+  kind: Kind;
+};
+
+interface SketchSelectionEmpty extends SketchSelectionBase {
+  kind: 'empty';
+}
+interface SketchSelectionExample extends SketchSelectionBase {
+  kind: 'example';
+  name: string;
+}
+interface SketchSelectionUser extends SketchSelectionBase {
+  kind: 'user';
+  name: string;
+}
+
+type SketchSelection = SketchSelectionEmpty | SketchSelectionExample | SketchSelectionUser;
+
 export type LocalStorageStructure = {
-  reader_books: {
-    currentPage: number;
-  };
+  sketchSelection: SketchSelection;
 };
 
 export type LocalStorageKey = keyof LocalStorageStructure;

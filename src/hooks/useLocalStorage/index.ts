@@ -54,3 +54,21 @@ export function useLocalStorageItemInCollectionInitialNoFirstMount<T extends Loc
   }
   return item;
 }
+
+// TODO: optimization: if it's not the first load of the app, first mount not matter
+//   first mount is here to avoid the hydration warning
+export function useLocalStorageCustom<T extends LocalStorageKey>(
+  key: T,
+  identifier: string,
+  emptyValue: LocalStorageStructure[T],
+  defaultValue: LocalStorageStructure[T],
+): LocalStorageStructure[T] {
+  const firstMount = useFirstMount();
+  const value = React.useMemo(() => {
+    return localStorageGetItemInCollection(key, identifier);
+  }, []);
+  if (firstMount) {
+    return emptyValue;
+  }
+  return value ?? defaultValue;
+}

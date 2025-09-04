@@ -1,9 +1,12 @@
 const examplesBase = require.context('./samples', true, /\.ts$/).keys();
 
+export let defaultExampleName = '';
+
 export const examples = examplesBase.map((e) => {
   let name = e.slice(2, -3);
   let isDefault = false;
   if (name.endsWith('-default')) {
+    defaultExampleName = name;
     name = e.slice(0, -8);
     isDefault = true;
   }
