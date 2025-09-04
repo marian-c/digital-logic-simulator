@@ -2,6 +2,7 @@ import type { Sketch, SketchInputs, SketchPositions, SketchState } from '@/app/v
 
 export const sketch: Sketch = {
   name: 'example 3',
+  isExample: true,
 };
 
 export const positions: SketchPositions = {

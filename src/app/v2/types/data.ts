@@ -1,6 +1,7 @@
 // actual sketch and box connections
 export type Sketch = {
   name: string;
+  isExample: boolean;
 };
 
 // positions of poxes and what not
