@@ -1,6 +1,6 @@
 // PORT: https://github.com/streamich/react-use/blob/master/src/useDebounce.ts
 
-import React, { type DependencyList, useEffect } from 'react';
+import { type DependencyList, useEffect } from 'react';
 import useTimeoutFn from '../useTimeoutFn';
 
 export type UseDebounceReturn = [() => boolean | null, () => void];

@@ -1,6 +1,5 @@
 import { isBrowser } from '@/helpers/basics';
 import type {
-  Sketch,
   SketchInputs,
   SketchMeta,
   SketchPositions,
