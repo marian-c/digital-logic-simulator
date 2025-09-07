@@ -5,21 +5,27 @@ import { useLocalStorageCustom } from '@/hooks/useLocalStorage';
 import { defaultExampleUUID, loadExampleSketch } from '@/app/v2/data/loadExample.';
 import type { FunctionComponentWithChildren } from '@/types/r-ui';
 import type { Sketch } from '@/app/v2/types/data';
-import { localStorageGetItemInCollection } from '@/helpers/localStorage';
+import {
+  localStorageGetItemInCollection,
+  localStorageGetItemInCollectionOrThrow,
+} from '@/helpers/localStorage';
 import { assertNever } from '@/helpers/basics';
+import React from 'react';
+import { useSketch } from '@/app/v2/modules/useSketch';
 
 // TODO: maybe get the sketch from the context
 const SimulatorInner: FunctionComponentWithChildren<Sketch> = function ({
-  // structure,
+  structure,
   meta,
-  // positions,
-  // inputs,
-  // state,
+  positions,
+  inputs,
+  state,
 }) {
+  const { sketchMeta } = useSketch({ structure, meta, positions, inputs, state });
   return (
     <div className="flex flex-grow flex-col">
       <div>
-        <Header meta={meta} />
+        <Header meta={sketchMeta} />
       </div>
       <div className="flex flex-grow">
         <CanvasV2 />
@@ -45,8 +51,20 @@ export const Simulator: FunctionComponentWithChildren<{ selectedSketchUUID?: str
       sketch = loadExampleSketch(selectedExample.uuid);
       break;
     case 'user':
-      const userSketch = localStorageGetItemInCollection('userSketches', selectedExample.uuid);
-      if (!userSketch) {
+      const userSketch = {
+        structure: localStorageGetItemInCollectionOrThrow(
+          'userSketchesStructure',
+          selectedExample.uuid,
+        ),
+        meta: localStorageGetItemInCollectionOrThrow('userSketchesMeta', selectedExample.uuid),
+        inputs: localStorageGetItemInCollectionOrThrow('userSketchesInputs', selectedExample.uuid),
+        positions: localStorageGetItemInCollectionOrThrow(
+          'userSketchesPositions',
+          selectedExample.uuid,
+        ),
+        state: localStorageGetItemInCollectionOrThrow('userSketchesState', selectedExample.uuid),
+      };
+      if (!userSketch.inputs) {
         throw new Error('user sketch not found');
       }
       sketch = userSketch;

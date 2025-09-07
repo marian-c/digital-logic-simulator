@@ -1,5 +1,12 @@
 import { isBrowser } from '@/helpers/basics';
-import type { Sketch } from '@/app/v2/types/data';
+import type {
+  Sketch,
+  SketchInputs,
+  SketchMeta,
+  SketchPositions,
+  SketchState,
+  SketchStructure,
+} from '@/app/v2/types/data';
 
 type Kind = 'user' | 'example' | 'empty';
 
@@ -24,8 +31,12 @@ export type SelectedSketch = SketchSelectionEmpty | SketchSelectionExample | Ske
 export type LocalStorageStructure = {
   selectedSketch: SelectedSketch;
   userSketchUUIDs: { name: string; uuid: string }[];
-  // userSketches indexed by UUID
-  userSketches: Sketch;
+  // indexed by UUID
+  userSketchesStructure: SketchStructure;
+  userSketchesMeta: SketchMeta;
+  userSketchesPositions: SketchPositions;
+  userSketchesInputs: SketchInputs;
+  userSketchesState: SketchState;
 };
 
 export type LocalStorageKey = keyof LocalStorageStructure;
@@ -51,4 +62,15 @@ export function localStorageGetItemInCollection<T extends LocalStorageKey>(
     return JSON.parse(data);
   }
   return null;
+}
+
+export function localStorageGetItemInCollectionOrThrow<T extends LocalStorageKey>(
+  key: T,
+  identifier: string,
+): LocalStorageStructure[T] {
+  const r = localStorageGetItemInCollection(key, identifier);
+  if (!r) {
+    throw new Error('Data not found in localStorage');
+  }
+  return r;
 }

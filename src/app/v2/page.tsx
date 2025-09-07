@@ -97,7 +97,11 @@ function V2Inner() {
 
               userSketchUUIDs.push({ name, uuid });
               const sketch = emptySketch({ name, uuid });
-              localStorageSetItemInCollection('userSketches', uuid, sketch);
+              localStorageSetItemInCollection('userSketchesStructure', uuid, sketch.structure);
+              localStorageSetItemInCollection('userSketchesMeta', uuid, sketch.meta);
+              localStorageSetItemInCollection('userSketchesInputs', uuid, sketch.inputs);
+              localStorageSetItemInCollection('userSketchesPositions', uuid, sketch.positions);
+              localStorageSetItemInCollection('userSketchesState', uuid, sketch.state);
               localStorageSetItemInCollection('userSketchUUIDs', 'default', userSketchUUIDs);
               const selectedSketch: SketchSelectionUser = { kind: 'user', uuid };
               localStorageSetItemInCollection('selectedSketch', 'default', selectedSketch);
@@ -116,5 +120,6 @@ function V2Inner() {
 }
 
 export default function V2() {
+  // separate for context, if needed
   return <V2Inner />;
 }
