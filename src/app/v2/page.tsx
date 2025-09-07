@@ -1,7 +1,6 @@
 'use client';
 import { Simulator } from '@/app/v2/modules/simulator';
 import { config } from '@/config';
-import { examples } from '@/app/v2/data/loadExampleNames';
 import {
   localStorageGetItemInCollection,
   localStorageSetItemInCollection,
@@ -11,6 +10,8 @@ import {
 import React from 'react';
 import { emptySketch } from '@/app/v2/types/data';
 import { useLocalStorageCustom } from '@/hooks/useLocalStorage';
+import { v7 as uuidv7 } from 'uuid';
+import { exampleSketches } from '@/app/v2/data/loadExample.';
 
 type OptionKind = 'default' | 'blank' | 'example' | 'user';
 type ValueKind = `${OptionKind}-${string}`;
@@ -18,32 +19,31 @@ type ValueKind = `${OptionKind}-${string}`;
 const options: { label: string; value: ValueKind }[] = [
   { label: 'Load sketch...', value: 'default-default' satisfies ValueKind as ValueKind },
 ].concat(
-  examples.map((e) => {
-    const name = e.name;
+  exampleSketches.map((s) => {
     return {
-      label: name,
-      value: `example-${name}`,
+      label: s.meta.name,
+      value: `example-${s.meta.uuid}`,
     };
   }),
 );
 
 function V2Inner() {
-  const [selectedSketchName, setSelectedSketchName] = React.useState<string | undefined>();
-  const userOptions = useLocalStorageCustom(
-    'userSketchesNames',
+  const [selectedSketchUUID, setSelectedSketchUUID] = React.useState<string | undefined>();
+  const userSketches = useLocalStorageCustom(
+    'userSketchUUIDs',
     'default',
     [],
     [],
-    selectedSketchName ?? '',
+    selectedSketchUUID ?? '',
   );
   const optionsToUse = React.useMemo(() => {
     return [
       ...options,
-      ...userOptions.map((s) => {
-        return { label: s, value: `user-${s}` };
+      ...userSketches.map((s) => {
+        return { label: s.name, value: `user-${s.uuid}` };
       }),
     ];
-  }, [userOptions]);
+  }, [userSketches]);
   return (
     <div className="min-h-dvh flex flex-col">
       <div className="flex justify-between">
@@ -58,19 +58,19 @@ function V2Inner() {
           <select
             value="default-default"
             onChange={(e) => {
-              const name = e.target.value;
+              const value = e.target.value;
               let v: SelectedSketch = { kind: 'empty' };
               // TODO: use the template type ValueKind here somehow?
-              if (name.startsWith('example-')) {
-                v = { kind: 'example', name: name.slice(8) };
-              } else if (name.startsWith('user-')) {
-                v = { kind: 'user', name: name.slice(5) };
+              if (value.startsWith('example-')) {
+                v = { kind: 'example', uuid: value.slice(8) };
+              } else if (value.startsWith('user-')) {
+                v = { kind: 'user', uuid: value.slice(5) };
               } else {
                 // TODO: surface this error somehow
-                throw new Error(`name '${name}' prefix not recognized`);
+                throw new Error(`name '${value}' prefix not recognized`);
               }
               localStorageSetItemInCollection('selectedSketch', 'default', v);
-              setSelectedSketchName(v.name);
+              setSelectedSketchUUID(v.uuid);
             }}
           >
             {optionsToUse.map((option) => {
@@ -89,18 +89,19 @@ function V2Inner() {
               if (!name) {
                 return;
               }
-              const names = localStorageGetItemInCollection('userSketchesNames', 'default') ?? [];
-              if (names.includes(name)) {
-                window.alert('Error: name already exists');
-                return;
-              }
-              names.push(name);
-              const sketch = emptySketch({ name });
-              localStorageSetItemInCollection('userSketches', name, sketch);
-              localStorageSetItemInCollection('userSketchesNames', 'default', names);
-              const selectedSketch: SketchSelectionUser = { kind: 'user', name };
+
+              const uuid = uuidv7();
+
+              const userSketchUUIDs =
+                localStorageGetItemInCollection('userSketchUUIDs', 'default') ?? [];
+
+              userSketchUUIDs.push({ name, uuid });
+              const sketch = emptySketch({ name, uuid });
+              localStorageSetItemInCollection('userSketches', uuid, sketch);
+              localStorageSetItemInCollection('userSketchUUIDs', 'default', userSketchUUIDs);
+              const selectedSketch: SketchSelectionUser = { kind: 'user', uuid };
               localStorageSetItemInCollection('selectedSketch', 'default', selectedSketch);
-              setSelectedSketchName(selectedSketch.name);
+              setSelectedSketchUUID(selectedSketch.uuid);
             }}
           >
             New empty sketch
@@ -108,7 +109,7 @@ function V2Inner() {
         </div>
       </div>
       <div className="flex flex-grow border border-amber-500">
-        <Simulator selectedSketchName={selectedSketchName} />
+        <Simulator selectedSketchUUID={selectedSketchUUID} />
       </div>
     </div>
   );

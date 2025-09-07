@@ -1,7 +1,13 @@
 // actual sketch and box connections
 export type SketchStructure = {
+  todo: true;
+};
+
+export type SketchMeta = {
+  uuid: string;
+  isExample?: true;
   name: string;
-  isExample: boolean;
+  description: string;
 };
 
 // positions of boxes and what not
@@ -21,15 +27,20 @@ export type SketchState = {
 
 export type Sketch = {
   structure: SketchStructure;
+  meta: SketchMeta;
   positions: SketchPositions;
   inputs: SketchInputs;
   state: SketchState;
 };
-export function emptySketch({ name }: { name: string }): Sketch {
+export function emptySketch({ name, uuid }: { name: string; uuid: string }): Sketch {
   return {
     structure: {
+      todo: true,
+    },
+    meta: {
+      uuid,
       name,
-      isExample: false,
+      description: '',
     },
     positions: { todo: true },
     inputs: { todo: true },

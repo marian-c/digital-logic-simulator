@@ -3,10 +3,17 @@ import type {
   SketchInputs,
   SketchPositions,
   SketchState,
+  SketchMeta,
 } from '@/app/v2/types/data';
 
 export const structure: SketchStructure = {
+  todo: true,
+};
+
+export const meta: SketchMeta = {
   name: 'example 1',
+  description: '',
+  uuid: '01992562-2f16-7c1b-b06f-f08513dcc388',
   isExample: true,
 };
 

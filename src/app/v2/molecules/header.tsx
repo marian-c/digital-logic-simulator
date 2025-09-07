@@ -1,12 +1,10 @@
 import type { FunctionComponentWithChildren } from '@/types/r-ui';
-import type { SketchStructure } from '@/app/v2/types/data';
+import type { SketchMeta } from '@/app/v2/types/data';
 
-export const Header: FunctionComponentWithChildren<{ structure: SketchStructure }> = function ({
-  structure,
-}) {
+export const Header: FunctionComponentWithChildren<{ meta: SketchMeta }> = function ({ meta }) {
   return (
     <div>
-      {structure.name} {structure.isExample && '[example]'} {'>'} component 1 {'>'} component 2
+      {meta.name} {meta.isExample && '[example]'} {'>'} component 1 {'>'} component 2
     </div>
   );
 };

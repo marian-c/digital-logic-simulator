@@ -12,19 +12,19 @@ interface SketchSelectionEmpty extends SketchSelectionBase {
 }
 interface SketchSelectionExample extends SketchSelectionBase {
   kind: 'example';
-  name: string;
+  uuid: string;
 }
 export interface SketchSelectionUser extends SketchSelectionBase {
   kind: 'user';
-  name: string;
+  uuid: string;
 }
 
 export type SelectedSketch = SketchSelectionEmpty | SketchSelectionExample | SketchSelectionUser;
 
 export type LocalStorageStructure = {
   selectedSketch: SelectedSketch;
-  userSketchesNames: string[];
-  // userSketches is indexed by userSketchesNames
+  userSketchUUIDs: { name: string; uuid: string }[];
+  // userSketches indexed by UUID
   userSketches: Sketch;
 };
 
