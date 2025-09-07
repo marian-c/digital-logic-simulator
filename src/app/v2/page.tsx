@@ -43,7 +43,7 @@ function V2Inner() {
         return { label: s, value: `user-${s}` };
       }),
     ];
-  }, [userOptions, options]);
+  }, [userOptions]);
   return (
     <div className="min-h-dvh flex flex-col">
       <div className="flex justify-between">

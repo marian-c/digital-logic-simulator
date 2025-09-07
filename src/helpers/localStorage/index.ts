@@ -1,11 +1,5 @@
 import { isBrowser } from '@/helpers/basics';
-import type {
-  Sketch,
-  SketchInputs,
-  SketchPositions,
-  SketchState,
-  SketchStructure,
-} from '@/app/v2/types/data';
+import type { Sketch } from '@/app/v2/types/data';
 
 type Kind = 'user' | 'example' | 'empty';
 
