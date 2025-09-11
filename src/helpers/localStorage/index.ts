@@ -8,36 +8,16 @@ import type {
   SketchStructure,
 } from '@/app/v2/types/data';
 
-type Kind = 'user' | 'example' | 'empty';
-
-type SketchSelectionBase = {
-  kind: Kind;
-};
-
-interface SketchSelectionEmpty extends SketchSelectionBase {
-  kind: 'empty';
-}
-interface SketchSelectionExample extends SketchSelectionBase {
-  kind: 'example';
-  uuid: string;
-}
-export interface SketchSelectionUser extends SketchSelectionBase {
-  kind: 'user';
-  uuid: string;
-}
-
-export type SelectedSketch = SketchSelectionEmpty | SketchSelectionExample | SketchSelectionUser;
-
 export type LocalStorageStructure = {
-  selectedSketch: SelectedSketch;
+  selectedSketch: string;
   userSketchUUIDs: { name: string; uuid: string }[];
   // indexed by UUID
-  userSketchesStructure: SketchStructure;
-  userSketchesMeta: SketchMeta;
-  userSketchesPositions: SketchPositions;
-  userSketchesInputs: SketchInputs;
-  userSketchesSimulation: SketchSimulation;
-  userSketchesState: SketchState;
+  sketchesStructure: SketchStructure;
+  sketchesMeta: SketchMeta;
+  sketchesPositions: SketchPositions;
+  sketchesInputs: SketchInputs;
+  sketchesSimulation: SketchSimulation;
+  sketchesState: SketchState;
 };
 
 export type LocalStorageKey = keyof LocalStorageStructure;

@@ -1,92 +1,73 @@
 import { Breadcrumbs } from '@/app/v2/molecules/breadcrumbs';
 import { CanvasV2 } from '@/app/v2/modules/canvas';
 import { Sidebar } from './sidebar';
-import { useLocalStorageCustom } from '@/hooks/useLocalStorage';
-import { defaultExampleUUID, loadExampleSketch } from '@/app/v2/data/loadExample.';
 import type { FunctionComponentWithChildren } from '@/types/r-ui';
-import type { Sketch } from '@/app/v2/types/data';
-import { localStorageGetItemInCollectionOrThrow } from '@/helpers/localStorage';
-import { assertNever } from '@/helpers/basics';
 import React from 'react';
+import { useSelectedSketchInfo } from '@/app/v2/modules/useSketch';
+import { SketchDataProvider } from '@/app/v2/modules/useSketchData';
 
-// TODO: maybe get the sketch from the context
-const SimulatorInner: FunctionComponentWithChildren<Sketch> = function ({
-  structure,
-  meta,
-  positions,
-  inputs,
-  simulation,
-  state,
-}) {
+const SimulatorInner: FunctionComponentWithChildren = function () {
   return (
-    <div className="flex flex-grow flex-col">
-      <div>
-        <Breadcrumbs meta={meta} />
+    <SketchDataProvider>
+      <div className="flex flex-grow flex-col">
+        <div>
+          <Breadcrumbs />
+        </div>
+        <div className="flex flex-grow">
+          <CanvasV2 />
+          <Sidebar />
+        </div>
       </div>
-      <div className="flex flex-grow">
-        <CanvasV2 />
-        <Sidebar />
-      </div>
-    </div>
+    </SketchDataProvider>
   );
 };
 
-export const Simulator: FunctionComponentWithChildren<{ selectedSketchUUID?: string }> = function ({
-  selectedSketchUUID,
-}) {
-  const selectedExample = useLocalStorageCustom(
-    'selectedSketch',
-    'default',
-    { kind: 'empty' },
-    { kind: 'example', uuid: defaultExampleUUID },
-    selectedSketchUUID ?? defaultExampleUUID,
-  );
-  let sketch: Sketch | null = null;
-  switch (selectedExample.kind) {
-    case 'example':
-      sketch = loadExampleSketch(selectedExample.uuid);
-      break;
-    case 'user':
-      const userSketch = {
-        structure: localStorageGetItemInCollectionOrThrow(
-          'userSketchesStructure',
-          selectedExample.uuid,
-        ),
-        meta: localStorageGetItemInCollectionOrThrow('userSketchesMeta', selectedExample.uuid),
-        inputs: localStorageGetItemInCollectionOrThrow('userSketchesInputs', selectedExample.uuid),
-        positions: localStorageGetItemInCollectionOrThrow(
-          'userSketchesPositions',
-          selectedExample.uuid,
-        ),
-        simulation: localStorageGetItemInCollectionOrThrow(
-          'userSketchesSimulation',
-          selectedExample.uuid,
-        ),
-        state: localStorageGetItemInCollectionOrThrow('userSketchesState', selectedExample.uuid),
-      };
-      if (!userSketch.inputs) {
-        throw new Error('user sketch not found');
-      }
-      sketch = userSketch;
-      break;
-    case 'empty':
-      break;
-    default:
-      assertNever(selectedExample);
-  }
-  if (!sketch) {
+export const Simulator: FunctionComponentWithChildren = function () {
+  const { selectedSketchUUID } = useSelectedSketchInfo();
+  // const selectedExample = useLocalStorageCustom(
+  //   'selectedSketch',
+  //   'default',
+  //   { kind: 'empty' },
+  //   { kind: 'example', uuid: defaultExampleUUID },
+  //   selectedSketchUUID ?? defaultExampleUUID,
+  // );
+  // let sketch: Sketch | null = null;
+  // switch (selectedExample.kind) {
+  //   case 'example':
+  //     sketch = loadExampleSketch(selectedExample.uuid);
+  //     break;
+  //   case 'user':
+  //     const userSketch = {
+  //       structure: localStorageGetItemInCollectionOrThrow(
+  //         'userSketchesStructure',
+  //         selectedExample.uuid,
+  //       ),
+  //       meta: localStorageGetItemInCollectionOrThrow('userSketchesMeta', selectedExample.uuid),
+  //       inputs: localStorageGetItemInCollectionOrThrow('userSketchesInputs', selectedExample.uuid),
+  //       positions: localStorageGetItemInCollectionOrThrow(
+  //         'userSketchesPositions',
+  //         selectedExample.uuid,
+  //       ),
+  //       simulation: localStorageGetItemInCollectionOrThrow(
+  //         'userSketchesSimulation',
+  //         selectedExample.uuid,
+  //       ),
+  //       state: localStorageGetItemInCollectionOrThrow('userSketchesState', selectedExample.uuid),
+  //     };
+  //     if (!userSketch.inputs) {
+  //       throw new Error('user sketch not found');
+  //     }
+  //     sketch = userSketch;
+  //     break;
+  //   case 'empty':
+  //     break;
+  //   default:
+  //     assertNever(selectedExample);
+  // }
+
+  if (!selectedSketchUUID) {
     return <div>LOADING</div>;
   }
 
-  return (
-    <SimulatorInner
-      key={selectedSketchUUID ?? defaultExampleUUID}
-      structure={sketch.structure}
-      meta={sketch.meta}
-      positions={sketch.positions}
-      inputs={sketch.inputs}
-      simulation={sketch.simulation}
-      state={sketch.state}
-    />
-  );
+  return <SimulatorInner key={selectedSketchUUID} />;
 };

@@ -1,12 +1,11 @@
 import type { FunctionComponentWithChildren } from '@/types/r-ui';
-import type { SketchMeta } from '@/app/v2/types/data';
+import { useSketchMeta } from '@/app/v2/modules/useSketchData';
 
-export const Breadcrumbs: FunctionComponentWithChildren<{ meta: SketchMeta }> = function ({
-  meta,
-}) {
+export const Breadcrumbs: FunctionComponentWithChildren = function () {
+  const { sketchMeta } = useSketchMeta();
   return (
     <div>
-      {meta.name} {meta.isExample && '[example]'} {'>'} component 1 {'>'} component 2
+      {sketchMeta.name} {sketchMeta.isExample && '[example]'} {'>'} component 1 {'>'} component 2
     </div>
   );
 };
