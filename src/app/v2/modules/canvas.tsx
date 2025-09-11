@@ -13,8 +13,13 @@ export function CanvasV2() {
     setSize({ width: e.nativeEvent.layout.width, height: e.nativeEvent.layout.height });
   });
   return (
-    <div ref={canvasRef} className="flex-grow bg-zinc-200">
-      canvas ({size.width} X {size.height})
+    <div className="flex flex-col flex-grow bg-zinc-200">
+      <div ref={canvasRef} className="flex-grow relative border border-green-500">
+        <svg width="100%" height="100%" className="select-none bg-white bg-grid absolute"></svg>
+      </div>
+      <div>
+        Bottom bar (w: {size.width} h: {size.height})
+      </div>
     </div>
   );
 }
