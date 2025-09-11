@@ -2,6 +2,8 @@
 import { useElementLayoutWithRef } from '@/hooks/useElementLayout/useElementLayoutWithRef';
 import React from 'react';
 
+const gridSize = 40;
+
 export function CanvasV2() {
   const [size, setSize] = React.useState({ width: 0, height: 0 });
 
@@ -15,7 +17,16 @@ export function CanvasV2() {
   return (
     <div className="flex flex-col flex-grow bg-zinc-200">
       <div ref={canvasRef} className="flex-grow relative border border-green-500">
-        <svg width="100%" height="100%" className="select-none bg-white bg-grid absolute"></svg>
+        <svg
+          width="100%"
+          height="100%"
+          className="select-none bg-white bg-grid absolute"
+          style={{
+            backgroundSize: `${gridSize * 1}px ${gridSize * 1}px`, // TODO: use vars, might be faster
+            backgroundPositionX: '-0.5px',
+            backgroundPositionY: '-0.5px',
+          }}
+        ></svg>
       </div>
       <div>
         Bottom bar (w: {size.width} h: {size.height})

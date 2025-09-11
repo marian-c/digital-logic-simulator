@@ -1,4 +1,4 @@
-import { Header } from '@/app/v2/molecules/header';
+import { Breadcrumbs } from '@/app/v2/molecules/breadcrumbs';
 import { CanvasV2 } from '@/app/v2/modules/canvas';
 import { Sidebar } from './sidebar';
 import { useLocalStorageCustom } from '@/hooks/useLocalStorage';
@@ -8,7 +8,6 @@ import type { Sketch } from '@/app/v2/types/data';
 import { localStorageGetItemInCollectionOrThrow } from '@/helpers/localStorage';
 import { assertNever } from '@/helpers/basics';
 import React from 'react';
-import { useSketch } from '@/app/v2/modules/useSketch';
 
 // TODO: maybe get the sketch from the context
 const SimulatorInner: FunctionComponentWithChildren<Sketch> = function ({
@@ -19,11 +18,10 @@ const SimulatorInner: FunctionComponentWithChildren<Sketch> = function ({
   simulation,
   state,
 }) {
-  const { sketchMeta } = useSketch({ structure, meta, positions, inputs, simulation, state });
   return (
     <div className="flex flex-grow flex-col">
       <div>
-        <Header meta={sketchMeta} />
+        <Breadcrumbs meta={meta} />
       </div>
       <div className="flex flex-grow">
         <CanvasV2 />
