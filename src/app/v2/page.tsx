@@ -101,6 +101,7 @@ function V2Inner() {
               localStorageSetItemInCollection('userSketchesMeta', uuid, sketch.meta);
               localStorageSetItemInCollection('userSketchesInputs', uuid, sketch.inputs);
               localStorageSetItemInCollection('userSketchesPositions', uuid, sketch.positions);
+              localStorageSetItemInCollection('userSketchesSimulation', uuid, sketch.simulation);
               localStorageSetItemInCollection('userSketchesState', uuid, sketch.state);
               localStorageSetItemInCollection('userSketchUUIDs', 'default', userSketchUUIDs);
               const selectedSketch: SketchSelectionUser = { kind: 'user', uuid };

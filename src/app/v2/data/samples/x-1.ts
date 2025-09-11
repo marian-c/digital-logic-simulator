@@ -2,8 +2,9 @@ import type {
   SketchStructure,
   SketchInputs,
   SketchPositions,
-  SketchState,
+  SketchSimulation,
   SketchMeta,
+  SketchState,
 } from '@/app/v2/types/data';
 
 export const structure: SketchStructure = {
@@ -22,6 +23,10 @@ export const positions: SketchPositions = {
 };
 
 export const inputs: SketchInputs = {
+  todo: true,
+};
+
+export const simulation: SketchSimulation = {
   todo: true,
 };
 

@@ -21,6 +21,11 @@ export type SketchInputs = {
 };
 
 // type of the data for calculated connector states
+export type SketchSimulation = {
+  todo: true;
+};
+
+// zoom and panning
 export type SketchState = {
   todo: true;
 };
@@ -30,8 +35,10 @@ export type Sketch = {
   meta: SketchMeta;
   positions: SketchPositions;
   inputs: SketchInputs;
+  simulation: SketchSimulation;
   state: SketchState;
 };
+
 export function emptySketch({ name, uuid }: { name: string; uuid: string }): Sketch {
   return {
     structure: {
@@ -44,6 +51,7 @@ export function emptySketch({ name, uuid }: { name: string; uuid: string }): Ske
     },
     positions: { todo: true },
     inputs: { todo: true },
+    simulation: { todo: true },
     state: { todo: true },
   };
 }

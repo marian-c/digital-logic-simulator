@@ -9,7 +9,7 @@ export function CanvasV2() {
   const canvasRef = useElementLayoutWithRef<HTMLDivElement>((e) => {
     // XXX: this renders un-throttled, remains to be seen if this is a
     //  performance issue, and careful consideration of what work needs to be done for the size change
-    //  alternatively, we can throttle this state chagne
+    //  alternatively, we can throttle this state change
     setSize({ width: e.nativeEvent.layout.width, height: e.nativeEvent.layout.height });
   });
   return (

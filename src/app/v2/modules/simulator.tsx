@@ -16,9 +16,10 @@ const SimulatorInner: FunctionComponentWithChildren<Sketch> = function ({
   meta,
   positions,
   inputs,
+  simulation,
   state,
 }) {
-  const { sketchMeta } = useSketch({ structure, meta, positions, inputs, state });
+  const { sketchMeta } = useSketch({ structure, meta, positions, inputs, simulation, state });
   return (
     <div className="flex flex-grow flex-col">
       <div>
@@ -59,6 +60,10 @@ export const Simulator: FunctionComponentWithChildren<{ selectedSketchUUID?: str
           'userSketchesPositions',
           selectedExample.uuid,
         ),
+        simulation: localStorageGetItemInCollectionOrThrow(
+          'userSketchesSimulation',
+          selectedExample.uuid,
+        ),
         state: localStorageGetItemInCollectionOrThrow('userSketchesState', selectedExample.uuid),
       };
       if (!userSketch.inputs) {
@@ -82,6 +87,7 @@ export const Simulator: FunctionComponentWithChildren<{ selectedSketchUUID?: str
       meta={sketch.meta}
       positions={sketch.positions}
       inputs={sketch.inputs}
+      simulation={sketch.simulation}
       state={sketch.state}
     />
   );

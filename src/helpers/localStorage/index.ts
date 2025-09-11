@@ -3,6 +3,7 @@ import type {
   SketchInputs,
   SketchMeta,
   SketchPositions,
+  SketchSimulation,
   SketchState,
   SketchStructure,
 } from '@/app/v2/types/data';
@@ -35,6 +36,7 @@ export type LocalStorageStructure = {
   userSketchesMeta: SketchMeta;
   userSketchesPositions: SketchPositions;
   userSketchesInputs: SketchInputs;
+  userSketchesSimulation: SketchSimulation;
   userSketchesState: SketchState;
 };
 
