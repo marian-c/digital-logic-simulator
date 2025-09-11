@@ -104,7 +104,7 @@ export const SketchDataProvider: FunctionComponentWithChildren = ({ children }) 
   const [sketchPositions, setSketchPositions] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('sketchesPositions', selectedSketchUUID);
   });
-  const positinosData = React.useMemo(() => {
+  const positionsData = React.useMemo(() => {
     return { sketchPositions, setSketchPositions };
   }, [sketchPositions, setSketchPositions]);
 
@@ -132,7 +132,7 @@ export const SketchDataProvider: FunctionComponentWithChildren = ({ children }) 
   return (
     <SketchStructureContext value={structureData}>
       <SketchMetaContext value={metaData}>
-        <SketchPositionsContext value={positinosData}>
+        <SketchPositionsContext value={positionsData}>
           <SketchInputsContext value={inputsData}>
             <SketchSimulationContext value={simulationData}>
               <SketchStateContext value={stateData}>{children}</SketchStateContext>

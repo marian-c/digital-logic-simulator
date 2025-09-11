@@ -42,7 +42,7 @@ function Header() {
       <div>
         <h1 className="inline font-bold">Digital logic simulator</h1> (
         <a className="text-blue-500" href={config.sourceCodeUrl}>
-          source on Github {selectedSketchUUID}
+          source on Github
         </a>
         )
       </div>
