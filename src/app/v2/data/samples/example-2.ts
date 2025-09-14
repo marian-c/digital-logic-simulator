@@ -31,5 +31,5 @@ export const simulation: SketchSimulation = {
 };
 
 export const state: SketchState = {
-  todo: true,
+  zoomFactor: 1,
 };

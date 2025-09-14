@@ -1,6 +1,7 @@
 'use client';
 import { useElementLayoutWithRef } from '@/hooks/useElementLayout/useElementLayoutWithRef';
 import React from 'react';
+import { useSketchState } from '@/app/v2/modules/useSketchData';
 
 const gridSize = 40;
 
@@ -14,6 +15,8 @@ export function CanvasV2() {
     //  alternatively, we can throttle this state change
     setSize({ width: e.nativeEvent.layout.width, height: e.nativeEvent.layout.height });
   });
+  const { sketchState, setSketchState } = useSketchState();
+  const { zoomFactor } = sketchState;
   return (
     <div className="flex flex-col flex-grow bg-zinc-200">
       <div ref={canvasRef} className="flex-grow relative border border-green-500">
@@ -22,7 +25,7 @@ export function CanvasV2() {
           height="100%"
           className="select-none bg-white bg-grid absolute"
           style={{
-            backgroundSize: `${gridSize * 1}px ${gridSize * 1}px`, // TODO: use vars, might be faster
+            backgroundSize: `${gridSize * zoomFactor}px ${gridSize * zoomFactor}px`, // TODO: use vars, might be faster
             backgroundPositionX: '-0.5px',
             backgroundPositionY: '-0.5px',
           }}

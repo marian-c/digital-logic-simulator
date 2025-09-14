@@ -1,9 +1,35 @@
-import { useSketchMeta } from '@/app/v2/modules/useSketchData';
+import { useSketchMeta, useSketchState } from '@/app/v2/modules/useSketchData';
+
+function ZoomControls() {
+  const { sketchState, setSketchState } = useSketchState();
+  return (
+    <div>
+      Zoom factor: {sketchState.zoomFactor}
+      <br />
+      <button
+        className="border border-red-500 p-3"
+        onClick={() => {
+          setSketchState({ ...sketchState, zoomFactor: sketchState.zoomFactor - 0.2 });
+        }}
+      >
+        -
+      </button>
+      <button
+        className="border border-red-500 p-3"
+        onClick={() => {
+          setSketchState({ ...sketchState, zoomFactor: sketchState.zoomFactor + 0.2 });
+        }}
+      >
+        +
+      </button>
+    </div>
+  );
+}
 
 export function Sidebar() {
   const { sketchMeta, setSketchMeta } = useSketchMeta();
   return (
-    <div className="flex flex-col w-80 overflow-auto border border-green-500 bg-yellow-800">
+    <div className="flex flex-col w-80 overflow-auto border border-green-500 bg-gray-200">
       <div className="overflow-auto flex-grow h-0">
         Sketch name: <br />
         <input
@@ -24,7 +50,7 @@ export function Sidebar() {
           }}
         />
         <br></br>
-        Sidebar
+        <ZoomControls />
         <br></br>
         Sidebar
         <br></br>
