@@ -2,6 +2,7 @@
 import { useElementLayoutWithRef } from '@/hooks/useElementLayout/useElementLayoutWithRef';
 import React from 'react';
 import { useSketchState } from '@/app/v2/modules/useSketchData';
+import { useInteractions } from '@/app/v2/modules/interactions/provider';
 
 const gridSize = 40;
 
@@ -17,10 +18,12 @@ export function CanvasV2() {
   });
   const { sketchState, setSketchState } = useSketchState();
   const { zoomFactor } = sketchState;
+  const { svgRef } = useInteractions();
   return (
     <div className="flex flex-col flex-grow bg-zinc-200">
       <div ref={canvasRef} className="flex-grow relative border border-green-500">
         <svg
+          ref={svgRef}
           width="100%"
           height="100%"
           className="select-none bg-white bg-grid absolute"
