@@ -16,9 +16,9 @@ export const structure: SketchStructure = {
 };
 
 export const meta: SketchMeta = {
-  name: 'example 1',
+  name: 'example 3',
   description: '',
-  uuid: '01992562-2f16-7c1b-b06f-f08513dcc388',
+  uuid: '01992561-7247-7216-8422-ee17075804e8',
   isExample: true,
   nextId: 1000,
 };
