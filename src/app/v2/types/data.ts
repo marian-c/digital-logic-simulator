@@ -1,19 +1,19 @@
+import type { InnerSketchStructure } from '@/app/v2/types/innerSketchStructure';
+import type { InnerSketchPositions } from '@/app/v2/types/innerSketchPositions';
+
 // actual sketch and box connections
-export type SketchStructure = {
-  todo: true;
-};
+export type SketchStructure = InnerSketchStructure;
 
 export type SketchMeta = {
   uuid: string;
+  nextId: number;
   isExample?: true;
   name: string;
   description: string;
 };
 
 // positions of boxes and what not
-export type SketchPositions = {
-  todo: true;
-};
+export type SketchPositions = InnerSketchPositions;
 
 // state of the inputs and other interactive elements
 export type SketchInputs = {
@@ -42,16 +42,26 @@ export type Sketch = {
 export function emptySketch({ name, uuid }: { name: string; uuid: string }): Sketch {
   return {
     structure: {
-      todo: true,
+      main: {
+        onlyWhenIsMainTODO: true,
+        boxElements: [],
+        connectorElements: [],
+      },
     },
     meta: {
+      nextId: 1,
       uuid,
       name,
       description: '',
     },
-    positions: { todo: true },
+    positions: { positions: [{ boxId: 0, pos: { x: 0, y: 0 } }] },
     inputs: { todo: true },
     simulation: { todo: true },
     state: { zoomFactor: 1 },
   };
+}
+
+export function validateSketch(sketch: Sketch): boolean {
+  // TODO: implement this
+  return true;
 }

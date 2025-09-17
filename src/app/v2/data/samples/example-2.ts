@@ -8,18 +8,23 @@ import type {
 } from '@/app/v2/types/data';
 
 export const structure: SketchStructure = {
-  todo: true,
+  main: {
+    onlyWhenIsMainTODO: true,
+    boxElements: [],
+    connectorElements: [],
+  },
 };
 
 export const meta: SketchMeta = {
-  uuid: '01992560-b150-7a41-9ddb-98cf1fdd6cdc',
-  isExample: true,
-  name: 'example 2',
+  name: 'example 1',
   description: '',
+  uuid: '01992562-2f16-7c1b-b06f-f08513dcc388',
+  isExample: true,
+  nextId: 1000,
 };
 
 export const positions: SketchPositions = {
-  todo: true,
+  positions: [{ boxId: 0, pos: { x: 0, y: 0 } }],
 };
 
 export const inputs: SketchInputs = {
