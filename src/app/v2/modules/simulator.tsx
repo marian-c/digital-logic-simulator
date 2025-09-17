@@ -1,5 +1,5 @@
 import { Breadcrumbs } from '@/app/v2/molecules/breadcrumbs';
-import { CanvasV2 } from '@/app/v2/modules/canvas';
+import { CanvasV2 } from '@/app/v2/modules/canvas/canvas';
 import { Sidebar } from './sidebar';
 import type { FunctionComponentWithChildren } from '@/types/r-ui';
 import React from 'react';
