@@ -1,7 +1,12 @@
-import { useSketchMeta, useSketchState } from '@/app/v2/modules/useSketchData';
+import {
+  useSketchDataMethods,
+  useSketchMeta,
+  useSketchState,
+} from '@/app/v2/modules/useSketchData';
 
 function ZoomControls() {
-  const { sketchState, setSketchState } = useSketchState();
+  const sketchState = useSketchState();
+  const { setSketchState } = useSketchDataMethods();
   return (
     <div>
       Zoom factor: {sketchState.zoomFactor}
@@ -27,7 +32,8 @@ function ZoomControls() {
 }
 
 export function Sidebar() {
-  const { sketchMeta, setSketchMeta } = useSketchMeta();
+  const sketchMeta = useSketchMeta();
+  const { setSketchMeta } = useSketchDataMethods();
   return (
     <div className="flex flex-col w-80 overflow-auto border border-green-500 bg-gray-200">
       <div className="overflow-auto flex-grow h-0">

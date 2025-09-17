@@ -51,35 +51,26 @@ if (isBrowser) {
   });
 }
 
-const SketchStructureContext = React.createContext<{
-  sketchStructure: SketchStructure;
+const SketchDataMethodsContext = React.createContext<{
   setSketchStructure: React.Dispatch<React.SetStateAction<SketchStructure>>;
-}>(null as any);
-
-const SketchMetaContext = React.createContext<{
-  sketchMeta: SketchMeta;
   setSketchMeta: React.Dispatch<React.SetStateAction<SketchMeta>>;
-}>(null as any);
-
-const SketchPositionsContext = React.createContext<{
-  sketchPositions: SketchPositions;
   setSketchPositions: React.Dispatch<React.SetStateAction<SketchPositions>>;
-}>(null as any);
-
-const SketchInputsContext = React.createContext<{
-  sketchInputs: SketchInputs;
   setSketchInputs: React.Dispatch<React.SetStateAction<SketchInputs>>;
-}>(null as any);
-
-const SketchSimulationContext = React.createContext<{
-  sketchSimulation: SketchSimulation;
   setSketchSimulation: React.Dispatch<React.SetStateAction<SketchSimulation>>;
-}>(null as any);
-
-const SketchStateContext = React.createContext<{
-  sketchState: SketchState;
   setSketchState: React.Dispatch<React.SetStateAction<SketchState>>;
 }>(null as any);
+
+const SketchStructureContext = React.createContext<SketchStructure>(null as any);
+
+const SketchMetaContext = React.createContext<SketchMeta>(null as any);
+
+const SketchPositionsContext = React.createContext<SketchPositions>(null as any);
+
+const SketchInputsContext = React.createContext<SketchInputs>(null as any);
+
+const SketchSimulationContext = React.createContext<SketchSimulation>(null as any);
+
+const SketchStateContext = React.createContext<SketchState>(null as any);
 
 export const SketchDataProvider: FunctionComponentWithChildren = ({ children }) => {
   const { selectedSketchUUID } = useSelectedSketchInfo();
@@ -90,52 +81,53 @@ export const SketchDataProvider: FunctionComponentWithChildren = ({ children }) 
   const [sketchStructure, setSketchStructure] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('sketchesStructure', selectedSketchUUID);
   });
-  const structureData = React.useMemo(() => {
-    return { sketchStructure, setSketchStructure };
-  }, [sketchStructure, setSketchStructure]);
 
   const [sketchMeta, setSketchMeta] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('sketchesMeta', selectedSketchUUID);
   });
-  const metaData = React.useMemo(() => {
-    return { sketchMeta, setSketchMeta };
-  }, [sketchMeta, setSketchMeta]);
 
   const [sketchPositions, setSketchPositions] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('sketchesPositions', selectedSketchUUID);
   });
-  const positionsData = React.useMemo(() => {
-    return { sketchPositions, setSketchPositions };
-  }, [sketchPositions, setSketchPositions]);
 
   const [sketchInputs, setSketchInputs] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('sketchesInputs', selectedSketchUUID);
   });
-  const inputsData = React.useMemo(() => {
-    return { sketchInputs, setSketchInputs };
-  }, [sketchInputs, setSketchInputs]);
 
   const [sketchSimulation, setSketchSimulation] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('sketchesSimulation', selectedSketchUUID);
   });
-  const simulationData = React.useMemo(() => {
-    return { sketchSimulation, setSketchSimulation };
-  }, [sketchSimulation, setSketchSimulation]);
 
   const [sketchState, setSketchState] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('sketchesState', selectedSketchUUID);
   });
-  const stateData = React.useMemo(() => {
-    return { sketchState, setSketchState };
-  }, [sketchState, setSketchState]);
+  const callbacks = React.useMemo(() => {
+    return {
+      setSketchStructure,
+      setSketchMeta,
+      setSketchPositions,
+      setSketchInputs,
+      setSketchSimulation,
+      setSketchState,
+    };
+  }, [
+    setSketchStructure,
+    setSketchMeta,
+    setSketchPositions,
+    setSketchInputs,
+    setSketchSimulation,
+    setSketchState,
+  ]);
 
   return (
-    <SketchStructureContext value={structureData}>
-      <SketchMetaContext value={metaData}>
-        <SketchPositionsContext value={positionsData}>
-          <SketchInputsContext value={inputsData}>
-            <SketchSimulationContext value={simulationData}>
-              <SketchStateContext value={stateData}>{children}</SketchStateContext>
+    <SketchStructureContext value={sketchStructure}>
+      <SketchMetaContext value={sketchMeta}>
+        <SketchPositionsContext value={sketchPositions}>
+          <SketchInputsContext value={sketchInputs}>
+            <SketchSimulationContext value={sketchSimulation}>
+              <SketchStateContext value={sketchState}>
+                <SketchDataMethodsContext value={callbacks}>{children}</SketchDataMethodsContext>
+              </SketchStateContext>
             </SketchSimulationContext>
           </SketchInputsContext>
         </SketchPositionsContext>
@@ -166,4 +158,8 @@ export const useSketchSimulation = () => {
 
 export const useSketchState = () => {
   return React.useContext(SketchStateContext);
+};
+
+export const useSketchDataMethods = () => {
+  return React.useContext(SketchDataMethodsContext);
 };
