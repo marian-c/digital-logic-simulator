@@ -51,7 +51,7 @@ export const exampleSketches: Sketch[] = [
   },
 ];
 
-export const defaultExampleUUID = meta2.uuid;
+export const defaultExampleUUID = meta1.uuid;
 
 // TODO: maybe fetch this dynamically or something
 export function loadExampleSketch(uuid: string): Sketch {

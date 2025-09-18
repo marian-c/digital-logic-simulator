@@ -10,7 +10,11 @@ import type {
 export const structure: SketchStructure = {
   main: {
     onlyWhenIsMainTODO: true,
-    boxElements: [{ id: 1, boxElementKind: 'nonCustom', nonCustomElementKind: 'not' }],
+    boxElements: [
+      { id: 1, boxElementKind: 'nonCustom', nonCustomElementKind: 'not' },
+      { id: 2, boxElementKind: 'nonCustom', nonCustomElementKind: 'not' },
+      { id: 3, boxElementKind: 'nonCustom', nonCustomElementKind: 'not' },
+    ],
     connectorElements: [],
   },
 };
@@ -26,7 +30,9 @@ export const meta: SketchMeta = {
 export const positions: SketchPositions = {
   positions: [
     { boxId: 0, pos: { x: 0, y: 0 } },
-    { boxId: 1, pos: { x: 20, y: 20 } },
+    { boxId: 1, pos: { x: 40, y: 40 } },
+    { boxId: 2, pos: { x: 40, y: 60 } },
+    { boxId: 3, pos: { x: 40, y: 80 } },
   ],
 };
 

@@ -19,6 +19,8 @@ type Ctx = {
 
 const InteractionsContext = React.createContext<Ctx>(null as any);
 
+const SizeContext = React.createContext<Size>({ width: 0, height: 0, left: 0, top: 0 });
+
 export const InteractionsProvider: FunctionComponentWithChildren = ({ children }) => {
   // region: variables
   const mouseDocCoordinatesRefObject = React.useRef({ x: 0, y: 0 });
@@ -28,46 +30,50 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     out: false,
     empty: true,
   });
-  const sizeRefObject = React.useRef<Size>({ width: 0, height: 0, left: 0, top: 0 });
+  const [size, setSize] = React.useState<Size>({ width: 0, height: 0, left: 0, top: 0 });
   // endregion
 
   // region: helper functions
   const setCanvasCoordinates = React.useCallback(() => {
     const { x, y } = mouseDocCoordinatesRefObject.current;
-    const coordX = x - sizeRefObject.current.left;
-    const coordY = y - sizeRefObject.current.top;
-    const isOut =
-      coordX < 0 ||
-      coordY < 0 ||
-      coordX > sizeRefObject.current.width ||
-      coordY > sizeRefObject.current.height;
+    const coordX = x - size.left;
+    const coordY = y - size.top;
+    const isOut = coordX < 0 || coordY < 0 || coordX > size.width || coordY > size.height;
 
     mouseCanvasCoordinatesRefObject.current = {
       x: coordX,
       y: coordY,
       out: isOut,
     } satisfies MouseCoordinates;
-  }, []);
+  }, [size]);
   // endregion
 
   // region: event handlers
-  const handleDocumentMouseMoveMouseCoordinates = React.useCallback((event: MouseEvent) => {
-    const { clientX, clientY } = event;
-    mouseDocCoordinatesRefObject.current = { x: clientX, y: clientY };
-    setCanvasCoordinates();
+  const handleDocumentMouseMoveMouseCoordinates = React.useCallback(
+    (event: MouseEvent) => {
+      const { clientX, clientY } = event;
+      mouseDocCoordinatesRefObject.current = { x: clientX, y: clientY };
+      setCanvasCoordinates();
+    },
+    [setCanvasCoordinates],
+  );
+
+  const handleSvgWheelPinch = React.useCallback((wheelEvent: WheelEvent) => {
+    // TODO: implement me
   }, []);
 
-  const handleSvgWheelPinch = React.useCallback((wheelEvent: WheelEvent) => {}, []);
-
-  const handleLayoutEvent = React.useCallback((layoutEvent: LayoutEvent) => {
-    sizeRefObject.current = {
-      width: layoutEvent.nativeEvent.layout.width,
-      height: layoutEvent.nativeEvent.layout.height,
-      left: layoutEvent.nativeEvent.layout.left,
-      top: layoutEvent.nativeEvent.layout.top,
-    };
-    setCanvasCoordinates();
-  }, []);
+  const handleLayoutEvent = React.useCallback(
+    (layoutEvent: LayoutEvent) => {
+      setSize({
+        width: layoutEvent.nativeEvent.layout.width,
+        height: layoutEvent.nativeEvent.layout.height,
+        left: layoutEvent.nativeEvent.layout.left,
+        top: layoutEvent.nativeEvent.layout.top,
+      });
+      setCanvasCoordinates();
+    },
+    [setCanvasCoordinates],
+  );
   // endregion
 
   // region: react interface
@@ -98,9 +104,17 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     return { svgRef, canvasRef };
   }, []);
 
-  return <InteractionsContext value={contextVal}>{children}</InteractionsContext>;
+  return (
+    <InteractionsContext value={contextVal}>
+      <SizeContext value={size}>{children}</SizeContext>
+    </InteractionsContext>
+  );
 };
 
 export const useInteractions = () => {
   return React.useContext(InteractionsContext);
+};
+
+export const useSize = () => {
+  return React.useContext(SizeContext);
 };

@@ -1,4 +1,4 @@
-interface SketchPosition {
+export interface SketchPosition {
   boxId: number;
   pos: {
     x: number;
