@@ -26,6 +26,9 @@ export function CanvasV2() {
             backgroundPositionY: '-0.5px',
           }}
         >
+          {/*render connectors first because they would go over connection points, and we make use of mouseOver events
+               for those points
+          */}
           <Boxes />
         </svg>
       </div>
