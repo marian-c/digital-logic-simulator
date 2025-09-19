@@ -1,10 +1,20 @@
 import type { FunctionComponent } from '@/types/r-ui';
 import { useSketchPositions, useSketchStructure } from '@/app/v2/modules/useSketchData';
-import type { BoxElement, NonCustomBoxElement } from '@/app/v2/types/innerSketchStructure';
+import type {
+  BoxElement,
+  CustomBoxElementFull,
+  NonCustomBoxElement,
+} from '@/app/v2/types/innerSketchStructure';
 import type { SketchPosition } from '@/app/v2/types/innerSketchPositions';
 import { assertNever } from '@/helpers/basics';
 import React from 'react';
-import { notGateColor, notGateHeight, notGateWidth, connectorCircleRadius } from '@/app/v2/config';
+import {
+  notGateColor,
+  notGateHeight,
+  notGateWidth,
+  connectorCircleRadius,
+  customBoxColor,
+} from '@/app/v2/config';
 
 const NotNonCustomBox: FunctionComponent<{
   boxElement: NonCustomBoxElement;
@@ -35,6 +45,38 @@ const NotNonCustomBox: FunctionComponent<{
   );
 };
 
+const CustomBox: FunctionComponent<{
+  boxElement: CustomBoxElementFull;
+  boxPosition: SketchPosition;
+}> = ({ boxPosition }) => {
+  const width = 80;
+  const height = 60;
+  return (
+    <g
+      onClick={() => {
+        // TODO: opt: callback
+        // focus element
+      }}
+      transform={`translate(${boxPosition.pos.x}, ${boxPosition.pos.y})`}
+    >
+      <g
+        onMouseDown={() => {
+          // TODO: opt: callback
+          // onElementMouseDown (for dragging)
+        }}
+      >
+        <rect fill={customBoxColor} width={width} height={height} />
+        <text x="14" y="15" fill="white" fontWeight="bold" fontSize={14}>
+          CUSTOM
+        </text>
+      </g>
+      <circle cx="0" cy={20} r={connectorCircleRadius} fill="red" />
+      <circle cx="0" cy={40} r={connectorCircleRadius} fill="red" />
+      <circle cx={width} cy={height / 2} r={connectorCircleRadius} fill={'red'} />
+    </g>
+  );
+};
+
 const NonCustomBox: FunctionComponent<{
   boxElement: NonCustomBoxElement;
   boxPosition: SketchPosition;
@@ -60,7 +102,7 @@ const Box: FunctionComponent<{ boxElement: BoxElement; boxPosition: SketchPositi
 }) => {
   switch (boxElement.boxElementKind) {
     case 'custom':
-      throw new Error('Not implemented yet');
+      return <CustomBox boxElement={boxElement} boxPosition={boxPosition} />;
       break;
     case 'nonCustom':
       return <NonCustomBox boxElement={boxElement} boxPosition={boxPosition} />;
