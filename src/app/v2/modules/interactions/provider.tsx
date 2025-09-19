@@ -4,6 +4,7 @@ import { useElementLayoutWithRef } from '@/hooks/useElementLayout/useElementLayo
 import type { LayoutEvent } from '@/types/rnw';
 import { useSketchDataMethods } from '@/app/v2/modules/useSketchData';
 import type { SketchState } from '@/app/v2/types/data';
+import { LogicProvider, useLogic } from '@/app/v2/modules/interactions/logicProvider';
 
 type Size = { width: number; height: number; left: number; top: number };
 
@@ -17,13 +18,15 @@ type MouseCoordinates = {
 type Ctx = {
   svgRef: React.RefCallback<SVGSVGElement>;
   canvasRef: React.RefObject<HTMLDivElement | null>;
+  onBoxWrapperClick: (boxId: number, mouseEvent: React.MouseEvent<SVGElement, MouseEvent>) => void;
 };
 
 const InteractionsContext = React.createContext<Ctx>(null as any);
 
 const SizeContext = React.createContext<Size>({ width: 0, height: 0, left: 0, top: 0 });
 
-export const InteractionsProvider: FunctionComponentWithChildren = ({ children }) => {
+export const InteractionsProviderInner: FunctionComponentWithChildren = ({ children }) => {
+  const { focusElement } = useLogic();
   const { setSketchState } = useSketchDataMethods();
 
   // region: variables
@@ -52,6 +55,12 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       out: isOut,
     } satisfies MouseCoordinates;
   }, [size]);
+  // endregion
+
+  // region: exposed event handlers
+  const onBoxWrapperClick = React.useCallback<Ctx['onBoxWrapperClick']>((boxId, mouseEvent) => {
+    return focusElement(boxId);
+  }, []);
   // endregion
 
   // region: event handlers
@@ -133,17 +142,26 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     },
     [handleDocumentMouseMoveMouseCoordinates, handleSvgWheelPan, handleSvgWheelPinch],
   );
+
   const canvasRef = useElementLayoutWithRef<HTMLDivElement>(handleLayoutEvent);
   // endregion
 
-  const contextVal = React.useMemo(() => {
-    return { svgRef, canvasRef };
+  const contextVal = React.useMemo<Ctx>(() => {
+    return { svgRef, canvasRef, onBoxWrapperClick };
   }, [canvasRef, svgRef]);
 
   return (
     <InteractionsContext value={contextVal}>
       <SizeContext value={size}>{children}</SizeContext>
     </InteractionsContext>
+  );
+};
+
+export const InteractionsProvider: FunctionComponentWithChildren = ({ children }) => {
+  return (
+    <LogicProvider>
+      <InteractionsProviderInner>{children}</InteractionsProviderInner>
+    </LogicProvider>
   );
 };
 

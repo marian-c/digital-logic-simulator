@@ -39,4 +39,5 @@ export const state: SketchState = {
   zoomFactor: 1,
   panX: 0,
   panY: 0,
+  focusedElementId: null,
 };

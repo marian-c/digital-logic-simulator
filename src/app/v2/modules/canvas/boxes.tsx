@@ -15,65 +15,87 @@ import {
   connectorCircleRadius,
   customBoxColor,
 } from '@/app/v2/config';
+import { useInteractions } from '@/app/v2/modules/interactions/provider';
+
+const GenericBox: FunctionComponent<{
+  innerChildren?: React.ReactNode;
+  overChildren?: React.ReactNode;
+  pos: { x: number; y: number };
+  boxId: number;
+}> = ({ innerChildren, overChildren, pos, boxId }) => {
+  const { onBoxWrapperClick } = useInteractions();
+  return (
+    <g
+      onClick={(e) => {
+        onBoxWrapperClick(boxId, e);
+      }}
+      transform={`translate(${pos.x}, ${pos.y})`}
+    >
+      <g
+        onMouseDown={() => {
+          // TODO: opt: callback
+          // onElementMouseDown (for dragging)
+        }}
+      >
+        {innerChildren}
+      </g>
+      {overChildren}
+    </g>
+  );
+};
 
 const NotNonCustomBox: FunctionComponent<{
   boxElement: NonCustomBoxElement;
   boxPosition: SketchPosition;
 }> = ({ boxElement, boxPosition }) => {
   return (
-    <g
-      onClick={() => {
-        // TODO: opt: callback
-        // focus element
-      }}
-      transform={`translate(${boxPosition.pos.x}, ${boxPosition.pos.y})`}
-    >
-      <g
-        onMouseDown={() => {
-          // TODO: opt: callback
-          // onElementMouseDown (for dragging)
-        }}
-      >
-        <rect fill={notGateColor} width={notGateWidth} height={notGateHeight} />
-        <text x="14" y="15" fill="white" fontWeight="bold" fontSize={14}>
-          NOT
-        </text>
-      </g>
-      <circle cx="0" cy={notGateHeight / 2} r={connectorCircleRadius} fill="red" />
-      <circle cx={notGateWidth} cy={notGateHeight / 2} r={connectorCircleRadius} fill={'red'} />
-    </g>
+    <GenericBox
+      boxId={boxElement.id}
+      pos={boxPosition.pos}
+      innerChildren={
+        <>
+          <rect fill={notGateColor} width={notGateWidth} height={notGateHeight} />
+          <text x="14" y="15" fill="white" fontWeight="bold" fontSize={14}>
+            NOT
+          </text>
+        </>
+      }
+      overChildren={
+        <>
+          <circle cx="0" cy={notGateHeight / 2} r={connectorCircleRadius} fill="red" />
+          <circle cx={notGateWidth} cy={notGateHeight / 2} r={connectorCircleRadius} fill={'red'} />
+        </>
+      }
+    />
   );
 };
 
 const CustomBox: FunctionComponent<{
   boxElement: CustomBoxElementFull;
   boxPosition: SketchPosition;
-}> = ({ boxPosition }) => {
+}> = ({ boxPosition, boxElement }) => {
   const width = 80;
   const height = 60;
   return (
-    <g
-      onClick={() => {
-        // TODO: opt: callback
-        // focus element
-      }}
-      transform={`translate(${boxPosition.pos.x}, ${boxPosition.pos.y})`}
-    >
-      <g
-        onMouseDown={() => {
-          // TODO: opt: callback
-          // onElementMouseDown (for dragging)
-        }}
-      >
-        <rect fill={customBoxColor} width={width} height={height} />
-        <text x="14" y="15" fill="white" fontWeight="bold" fontSize={14}>
-          CUSTOM
-        </text>
-      </g>
-      <circle cx="0" cy={20} r={connectorCircleRadius} fill="red" />
-      <circle cx="0" cy={40} r={connectorCircleRadius} fill="red" />
-      <circle cx={width} cy={height / 2} r={connectorCircleRadius} fill={'red'} />
-    </g>
+    <GenericBox
+      pos={boxPosition.pos}
+      boxId={boxElement.id}
+      innerChildren={
+        <>
+          <rect fill={customBoxColor} width={width} height={height} />
+          <text x="14" y="15" fill="white" fontWeight="bold" fontSize={14}>
+            CUSTOM
+          </text>
+        </>
+      }
+      overChildren={
+        <>
+          <circle cx="0" cy={20} r={connectorCircleRadius} fill="red" />
+          <circle cx="0" cy={40} r={connectorCircleRadius} fill="red" />
+          <circle cx={width} cy={height / 2} r={connectorCircleRadius} fill={'red'} />
+        </>
+      }
+    />
   );
 };
 

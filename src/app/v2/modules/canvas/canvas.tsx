@@ -39,6 +39,16 @@ export function CanvasV2() {
             backgroundPositionY: `${-(panY * zoomFactor) - 0.5}px`,
           }}
         >
+          <defs>
+            <filter id="f1" width="" height="">
+              <feOffset in="SourceAlpha" dx="0" dy="0" />
+              <feGaussianBlur stdDeviation="2" />
+              <feBlend in="SourceGraphic" in2="blurOut" />
+            </filter>
+            <filter id="f2" width="" height="">
+              <feDropShadow dx="0" dy="0" stdDeviation="1" floodColor="orange" />
+            </filter>
+          </defs>
           <CanvasV2InnerMemo />
         </svg>
       </div>

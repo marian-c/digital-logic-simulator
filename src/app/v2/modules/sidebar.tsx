@@ -34,6 +34,7 @@ function ZoomControls() {
 export function Sidebar() {
   const sketchMeta = useSketchMeta();
   const { setSketchMeta } = useSketchDataMethods();
+  const sketchState = useSketchState();
   return (
     <div className="flex flex-col w-80 overflow-auto border border-green-500 bg-gray-200">
       <div className="overflow-auto flex-grow h-0">
@@ -57,6 +58,7 @@ export function Sidebar() {
         />
         <br></br>
         <ZoomControls />
+        Focused: {sketchState.focusedElementId}
         <br></br>
         Sidebar
         <br></br>

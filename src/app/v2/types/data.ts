@@ -30,6 +30,7 @@ export type SketchState = {
   zoomFactor: number;
   panX: number;
   panY: number;
+  focusedElementId: number | null;
 };
 
 export type Sketch = {
@@ -59,11 +60,17 @@ export function emptySketch({ name, uuid }: { name: string; uuid: string }): Ske
     positions: { positions: [{ boxId: 0, pos: { x: 0, y: 0 } }] },
     inputs: { todo: true },
     simulation: { todo: true },
-    state: { zoomFactor: 1, panX: 0, panY: 0 },
+    state: { zoomFactor: 1, panX: 0, panY: 0, focusedElementId: null },
   };
 }
 
 export function validateSketch(sketch: Sketch): boolean {
   // TODO: implement this
+  /**
+   * all box elements have IDs
+   * nextId is bigger than the biggest existing id
+   * all IDs are unique
+   * focused element ID exists
+   */
   return true;
 }
