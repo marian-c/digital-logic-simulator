@@ -34,6 +34,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     out: false,
     empty: true,
   });
+  // TODO: when position changes, a bunch of callbacks reattach, this can be avoided
+  //   if we keep a ref to the size as well
   const [size, setSize] = React.useState<Size>({ width: 0, height: 0, left: 0, top: 0 });
   // endregion
 
@@ -109,32 +111,34 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   // endregion
 
   // region: react interface
-  const svgRef = React.useCallback((el: SVGSVGElement | null) => {
-    // TODO: this runs twice in development mode
-    if (el) {
-      document.addEventListener('mousemove', handleDocumentMouseMoveMouseCoordinates);
-      el.addEventListener(
-        'wheel',
-        (wheelEvent) => {
-          console.log('wheelEvent', wheelEvent.deltaX, wheelEvent.deltaY);
-          wheelEvent.preventDefault();
-          if (wheelEvent.ctrlKey) {
-            // pinch
-            handleSvgWheelPinch(wheelEvent);
-          } else {
-            handleSvgWheelPan(wheelEvent);
-          }
-        },
-        { passive: false },
-      );
-    }
-  }, []);
+  const svgRef = React.useCallback<React.RefCallback<SVGSVGElement>>(
+    (el) => {
+      const onWheel = (wheelEvent: WheelEvent) => {
+        wheelEvent.preventDefault();
+        if (wheelEvent.ctrlKey) {
+          // pinch
+          handleSvgWheelPinch(wheelEvent);
+        } else {
+          handleSvgWheelPan(wheelEvent);
+        }
+      };
+      if (el) {
+        document.addEventListener('mousemove', handleDocumentMouseMoveMouseCoordinates);
+        el.addEventListener('wheel', onWheel, { passive: false });
+      }
+      return () => {
+        document.removeEventListener('mousemove', handleDocumentMouseMoveMouseCoordinates);
+        document.removeEventListener('wheel', onWheel);
+      };
+    },
+    [handleDocumentMouseMoveMouseCoordinates, handleSvgWheelPan, handleSvgWheelPinch],
+  );
   const canvasRef = useElementLayoutWithRef<HTMLDivElement>(handleLayoutEvent);
   // endregion
 
   const contextVal = React.useMemo(() => {
     return { svgRef, canvasRef };
-  }, []);
+  }, [canvasRef, svgRef]);
 
   return (
     <InteractionsContext value={contextVal}>
