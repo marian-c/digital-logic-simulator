@@ -2,6 +2,8 @@ import type { FunctionComponentWithChildren } from '@/types/r-ui';
 import React from 'react';
 import { useElementLayoutWithRef } from '@/hooks/useElementLayout/useElementLayoutWithRef';
 import type { LayoutEvent } from '@/types/rnw';
+import { useSketchDataMethods } from '@/app/v2/modules/useSketchData';
+import type { SketchState } from '@/app/v2/types/data';
 
 type Size = { width: number; height: number; left: number; top: number };
 
@@ -22,6 +24,8 @@ const InteractionsContext = React.createContext<Ctx>(null as any);
 const SizeContext = React.createContext<Size>({ width: 0, height: 0, left: 0, top: 0 });
 
 export const InteractionsProvider: FunctionComponentWithChildren = ({ children }) => {
+  const { setSketchState } = useSketchDataMethods();
+
   // region: variables
   const mouseDocCoordinatesRefObject = React.useRef({ x: 0, y: 0 });
   const mouseCanvasCoordinatesRefObject = React.useRef<MouseCoordinates>({
@@ -58,9 +62,37 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     [setCanvasCoordinates],
   );
 
-  const handleSvgWheelPinch = React.useCallback((wheelEvent: WheelEvent) => {
-    // TODO: implement me
-  }, []);
+  const handleSvgWheelPinch = React.useCallback(
+    (wheelEvent: WheelEvent) => {
+      setSketchState((oldState) => {
+        let factor = 40;
+        if (oldState.zoomFactor < 0.5) {
+          factor = 80;
+        } else if (oldState.zoomFactor < 1) {
+          factor = 60;
+        }
+        let zoomFactor = oldState.zoomFactor - wheelEvent.deltaY / factor;
+        if (zoomFactor < 0.2) {
+          zoomFactor = 0.2;
+        }
+        return { ...oldState, zoomFactor } satisfies SketchState;
+      });
+    },
+    [setSketchState],
+  );
+
+  const handleSvgWheelPan = React.useCallback(
+    (wheelEvent: WheelEvent) => {
+      setSketchState((oldState) => {
+        return {
+          ...oldState,
+          panX: oldState.panX + wheelEvent.deltaX / oldState.zoomFactor,
+          panY: oldState.panY + wheelEvent.deltaY / oldState.zoomFactor,
+        } satisfies SketchState;
+      });
+    },
+    [setSketchState],
+  );
 
   const handleLayoutEvent = React.useCallback(
     (layoutEvent: LayoutEvent) => {
@@ -78,19 +110,19 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
 
   // region: react interface
   const svgRef = React.useCallback((el: SVGSVGElement | null) => {
-    // attach zoom handler, would eventually need panning coordinates, which would be good to be refs
-    // since we only need it in callbacks - no use rendering this context when that changes
+    // TODO: this runs twice in development mode
     if (el) {
       document.addEventListener('mousemove', handleDocumentMouseMoveMouseCoordinates);
       el.addEventListener(
         'wheel',
         (wheelEvent) => {
+          console.log('wheelEvent', wheelEvent.deltaX, wheelEvent.deltaY);
           wheelEvent.preventDefault();
           if (wheelEvent.ctrlKey) {
             // pinch
             handleSvgWheelPinch(wheelEvent);
           } else {
-            // pan
+            handleSvgWheelPan(wheelEvent);
           }
         },
         { passive: false },

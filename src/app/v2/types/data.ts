@@ -28,6 +28,8 @@ export type SketchSimulation = {
 // zoom and panning
 export type SketchState = {
   zoomFactor: number;
+  panX: number;
+  panY: number;
 };
 
 export type Sketch = {
@@ -57,7 +59,7 @@ export function emptySketch({ name, uuid }: { name: string; uuid: string }): Ske
     positions: { positions: [{ boxId: 0, pos: { x: 0, y: 0 } }] },
     inputs: { todo: true },
     simulation: { todo: true },
-    state: { zoomFactor: 1 },
+    state: { zoomFactor: 1, panX: 0, panY: 0 },
   };
 }
 

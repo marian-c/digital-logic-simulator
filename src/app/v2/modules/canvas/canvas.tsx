@@ -6,8 +6,21 @@ import { Boxes } from '@/app/v2/modules/canvas/boxes';
 
 const gridSize = 40;
 
+function CanvasV2Inner() {
+  return (
+    <>
+      {/*render connectors first because they would go over connection points, and we make use of mouseOver events
+         for those points
+      */}
+      <Boxes />
+    </>
+  );
+}
+
+const CanvasV2InnerMemo = React.memo(CanvasV2Inner);
+
 export function CanvasV2() {
-  const { zoomFactor } = useSketchState();
+  const { zoomFactor, panX, panY } = useSketchState();
   const { svgRef, canvasRef } = useInteractions();
   const size = useSize();
   return (
@@ -18,18 +31,15 @@ export function CanvasV2() {
           ref={svgRef}
           width={size.width}
           height={size.height}
-          viewBox={`0 0 ${size.width / zoomFactor} ${size.height / zoomFactor}`}
+          viewBox={`${panX} ${panY} ${size.width / zoomFactor} ${size.height / zoomFactor}`} // TODO: OPT: are css vars faster?
           className="select-none bg-white bg-grid absolute"
           style={{
             backgroundSize: `${gridSize * zoomFactor}px ${gridSize * zoomFactor}px`, // TODO: OPT: use vars, might be faster
-            backgroundPositionX: '-0.5px',
-            backgroundPositionY: '-0.5px',
+            backgroundPositionX: `${-(panX * zoomFactor) - 0.5}px`,
+            backgroundPositionY: `${-(panY * zoomFactor) - 0.5}px`,
           }}
         >
-          {/*render connectors first because they would go over connection points, and we make use of mouseOver events
-               for those points
-          */}
-          <Boxes />
+          <CanvasV2InnerMemo />
         </svg>
       </div>
       <div>Bottom bar</div>
