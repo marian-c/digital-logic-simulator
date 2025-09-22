@@ -2,8 +2,6 @@
 
 // An named symbol/brand for detecting Signal instances even when they weren't
 // created using the same signals library version.
-import type { ReactElement } from 'react';
-
 const BRAND_SYMBOL = Symbol.for('preact-signals');
 
 // Flags for Computed and Effect.
@@ -225,7 +223,7 @@ function addDependency(signal: Signal): Node | undefined {
 //
 // The class is declared here, but later implemented with ES5-style prototypes.
 // This enables better control of the transpiled output size.
-
+// @ts-expect-error name clash
 declare class Signal<T = any> {
   /** @internal */
   _value: unknown;
@@ -290,6 +288,7 @@ export interface SignalOptions<T = any> {
 //
 // The previously declared class is implemented here with ES5-style prototypes.
 // This enables better control of the transpiled output size.
+// @ts-expect-error name clash
 function Signal(this: Signal, value?: unknown, options?: SignalOptions) {
   this._value = value;
   this._version = 0;
@@ -865,8 +864,3 @@ function effect(fn: EffectFn, options?: EffectOptions): () => void {
 }
 
 export { computed, effect, batch, untracked, Signal, type ReadonlySignal, Effect, Computed };
-
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type,@typescript-eslint/no-unsafe-declaration-merging
-interface Signal extends ReactElement {}
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface ReadonlySignal extends ReactElement {}

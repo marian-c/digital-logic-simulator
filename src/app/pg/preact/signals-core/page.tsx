@@ -1,4 +1,6 @@
+import React from 'react';
 import { computed, effect, signal } from '@/imported/preact-signals-core';
+import { useSignal } from '@/imported/preact-signals-react-runtime';
 console.log('start');
 const counter = signal(0);
 
@@ -52,5 +54,6 @@ effect(() => console.log('once', fullName.peek()));
 name.value = 'John'; // logs again
 
 export default function PagePgPreactSignalsCore() {
-  return <div>See the console and code</div>;
+  const s = useSignal(0);
+  return <div>See the console and code {s}</div>;
 }

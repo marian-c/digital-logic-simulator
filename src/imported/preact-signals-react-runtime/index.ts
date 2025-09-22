@@ -7,6 +7,7 @@ import {
   useLayoutEffect,
   version as reactVersion,
   useSyncExternalStore,
+  type ReactElement,
 } from 'react';
 import {
   signal,
@@ -400,4 +401,12 @@ export function useSignalEffect(cb: () => void | (() => void), options?: EffectO
       return callback.current();
     }, options);
   }, Empty);
+}
+
+declare module '@/imported/preact-signals-core' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  interface Signal extends ReactElement {}
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  interface ReadonlySignal extends ReactElement {}
 }
