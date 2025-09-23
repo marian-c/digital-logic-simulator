@@ -404,6 +404,7 @@ export function useSignalEffect(cb: () => void | (() => void), options?: EffectO
 }
 
 declare module '@/imported/signals/preact-signals-core' {
+  // @ts-ignore
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface Signal extends ReactElement {}
 

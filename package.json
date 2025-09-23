@@ -14,7 +14,9 @@
     "prettier": "prettier \"./src/**/*.{md,json,yaml,js,jsx,ts,tsx,mdx,css}\" --write",
     "test": "jest",
     "_lint_staged_": "lint-staged --verbose",
-    "prepare": "husky"
+    "prepare": "husky",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@dnd-kit/abstract": "0.1.21-beta-20250806121348",
@@ -33,7 +35,11 @@
     "virtua": "^0.40.0"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^4.1.1",
     "@eslint/eslintrc": "^3",
+    "@storybook/addon-a11y": "^9.1.7",
+    "@storybook/addon-docs": "^9.1.7",
+    "@storybook/addon-vitest": "^9.1.7",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.1.0",
@@ -44,6 +50,7 @@
     "@types/webpack-env": "^1.18.8",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
+    "eslint-plugin-storybook": "^9.1.7",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
@@ -51,9 +58,15 @@
     "postcss": "^8",
     "prettier": "^3.4.2",
     "prettier-for-jest": "npm:prettier@^2.8.8",
+    "storybook": "^9.1.7",
     "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5"
+    "typescript": "^5",
+    "@storybook/nextjs-vite": "^9.1.7",
+    "vitest": "^3.2.4",
+    "@vitest/browser": "^3.2.4",
+    "playwright": "^1.55.1",
+    "@vitest/coverage-v8": "^3.2.4"
   },
   "lint-staged": {
     "./src/**/*.{md,json,yaml,js,jsx,ts,tsx,mdx,css}": [
