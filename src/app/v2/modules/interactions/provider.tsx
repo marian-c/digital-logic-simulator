@@ -58,7 +58,7 @@ export const InteractionsProviderInner: FunctionComponentWithChildren = ({ child
   // endregion
 
   // region: exposed event handlers
-  const onBoxWrapperClick = React.useCallback<Ctx['onBoxWrapperClick']>((boxId, mouseEvent) => {
+  const onBoxWrapperClick = React.useCallback<Ctx['onBoxWrapperClick']>((boxId, _mouseEvent) => {
     return focusElement(boxId);
   }, []);
   // endregion

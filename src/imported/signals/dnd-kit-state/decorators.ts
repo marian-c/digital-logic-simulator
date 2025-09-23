@@ -1,4 +1,4 @@
-import { type ReadonlySignal, signal, type Signal } from '@/imported/signals/preact-signals-core';
+import { signal, type Signal } from '@/imported/signals/preact-signals-core';
 
 import { computed } from './computed';
 import type { Sig } from '@/imported/signals/dnd-kit-state/types';

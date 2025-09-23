@@ -64,7 +64,7 @@ export function emptySketch({ name, uuid }: { name: string; uuid: string }): Ske
   };
 }
 
-export function validateSketch(sketch: Sketch): boolean {
+export function validateSketch(_sketch: Sketch): boolean {
   // TODO: implement this
   /**
    * all box elements have IDs
