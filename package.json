@@ -10,7 +10,7 @@
     "build-only": "next build",
     "start": "next start",
     "types": "tsc --noEmit",
-    "lint": "next lint && npm run types",
+    "lint": "eslint ./src && npm run types",
     "prettier": "prettier \"./src/**/*.{md,json,yaml,js,jsx,ts,tsx,mdx,css}\" --write",
     "test": "jest",
     "_lint_staged_": "lint-staged --verbose",
