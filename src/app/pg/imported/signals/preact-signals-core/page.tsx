@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
-import { computed, effect, signal } from '@/imported/preact-signals-core';
-import { useSignal } from '@/imported/preact-signals-react-runtime';
+import { computed, effect, signal } from '@/imported/signals/preact-signals-core';
+import { useSignal } from '@/imported/signals/preact-signals-react-runtime';
 console.log('start');
 const counter = signal(0);
 

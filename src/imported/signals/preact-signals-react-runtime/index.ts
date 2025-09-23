@@ -17,7 +17,7 @@ import {
   type ReadonlySignal,
   type SignalOptions,
   type EffectOptions,
-} from '@/imported/preact-signals-core';
+} from '@/imported/signals/preact-signals-core';
 
 const [major] = reactVersion.split('.').map(Number);
 const Empty = [] as const;
@@ -403,7 +403,7 @@ export function useSignalEffect(cb: () => void | (() => void), options?: EffectO
   }, Empty);
 }
 
-declare module '@/imported/preact-signals-core' {
+declare module '@/imported/signals/preact-signals-core' {
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface Signal extends ReactElement {}
 
