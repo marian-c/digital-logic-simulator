@@ -18,35 +18,36 @@ import {
 } from '@/helpers/localStorage';
 
 if (isBrowser) {
+  // TODO: should probably store only on change, and not everything, for example the structure is not changeable for examples
   exampleSketches.forEach((sketch) => {
-    const structure = localStorageGetItemInCollection('sketchesStructure', sketch.meta.uuid);
+    const structure = localStorageGetItemInCollection('v2sketchesStructure', sketch.meta.uuid);
     if (!structure) {
-      localStorageSetItemInCollection('sketchesStructure', sketch.meta.uuid, sketch.structure);
+      localStorageSetItemInCollection('v2sketchesStructure', sketch.meta.uuid, sketch.structure);
     }
 
-    const meta = localStorageGetItemInCollection('sketchesMeta', sketch.meta.uuid);
+    const meta = localStorageGetItemInCollection('v2sketchesMeta', sketch.meta.uuid);
     if (!meta) {
-      localStorageSetItemInCollection('sketchesMeta', sketch.meta.uuid, sketch.meta);
+      localStorageSetItemInCollection('v2sketchesMeta', sketch.meta.uuid, sketch.meta);
     }
 
-    const positions = localStorageGetItemInCollection('sketchesPositions', sketch.meta.uuid);
+    const positions = localStorageGetItemInCollection('v2sketchesPositions', sketch.meta.uuid);
     if (!positions) {
-      localStorageSetItemInCollection('sketchesPositions', sketch.meta.uuid, sketch.positions);
+      localStorageSetItemInCollection('v2sketchesPositions', sketch.meta.uuid, sketch.positions);
     }
 
-    const inputs = localStorageGetItemInCollection('sketchesInputs', sketch.meta.uuid);
+    const inputs = localStorageGetItemInCollection('v2sketchesInputs', sketch.meta.uuid);
     if (!inputs) {
-      localStorageSetItemInCollection('sketchesInputs', sketch.meta.uuid, sketch.inputs);
+      localStorageSetItemInCollection('v2sketchesInputs', sketch.meta.uuid, sketch.inputs);
     }
 
-    const simulation = localStorageGetItemInCollection('sketchesSimulation', sketch.meta.uuid);
+    const simulation = localStorageGetItemInCollection('v2sketchesSimulation', sketch.meta.uuid);
     if (!simulation) {
-      localStorageSetItemInCollection('sketchesSimulation', sketch.meta.uuid, sketch.simulation);
+      localStorageSetItemInCollection('v2sketchesSimulation', sketch.meta.uuid, sketch.simulation);
     }
 
-    const state = localStorageGetItemInCollection('sketchesState', sketch.meta.uuid);
+    const state = localStorageGetItemInCollection('v2sketchesState', sketch.meta.uuid);
     if (!state) {
-      localStorageSetItemInCollection('sketchesState', sketch.meta.uuid, sketch.state);
+      localStorageSetItemInCollection('v2sketchesState', sketch.meta.uuid, sketch.state);
     }
   });
 }
@@ -79,27 +80,27 @@ export const SketchDataProvider: FunctionComponentWithChildren = ({ children }) 
   }
 
   const [sketchStructure, setSketchStructure] = useState(() => {
-    return localStorageGetItemInCollectionOrThrow('sketchesStructure', selectedSketchUUID);
+    return localStorageGetItemInCollectionOrThrow('v2sketchesStructure', selectedSketchUUID);
   });
 
   const [sketchMeta, setSketchMeta] = useState(() => {
-    return localStorageGetItemInCollectionOrThrow('sketchesMeta', selectedSketchUUID);
+    return localStorageGetItemInCollectionOrThrow('v2sketchesMeta', selectedSketchUUID);
   });
 
   const [sketchPositions, setSketchPositions] = useState(() => {
-    return localStorageGetItemInCollectionOrThrow('sketchesPositions', selectedSketchUUID);
+    return localStorageGetItemInCollectionOrThrow('v2sketchesPositions', selectedSketchUUID);
   });
 
   const [sketchInputs, setSketchInputs] = useState(() => {
-    return localStorageGetItemInCollectionOrThrow('sketchesInputs', selectedSketchUUID);
+    return localStorageGetItemInCollectionOrThrow('v2sketchesInputs', selectedSketchUUID);
   });
 
   const [sketchSimulation, setSketchSimulation] = useState(() => {
-    return localStorageGetItemInCollectionOrThrow('sketchesSimulation', selectedSketchUUID);
+    return localStorageGetItemInCollectionOrThrow('v2sketchesSimulation', selectedSketchUUID);
   });
 
   const [sketchState, setSketchState] = useState(() => {
-    return localStorageGetItemInCollectionOrThrow('sketchesState', selectedSketchUUID);
+    return localStorageGetItemInCollectionOrThrow('v2sketchesState', selectedSketchUUID);
   });
   const callbacks = React.useMemo(() => {
     return {

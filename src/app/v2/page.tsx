@@ -22,7 +22,7 @@ const options = exampleSketches.map((s) => {
 function Header() {
   const { selectedSketchUUID, setSelectedSketchUUID } = useSelectedSketchInfo();
   const userSketches = useLocalStorageCustom(
-    'userSketchUUIDs',
+    'v2userSketchUUIDs',
     'default',
     [],
     [],
@@ -52,7 +52,7 @@ function Header() {
           onChange={(e) => {
             const value = e.target.value;
             // TODO: maybe move this in the context
-            localStorageSetItemInCollection('selectedSketch', 'default', value);
+            localStorageSetItemInCollection('v2selectedSketch', 'default', value);
             setSelectedSketchUUID(value);
           }}
         >
@@ -78,19 +78,19 @@ function Header() {
             const uuid = uuidv7();
 
             const userSketchUUIDs =
-              localStorageGetItemInCollection('userSketchUUIDs', 'default') ?? [];
+              localStorageGetItemInCollection('v2userSketchUUIDs', 'default') ?? [];
 
             userSketchUUIDs.push({ name, uuid });
             // TODO: maybe move this in the context
             const sketch = emptySketch({ name, uuid });
-            localStorageSetItemInCollection('sketchesStructure', uuid, sketch.structure);
-            localStorageSetItemInCollection('sketchesMeta', uuid, sketch.meta);
-            localStorageSetItemInCollection('sketchesInputs', uuid, sketch.inputs);
-            localStorageSetItemInCollection('sketchesPositions', uuid, sketch.positions);
-            localStorageSetItemInCollection('sketchesSimulation', uuid, sketch.simulation);
-            localStorageSetItemInCollection('sketchesState', uuid, sketch.state);
-            localStorageSetItemInCollection('userSketchUUIDs', 'default', userSketchUUIDs);
-            localStorageSetItemInCollection('selectedSketch', 'default', uuid);
+            localStorageSetItemInCollection('v2sketchesStructure', uuid, sketch.structure);
+            localStorageSetItemInCollection('v2sketchesMeta', uuid, sketch.meta);
+            localStorageSetItemInCollection('v2sketchesInputs', uuid, sketch.inputs);
+            localStorageSetItemInCollection('v2sketchesPositions', uuid, sketch.positions);
+            localStorageSetItemInCollection('v2sketchesSimulation', uuid, sketch.simulation);
+            localStorageSetItemInCollection('v2sketchesState', uuid, sketch.state);
+            localStorageSetItemInCollection('v2userSketchUUIDs', 'default', userSketchUUIDs);
+            localStorageSetItemInCollection('v2selectedSketch', 'default', uuid);
             setSelectedSketchUUID(uuid);
           }}
         >

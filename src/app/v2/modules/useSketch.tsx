@@ -12,7 +12,7 @@ export const SketchProvider: FunctionComponentWithChildren = ({ children }) => {
   const [selectedSketchUUID, setSelectedSketchUUID] = React.useState<string>('');
 
   const selectedSketchInfo = useLocalStorageCustom(
-    'selectedSketch',
+    'v2selectedSketch',
     'default',
     '',
     defaultExampleUUID,

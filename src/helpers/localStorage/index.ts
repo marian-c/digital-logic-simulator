@@ -9,15 +9,14 @@ import type {
 } from '@/app/v2/types/data';
 
 export type LocalStorageStructure = {
-  selectedSketch: string;
-  userSketchUUIDs: { name: string; uuid: string }[];
-  // indexed by UUID
-  sketchesStructure: SketchStructure;
-  sketchesMeta: SketchMeta;
-  sketchesPositions: SketchPositions;
-  sketchesInputs: SketchInputs;
-  sketchesSimulation: SketchSimulation;
-  sketchesState: SketchState;
+  v2selectedSketch: string; // single
+  v2userSketchUUIDs: { name: string; uuid: string }[]; // single (array value)
+  v2sketchesStructure: SketchStructure; // collection indexed by UUID
+  v2sketchesMeta: SketchMeta; // collection indexed by UUID
+  v2sketchesPositions: SketchPositions; // collection indexed by UUID
+  v2sketchesInputs: SketchInputs; // collection indexed by UUID
+  v2sketchesSimulation: SketchSimulation; // collection indexed by UUID
+  v2sketchesState: SketchState; // collection indexed by UUID
 };
 
 export type LocalStorageKey = keyof LocalStorageStructure;
