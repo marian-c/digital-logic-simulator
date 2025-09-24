@@ -11,6 +11,11 @@ type Size = { width: number; height: number; left: number; top: number };
 type MouseCoordinates = {
   x: number;
   y: number;
+};
+
+type MouseCanvasCoordinates = {
+  x: number;
+  y: number;
   out: boolean;
   empty?: true;
 };
@@ -30,8 +35,8 @@ export const InteractionsProviderInner: FunctionComponentWithChildren = ({ child
   const { setSketchState } = useSketchDataMethods();
 
   // region: variables
-  const mouseDocCoordinatesRefObject = React.useRef({ x: 0, y: 0 });
-  const mouseCanvasCoordinatesRefObject = React.useRef<MouseCoordinates>({
+  const mouseDocCoordinatesRefObject = React.useRef<MouseCoordinates>({ x: 0, y: 0 });
+  const mouseCanvasCoordinatesRefObject = React.useRef<MouseCanvasCoordinates>({
     x: 0,
     y: 0,
     out: false,
@@ -52,7 +57,7 @@ export const InteractionsProviderInner: FunctionComponentWithChildren = ({ child
       x: coordX,
       y: coordY,
       out: isOut,
-    } satisfies MouseCoordinates;
+    };
   }, [size]);
   // endregion
 
