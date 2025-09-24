@@ -1,20 +1,10 @@
 import type { FunctionComponent } from '@/types/r-ui';
 import { useSketchPositions, useSketchStructure } from '@/app/v2/modules/useSketchData';
-import type {
-  BoxElement,
-  CustomBoxElementFull,
-  NonCustomBoxElement,
-} from '@/app/v2/types/innerSketchStructure';
+import type { BoxElement, NotBoxElement } from '@/app/v2/types/innerSketchStructure';
 import type { SketchPosition } from '@/app/v2/types/innerSketchPositions';
 import { assertNever } from '@/helpers/basics';
 import React from 'react';
-import {
-  notGateColor,
-  notGateHeight,
-  notGateWidth,
-  connectorCircleRadius,
-  customBoxColor,
-} from '@/app/v2/config';
+import { notGateColor, notGateHeight, notGateWidth, connectorCircleRadius } from '@/app/v2/config';
 import { useInteractions } from '@/app/v2/modules/interactions/provider';
 
 const GenericBox: FunctionComponent<{
@@ -44,8 +34,8 @@ const GenericBox: FunctionComponent<{
   );
 };
 
-const NotNonCustomBox: FunctionComponent<{
-  boxElement: NonCustomBoxElement;
+const NotBox: FunctionComponent<{
+  boxElement: NotBoxElement;
   boxPosition: SketchPosition;
 }> = ({ boxElement, boxPosition }) => {
   return (
@@ -70,43 +60,14 @@ const NotNonCustomBox: FunctionComponent<{
   );
 };
 
-const CustomBox: FunctionComponent<{
-  boxElement: CustomBoxElementFull;
-  boxPosition: SketchPosition;
-}> = ({ boxPosition, boxElement }) => {
-  const width = 80;
-  const height = 60;
-  return (
-    <GenericBox
-      pos={boxPosition.pos}
-      boxId={boxElement.id}
-      innerChildren={
-        <>
-          <rect fill={customBoxColor} width={width} height={height} />
-          <text x="14" y="15" fill="white" fontWeight="bold" fontSize={14}>
-            CUSTOM
-          </text>
-        </>
-      }
-      overChildren={
-        <>
-          <circle cx="0" cy={20} r={connectorCircleRadius} fill="red" />
-          <circle cx="0" cy={40} r={connectorCircleRadius} fill="red" />
-          <circle cx={width} cy={height / 2} r={connectorCircleRadius} fill={'red'} />
-        </>
-      }
-    />
-  );
-};
-
-const NonCustomBox: FunctionComponent<{
-  boxElement: NonCustomBoxElement;
-  boxPosition: SketchPosition;
-}> = ({ boxElement, boxPosition }) => {
-  const { nonCustomElementKind } = boxElement;
-  switch (nonCustomElementKind) {
+const Box: FunctionComponent<{ boxElement: BoxElement; boxPosition: SketchPosition }> = ({
+  boxElement,
+  boxPosition,
+}) => {
+  const { boxElementKind } = boxElement;
+  switch (boxElementKind) {
     case 'not':
-      return <NotNonCustomBox boxElement={boxElement} boxPosition={boxPosition} />;
+      return <NotBox boxElement={boxElement} boxPosition={boxPosition} />;
       break;
     case 'output':
     case 'and':
@@ -114,23 +75,8 @@ const NonCustomBox: FunctionComponent<{
       throw new Error('Not implemented yet');
       break;
     default:
-      assertNever(nonCustomElementKind);
+      assertNever(boxElementKind);
       break;
-  }
-};
-const Box: FunctionComponent<{ boxElement: BoxElement; boxPosition: SketchPosition }> = ({
-  boxElement,
-  boxPosition,
-}) => {
-  switch (boxElement.boxElementKind) {
-    case 'custom':
-      return <CustomBox boxElement={boxElement} boxPosition={boxPosition} />;
-      break;
-    case 'nonCustom':
-      return <NonCustomBox boxElement={boxElement} boxPosition={boxPosition} />;
-      break;
-    default:
-      assertNever(boxElement);
   }
 };
 

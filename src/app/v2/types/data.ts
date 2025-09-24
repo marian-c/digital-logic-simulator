@@ -46,7 +46,6 @@ export function emptySketch({ name, uuid }: { name: string; uuid: string }): Ske
   return {
     structure: {
       main: {
-        onlyWhenIsMainTODO: true,
         boxElements: [],
         connectorElements: [],
       },

@@ -9,7 +9,6 @@ import type {
 
 export const structure: SketchStructure = {
   main: {
-    onlyWhenIsMainTODO: true,
     boxElements: [],
     connectorElements: [],
   },
