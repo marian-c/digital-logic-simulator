@@ -48,7 +48,6 @@ export const InteractionsProviderInner: FunctionComponentWithChildren = ({ child
     const coordX = x - size.left;
     const coordY = y - size.top;
     const isOut = coordX < 0 || coordY < 0 || coordX > size.width || coordY > size.height;
-
     mouseCanvasCoordinatesRefObject.current = {
       x: coordX,
       y: coordY,
@@ -75,18 +74,32 @@ export const InteractionsProviderInner: FunctionComponentWithChildren = ({ child
 
   const handleSvgWheelPinch = React.useCallback(
     (wheelEvent: WheelEvent) => {
-      setSketchState((oldState) => {
+      // TODO: adjust zoom speed to have a linear movement on the screen
+      const wheelEventdeltaY = -wheelEvent.deltaY;
+      setSketchState((oldState: SketchState) => {
         let factor = 40;
         if (oldState.zoomFactor < 0.5) {
           factor = 80;
         } else if (oldState.zoomFactor < 1) {
           factor = 60;
         }
-        let zoomFactor = oldState.zoomFactor - wheelEvent.deltaY / factor;
+        let zoomFactorDelta = wheelEventdeltaY / factor;
+        let zoomFactor = oldState.zoomFactor + wheelEventdeltaY / factor;
         if (zoomFactor < 0.2) {
+          zoomFactorDelta = 0.2 - oldState.zoomFactor;
           zoomFactor = 0.2;
         }
-        return { ...oldState, zoomFactor } satisfies SketchState;
+
+        const panX =
+          oldState.panX +
+          (mouseCanvasCoordinatesRefObject.current.x / oldState.zoomFactor) *
+            (zoomFactorDelta / zoomFactor);
+        const panY =
+          oldState.panY +
+          (mouseCanvasCoordinatesRefObject.current.y / oldState.zoomFactor) *
+            (zoomFactorDelta / zoomFactor);
+
+        return { ...oldState, zoomFactor, panX, panY } satisfies SketchState;
       });
     },
     [setSketchState],
@@ -95,6 +108,7 @@ export const InteractionsProviderInner: FunctionComponentWithChildren = ({ child
   const handleSvgWheelPan = React.useCallback(
     (wheelEvent: WheelEvent) => {
       setSketchState((oldState) => {
+        // TODO: adjust speed, if the mouse is moving slowly, pan just by a small amount
         return {
           ...oldState,
           panX: oldState.panX + wheelEvent.deltaX / oldState.zoomFactor,

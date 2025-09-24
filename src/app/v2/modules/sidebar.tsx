@@ -9,7 +9,9 @@ function ZoomControls() {
   const { setSketchState } = useSketchDataMethods();
   return (
     <div>
-      Zoom factor: {sketchState.zoomFactor}
+      Zoom factor: {sketchState.zoomFactor} <br />
+      pan x: {sketchState.panX} <br />
+      pan y: {sketchState.panY}
       <br />
       <button
         className="border border-red-500 p-3"
