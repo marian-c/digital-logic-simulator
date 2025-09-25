@@ -13,6 +13,8 @@ export const structure: SketchStructure = {
       { id: 1, boxElementKind: 'not' },
       { id: 2, boxElementKind: 'not' },
       { id: 3, boxElementKind: 'not' },
+      { id: 4, boxElementKind: 'output' },
+      { id: 5, boxElementKind: 'input' },
     ],
     connectorElements: [],
   },
@@ -28,10 +30,12 @@ export const meta: SketchMeta = {
 
 export const positions: SketchPositions = {
   positions: [
-    { boxId: 0, pos: { x: 0, y: 0 } },
-    { boxId: 1, pos: { x: 40, y: 40 } },
-    { boxId: 2, pos: { x: 40, y: 60 } },
-    { boxId: 3, pos: { x: 40, y: 80 } },
+    { boxId: 0, pos: { x: 30, y: 0 } },
+    { boxId: 1, pos: { x: 30, y: 30 } },
+    { boxId: 2, pos: { x: 30, y: 60 } },
+    { boxId: 3, pos: { x: 30, y: 90 } },
+    { boxId: 4, pos: { x: 100, y: 30 } },
+    { boxId: 5, pos: { x: 100, y: 60 } },
   ],
 };
 

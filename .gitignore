@@ -42,7 +42,6 @@ yarn-error.log*
 next-env.d.ts
 
 # [MC] section
-/.IGNORED
 /out-dist
 *storybook.log
 storybook-static

@@ -1,10 +1,24 @@
 import type { FunctionComponent } from '@/types/r-ui';
 import { useSketchPositions, useSketchStructure } from '@/app/v2/modules/useSketchData';
-import type { BoxElement, NotBoxElement } from '@/app/v2/types/innerSketchStructure';
+import type {
+  BoxElement,
+  NotBoxElement,
+  InputBoxElement,
+  OutputBoxElement,
+} from '@/app/v2/types/innerSketchStructure';
 import type { SketchPosition } from '@/app/v2/types/innerSketchPositions';
 import { assertNever } from '@/helpers/basics';
 import React from 'react';
-import { notGateColor, notGateHeight, notGateWidth, connectorCircleRadius } from '@/app/v2/config';
+import {
+  notGateColor,
+  notGateHeight,
+  notGateWidth,
+  connectorCircleRadius,
+  inputMainCircleRadius,
+  inputCircleToCircleDist,
+  outputCircleToCircleDist,
+  outputMainCircleRadius,
+} from '@/app/v2/config';
 import { useInteractions } from '@/app/v2/modules/interactions/provider';
 
 const GenericBox: FunctionComponent<{
@@ -31,6 +45,104 @@ const GenericBox: FunctionComponent<{
       </g>
       {overChildren}
     </g>
+  );
+};
+
+const InputBox: FunctionComponent<{
+  boxElement: InputBoxElement;
+  boxPosition: SketchPosition;
+}> = ({ boxElement, boxPosition }) => {
+  return (
+    <GenericBox
+      boxId={boxElement.id}
+      pos={boxPosition.pos}
+      innerChildren={
+        <>
+          <rect
+            fill="black"
+            stroke="black"
+            width={inputCircleToCircleDist}
+            height={6}
+            x={0}
+            y={-3}
+          />
+          <circle
+            cursor={'pointer'}
+            onClick={() => {
+              console.log('TODO: implement setting the input state');
+            }}
+            fill={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
+            stroke="black"
+            r={inputMainCircleRadius}
+          />
+        </>
+      }
+      overChildren={
+        <>
+          <circle
+            onMouseDown={(_mouseEvent) => {
+              console.log('TODO: start dragging connector');
+            }}
+            onMouseOver={(e) => {
+              console.log('TODO: maybe, onReceivingPointMouseOver');
+            }}
+            onMouseOut={() => {
+              console.log('TODO: maybe, on receiving point mouse out');
+            }}
+            fill={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
+            r={6}
+            cx={inputCircleToCircleDist}
+          />
+        </>
+      }
+    />
+  );
+};
+
+const OutputBox: FunctionComponent<{
+  boxElement: OutputBoxElement;
+  boxPosition: SketchPosition;
+}> = ({ boxElement, boxPosition }) => {
+  return (
+    <GenericBox
+      boxId={boxElement.id}
+      pos={boxPosition.pos}
+      innerChildren={
+        <>
+          <rect
+            fill="black"
+            stroke="black"
+            width={outputCircleToCircleDist}
+            height={6}
+            x={0}
+            y={-3}
+          />
+          <circle
+            fill={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
+            stroke="black"
+            r={outputMainCircleRadius}
+            cx={outputCircleToCircleDist}
+          />
+        </>
+      }
+      overChildren={
+        <>
+          <circle
+            onMouseDown={(_mouseEvent) => {
+              console.log('TODO: MAYBE start dragging connector');
+            }}
+            onMouseOver={(e) => {
+              console.log('TODO: onReceivingPointMouseOver');
+            }}
+            onMouseOut={() => {
+              console.log('TODO: on receiving point mouse out');
+            }}
+            fill={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
+            r={6}
+          />
+        </>
+      }
+    />
   );
 };
 
@@ -69,11 +181,16 @@ const Box: FunctionComponent<{ boxElement: BoxElement; boxPosition: SketchPositi
     case 'not':
       return <NotBox boxElement={boxElement} boxPosition={boxPosition} />;
       break;
-    case 'output':
-    case 'and':
+
     case 'input':
-      throw new Error('Not implemented yet');
+      return <InputBox boxElement={boxElement} boxPosition={boxPosition} />;
       break;
+
+    case 'output':
+      return <OutputBox boxElement={boxElement} boxPosition={boxPosition} />;
+      break;
+    case 'and':
+      throw new Error('Not implemented yet');
     default:
       assertNever(boxElementKind);
       break;
