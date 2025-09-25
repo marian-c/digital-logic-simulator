@@ -5,6 +5,7 @@ import type {
   NotBoxElement,
   InputBoxElement,
   OutputBoxElement,
+  AndBoxElement,
 } from '@/app/v2/types/innerSketchStructure';
 import type { SketchPosition } from '@/app/v2/types/innerSketchPositions';
 import { assertNever } from '@/helpers/basics';
@@ -18,6 +19,9 @@ import {
   inputCircleToCircleDist,
   outputCircleToCircleDist,
   outputMainCircleRadius,
+  andGateColor,
+  andGateWidth,
+  andGateHeight,
 } from '@/app/v2/config';
 import { useInteractions } from '@/app/v2/modules/interactions/provider';
 
@@ -172,6 +176,38 @@ const NotBox: FunctionComponent<{
   );
 };
 
+const AndBox: FunctionComponent<{
+  boxElement: AndBoxElement;
+  boxPosition: SketchPosition;
+}> = ({ boxElement, boxPosition }) => {
+  return (
+    <GenericBox
+      boxId={boxElement.id}
+      pos={boxPosition.pos}
+      innerChildren={
+        <>
+          <rect fill={andGateColor} width={andGateWidth} height={andGateHeight} />
+          <text x="14" y="25" fill="white" fontWeight="bold" fontSize={14}>
+            AND
+          </text>
+        </>
+      }
+      overChildren={
+        <>
+          <circle cx="0" cy={andGateHeight / 4} r={connectorCircleRadius} fill="red" />
+          <circle cx="0" cy={(3 * andGateHeight) / 4} r={connectorCircleRadius} fill="red" />
+          <circle
+            cx={notGateWidth}
+            cy={andGateHeight / 2}
+            r={connectorCircleRadius}
+            fill={'blue'}
+          />
+        </>
+      }
+    />
+  );
+};
+
 const Box: FunctionComponent<{ boxElement: BoxElement; boxPosition: SketchPosition }> = ({
   boxElement,
   boxPosition,
@@ -181,16 +217,15 @@ const Box: FunctionComponent<{ boxElement: BoxElement; boxPosition: SketchPositi
     case 'not':
       return <NotBox boxElement={boxElement} boxPosition={boxPosition} />;
       break;
-
     case 'input':
       return <InputBox boxElement={boxElement} boxPosition={boxPosition} />;
       break;
-
     case 'output':
       return <OutputBox boxElement={boxElement} boxPosition={boxPosition} />;
       break;
     case 'and':
-      throw new Error('Not implemented yet');
+      return <AndBox boxElement={boxElement} boxPosition={boxPosition} />;
+      break;
     default:
       assertNever(boxElementKind);
       break;

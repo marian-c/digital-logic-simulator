@@ -15,6 +15,7 @@ export const structure: SketchStructure = {
       { id: 3, boxElementKind: 'not' },
       { id: 4, boxElementKind: 'output' },
       { id: 5, boxElementKind: 'input' },
+      { id: 6, boxElementKind: 'and' },
     ],
     connectorElements: [],
   },
@@ -36,6 +37,7 @@ export const positions: SketchPositions = {
     { boxId: 3, pos: { x: 30, y: 90 } },
     { boxId: 4, pos: { x: 100, y: 30 } },
     { boxId: 5, pos: { x: 100, y: 60 } },
+    { boxId: 6, pos: { x: 30, y: 140 } },
   ],
 };
 
