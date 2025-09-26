@@ -30,6 +30,9 @@ export type SketchState = {
   zoomFactor: number;
   panX: number;
   panY: number;
+  /**
+   * @deprecated
+   */
   focusedElementId: number | null;
 };
 

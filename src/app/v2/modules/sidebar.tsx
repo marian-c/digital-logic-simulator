@@ -6,7 +6,7 @@ import {
 
 function ZoomControls() {
   const sketchState = useSketchState();
-  const { setSketchState } = useSketchDataMethods();
+  const { $setSketchState } = useSketchDataMethods();
   return (
     <div>
       Zoom factor: {sketchState.zoomFactor} <br />
@@ -16,7 +16,7 @@ function ZoomControls() {
       <button
         className="border border-red-500 p-3"
         onClick={() => {
-          setSketchState({ ...sketchState, zoomFactor: sketchState.zoomFactor - 0.2 });
+          $setSketchState({ ...sketchState, zoomFactor: sketchState.zoomFactor - 0.2 });
         }}
       >
         -
@@ -24,7 +24,7 @@ function ZoomControls() {
       <button
         className="border border-red-500 p-3"
         onClick={() => {
-          setSketchState({ ...sketchState, zoomFactor: sketchState.zoomFactor + 0.2 });
+          $setSketchState({ ...sketchState, zoomFactor: sketchState.zoomFactor + 0.2 });
         }}
       >
         +
@@ -35,7 +35,7 @@ function ZoomControls() {
 
 export function Sidebar() {
   const sketchMeta = useSketchMeta();
-  const { setSketchMeta } = useSketchDataMethods();
+  const { $setSketchMeta } = useSketchDataMethods();
   const sketchState = useSketchState();
   return (
     <div className="flex flex-col w-80 overflow-auto border border-green-500 bg-gray-200">
@@ -45,7 +45,7 @@ export function Sidebar() {
           disabled={sketchMeta.isExample}
           value={sketchMeta.name}
           onChange={(e) => {
-            setSketchMeta({ ...sketchMeta, name: e.target.value });
+            $setSketchMeta({ ...sketchMeta, name: e.target.value });
           }}
         />
         <br></br>
@@ -55,7 +55,7 @@ export function Sidebar() {
           disabled={sketchMeta.isExample}
           value={sketchMeta.description}
           onChange={(e) => {
-            setSketchMeta({ ...sketchMeta, description: e.target.value });
+            $setSketchMeta({ ...sketchMeta, description: e.target.value });
           }}
         />
         <br></br>

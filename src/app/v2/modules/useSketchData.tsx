@@ -53,12 +53,12 @@ if (isBrowser) {
 }
 
 const SketchDataMethodsContext = React.createContext<{
-  setSketchStructure: React.Dispatch<React.SetStateAction<SketchStructure>>;
-  setSketchMeta: React.Dispatch<React.SetStateAction<SketchMeta>>;
-  setSketchPositions: React.Dispatch<React.SetStateAction<SketchPositions>>;
-  setSketchInputs: React.Dispatch<React.SetStateAction<SketchInputs>>;
-  setSketchSimulation: React.Dispatch<React.SetStateAction<SketchSimulation>>;
-  setSketchState: React.Dispatch<React.SetStateAction<SketchState>>;
+  $setSketchStructure: React.Dispatch<React.SetStateAction<SketchStructure>>;
+  $setSketchMeta: React.Dispatch<React.SetStateAction<SketchMeta>>;
+  $setSketchPositions: React.Dispatch<React.SetStateAction<SketchPositions>>;
+  $setSketchInputs: React.Dispatch<React.SetStateAction<SketchInputs>>;
+  $setSketchSimulation: React.Dispatch<React.SetStateAction<SketchSimulation>>;
+  $setSketchState: React.Dispatch<React.SetStateAction<SketchState>>;
 }>(null as any);
 
 const SketchStructureContext = React.createContext<SketchStructure>(null as any);
@@ -79,45 +79,45 @@ export const SketchDataProvider: FunctionComponentWithChildren = ({ children }) 
     throw new Error('SelectedSketchUUID is required');
   }
 
-  const [sketchStructure, setSketchStructure] = useState(() => {
+  const [sketchStructure, $setSketchStructure] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('v2sketchesStructure', selectedSketchUUID);
   });
 
-  const [sketchMeta, setSketchMeta] = useState(() => {
+  const [sketchMeta, $setSketchMeta] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('v2sketchesMeta', selectedSketchUUID);
   });
 
-  const [sketchPositions, setSketchPositions] = useState(() => {
+  const [sketchPositions, $setSketchPositions] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('v2sketchesPositions', selectedSketchUUID);
   });
 
-  const [sketchInputs, setSketchInputs] = useState(() => {
+  const [sketchInputs, $setSketchInputs] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('v2sketchesInputs', selectedSketchUUID);
   });
 
-  const [sketchSimulation, setSketchSimulation] = useState(() => {
+  const [sketchSimulation, $setSketchSimulation] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('v2sketchesSimulation', selectedSketchUUID);
   });
 
-  const [sketchState, setSketchState] = useState(() => {
+  const [sketchState, $setSketchState] = useState(() => {
     return localStorageGetItemInCollectionOrThrow('v2sketchesState', selectedSketchUUID);
   });
   const callbacks = React.useMemo(() => {
     return {
-      setSketchStructure,
-      setSketchMeta,
-      setSketchPositions,
-      setSketchInputs,
-      setSketchSimulation,
-      setSketchState,
+      $setSketchStructure,
+      $setSketchMeta,
+      $setSketchPositions,
+      $setSketchInputs,
+      $setSketchSimulation,
+      $setSketchState,
     };
   }, [
-    setSketchStructure,
-    setSketchMeta,
-    setSketchPositions,
-    setSketchInputs,
-    setSketchSimulation,
-    setSketchState,
+    $setSketchStructure,
+    $setSketchMeta,
+    $setSketchPositions,
+    $setSketchInputs,
+    $setSketchSimulation,
+    $setSketchState,
   ]);
 
   return (

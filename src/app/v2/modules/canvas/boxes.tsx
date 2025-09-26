@@ -1,3 +1,5 @@
+// TODO: if a box is dragged, we don't need to render all the other boxes
+
 import type { FunctionComponent } from '@/types/r-ui';
 import { useSketchPositions, useSketchStructure } from '@/app/v2/modules/useSketchData';
 import type {
@@ -31,18 +33,19 @@ const GenericBox: FunctionComponent<{
   pos: { x: number; y: number };
   boxId: number;
 }> = ({ innerChildren, overChildren, pos, boxId }) => {
-  const { onBoxWrapperClick } = useInteractions();
+  const { $onBoxWrapperClick, $onBoxWrapperMouseDown } = useInteractions();
   return (
     <g
       onClick={(e) => {
-        onBoxWrapperClick(boxId, e);
+        // TODO: opt: useCallback
+        $onBoxWrapperClick(boxId, e);
       }}
       transform={`translate(${pos.x}, ${pos.y})`}
     >
       <g
-        onMouseDown={() => {
-          // TODO: opt: callback
-          // onElementMouseDown (for dragging)
+        onMouseDown={(e) => {
+          // TODO: opt: useCallback
+          $onBoxWrapperMouseDown(boxId, e);
         }}
       >
         {innerChildren}
@@ -87,7 +90,7 @@ const InputBox: FunctionComponent<{
             onMouseDown={(_mouseEvent) => {
               console.log('TODO: start dragging connector');
             }}
-            onMouseOver={(e) => {
+            onMouseOver={(_e) => {
               console.log('TODO: maybe, onReceivingPointMouseOver');
             }}
             onMouseOut={() => {
@@ -135,7 +138,7 @@ const OutputBox: FunctionComponent<{
             onMouseDown={(_mouseEvent) => {
               console.log('TODO: MAYBE start dragging connector');
             }}
-            onMouseOver={(e) => {
+            onMouseOver={(_e) => {
               console.log('TODO: onReceivingPointMouseOver');
             }}
             onMouseOut={() => {
