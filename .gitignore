@@ -43,5 +43,3 @@ next-env.d.ts
 
 # [MC] section
 /out-dist
-*storybook.log
-storybook-static
