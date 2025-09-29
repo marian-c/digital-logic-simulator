@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import React from 'react';
 import { currentValue } from '@/imported/signals/dnd-kit-react/utilities/currentValue';
 

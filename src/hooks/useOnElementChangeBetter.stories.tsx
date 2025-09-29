@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import { useCounter } from '@/hooks/useCounter';
 import { action } from 'storybook/actions';
 import { useOnElementChangeBetter } from '@/hooks/useOnElementChangeBetter';

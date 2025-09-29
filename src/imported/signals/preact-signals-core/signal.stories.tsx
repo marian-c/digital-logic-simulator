@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import type { Meta, StoryObj } from '@storybook/nextjs';
 import React from 'react';
 import { action } from 'storybook/actions';
 import { computed, effect, signal } from '@/imported/signals/preact-signals-core/index';
