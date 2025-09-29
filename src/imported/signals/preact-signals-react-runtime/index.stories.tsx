@@ -59,13 +59,22 @@ export const GlobalSignal: Story = {
 
 const globalSignal2 = signal(0);
 
-export const UseLiveSignalTODO: Story = {
+export const UseLiveSignal: Story = {
   render() {
     function Demo() {
       useSignals();
-      const _localSignal = useLiveSignal(globalSignal2);
-      return <button>TODO</button>;
+      const localSignal = useLiveSignal(globalSignal2);
+      console.log(localSignal);
+      return (
+        <div>
+          <button onClick={() => globalSignal2.value++}>LocalSignal {localSignal.value}</button>
+          <br />
+          Not sure how this would be useful, I guess it allows changing the referenced signal, like
+          swap from one signal to the other
+        </div>
+      );
     }
+
     return <Demo />;
   },
 };

@@ -34,3 +34,6 @@ https://www.developerway.com/posts/react-state-management-2025
 https://github.com/statelyai/xstate
 https://github.com/mobxjs/mobx
 https://redux-toolkit.js.org/
+
+
+https://preactjs.com/blog/simplifying-islands-arch
