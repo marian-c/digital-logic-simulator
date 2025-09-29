@@ -13,7 +13,7 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [{
-  ignores: ["src/imported/**"]
+  ignores: ["src/imported/**/*.*", "!src/imported/**/*.stories.*"]
 }, ...compat.extends("next/core-web-vitals", "next/typescript"), {
   rules: {
     ['@typescript-eslint/no-explicit-any']: "off",

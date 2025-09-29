@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import React, { useState } from 'react';
+import React from 'react';
 import { useCounter } from '@/hooks/useCounter';
-import { useOnElementChange } from '@/imported/signals/dnd-kit-react/hooks/useOnElementChange';
 import { action } from 'storybook/actions';
 import { useLatest } from '@/imported/signals/dnd-kit-react/hooks/useLatest';
 
@@ -42,7 +41,7 @@ export const Usefullness: Story = {
     const counterRef = useLatest(counter);
     const handler = React.useCallback(() => {
       doAction(`Using latest: ${counterRef.current}`);
-    }, []);
+    }, [counterRef]);
     return (
       <div>
         <h3>Useful for callbacks</h3>

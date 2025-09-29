@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 import React from 'react';
-import { useCounter } from '@/hooks/useCounter';
 import { action } from 'storybook/actions';
-import { useLatestBetter$ } from '@/hooks/useLatestBetter$';
 import { computed, effect, signal } from '@/imported/signals/preact-signals-core/index';
 import { useConstant } from '@/imported/signals/dnd-kit-react/hooks/useConstant';
 
@@ -53,7 +51,7 @@ export const SignalCallbacks: Story = {
 
 export const EffectSimple: Story = {
   render() {
-    const eff = useConstant(() => {
+    useConstant(() => {
       return effect(() => {
         console.log('empty effect');
         doAction('empty effect Action');

@@ -22,3 +22,15 @@ https://www.youtube.com/playlist?list=PLmYaQynVkBpYavu_MuNQ7cICDuQJHgUx1
 
 David Black-Schaffer ordered videos
 https://www.youtube.com/playlist?list=PL9b_pbvWZfKjzceHxm8aceOvNR_6icJI-
+
+
+
+
+https://react.dev/reference/react/useReducer#examples-basic
+https://github.com/immerjs/use-immer#useimmerreducer
+https://github.com/pmndrs/zustand
+https://github.com/pmndrs/jotai
+https://www.developerway.com/posts/react-state-management-2025
+https://github.com/statelyai/xstate
+https://github.com/mobxjs/mobx
+https://redux-toolkit.js.org/

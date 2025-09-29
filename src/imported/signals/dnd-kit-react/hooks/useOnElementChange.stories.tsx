@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/nextjs-vite';
-import React, { useState } from 'react';
+import React from 'react';
 import { useCounter } from '@/hooks/useCounter';
 import { useOnElementChange } from '@/imported/signals/dnd-kit-react/hooks/useOnElementChange';
 import { action } from 'storybook/actions';
@@ -20,7 +20,7 @@ const doAction = action('action');
 export const WithRef: Story = {
   render() {
     const ref = React.useRef<HTMLDivElement>(null);
-    const { counter, buttonEl } = useCounter();
+    const { buttonEl } = useCounter();
     useOnElementChange(ref, (mewCounter) => {
       doAction(`ref has changed (${mewCounter})`);
     });
