@@ -8,7 +8,6 @@ import { SketchDataProvider } from '@/app/v2/modules/useSketchData';
 import { InteractionsProvider } from '@/app/v2/modules/interactions/provider';
 
 const SimulatorInner: FunctionComponentWithChildren = function () {
-  console.log('R SimulatorInner');
   return (
     <SketchDataProvider>
       <InteractionsProvider>

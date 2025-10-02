@@ -7,7 +7,6 @@ import { CanvasV3 } from '@/app/v3/modules/canvas';
 import { InteractionsProvider } from '@/app/v3/providers/interactions';
 
 const SimulatorInner: FunctionComponentWithChildren = function () {
-  console.log('R SimulatorInner');
   return (
     <InteractionsProvider>
       <div className="flex flex-grow flex-col">

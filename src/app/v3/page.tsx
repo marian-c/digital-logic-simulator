@@ -10,7 +10,6 @@ import { actionAddEmptySketchAndSelect, actionSelectSketch } from '@/app/v3/data
 import { Simulator } from '@/app/v3/modules/simulator';
 
 function Header() {
-  console.log('Render Header');
   const data = useSketchStorageData();
   const { $setSketchData } = useSketchStorageMethods();
   // TODO: OPT: memo options

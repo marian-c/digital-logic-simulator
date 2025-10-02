@@ -8,7 +8,7 @@ import { useStateWithRef } from '@/hooks/useStateWithRef';
 import { useSketchStorageMethods } from '@/app/v3/providers/dataStorageProvider';
 import { getActiveSketch } from '@/app/v3/data/utils/selectors';
 import {
-  actionMoveActiveBox,
+  actionMoveActiveBoxBy,
   actionSetActiveSketchPan,
   actionSetActiveSketchZoomAndPan,
 } from '@/app/v3/data/utils/actions';
@@ -101,7 +101,6 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       }
 
       $setIsMouseDownForDraggingBoxes(true);
-
       $setActiveBoxId(boxId);
     },
     [$setActiveBoxId, $setIsMouseDownForDraggingBoxes],
@@ -116,10 +115,12 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
 
       if (isMouseDownForDraggingBoxesRef.current && canvasCoordinates.in) {
         // move the active box
-        const activeBoxX = canvasCoordinates.x;
-        const activeBoxY = canvasCoordinates.y;
+        const deltaX = canvasCoordinates.x - mouseCanvasCoordinatesRef.current.x;
+        const deltaY = canvasCoordinates.y - mouseCanvasCoordinatesRef.current.y;
+        const activeBoxX = deltaX;
+        const activeBoxY = deltaY;
         $setSketchData(
-          actionMoveActiveBox(
+          actionMoveActiveBoxBy(
             activeBoxX,
             activeBoxY,
             activeBoxIdRef.current,

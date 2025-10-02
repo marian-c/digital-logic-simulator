@@ -1,7 +1,12 @@
 import type { DataV3 } from '@/app/v3/types/data';
 import { v7 as uuidv7 } from 'uuid';
 import { generateEmptySketch } from '@/app/v3/data/helpers';
-import { getActiveBox, getActiveBoxPosition, getActiveSketch } from '@/app/v3/data/utils/selectors';
+import {
+  getActiveBox,
+  getActiveBoxPosition,
+  getActiveSketch,
+  getBoxPositionFromSketch,
+} from '@/app/v3/data/utils/selectors';
 
 export function actionAddEmptySketchAndSelect(newName: string, oldData: DataV3) {
   const uuid = uuidv7();
@@ -63,15 +68,19 @@ export function actionSetActiveSketchPan(panX: number, panY: number, oldData: Da
   return { ...oldData };
 }
 
-export function actionMoveActiveBox(
-  activeBoxX: number,
-  activeBoxY: number,
+export function actionMoveActiveBoxBy(
+  deltaX: number,
+  deltaY: number,
   activeBoxId: number,
   oldData: DataV3,
 ) {
-  const activeBoxPosition = getActiveBoxPosition(activeBoxId, oldData);
+  // XXX: PERF: this happens of every mouse move event, but the active sketch does not change, so
+  // let's not find it every time
+  const activeSketch = getActiveSketch(oldData);
+  const activeBoxPosition = getBoxPositionFromSketch(activeBoxId, activeSketch);
+  const zoom = activeSketch.state.zoomFactor;
   // XXX: just mutates
-  activeBoxPosition.pos.x = activeBoxX;
-  activeBoxPosition.pos.y = activeBoxY;
+  activeBoxPosition.pos.x += deltaX / zoom;
+  activeBoxPosition.pos.y += deltaY / zoom;
   return { ...oldData };
 }
