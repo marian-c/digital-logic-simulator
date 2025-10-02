@@ -30,12 +30,12 @@ export function CanvasV3() {
           }}
         >
           <defs>
-            <filter id="f1" width="" height="">
+            <filter id="f1">
               <feOffset in="SourceAlpha" dx="0" dy="0" />
               <feGaussianBlur stdDeviation="2" />
               <feBlend in="SourceGraphic" in2="blurOut" />
             </filter>
-            <filter id="f2" width="" height="">
+            <filter id="f2">
               <feDropShadow dx="0" dy="0" stdDeviation="1" floodColor="orange" />
             </filter>
           </defs>
