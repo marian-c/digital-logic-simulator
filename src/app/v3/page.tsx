@@ -6,12 +6,13 @@ import {
   useSketchStorageData,
   useSketchStorageMethods,
 } from '@/app/v3/providers/dataStorageProvider';
-import { addEmptySketchAndSelect, selectSketch } from '@/app/v3/data/utils';
+import { actionAddEmptySketchAndSelect, actionSelectSketch } from '@/app/v3/data/utils/actions';
+import { Simulator } from '@/app/v3/modules/simulator';
 
 function Header() {
   console.log('Render Header');
   const data = useSketchStorageData();
-  const { setData } = useSketchStorageMethods();
+  const { $setSketchData } = useSketchStorageMethods();
   // TODO: OPT: memo options
   const options = data.sketches.map((s) => {
     return { value: s.meta.uuid, label: s.meta.name };
@@ -30,7 +31,7 @@ function Header() {
           value={data.selectedSketchUuid}
           onChange={(e) => {
             const value = e.target.value;
-            setData(selectSketch(value, data));
+            $setSketchData(actionSelectSketch(value, data));
           }}
         >
           {data.selectedSketchUuid
@@ -52,7 +53,7 @@ function Header() {
               return;
             }
 
-            setData(addEmptySketchAndSelect(name, data));
+            $setSketchData(actionAddEmptySketchAndSelect(name, data));
           }}
         >
           New empty sketch
@@ -67,7 +68,7 @@ function V3Inner() {
     <div className="min-h-dvh flex flex-col">
       <Header />
       <div className="flex flex-grow border border-amber-500">
-        <div>Simulator</div>
+        <Simulator />
       </div>
     </div>
   );

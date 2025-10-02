@@ -1,4 +1,4 @@
-export interface SketchPosition {
+export interface SketchBoxPosition {
   boxId: number;
   pos: {
     x: number;
@@ -7,5 +7,5 @@ export interface SketchPosition {
 }
 
 export interface InnerSketchPositions {
-  positions: SketchPosition[];
+  boxPositions: SketchBoxPosition[];
 }

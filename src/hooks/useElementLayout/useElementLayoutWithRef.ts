@@ -10,8 +10,6 @@ import type { LayoutEvent } from '@/types/rnw';
  */
 export const useElementLayoutWithRef = <T extends HTMLElement>(fn: (e: LayoutEvent<T>) => void) => {
   const elRef = React.useRef<T>(null);
-  useElementLayout(elRef, (e) => {
-    fn(e);
-  });
+  useElementLayout(elRef, fn);
   return elRef;
 };

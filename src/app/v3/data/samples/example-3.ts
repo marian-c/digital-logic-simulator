@@ -24,7 +24,7 @@ export const meta: SketchMeta = {
 };
 
 export const positions: SketchPositions = {
-  positions: [{ boxId: 0, pos: { x: 0, y: 0 } }],
+  boxPositions: [{ boxId: 0, pos: { x: 0, y: 0 } }],
 };
 
 export const inputs: SketchInputs = {

@@ -17,7 +17,7 @@ export function generateEmptySketch({ name, uuid }: { name: string; uuid: string
       name,
       description: '',
     },
-    positions: { positions: [{ boxId: 0, pos: { x: 0, y: 0 } }] },
+    positions: { boxPositions: [{ boxId: 0, pos: { x: 0, y: 0 } }] },
     inputs: { todo: true },
     simulation: { todo: true },
     state: { zoomFactor: 1, panX: 0, panY: 0 },

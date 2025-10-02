@@ -31,7 +31,7 @@ export const meta: SketchMeta = {
 };
 
 export const positions: SketchPositions = {
-  positions: [
+  boxPositions: [
     { boxId: 0, pos: { x: 30, y: 0 } },
     { boxId: 1, pos: { x: 30, y: 30 } },
     { boxId: 2, pos: { x: 30, y: 60 } },
