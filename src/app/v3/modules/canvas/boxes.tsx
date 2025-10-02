@@ -8,15 +8,13 @@ import {
   notGateHeight,
   notGateWidth,
   connectorCircleRadius,
-  inputMainCircleRadius,
   inputCircleToCircleDist,
   outputCircleToCircleDist,
-  outputMainCircleRadius,
   andGateColor,
   andGateWidth,
   andGateHeight,
 } from '@/app/v3/config';
-import { useInteractionsMethods } from '@/app/v3/providers/interactions';
+import { useInteractionsData, useInteractionsMethods } from '@/app/v3/providers/interactions';
 import type {
   AndBoxElement,
   BoxElement,
@@ -35,6 +33,9 @@ const GenericBox: FunctionComponent<{
   boxId: number;
 }> = ({ innerChildren, overChildren, pos, boxId }) => {
   const { $onBoxWrapperClick, $onBoxWrapperMouseDown } = useInteractionsMethods();
+  // TODO: PERF: when size changes or any other interactions data with activeBoxId unchanged, this
+  //   component should not re-render
+  const { activeBoxId } = useInteractionsData();
   return (
     <g
       onClick={(e) => {
@@ -42,8 +43,10 @@ const GenericBox: FunctionComponent<{
         $onBoxWrapperClick(boxId, e);
       }}
       transform={`translate(${pos.x}, ${pos.y})`}
+      filter={activeBoxId === boxId ? 'url(#f1)' : 'none'}
     >
       <g
+        cursor="grab"
         onMouseDown={(e) => {
           // TODO: opt: useCallback
           $onBoxWrapperMouseDown(boxId, e);
@@ -74,14 +77,18 @@ const InputBox: FunctionComponent<{
             x={0}
             y={-3}
           />
-          <circle
+          <rect
             cursor={'pointer'}
+            fill="gray"
+            stroke="#E8AA2DFF"
+            strokeWidth={1}
+            width={30}
+            height={20}
+            x={-15}
+            y={-10}
             onClick={() => {
               console.log('TODO: implement setting the input state');
             }}
-            fill={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
-            stroke="black"
-            r={inputMainCircleRadius}
           />
         </>
       }
@@ -125,17 +132,23 @@ const OutputBox: FunctionComponent<{
             x={0}
             y={-3}
           />
-          <circle
-            fill={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
-            stroke="black"
-            r={outputMainCircleRadius}
-            cx={outputCircleToCircleDist}
+
+          <rect
+            cursor="pointer"
+            fill="gray"
+            stroke="#E8AA2DFF"
+            width={30}
+            height={20}
+            x={outputCircleToCircleDist - 15}
+            y={-10}
           />
         </>
       }
       overChildren={
         <>
           <circle
+            data-desc="output/input-connector"
+            cursor="copy"
             onMouseDown={(_mouseEvent) => {
               console.log('TODO: MAYBE start dragging connector');
             }}

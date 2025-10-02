@@ -8,6 +8,7 @@ import {
   actionSetActiveSketchName,
   actionSetActiveSketchZoom,
 } from '@/app/v3/data/utils/actions';
+import { useInteractionsData } from '@/app/v3/providers/interactions';
 
 function ZoomControls() {
   const { state } = getActiveSketch(useSketchStorageData());
@@ -53,6 +54,7 @@ export function Sidebar() {
   const data = useSketchStorageData();
   const { meta } = getActiveSketch(data);
   const { $setSketchData } = useSketchStorageMethods();
+  const { activeBoxId } = useInteractionsData();
   return (
     <div className="flex flex-col w-80 overflow-auto border border-green-500 bg-gray-200">
       <div className="overflow-auto flex-grow h-0">
@@ -77,7 +79,7 @@ export function Sidebar() {
         <br />
         <ZoomControls />
         <br />
-        Focused: TODO
+        Focused: {activeBoxId}
         <br />
         Sidebar
         <br />

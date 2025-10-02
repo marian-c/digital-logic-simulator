@@ -42,6 +42,7 @@ type CtxMethods = {
 
 type CtxData = {
   size: Size;
+  activeBoxId: number;
 };
 
 const InteractionsMethodsContext = React.createContext<CtxMethods>(null as any);
@@ -64,7 +65,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     });
   const [, $setIsMouseDownForDraggingBoxes, isMouseDownForDraggingBoxesRef] =
     useStateWithRef<boolean>(false);
-  const [, $setActiveBoxId, activeBoxIdRef] = useStateWithRef<number>(0);
+  const [activeBoxId, $setActiveBoxId, activeBoxIdRef] = useStateWithRef<number>(0);
   const [size, $setSize, sizeRef] = useStateWithRef<Size>({ width: 0, height: 0, left: 0, top: 0 });
   // endregion
 
@@ -247,8 +248,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   }, [$onBoxWrapperClick, $onBoxWrapperMouseDown, canvasRef, svgRef]);
 
   const dataVal = React.useMemo<CtxData>(() => {
-    return { size };
-  }, [size]);
+    return { size, activeBoxId };
+  }, [size, activeBoxId]);
 
   return (
     <InteractionsMethodsContext value={contextVal}>
