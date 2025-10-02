@@ -16,7 +16,8 @@
     "_lint_staged_": "lint-staged --verbose",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "stress": "npx tsx ./src/app/v3/data/generateStressSample.ts"
   },
   "dependencies": {
     "@dnd-kit/abstract": "0.1.21-beta-20250806121348",

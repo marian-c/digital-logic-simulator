@@ -58,6 +58,15 @@ export function Sidebar() {
   return (
     <div className="flex flex-col w-80 overflow-auto border border-green-500 bg-gray-200">
       <div className="overflow-auto flex-grow h-0">
+        <button
+          onClick={() => {
+            localStorage.clear();
+            window.location.reload();
+          }}
+        >
+          localstorage.clear()
+        </button>
+        <br />
         Sketch name: <br />
         <input
           disabled={meta.isExample}
