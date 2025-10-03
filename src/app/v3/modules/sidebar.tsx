@@ -9,6 +9,67 @@ import {
   actionSetActiveSketchZoom,
 } from '@/app/v3/data/utils/actions';
 import { useInteractionsData } from '@/app/v3/providers/interactions';
+import { useEffect, useRef } from 'react';
+
+export function Rotate() {
+  const ref = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const stopRef = useRef(false);
+  useEffect(() => {
+    stopRef.current = false;
+    const stats = Array.from({ length: 60 }).map(() => {
+      const stat = document.createElement('div');
+      stat.className = 'w-[1px] h-[10px] bg-blue-500 block float-left';
+      statsRef.current?.appendChild(stat);
+      return stat;
+    });
+
+    let deg = 0;
+    let prevFrameTime = 0;
+    function fnFrame(time: number) {
+      const diff = time - prevFrameTime;
+      const stat = stats[deg % 60];
+      stat.remove();
+      stat.style.height = `${diff * 3}px`;
+      statsRef.current?.appendChild(stat);
+      prevFrameTime = time;
+      if (stopRef.current) {
+        return;
+      }
+      if (ref.current) {
+        ref.current.style.transform = `rotate(${deg}deg)`;
+        deg += 1;
+        if (deg === 360) {
+          deg = 0;
+        }
+      }
+      requestAnimationFrame(fnFrame);
+    }
+    requestAnimationFrame(fnFrame);
+    return () => {
+      stopRef.current = true;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          stats.forEach((stat) => {
+            stat.remove();
+          });
+        });
+      });
+    };
+  }, []);
+  return (
+    <div
+      onClick={() => {
+        stopRef.current = true;
+      }}
+    >
+      <div className="w-[120px] h-20 bg-amber-200 overflow-hidden" ref={statsRef}></div>
+      <div className="inline-block" ref={ref}>
+        Rotate this as well
+      </div>
+    </div>
+  );
+}
 
 function ZoomControls() {
   const { state } = getActiveSketch(useSketchStorageData());
@@ -90,9 +151,9 @@ export function Sidebar() {
         <br />
         Focused: {activeBoxId}
         <br />
-        Sidebar
+        <span className="rotate">ROTATE</span>
         <br />
-        Sidebar
+        <Rotate />
         <br />
         Sidebar
         <br />

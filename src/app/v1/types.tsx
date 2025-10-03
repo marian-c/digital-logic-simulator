@@ -80,17 +80,17 @@ export const addIds = (sketch: Sketch): Sketch => {
   if (!sketch.theBox.id) {
     sketch.theBox.id = id++;
   }
-  [...sketch.theBox.boxElements, ...sketch.theBox.connectorElements].forEach(function handleElement(
-    e,
-  ) {
-    if (!e.id) {
-      e.id = id++;
-    }
-    if (e.elementKind === 'box' && e.boxKind === 'custom') {
-      e.boxElements.forEach(handleElement);
-    }
-    return e;
-  });
+  [...sketch.theBox.boxElements, ...sketch.theBox.connectorElements].forEach(
+    function handleElement(e) {
+      if (!e.id) {
+        e.id = id++;
+      }
+      if (e.elementKind === 'box' && e.boxKind === 'custom') {
+        e.boxElements.forEach(handleElement);
+      }
+      return e;
+    },
+  );
   sketch.nextId = id;
   return sketch;
 };
@@ -238,6 +238,20 @@ export function getSample(): Sketch {
           },
           state: false,
         },
+        ...Array.from({ length: 20 }).map((_, i) => {
+          return {
+            id: nextId++,
+            elementKind: 'box',
+            boxKind: 'provided',
+            providedKind: 'not',
+            userLabel: '',
+            pos: {
+              x: 300,
+              y: 180,
+            },
+            state: false,
+          } as const;
+        }),
       ],
     },
     nextId: nextId++,
