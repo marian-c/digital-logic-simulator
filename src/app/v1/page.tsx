@@ -532,12 +532,8 @@ export default function V1() {
                     }}
                     d={roundPathCorners(
                       `M${actualStartPosition.x} ${actualStartPosition.y} ` +
-                        `L${actualStartPosition.x + plainConnectorExtensionMin} ${
-                          actualStartPosition.y
-                        } ` +
-                        `L${actualEndPosition.x - plainConnectorExtensionMin} ${
-                          actualEndPosition.y
-                        } ` +
+                        `L${actualStartPosition.x + plainConnectorExtensionMin} ${actualStartPosition.y} ` +
+                        `L${actualEndPosition.x - plainConnectorExtensionMin} ${actualEndPosition.y} ` +
                         `L${actualEndPosition.x} ${actualEndPosition.y} `,
                       plainConnectorExtensionMin / 2,
                       false,
