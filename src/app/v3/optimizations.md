@@ -7,6 +7,7 @@
 - there could be a set that links by reference sketches such that finding inner sketches by UUID is not needed everywhere
   this is for when a sketch refences other sketches for inner elements
 - dynamic linking of boxes and connectors (..for example (both ways)) can help with performance by not matching every time
+  - boxes can link to Position or InputState
 - only render the visible elements
 - render lighter elements when too many are visible or when zoomed out past a certain point
 - memoize certain components if their outputs are a strict function of their inputs

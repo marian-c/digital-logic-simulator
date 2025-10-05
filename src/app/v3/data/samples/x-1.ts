@@ -51,7 +51,7 @@ export const positions: SketchPositions = {
 };
 
 export const inputs: SketchInputs = {
-  todo: true,
+  inputsState: [],
 };
 
 export const simulation: SketchSimulation = {

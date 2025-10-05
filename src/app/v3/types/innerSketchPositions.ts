@@ -7,5 +7,6 @@ export interface SketchBoxPosition {
 }
 
 export interface InnerSketchPositions {
+  // TODO: flatten if there only one element
   boxPositions: SketchBoxPosition[];
 }

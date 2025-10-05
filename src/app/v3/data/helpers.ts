@@ -18,7 +18,9 @@ export function generateEmptySketch({ name, uuid }: { name: string; uuid: string
       description: '',
     },
     positions: { boxPositions: [{ boxId: 0, pos: { x: 0, y: 0 } }] },
-    inputs: { todo: true },
+    inputs: {
+      inputsState: [],
+    },
     simulation: { todo: true },
     state: { zoomFactor: 1, panX: 0, panY: 0 },
   };
@@ -34,6 +36,7 @@ export function validateSketch(_sketch: Sketch): boolean {
    * connector ids exist as boxes;
    * can't have multiple connectors coming into an input (possible when coming out of an output);
    * connector must start from an output and end at an input;
+   * InnerSketchInputs must refer to valid inputs
    */
   return true;
 }

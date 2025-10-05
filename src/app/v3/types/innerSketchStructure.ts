@@ -27,6 +27,7 @@ export interface OutputBoxElement extends BoxElementBase {
 export type BoxElement = NotBoxElement | AndBoxElement | InputBoxElement | OutputBoxElement;
 
 export interface InnerSketchStructure {
+  // TODO: flatten if there only one element (main)
   main: {
     boxElements: BoxElement[];
     connectorElements: ConnectorElement[];
