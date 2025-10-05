@@ -84,3 +84,15 @@ export function actionMoveActiveBoxBy(
   activeBoxPosition.pos.y += deltaY / zoom;
   return { ...oldData };
 }
+
+export function actionSnapActiveBox(x: number, y: number, activeBoxId: number, oldData: DataV3) {
+  // XXX: PERF: this happens of every mouse move event, but the active sketch does not change, so
+  // let's not find it every time
+  const activeSketch = getActiveSketch(oldData);
+  const activeBoxPosition = getBoxPositionFromSketch(activeBoxId, activeSketch);
+  // XXX: just mutates
+  activeBoxPosition.pos.x = Math.round(x / 10) * 10;
+  activeBoxPosition.pos.y = Math.round(y / 10) * 10;
+  // TODO: PERF: only deref ("actual change it") when the spanned calculated position is different
+  return { ...oldData };
+}

@@ -39,39 +39,39 @@ type State = {
   // zoomFactor: number;
 };
 
-export default function V1() {
-  // TODO: everything should use the second form of setState
+// export default function V1() {
+//   // TODO: everything should use the second form of setState
+//
+//   const [data, _setData] = React.useState<Sketch>(() => {
+//     const sample = getSample();
+//     const simulated = simulate(sample.theBox);
+//     // XXX: mutates
+//     sample.theBox = simulated;
+//     // XXX: what about pre-rendering
+//     return sample;
+//   });
+//
+//   const setData = React.useCallback(
+//     (newData: Sketch) => {
+//       // XXX: mutates
+//       newData.theBox = simulate(newData.theBox);
+//       _setData(newData);
+//     },
+//     [_setData],
+//   );
 
-  const [data, _setData] = React.useState<Sketch>(() => {
-    const sample = getSample();
-    const simulated = simulate(sample.theBox);
-    // XXX: mutates
-    sample.theBox = simulated;
-    // XXX: what about pre-rendering
-    return sample;
-  });
-
-  const setData = React.useCallback(
-    (newData: Sketch) => {
-      // XXX: mutates
-      newData.theBox = simulate(newData.theBox);
-      _setData(newData);
-    },
-    [_setData],
-  );
-
-  const [state, setState] = React.useState<State>({
-    activeBoxId: 0,
-    lastActiveBoxId: 0,
-    activeConnectorStartBoxId: 0,
-    activeConnectorEndBoxId: 0,
-    focusedElementId: 0,
-    activePosX: 0,
-    activePosY: 0,
-    mouseDownX: 0,
-    mouseDownY: 0,
-    // zoomFactor: 1,
-  });
+  // const [state, setState] = React.useState<State>({
+  //   activeBoxId: 0,
+  //   lastActiveBoxId: 0,
+  //   activeConnectorStartBoxId: 0,
+  //   activeConnectorEndBoxId: 0,
+  //   focusedElementId: 0,
+  //   activePosX: 0,
+  //   activePosY: 0,
+  //   mouseDownX: 0,
+  //   mouseDownY: 0,
+  //   zoomFactor: 1,
+  // });
 
   const refHasDragged = React.useRef(false);
   const refMouseX = React.useRef(0);
@@ -116,72 +116,7 @@ export default function V1() {
     };
   }, [onDocumentMouseUp]);
 
-  const onDocumentKeyDown = React.useCallback(
-    (e: KeyboardEvent) => {
-      let newBoxElement: BoxElement | undefined;
-      const id = data.nextId;
-      const pos = {
-        x: refMouseX.current,
-        y: refMouseY.current,
-      };
-      switch (e.key) {
-        // Not
-        case 'n':
-          newBoxElement = {
-            id,
-            elementKind: 'box',
-            boxKind: 'provided',
-            providedKind: 'not',
-            userLabel: '',
-            pos,
-            state: false,
-          };
-          break;
 
-        // Input
-        case 'i':
-          newBoxElement = {
-            id,
-            elementKind: 'box',
-            boxKind: 'input',
-            userLabel: '',
-            pos,
-            state: false,
-          };
-          break;
-
-        // Output
-        case 'o':
-          newBoxElement = {
-            id,
-            elementKind: 'box',
-            boxKind: 'output',
-            userLabel: '',
-            pos,
-            state: false,
-          };
-          break;
-      }
-
-      if (newBoxElement) {
-        setData({
-          ...data,
-          nextId: newBoxElement.id + 1,
-          theBox: {
-            ...data.theBox,
-            boxElements: [...data.theBox.boxElements, newBoxElement],
-          },
-        });
-      }
-    },
-    [data],
-  );
-  React.useEffect(() => {
-    document.addEventListener('keydown', onDocumentKeyDown);
-    return () => {
-      document.removeEventListener('keydown', onDocumentKeyDown);
-    };
-  }, [onDocumentKeyDown]);
 
   const onReceivingPointMouseOver = (
     _event: React.MouseEvent<SVGElement, MouseEvent>,

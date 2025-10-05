@@ -4,13 +4,12 @@ import type { FunctionComponentWithChildren } from '@/types/r-ui';
 import React from 'react';
 import { useElementLayoutWithRef } from '@/hooks/useElementLayout/useElementLayoutWithRef';
 import type { LayoutEvent } from '@/types/rnw';
-import { useStateWithRef } from '@/hooks/useStateWithRef';
 import { useSketchStorageMethods } from '@/app/v3/providers/dataStorageProvider';
-import { getActiveSketch } from '@/app/v3/data/utils/selectors';
+import { getActiveBoxPosition, getActiveSketch } from '@/app/v3/data/utils/selectors';
 import {
-  actionMoveActiveBoxBy,
   actionSetActiveSketchPan,
   actionSetActiveSketchZoomAndPan,
+  actionSnapActiveBox,
 } from '@/app/v3/data/utils/actions';
 import { useStateWithRefImmediate } from '@/hooks/useStateWithRefImmediate';
 
@@ -73,7 +72,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       empty: true,
     });
   const [, $setIsMouseDownForDraggingBoxes, isMouseDownForDraggingBoxesRef] =
-    useStateWithRefImmediate<boolean>(false);
+    useStateWithRefImmediate<false | MouseCoordinates>(false);
   const [activeBoxId, $setActiveBoxId, activeBoxIdRef] = useStateWithRefImmediate<number>(0);
   const [size, $setSize, sizeRef] = useStateWithRefImmediate<Size>({
     width: 0,
@@ -122,7 +121,9 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         return;
       }
 
-      $setIsMouseDownForDraggingBoxes(true);
+      $setIsMouseDownForDraggingBoxes({
+        ...getActiveBoxPosition(boxId, sketchDataRef.current).pos,
+      });
       // setting the last mouse coordinates for the canvas:
       $calculateCanvasCoordinates(mouseDocCoordinatesRef.current, sizeRef.current);
       $setActiveBoxId(boxId);
@@ -149,9 +150,20 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         // move the active box
         const deltaX = newCanvasCoordinates.x - oldCanvasCoordinates.x;
         const deltaY = newCanvasCoordinates.y - oldCanvasCoordinates.y;
-        // TODO: snap to grid
+        // TODO: PERF: activeSketch should be moemoized since it does not change often
+        const activeSketch = getActiveSketch(sketchDataRef.current);
+        const newCoords = {
+          x: isMouseDownForDraggingBoxesRef.current.x + deltaX / activeSketch.state.zoomFactor,
+          y: isMouseDownForDraggingBoxesRef.current.y + deltaY / activeSketch.state.zoomFactor,
+        };
+        $setIsMouseDownForDraggingBoxes(newCoords);
         $setSketchData(
-          actionMoveActiveBoxBy(deltaX, deltaY, activeBoxIdRef.current, sketchDataRef.current),
+          actionSnapActiveBox(
+            newCoords.x,
+            newCoords.y,
+            activeBoxIdRef.current,
+            sketchDataRef.current,
+          ),
         );
       }
 
