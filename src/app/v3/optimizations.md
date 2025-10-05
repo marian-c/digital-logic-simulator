@@ -6,4 +6,8 @@
 - there could be a context that pre-finds the active sketch and changes when needed
 - there could be a set that links by reference sketches such that finding inner sketches by UUID is not needed everywhere
   this is for when a sketch refences other sketches for inner elements
-- dinamic linking of boxes and connectors (..for example (both ways)) can help with performance by not matching every time
+- dynamic linking of boxes and connectors (..for example (both ways)) can help with performance by not matching every time
+- only render the visible elements
+- render lighter elements when too many are visible or when zoomed out past a certain point
+- memoize certain components if their outputs are a strict function of their inputs
+- certain common components can be shortcut and avoid exploring their inner workings while simulating
