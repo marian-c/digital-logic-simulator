@@ -21,7 +21,7 @@ import {
 } from '@/app/v1/constants';
 import { getSample, type BoxElement, type Sketch } from '@/app/v1/types';
 import { assertNever } from '@/helpers/basics';
-import roundPathCorners from '@/app/v1/rounding';
+import roundPathCorners from '@/helpers/rounding';
 import { simulate } from '@/app/v1/simulation';
 
 type State = {

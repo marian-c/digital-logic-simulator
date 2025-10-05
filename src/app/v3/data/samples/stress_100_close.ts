@@ -1,5 +1,5 @@
 import type { Sketch } from '@/app/v3/types/data';
-// eslint-disable-next-line @typescript-eslint/no-require-imports
+
 const {
   structure,
   meta,
@@ -7,6 +7,7 @@ const {
   inputs,
   simulation,
   state,
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
 } = require('./stress_100_close.json');
 
 export const sketch: Sketch = {

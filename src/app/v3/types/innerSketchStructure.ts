@@ -1,5 +1,9 @@
 export interface ConnectorElement {
   id: number;
+  fromBoxId: number;
+  toBoxId: number;
+  fromPortId: number;
+  toPortId: number;
 }
 
 export interface BoxElementBase {

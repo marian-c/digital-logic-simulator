@@ -236,28 +236,28 @@ type State = {
         });
       }
 
-      if (state.activeBoxId) {
-        refHasDragged.current = true;
-        const elFound = data.theBox.boxElements.find((el) => el.id === state.activeBoxId);
-
-        if (elFound) {
-          // XXX: this just mutates
-          elFound.pos.x = Math.round(x / 10) * 10;
-          elFound.pos.y = Math.round(y / 10) * 10;
-          setData({ ...data });
-        } // XXX: else throw?
-
-        setState({
-          ...state,
-          mouseDownX: event.clientX,
-          mouseDownY: event.clientY,
-          activePosX: x,
-          activePosY: y,
-        });
-      }
-    },
-    [state, data],
-  );
+      // if (state.activeBoxId) {
+      //   refHasDragged.current = true;
+      //   const elFound = data.theBox.boxElements.find((el) => el.id === state.activeBoxId);
+      //
+      //   if (elFound) {
+      //     // XXX: this just mutates
+      //     elFound.pos.x = Math.round(x / 10) * 10;
+      //     elFound.pos.y = Math.round(y / 10) * 10;
+      //     setData({ ...data });
+      //   } // XXX: else throw?
+      //
+      //   setState({
+      //     ...state,
+      //     mouseDownX: event.clientX,
+      //     mouseDownY: event.clientY,
+      //     activePosX: x,
+      //     activePosY: y,
+      //   });
+      // }
+  //   },
+  //   [state, data],
+  // );
 
   const focusElement = (elementId: number) => {
     setState({ ...state, focusedElementId: elementId });
@@ -290,16 +290,16 @@ type State = {
         // onMouseMove={onContainerMouseMove(state, setState, setData)}
         onMouseMove={onContainerMouseMove}
       // >
-        <defs>
-          <filter id="f1" width="" height="">
-            <feOffset in="SourceAlpha" dx="0" dy="0" />
-            <feGaussianBlur stdDeviation="2" />
-            <feBlend in="SourceGraphic" in2="blurOut" />
-          </filter>
-          <filter id="f2" width="" height="">
-            <feDropShadow dx="0" dy="0" stdDeviation="1" floodColor="orange" />
-          </filter>
-        </defs>
+      //   <defs>
+      //     <filter id="f1" width="" height="">
+      //       <feOffset in="SourceAlpha" dx="0" dy="0" />
+      //       <feGaussianBlur stdDeviation="2" />
+      //       <feBlend in="SourceGraphic" in2="blurOut" />
+      //     </filter>
+      //     <filter id="f2" width="" height="">
+      //       <feDropShadow dx="0" dy="0" stdDeviation="1" floodColor="orange" />
+      //     </filter>
+      //   </defs>
         // <svg
         //   width={defaultWidth}
         //   height={defaultHeight}

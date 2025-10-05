@@ -32,7 +32,10 @@
  *               the previous and next points.
  * @returns A new SVG path string with the rounding
  */
-export default function roundPathCorners(pathString, radius, useFractionalRadius) {
+export default function roundPathCorners(pathString, radius, useFractionalRadius, bail) {
+  if (bail) {
+    return pathString;
+  }
   function moveTowardsLength(movingPoint, targetPoint, amount) {
     var width = targetPoint.x - movingPoint.x;
     var height = targetPoint.y - movingPoint.y;

@@ -27,10 +27,13 @@ export function generateEmptySketch({ name, uuid }: { name: string; uuid: string
 export function validateSketch(_sketch: Sketch): boolean {
   // TODO: implement this
   /**
-   * all box elements have IDs
-   * nextId is bigger than the biggest existing id
-   * all IDs are unique
-   * focused element ID exists
+   * all box elements have IDs;
+   * nextId is bigger than the biggest existing id;
+   * all IDs are unique;
+   * focused element ID exists;
+   * connector ids exist as boxes;
+   * can't have multiple connectors coming into an input (possible when coming out of an output);
+   * connector must start from an output and end at an input;
    */
   return true;
 }

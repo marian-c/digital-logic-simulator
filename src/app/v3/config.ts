@@ -11,3 +11,6 @@ export const connectorCircleRadius = 6;
 export const inputCircleToCircleDist = 40;
 
 export const outputCircleToCircleDist = inputCircleToCircleDist;
+
+export const plainConnectorExtensionMin = 20;
+export const plainConnectorExtensionMax = 50;

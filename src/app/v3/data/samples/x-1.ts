@@ -18,7 +18,15 @@ export const structure: SketchStructure = {
       { id: 5, boxElementKind: 'input' },
       { id: 6, boxElementKind: 'and' },
     ],
-    connectorElements: [],
+    connectorElements: [
+      {
+        id: 7,
+        fromBoxId: 1,
+        fromPortId: 1,
+        toBoxId: 2,
+        toPortId: 0,
+      },
+    ],
   },
 };
 

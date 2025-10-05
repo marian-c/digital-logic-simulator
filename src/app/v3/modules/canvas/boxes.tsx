@@ -24,7 +24,7 @@ import type {
 } from '@/app/v3/types/innerSketchStructure';
 import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
 import { useSketchStorageData } from '@/app/v3/providers/dataStorageProvider';
-import { getActiveSketch, getBoxPositionFromSketch } from '@/app/v3/data/utils/selectors';
+import { getActiveSketch, getBoxPositionById } from '@/app/v3/data/utils/selectors';
 
 const GenericBox: FunctionComponent<{
   innerChildren?: React.ReactNode;
@@ -257,7 +257,7 @@ export const Boxes: FunctionComponent = () => {
     <>
       {activeSketch.structure.main.boxElements.map((boxElement) => {
         // XXX: assumes valid sketch
-        const boxPosition = getBoxPositionFromSketch(boxElement.id, activeSketch);
+        const boxPosition = getBoxPositionById(boxElement.id, activeSketch);
         return <Box boxElement={boxElement} boxPosition={boxPosition} key={boxElement.id} />;
       })}
     </>

@@ -1,12 +1,7 @@
 import type { DataV3 } from '@/app/v3/types/data';
 import { v7 as uuidv7 } from 'uuid';
 import { generateEmptySketch } from '@/app/v3/data/helpers';
-import {
-  getActiveBox,
-  getActiveBoxPosition,
-  getActiveSketch,
-  getBoxPositionFromSketch,
-} from '@/app/v3/data/utils/selectors';
+import { getActiveSketch, getBoxPositionById } from '@/app/v3/data/utils/selectors';
 
 export function actionAddEmptySketchAndSelect(newName: string, oldData: DataV3) {
   const uuid = uuidv7();
@@ -77,7 +72,7 @@ export function actionMoveActiveBoxBy(
   // XXX: PERF: this happens of every mouse move event, but the active sketch does not change, so
   // let's not find it every time
   const activeSketch = getActiveSketch(oldData);
-  const activeBoxPosition = getBoxPositionFromSketch(activeBoxId, activeSketch);
+  const activeBoxPosition = getBoxPositionById(activeBoxId, activeSketch);
   const zoom = activeSketch.state.zoomFactor;
   // XXX: just mutates
   activeBoxPosition.pos.x += deltaX / zoom;
@@ -89,7 +84,7 @@ export function actionSnapActiveBox(x: number, y: number, activeBoxId: number, o
   // XXX: PERF: this happens of every mouse move event, but the active sketch does not change, so
   // let's not find it every time
   const activeSketch = getActiveSketch(oldData);
-  const activeBoxPosition = getBoxPositionFromSketch(activeBoxId, activeSketch);
+  const activeBoxPosition = getBoxPositionById(activeBoxId, activeSketch);
   // XXX: just mutates
   activeBoxPosition.pos.x = Math.round(x / 10) * 10;
   activeBoxPosition.pos.y = Math.round(y / 10) * 10;
