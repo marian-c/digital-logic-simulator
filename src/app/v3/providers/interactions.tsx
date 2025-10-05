@@ -12,6 +12,7 @@ import {
   actionSetActiveSketchPan,
   actionSetActiveSketchZoomAndPan,
 } from '@/app/v3/data/utils/actions';
+import { useStateWithRefImmediate } from '@/hooks/useStateWithRefImmediate';
 
 type Size = { width: number; height: number; left: number; top: number };
 
@@ -57,7 +58,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     y: 0,
   });
   const [, $setMouseCanvasCoordinates, mouseCanvasCoordinatesRef] =
-    useStateWithRef<MouseCanvasCoordinates>({
+    useStateWithRefImmediate<MouseCanvasCoordinates>({
       x: 0,
       y: 0,
       in: true,
