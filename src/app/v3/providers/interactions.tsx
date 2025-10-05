@@ -52,29 +52,29 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   const { sketchDataRef, $setSketchData } = useSketchStorageMethods();
 
   // region: variables
-  const [, $setMouseDocCoordinates, mouseDocCoordinatesRef] =
+  const [, $setMouseDocCoordinatesRef, mouseDocCoordinatesRef] =
     useStateWithRefImmediate<MouseCoordinates>({
       x: 0,
       y: 0,
     });
-  const [, $setMouseCanvasCoordinates, mouseCanvasCoordinatesRef] =
+  const [, $setMouseCanvasCoordinatesRef, mouseCanvasCoordinatesRef] =
     useStateWithRefImmediate<MouseCanvasCoordinates>({
       x: 0,
       y: 0,
       in: true,
       empty: true,
     });
-  const [, $setLastMouseCanvasCoordinates, lastMouseCanvasCoordinatesRef] =
+  const [, $setLastMouseCanvasCoordinatesRef, lastMouseCanvasCoordinatesRef] =
     useStateWithRefImmediate<MouseCanvasCoordinates>({
       x: 0,
       y: 0,
       in: true,
       empty: true,
     });
-  const [, $setIsMouseDownForDraggingBoxes, isMouseDownForDraggingBoxesRef] =
+  const [, $setIsMouseDownForDraggingBoxesRef, isMouseDownForDraggingBoxesRef] =
     useStateWithRefImmediate<false | MouseCoordinates>(false);
-  const [activeBoxId, $setActiveBoxId, activeBoxIdRef] = useStateWithRefImmediate<number>(0);
-  const [size, $setSize, sizeRef] = useStateWithRefImmediate<Size>({
+  const [activeBoxId, $setActiveBoxIdRef, activeBoxIdRef] = useStateWithRefImmediate<number>(0);
+  const [size, $setSizeRef, sizeRef] = useStateWithRefImmediate<Size>({
     width: 0,
     height: 0,
     left: 0,
@@ -89,20 +89,24 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       const coordX = x - size.left;
       const coordY = y - size.top;
       const isOut = coordX < 0 || coordY < 0 || coordX > size.width || coordY > size.height;
-      $setMouseCanvasCoordinates({
+      $setMouseCanvasCoordinatesRef({
         x: coordX,
         y: coordY,
         in: !isOut,
       });
       if (!isOut && isMouseDownForDraggingBoxesRef.current) {
-        $setLastMouseCanvasCoordinates({
+        $setLastMouseCanvasCoordinatesRef({
           x: coordX,
           y: coordY,
           in: !isOut,
         });
       }
     },
-    [$setLastMouseCanvasCoordinates, $setMouseCanvasCoordinates, isMouseDownForDraggingBoxesRef],
+    [
+      $setLastMouseCanvasCoordinatesRef,
+      $setMouseCanvasCoordinatesRef,
+      isMouseDownForDraggingBoxesRef,
+    ],
   );
   // endregion
 
@@ -121,17 +125,17 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         return;
       }
 
-      $setIsMouseDownForDraggingBoxes({
+      $setIsMouseDownForDraggingBoxesRef({
         ...getActiveBoxPosition(boxId, sketchDataRef.current).pos,
       });
       // setting the last mouse coordinates for the canvas:
       $calculateCanvasCoordinates(mouseDocCoordinatesRef.current, sizeRef.current);
-      $setActiveBoxId(boxId);
+      $setActiveBoxIdRef(boxId);
     },
     [
       $calculateCanvasCoordinates,
-      $setActiveBoxId,
-      $setIsMouseDownForDraggingBoxes,
+      $setActiveBoxIdRef,
+      $setIsMouseDownForDraggingBoxesRef,
       mouseDocCoordinatesRef,
       sizeRef,
     ],
@@ -156,7 +160,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
           x: isMouseDownForDraggingBoxesRef.current.x + deltaX / activeSketch.state.zoomFactor,
           y: isMouseDownForDraggingBoxesRef.current.y + deltaY / activeSketch.state.zoomFactor,
         };
-        $setIsMouseDownForDraggingBoxes(newCoords);
+        $setIsMouseDownForDraggingBoxesRef(newCoords);
         $setSketchData(
           actionSnapActiveBox(
             newCoords.x,
@@ -167,11 +171,11 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         );
       }
 
-      $setMouseDocCoordinates(docCoordintes);
+      $setMouseDocCoordinatesRef(docCoordintes);
     },
     [
       $calculateCanvasCoordinates,
-      $setMouseDocCoordinates,
+      $setMouseDocCoordinatesRef,
       $setSketchData,
       activeBoxIdRef,
       isMouseDownForDraggingBoxesRef,
@@ -182,9 +186,9 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   );
   const $handleDocumentMouseMouseUp = React.useCallback(
     (_mouseEvent: MouseEvent) => {
-      $setIsMouseDownForDraggingBoxes(false);
+      $setIsMouseDownForDraggingBoxesRef(false);
     },
-    [$setIsMouseDownForDraggingBoxes],
+    [$setIsMouseDownForDraggingBoxesRef],
   );
 
   const $handleSvgWheelPinch = React.useCallback(
@@ -241,10 +245,10 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         left: layoutEvent.nativeEvent.layout.left,
         top: layoutEvent.nativeEvent.layout.top,
       };
-      $setSize(size);
+      $setSizeRef(size);
       $calculateCanvasCoordinates(mouseDocCoordinatesRef.current, size);
     },
-    [$calculateCanvasCoordinates, $setSize, mouseDocCoordinatesRef],
+    [$calculateCanvasCoordinates, $setSizeRef, mouseDocCoordinatesRef],
   );
   // endregion
 
