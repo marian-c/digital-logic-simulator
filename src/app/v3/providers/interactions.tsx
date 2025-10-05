@@ -127,7 +127,13 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       $calculateCanvasCoordinates(mouseDocCoordinatesRef.current, sizeRef.current);
       $setActiveBoxId(boxId);
     },
-    [$setActiveBoxId, $setIsMouseDownForDraggingBoxes],
+    [
+      $calculateCanvasCoordinates,
+      $setActiveBoxId,
+      $setIsMouseDownForDraggingBoxes,
+      mouseDocCoordinatesRef,
+      sizeRef,
+    ],
   );
   // endregion
 
@@ -143,6 +149,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         // move the active box
         const deltaX = newCanvasCoordinates.x - oldCanvasCoordinates.x;
         const deltaY = newCanvasCoordinates.y - oldCanvasCoordinates.y;
+        // TODO: snap to grid
         $setSketchData(
           actionMoveActiveBoxBy(deltaX, deltaY, activeBoxIdRef.current, sketchDataRef.current),
         );
