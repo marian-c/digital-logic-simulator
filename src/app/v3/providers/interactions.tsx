@@ -249,7 +249,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       return () => {
         document.removeEventListener('mousemove', $handleDocumentMouseMoveMouseCoordinates);
         document.removeEventListener('mouseup', $handleDocumentMouseMouseUp);
-        document.removeEventListener('wheel', onWheel);
+        el?.removeEventListener('wheel', onWheel);
       };
     },
     [
