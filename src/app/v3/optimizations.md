@@ -3,7 +3,7 @@
 - changing position of one element renders everything
 - finding the active sketch happens in multiple places
 - changing data only de-references the top object
-- there could be a context that pre-finds the active sketch and changes when needed
+- there could be a context that pre-finds the active sketch and changes when needed since getActiveSketch is used everywhere
 - there could be a set that links by reference sketches such that finding inner sketches by UUID is not needed everywhere
   this is for when a sketch refences other sketches for inner elements
 - dynamic linking of boxes and connectors (..for example (both ways)) can help with performance by not matching every time

@@ -4,168 +4,21 @@ import type { FunctionComponent } from '@/types/r-ui';
 import { assertNever } from '@/helpers/basics';
 import React from 'react';
 import {
+  andGateColor,
+  andGateHeight,
+  andGateWidth,
+  connectorCircleRadius,
   notGateColor,
   notGateHeight,
   notGateWidth,
-  connectorCircleRadius,
-  inputCircleToCircleDist,
-  outputCircleToCircleDist,
-  andGateColor,
-  andGateWidth,
-  andGateHeight,
 } from '@/app/v3/config';
-import { useInteractionsData, useInteractionsMethods } from '@/app/v3/providers/interactions';
-import type {
-  AndBoxElement,
-  BoxElement,
-  InputBoxElement,
-  NotBoxElement,
-  OutputBoxElement,
-} from '@/app/v3/types/innerSketchStructure';
+import type { AndBoxElement, BoxElement, NotBoxElement } from '@/app/v3/types/innerSketchStructure';
 import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
 import { useSketchStorageData } from '@/app/v3/providers/dataStorageProvider';
 import { getActiveSketch, getBoxPositionById } from '@/app/v3/data/utils/selectors';
-
-const GenericBox: FunctionComponent<{
-  innerChildren?: React.ReactNode;
-  overChildren?: React.ReactNode;
-  pos: { x: number; y: number };
-  boxId: number;
-}> = ({ innerChildren, overChildren, pos, boxId }) => {
-  const { $onBoxWrapperClick, $onBoxWrapperMouseDown } = useInteractionsMethods();
-  // TODO: PERF: when size changes or any other interactions data with activeBoxId unchanged, this
-  //   component should not re-render
-  const { activeBoxId } = useInteractionsData();
-  return (
-    <g
-      onClick={(e) => {
-        // TODO: opt: useCallback
-        $onBoxWrapperClick(boxId, e);
-      }}
-      transform={`translate(${pos.x}, ${pos.y})`}
-      filter={activeBoxId === boxId ? 'url(#f1)' : 'none'}
-    >
-      <g
-        cursor="grab"
-        onMouseDown={(e) => {
-          // TODO: opt: useCallback
-          $onBoxWrapperMouseDown(boxId, e);
-        }}
-      >
-        {innerChildren}
-      </g>
-      {overChildren}
-    </g>
-  );
-};
-
-const InputBox: FunctionComponent<{
-  boxElement: InputBoxElement;
-  boxPosition: SketchBoxPosition;
-}> = ({ boxElement, boxPosition }) => {
-  return (
-    <GenericBox
-      boxId={boxElement.id}
-      pos={boxPosition.pos}
-      innerChildren={
-        <>
-          <rect
-            fill="black"
-            stroke="black"
-            width={inputCircleToCircleDist}
-            height={6}
-            x={0}
-            y={-3}
-          />
-          <rect
-            cursor={'pointer'}
-            fill="gray"
-            stroke="#E8AA2DFF"
-            strokeWidth={1}
-            width={30}
-            height={20}
-            x={-15}
-            y={-10}
-            onClick={() => {
-              console.log('TODO: implement setting the input state');
-            }}
-          />
-        </>
-      }
-      overChildren={
-        <>
-          <circle
-            onMouseDown={(_mouseEvent) => {
-              console.log('TODO: start dragging connector');
-            }}
-            onMouseOver={(_e) => {
-              console.log('TODO: maybe, onReceivingPointMouseOver');
-            }}
-            onMouseOut={() => {
-              console.log('TODO: maybe, on receiving point mouse out');
-            }}
-            fill={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
-            r={6}
-            cx={inputCircleToCircleDist}
-          />
-        </>
-      }
-    />
-  );
-};
-
-const OutputBox: FunctionComponent<{
-  boxElement: OutputBoxElement;
-  boxPosition: SketchBoxPosition;
-}> = ({ boxElement, boxPosition }) => {
-  return (
-    <GenericBox
-      boxId={boxElement.id}
-      pos={boxPosition.pos}
-      innerChildren={
-        <>
-          <rect
-            fill="black"
-            stroke="black"
-            width={outputCircleToCircleDist}
-            height={6}
-            x={0}
-            y={-3}
-          />
-
-          <rect
-            cursor="pointer"
-            fill="gray"
-            stroke="#E8AA2DFF"
-            width={30}
-            height={20}
-            x={outputCircleToCircleDist - 15}
-            y={-10}
-          />
-        </>
-      }
-      overChildren={
-        <>
-          <circle
-            data-desc="output/input-connector"
-            cursor="copy"
-            onMouseDown={(_mouseEvent) => {
-              console.log('TODO: MAYBE start dragging connector');
-            }}
-            onMouseOver={(_e) => {
-              console.log('TODO: onReceivingPointMouseOver');
-            }}
-            onMouseOut={() => {
-              console.log('TODO: on receiving point mouse out');
-            }}
-            fill={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
-            r={6}
-          />
-        </>
-      }
-    />
-  );
-};
+import { GenericBox } from '@/app/v3/modules/canvas/boxes/genericBox';
+import { OutputBox } from '@/app/v3/modules/canvas/boxes/outputBox';
+import { InputBox } from '@/app/v3/modules/canvas/boxes/inputBox';
 
 const NotBox: FunctionComponent<{
   boxElement: NotBoxElement;

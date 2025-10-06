@@ -1,5 +1,5 @@
 import type { DataV3, Sketch } from '@/app/v3/types/data';
-import type { ConnectorElement } from '@/app/v3/types/innerSketchStructure';
+import type { BoxElement, ConnectorElement } from '@/app/v3/types/innerSketchStructure';
 
 export function getActiveSketch(data: DataV3) {
   // TODO: error handling
@@ -36,4 +36,15 @@ export function getActiveConnectorData(connectorElement: ConnectorElement, data:
     toBox,
     toBoxPosition,
   };
+}
+
+export function getActiveInputStateObject(box: BoxElement, sketch: Sketch) {
+  return sketch.inputs.inputsState.find((s) => s.boxId === box.id);
+}
+
+export function getActiveInputState(box: BoxElement, data: DataV3) {
+  // TODO: box needs to exist and be an input
+  const activeSketch = getActiveSketch(data);
+  const state = getActiveInputStateObject(box, activeSketch)?.state || false;
+  return state;
 }

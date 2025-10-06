@@ -1,7 +1,12 @@
 import type { DataV3 } from '@/app/v3/types/data';
 import { v7 as uuidv7 } from 'uuid';
 import { generateEmptySketch } from '@/app/v3/data/helpers';
-import { getActiveSketch, getBoxPositionById } from '@/app/v3/data/utils/selectors';
+import {
+  getActiveInputStateObject,
+  getActiveSketch,
+  getBoxPositionById,
+} from '@/app/v3/data/utils/selectors';
+import type { BoxElement } from '@/app/v3/types/innerSketchStructure';
 
 export function actionAddEmptySketchAndSelect(newName: string, oldData: DataV3) {
   const uuid = uuidv7();
@@ -89,5 +94,18 @@ export function actionSnapActiveBox(x: number, y: number, activeBoxId: number, o
   activeBoxPosition.pos.x = Math.round(x / 10) * 10;
   activeBoxPosition.pos.y = Math.round(y / 10) * 10;
   // TODO: PERF: only deref ("actual change it") when the spanned calculated position is different
+  return { ...oldData };
+}
+
+export function actionToggleActiveInputState(box: BoxElement, oldData: DataV3) {
+  const activeSketch = getActiveSketch(oldData);
+  let stateObj = getActiveInputStateObject(box, activeSketch);
+  if (!stateObj) {
+    stateObj = { boxId: box.id, state: true };
+    activeSketch.inputs.inputsState.push(stateObj);
+  } else {
+    // XXX: just mutates
+    stateObj.state = !stateObj.state;
+  }
   return { ...oldData };
 }

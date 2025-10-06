@@ -38,6 +38,7 @@ type CtxMethods = {
     boxId: number,
     mouseEvent: React.MouseEvent<SVGElement, MouseEvent>,
   ) => void;
+  hasDraggedRef: React.RefObject<boolean>;
 };
 
 type CtxData = {
@@ -52,6 +53,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   const { sketchDataRef, $setSketchData } = useSketchStorageMethods();
 
   // region: variables
+  const hasDraggedRef = React.useRef(false);
   const [, $setMouseDocCoordinatesRef, mouseDocCoordinatesRef] =
     useStateWithRefImmediate<MouseCoordinates>({
       x: 0,
@@ -149,7 +151,9 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       const oldCanvasCoordinates = lastMouseCanvasCoordinatesRef.current;
       $calculateCanvasCoordinates(docCoordintes, sizeRef.current);
       const newCanvasCoordinates = lastMouseCanvasCoordinatesRef.current;
-
+      if (isMouseDownForDraggingBoxesRef.current) {
+        hasDraggedRef.current = true;
+      }
       if (isMouseDownForDraggingBoxesRef.current && newCanvasCoordinates.in) {
         // move the active box
         const deltaX = newCanvasCoordinates.x - oldCanvasCoordinates.x;
@@ -187,6 +191,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   const $handleDocumentMouseMouseUp = React.useCallback(
     (_mouseEvent: MouseEvent) => {
       $setIsMouseDownForDraggingBoxesRef(false);
+      hasDraggedRef.current = false;
     },
     [$setIsMouseDownForDraggingBoxesRef],
   );
@@ -287,11 +292,17 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   // endregion
 
   const contextVal = React.useMemo<CtxMethods>(() => {
-    return { svgRef, canvasRef, $onBoxWrapperClick, $onBoxWrapperMouseDown };
-  }, [$onBoxWrapperClick, $onBoxWrapperMouseDown, canvasRef, svgRef]);
+    return {
+      svgRef,
+      canvasRef,
+      $onBoxWrapperClick,
+      $onBoxWrapperMouseDown,
+      hasDraggedRef,
+    } satisfies CtxMethods;
+  }, [$onBoxWrapperClick, $onBoxWrapperMouseDown, canvasRef, svgRef, hasDraggedRef]);
 
   const dataVal = React.useMemo<CtxData>(() => {
-    return { size, activeBoxId };
+    return { size, activeBoxId } satisfies CtxData;
   }, [size, activeBoxId]);
 
   return (
