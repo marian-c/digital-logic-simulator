@@ -41,6 +41,7 @@ export type FloatingConnector = {
   draggingFromPortKind: PortKind;
   from: { x: number; y: number };
   to: { x: number; y: number };
+  destinationBox: { boxId: number; portId: number } | null;
 };
 
 type CtxMethods = {
@@ -58,6 +59,8 @@ type CtxMethods = {
     boxElement: BoxElement,
     mouseEvent: React.MouseEvent<SVGElement, MouseEvent>,
   ) => void;
+  $onConnectorPointMouseOver: (portId: number, portKind: PortKind, boxElement: BoxElement) => void;
+  $onConnectorPointMouseOut: (portId: number, portKind: PortKind, boxElement: BoxElement) => void;
 };
 
 type CtxData = {
@@ -135,6 +138,37 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   // endregion
 
   // region: exposed event handlers
+  const $onConnectorPointMouseOut = React.useCallback<CtxMethods['$onConnectorPointMouseOut']>(
+    (_portId, _portKind, _boxElement) => {
+      // is this enough?
+      if (!floatingConnectorRef.current) {
+        return;
+      }
+      $setFloatingConnectorRef({ ...floatingConnectorRef.current, destinationBox: null });
+    },
+    [$setFloatingConnectorRef, floatingConnectorRef],
+  );
+
+  const $onConnectorPointMouseOver = React.useCallback<CtxMethods['$onConnectorPointMouseOver']>(
+    (portId, portKind, boxElement) => {
+      if (floatingConnectorRef.current === null) {
+        return;
+      }
+      if (portKind === floatingConnectorRef.current.draggingFromPortKind) {
+        // can only drag between inputs and outputs
+        return;
+      }
+      const isGood = getActiveIsPortDraggable(portId, portKind, boxElement, sketchDataRef.current);
+      if (!isGood) {
+        return;
+      }
+      $setFloatingConnectorRef({
+        ...floatingConnectorRef.current,
+        destinationBox: { boxId: boxElement.id, portId },
+      });
+    },
+    [$setFloatingConnectorRef, floatingConnectorRef, sketchDataRef],
+  );
   const $onConnectorPointMouseDown = React.useCallback<CtxMethods['$onConnectorPointMouseDown']>(
     (portId, portKind, boxElement, mouseEvent) => {
       if (mouseEvent.button !== 0) {
@@ -151,7 +185,12 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       const coordY = mouseEvent.clientY - sizeRef.current.top;
 
       const floating = { x: coordX, y: coordY };
-      $setFloatingConnectorRef({ from: anchor, to: floating, draggingFromPortKind: portKind });
+      $setFloatingConnectorRef({
+        from: anchor,
+        to: floating,
+        draggingFromPortKind: portKind,
+        destinationBox: null,
+      });
     },
     [$setFloatingConnectorRef, sizeRef, sketchDataRef],
   );
@@ -183,6 +222,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       $setIsMouseDownForDraggingBoxesRef,
       mouseDocCoordinatesRef,
       sizeRef,
+      sketchDataRef,
     ],
   );
   // endregion
@@ -353,14 +393,17 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       $onBoxWrapperMouseDown,
       hasDraggedRef,
       $onConnectorPointMouseDown,
+      $onConnectorPointMouseOver,
+      $onConnectorPointMouseOut,
     } satisfies CtxMethods;
   }, [
+    svgRef,
+    canvasRef,
     $onBoxWrapperClick,
     $onBoxWrapperMouseDown,
-    canvasRef,
-    svgRef,
-    hasDraggedRef,
     $onConnectorPointMouseDown,
+    $onConnectorPointMouseOver,
+    $onConnectorPointMouseOut,
   ]);
 
   const dataVal = React.useMemo<CtxData>(() => {

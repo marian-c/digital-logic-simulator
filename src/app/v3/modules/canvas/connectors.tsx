@@ -6,8 +6,6 @@ import type { BoxElement, ConnectorElement } from '@/app/v3/types/innerSketchStr
 import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
 import { plainConnectorExtensionMin } from '@/app/v3/config';
 import roundPathCorners from '@/helpers/rounding';
-import { type FloatingConnector, useInteractionsData } from '@/app/v3/providers/interactions';
-import { assertNever } from '@/helpers/basics';
 
 export const Connector: FunctionComponent<{
   connectorElement: ConnectorElement;
@@ -42,47 +40,12 @@ export const Connector: FunctionComponent<{
   );
 };
 
-const FloatingConnector: FunctionComponent<{ floatingConnector: FloatingConnector }> = ({
-  floatingConnector,
-}) => {
-  let { from, to } = floatingConnector;
-  switch (floatingConnector.draggingFromPortKind) {
-    case 'inputPort':
-      from = floatingConnector.to;
-      to = floatingConnector.from;
-      break;
-    case 'outputPort':
-      break;
-    default:
-      assertNever(floatingConnector.draggingFromPortKind);
-  }
-  return (
-    <path
-      fill="none"
-      stroke={Math.random() > 0.5 ? 'green' : 'blue'}
-      strokeWidth={3}
-      shapeRendering="geometricPrecision"
-      d={roundPathCorners(
-        `M${from.x} ${from.y} ` +
-          `L${from.x + plainConnectorExtensionMin} ${from.y} ` +
-          `L${to.x - plainConnectorExtensionMin} ${to.y} ` +
-          `L${to.x} ${to.y} `,
-        plainConnectorExtensionMin / 3,
-        false,
-        false,
-      )}
-    />
-  );
-};
-
 export const Connectors: FunctionComponent = () => {
   const data = useSketchStorageData();
-  const { floatingConnector } = useInteractionsData();
   const activeSketch = getActiveSketch(data);
 
   return (
     <>
-      {floatingConnector && <FloatingConnector floatingConnector={floatingConnector} />}
       {activeSketch.structure.main.connectorElements.map((connectorElement) => {
         const { fromBox, fromBoxPosition, toBox, toBoxPosition } = getActiveConnectorData(
           connectorElement,

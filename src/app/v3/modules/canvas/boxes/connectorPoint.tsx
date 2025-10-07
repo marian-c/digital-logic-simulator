@@ -17,7 +17,8 @@ export const ConnectorPoint: FunctionComponent<{
   portId: number;
   portKind: PortKind;
 }> = ({ cx, cy, state, boxElement, portId, portKind }) => {
-  const { $onConnectorPointMouseDown } = useInteractionsMethods();
+  const { $onConnectorPointMouseDown, $onConnectorPointMouseOver, $onConnectorPointMouseOut } =
+    useInteractionsMethods();
   const { sketchDataRef } = useSketchStorageMethods();
   const isPortDraggable = getActiveIsPortDraggable(
     portId,
@@ -25,17 +26,22 @@ export const ConnectorPoint: FunctionComponent<{
     boxElement,
     sketchDataRef.current,
   );
-  console.log('isPortDraggable', isPortDraggable, '');
   return (
     <circle
       cursor={isPortDraggable ? 'copy' : undefined}
       onMouseDown={
         !isPortDraggable
           ? undefined
-          : (_mouseEvent) => {
-              $onConnectorPointMouseDown(portId, portKind, boxElement, _mouseEvent);
+          : (mouseEvent) => {
+              $onConnectorPointMouseDown(portId, portKind, boxElement, mouseEvent);
             }
       }
+      onMouseOver={() => {
+        $onConnectorPointMouseOver(portId, portKind, boxElement);
+      }}
+      onMouseOut={() => {
+        $onConnectorPointMouseOut(portId, portKind, boxElement);
+      }}
       fill={state ? 'crimson' : 'dimgray'}
       r={6}
       cx={cx}
