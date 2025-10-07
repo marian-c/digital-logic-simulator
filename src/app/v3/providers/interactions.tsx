@@ -12,6 +12,7 @@ import {
   getPoint,
 } from '@/app/v3/data/utils/selectors';
 import {
+  actionAddActiveConnector,
   actionSetActiveSketchPan,
   actionSetActiveSketchZoomAndPan,
   actionSnapActiveBox,
@@ -41,6 +42,7 @@ export type FloatingConnector = {
   draggingFromPortKind: PortKind;
   from: { x: number; y: number };
   to: { x: number; y: number };
+  fromBox: { boxId: number; portId: number };
   destinationBox: { boxId: number; portId: number } | null;
 };
 
@@ -190,6 +192,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
 
       const floating = { x: coordX, y: coordY };
       $setFloatingConnectorRef({
+        fromBox: { boxId: boxElement.id, portId },
         from: anchor,
         to: floating,
         draggingFromPortKind: portKind,
@@ -298,9 +301,26 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     (_mouseEvent: MouseEvent) => {
       $setIsMouseDownForDraggingBoxesRef(false);
       hasDraggedRef.current = false;
-      $setFloatingConnectorRef(null);
+      if (floatingConnectorRef.current !== null) {
+        if (floatingConnectorRef.current.destinationBox !== null) {
+          $setSketchData(
+            actionAddActiveConnector(
+              floatingConnectorRef.current.fromBox,
+              floatingConnectorRef.current.destinationBox,
+              sketchDataRef.current,
+            ),
+          );
+        }
+        $setFloatingConnectorRef(null);
+      }
     },
-    [$setFloatingConnectorRef, $setIsMouseDownForDraggingBoxesRef],
+    [
+      $setFloatingConnectorRef,
+      $setIsMouseDownForDraggingBoxesRef,
+      $setSketchData,
+      floatingConnectorRef,
+      sketchDataRef,
+    ],
   );
 
   const $handleSvgWheelPinch = React.useCallback(

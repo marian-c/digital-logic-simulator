@@ -109,3 +109,20 @@ export function actionToggleActiveInputState(box: BoxElement, oldData: DataV3) {
   }
   return { ...oldData };
 }
+
+export function actionAddActiveConnector(
+  fromBox: { boxId: number; portId: number },
+  toBox: { boxId: number; portId: number },
+  oldData: DataV3,
+) {
+  const activeSketch = getActiveSketch(oldData);
+  // XXX: just mutates
+  activeSketch.structure.main.connectorElements.push({
+    id: activeSketch.meta.nextId++,
+    fromBoxId: fromBox.boxId,
+    fromPortId: fromBox.portId,
+    toBoxId: toBox.boxId,
+    toPortId: toBox.portId,
+  });
+  return { ...oldData };
+}
