@@ -37,7 +37,8 @@ type MouseCanvasCoordinates = {
   empty?: true;
 };
 
-type FloatingConnector = {
+export type FloatingConnector = {
+  draggingFromPortKind: PortKind;
   from: { x: number; y: number };
   to: { x: number; y: number };
 };
@@ -150,7 +151,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       const coordY = mouseEvent.clientY - sizeRef.current.top;
 
       const floating = { x: coordX, y: coordY };
-      $setFloatingConnectorRef({ from: anchor, to: floating });
+      $setFloatingConnectorRef({ from: anchor, to: floating, draggingFromPortKind: portKind });
     },
     [$setFloatingConnectorRef, sizeRef, sketchDataRef],
   );
