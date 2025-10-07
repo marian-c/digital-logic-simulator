@@ -179,10 +179,14 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       }
       const boxPosition = getActiveBoxPosition(boxElement.id, sketchDataRef.current);
       const anchor = getPoint(boxElement, boxPosition, portId);
-
+      const activeSketch = getActiveSketch(sketchDataRef.current);
       // TODO: extract these calculations
-      const coordX = mouseEvent.clientX - sizeRef.current.left;
-      const coordY = mouseEvent.clientY - sizeRef.current.top;
+      const coordX =
+        (mouseEvent.clientX - sizeRef.current.left) / activeSketch.state.zoomFactor +
+        activeSketch.state.panX;
+      const coordY =
+        (mouseEvent.clientY - sizeRef.current.top) / activeSketch.state.zoomFactor +
+        activeSketch.state.panY;
 
       const floating = { x: coordX, y: coordY };
       $setFloatingConnectorRef({
@@ -237,6 +241,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       if (isMouseDownForDraggingBoxesRef.current) {
         hasDraggedRef.current = true;
       }
+
       if (isMouseDownForDraggingBoxesRef.current && newCanvasCoordinates.in) {
         // move the active box
         const deltaX = newCanvasCoordinates.x - oldCanvasCoordinates.x;
@@ -258,9 +263,17 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         );
       }
       if (floatingConnectorRef.current !== null && mouseCanvasCoordinatesRef.current.in) {
+        // TODO: PERF: activeSketch should be moemoized since it does not change often
+        const activeSketch = getActiveSketch(sketchDataRef.current);
+        const x =
+          mouseCanvasCoordinatesRef.current.x / activeSketch.state.zoomFactor +
+          activeSketch.state.panX;
+        const y =
+          mouseCanvasCoordinatesRef.current.y / activeSketch.state.zoomFactor +
+          activeSketch.state.panY;
         $setFloatingConnectorRef({
           ...floatingConnectorRef.current,
-          to: { x: mouseCanvasCoordinatesRef.current.x, y: mouseCanvasCoordinatesRef.current.y },
+          to: { x, y },
         });
       }
 
