@@ -45,3 +45,5 @@ export type DataV3 = {
   sketches: Sketch[];
   selectedSketchUuid: string;
 };
+
+export type PortKind = 'inputPort' | 'outputPort';

@@ -3,80 +3,14 @@
 import type { FunctionComponent } from '@/types/r-ui';
 import { assertNever } from '@/helpers/basics';
 import React from 'react';
-import {
-  andGateColor,
-  andGateHeight,
-  andGateWidth,
-  connectorCircleRadius,
-  notGateColor,
-  notGateHeight,
-  notGateWidth,
-} from '@/app/v3/config';
-import type { AndBoxElement, BoxElement, NotBoxElement } from '@/app/v3/types/innerSketchStructure';
+import type { BoxElement } from '@/app/v3/types/innerSketchStructure';
 import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
 import { useSketchStorageData } from '@/app/v3/providers/dataStorageProvider';
 import { getActiveSketch, getBoxPositionById } from '@/app/v3/data/utils/selectors';
-import { GenericBox } from '@/app/v3/modules/canvas/boxes/genericBox';
 import { OutputBox } from '@/app/v3/modules/canvas/boxes/outputBox';
 import { InputBox } from '@/app/v3/modules/canvas/boxes/inputBox';
-
-const NotBox: FunctionComponent<{
-  boxElement: NotBoxElement;
-  boxPosition: SketchBoxPosition;
-}> = ({ boxElement, boxPosition }) => {
-  return (
-    <GenericBox
-      boxId={boxElement.id}
-      pos={boxPosition.pos}
-      innerChildren={
-        <>
-          <rect fill={notGateColor} width={notGateWidth} height={notGateHeight} />
-          <text x="14" y="15" fill="white" fontWeight="bold" fontSize={14}>
-            NOT
-          </text>
-        </>
-      }
-      overChildren={
-        <>
-          <circle cx="0" cy={notGateHeight / 2} r={connectorCircleRadius} fill="red" />
-          <circle cx={notGateWidth} cy={notGateHeight / 2} r={connectorCircleRadius} fill={'red'} />
-        </>
-      }
-    />
-  );
-};
-
-const AndBox: FunctionComponent<{
-  boxElement: AndBoxElement;
-  boxPosition: SketchBoxPosition;
-}> = ({ boxElement, boxPosition }) => {
-  return (
-    <GenericBox
-      boxId={boxElement.id}
-      pos={boxPosition.pos}
-      innerChildren={
-        <>
-          <rect fill={andGateColor} width={andGateWidth} height={andGateHeight} />
-          <text x="14" y="25" fill="white" fontWeight="bold" fontSize={14}>
-            AND
-          </text>
-        </>
-      }
-      overChildren={
-        <>
-          <circle cx="0" cy={andGateHeight / 4} r={connectorCircleRadius} fill="red" />
-          <circle cx="0" cy={(3 * andGateHeight) / 4} r={connectorCircleRadius} fill="red" />
-          <circle
-            cx={notGateWidth}
-            cy={andGateHeight / 2}
-            r={connectorCircleRadius}
-            fill={'blue'}
-          />
-        </>
-      }
-    />
-  );
-};
+import { AndBox } from '@/app/v3/modules/canvas/boxes/andBox';
+import { NotBox } from '@/app/v3/modules/canvas/boxes/notBox';
 
 const Box: FunctionComponent<{ boxElement: BoxElement; boxPosition: SketchBoxPosition }> = ({
   boxElement,

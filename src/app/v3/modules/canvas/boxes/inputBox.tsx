@@ -8,6 +8,7 @@ import { useSketchStorageMethods } from '@/app/v3/providers/dataStorageProvider'
 import { getActiveInputState } from '@/app/v3/data/utils/selectors';
 import { actionToggleActiveInputState } from '@/app/v3/data/utils/actions';
 import { useInteractionsMethods } from '@/app/v3/providers/interactions';
+import { ConnectorPoint } from '@/app/v3/modules/canvas/boxes/connectorPoint';
 
 export const InputBox: FunctionComponent<{
   boxElement: InputBoxElement;
@@ -48,23 +49,13 @@ export const InputBox: FunctionComponent<{
         </>
       }
       overChildren={
-        <>
-          <circle
-            cursor="copy"
-            onMouseDown={(_mouseEvent) => {
-              console.log('TODO: start dragging connector');
-            }}
-            onMouseOver={(_e) => {
-              console.log('TODO: maybe, onReceivingPointMouseOver');
-            }}
-            onMouseOut={() => {
-              console.log('TODO: maybe, on receiving point mouse out');
-            }}
-            fill={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
-            r={6}
-            cx={inputCircleToCircleDist}
-          />
-        </>
+        <ConnectorPoint
+          portKind="outputPort"
+          portId={0}
+          boxElement={boxElement}
+          cx={inputCircleToCircleDist}
+          state={Math.random() > 0.5}
+        />
       }
     />
   );

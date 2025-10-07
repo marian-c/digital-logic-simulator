@@ -5,13 +5,20 @@ import React from 'react';
 import { useElementLayoutWithRef } from '@/hooks/useElementLayout/useElementLayoutWithRef';
 import type { LayoutEvent } from '@/types/rnw';
 import { useSketchStorageMethods } from '@/app/v3/providers/dataStorageProvider';
-import { getActiveBoxPosition, getActiveSketch } from '@/app/v3/data/utils/selectors';
+import {
+  getActiveBoxPosition,
+  getActiveIsPortDraggable,
+  getActiveSketch,
+  getPoint,
+} from '@/app/v3/data/utils/selectors';
 import {
   actionSetActiveSketchPan,
   actionSetActiveSketchZoomAndPan,
   actionSnapActiveBox,
 } from '@/app/v3/data/utils/actions';
 import { useStateWithRefImmediate } from '@/hooks/useStateWithRefImmediate';
+import type { BoxElement } from '@/app/v3/types/innerSketchStructure';
+import type { PortKind } from '@/app/v3/types/data';
 
 type Size = { width: number; height: number; left: number; top: number };
 
@@ -30,6 +37,11 @@ type MouseCanvasCoordinates = {
   empty?: true;
 };
 
+type FloatingConnector = {
+  from: { x: number; y: number };
+  to: { x: number; y: number };
+};
+
 type CtxMethods = {
   svgRef: React.RefCallback<SVGSVGElement>;
   canvasRef: React.RefObject<HTMLDivElement | null>;
@@ -39,11 +51,18 @@ type CtxMethods = {
     mouseEvent: React.MouseEvent<SVGElement, MouseEvent>,
   ) => void;
   hasDraggedRef: React.RefObject<boolean>;
+  $onConnectorPointMouseDown: (
+    portId: number,
+    portKind: PortKind,
+    boxElement: BoxElement,
+    mouseEvent: React.MouseEvent<SVGElement, MouseEvent>,
+  ) => void;
 };
 
 type CtxData = {
   size: Size;
   activeBoxId: number;
+  floatingConnector: FloatingConnector | null;
 };
 
 const InteractionsMethodsContext = React.createContext<CtxMethods>(null as any);
@@ -54,6 +73,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
 
   // region: variables
   const hasDraggedRef = React.useRef(false);
+  const [floatingConnector, $setFloatingConnectorRef, floatingConnectorRef] =
+    useStateWithRefImmediate<FloatingConnector | null>(null);
   const [, $setMouseDocCoordinatesRef, mouseDocCoordinatesRef] =
     useStateWithRefImmediate<MouseCoordinates>({
       x: 0,
@@ -113,6 +134,27 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   // endregion
 
   // region: exposed event handlers
+  const $onConnectorPointMouseDown = React.useCallback<CtxMethods['$onConnectorPointMouseDown']>(
+    (portId, portKind, boxElement, mouseEvent) => {
+      if (mouseEvent.button !== 0) {
+        return;
+      }
+      if (!getActiveIsPortDraggable(portId, portKind, boxElement, sketchDataRef.current)) {
+        return;
+      }
+      const boxPosition = getActiveBoxPosition(boxElement.id, sketchDataRef.current);
+      const anchor = getPoint(boxElement, boxPosition, portId);
+
+      // TODO: extract these calculations
+      const coordX = mouseEvent.clientX - sizeRef.current.left;
+      const coordY = mouseEvent.clientY - sizeRef.current.top;
+
+      const floating = { x: coordX, y: coordY };
+      $setFloatingConnectorRef({ from: anchor, to: floating });
+    },
+    [$setFloatingConnectorRef, sizeRef, sketchDataRef],
+  );
+
   const $onBoxWrapperClick = React.useCallback<CtxMethods['$onBoxWrapperClick']>(
     (_boxId, _mouseEvent) => {
       // nothing for now
@@ -174,16 +216,26 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
           ),
         );
       }
+      if (floatingConnectorRef.current !== null && mouseCanvasCoordinatesRef.current.in) {
+        $setFloatingConnectorRef({
+          ...floatingConnectorRef.current,
+          to: { x: mouseCanvasCoordinatesRef.current.x, y: mouseCanvasCoordinatesRef.current.y },
+        });
+      }
 
       $setMouseDocCoordinatesRef(docCoordintes);
     },
     [
       $calculateCanvasCoordinates,
+      $setFloatingConnectorRef,
+      $setIsMouseDownForDraggingBoxesRef,
       $setMouseDocCoordinatesRef,
       $setSketchData,
       activeBoxIdRef,
+      floatingConnectorRef,
       isMouseDownForDraggingBoxesRef,
       lastMouseCanvasCoordinatesRef,
+      mouseCanvasCoordinatesRef,
       sizeRef,
       sketchDataRef,
     ],
@@ -192,8 +244,9 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     (_mouseEvent: MouseEvent) => {
       $setIsMouseDownForDraggingBoxesRef(false);
       hasDraggedRef.current = false;
+      $setFloatingConnectorRef(null);
     },
-    [$setIsMouseDownForDraggingBoxesRef],
+    [$setFloatingConnectorRef, $setIsMouseDownForDraggingBoxesRef],
   );
 
   const $handleSvgWheelPinch = React.useCallback(
@@ -298,12 +351,20 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       $onBoxWrapperClick,
       $onBoxWrapperMouseDown,
       hasDraggedRef,
+      $onConnectorPointMouseDown,
     } satisfies CtxMethods;
-  }, [$onBoxWrapperClick, $onBoxWrapperMouseDown, canvasRef, svgRef, hasDraggedRef]);
+  }, [
+    $onBoxWrapperClick,
+    $onBoxWrapperMouseDown,
+    canvasRef,
+    svgRef,
+    hasDraggedRef,
+    $onConnectorPointMouseDown,
+  ]);
 
   const dataVal = React.useMemo<CtxData>(() => {
-    return { size, activeBoxId } satisfies CtxData;
-  }, [size, activeBoxId]);
+    return { size, activeBoxId, floatingConnector } satisfies CtxData;
+  }, [size, activeBoxId, floatingConnector]);
 
   return (
     <InteractionsMethodsContext value={contextVal}>

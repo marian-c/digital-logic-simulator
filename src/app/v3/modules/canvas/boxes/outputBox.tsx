@@ -2,8 +2,9 @@ import type { FunctionComponent } from '@/types/r-ui';
 import type { OutputBoxElement } from '@/app/v3/types/innerSketchStructure';
 import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
 import { GenericBox } from '@/app/v3/modules/canvas/boxes/genericBox';
-import { outputCircleToCircleDist } from '@/app/v3/config';
+import { inputCircleToCircleDist, outputCircleToCircleDist } from '@/app/v3/config';
 import React from 'react';
+import { ConnectorPoint } from '@/app/v3/modules/canvas/boxes/connectorPoint';
 
 export const OutputBox: FunctionComponent<{
   boxElement: OutputBoxElement;
@@ -35,23 +36,12 @@ export const OutputBox: FunctionComponent<{
         </>
       }
       overChildren={
-        <>
-          <circle
-            data-desc="output/input-connector"
-            cursor="copy"
-            onMouseDown={(_mouseEvent) => {
-              console.log('TODO: MAYBE start dragging connector');
-            }}
-            onMouseOver={(_e) => {
-              console.log('TODO: onReceivingPointMouseOver');
-            }}
-            onMouseOut={() => {
-              console.log('TODO: on receiving point mouse out');
-            }}
-            fill={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
-            r={6}
-          />
-        </>
+        <ConnectorPoint
+          portKind="inputPort"
+          portId={0}
+          boxElement={boxElement}
+          state={Math.random() > 0.5}
+        />
       }
     />
   );

@@ -1,81 +1,12 @@
 import type { FunctionComponent } from '@/types/r-ui';
 import { useSketchStorageData } from '@/app/v3/providers/dataStorageProvider';
-import { getActiveConnectorData, getActiveSketch } from '@/app/v3/data/utils/selectors';
+import { getActiveConnectorData, getActiveSketch, getPoint } from '@/app/v3/data/utils/selectors';
 import React from 'react';
 import type { BoxElement, ConnectorElement } from '@/app/v3/types/innerSketchStructure';
 import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
-import { assertNever } from '@/helpers/basics';
-import {
-  andGateHeight,
-  notGateHeight,
-  notGateWidth,
-  outputCircleToCircleDist,
-  plainConnectorExtensionMin,
-} from '@/app/v3/config';
+import { plainConnectorExtensionMin } from '@/app/v3/config';
 import roundPathCorners from '@/helpers/rounding';
-import { andGateWidth } from '@/app/v2/config';
-
-function getPoint(box: BoxElement, boxPosition: SketchBoxPosition, portId: number) {
-  switch (box.boxElementKind) {
-    case 'and':
-      if (portId === 0) {
-        return {
-          x: boxPosition.pos.x,
-          y: boxPosition.pos.y + andGateHeight / 4,
-        };
-      } else if (portId == 1) {
-        return {
-          x: boxPosition.pos.x,
-          y: boxPosition.pos.y + (3 * andGateHeight) / 4,
-        };
-      } else if (portId === 2) {
-        return {
-          x: boxPosition.pos.x + andGateWidth,
-          y: boxPosition.pos.y + andGateHeight / 2,
-        };
-      } else {
-        throw new Error('Inconsistency: portId is not 0,1 or 2, but ' + portId + '');
-      }
-      break;
-    case 'not':
-      if (portId === 0) {
-        return {
-          x: boxPosition.pos.x,
-          y: boxPosition.pos.y + notGateHeight / 2,
-        };
-      } else if (portId === 1) {
-        return {
-          x: boxPosition.pos.x + notGateWidth,
-          y: boxPosition.pos.y + notGateHeight / 2,
-        };
-      } else {
-        throw new Error('Inconsistency: portId is not 0 or 1, but ' + portId + '');
-      }
-      break;
-    case 'input':
-      if (portId === 0) {
-        return {
-          x: boxPosition.pos.x + outputCircleToCircleDist,
-          y: boxPosition.pos.y,
-        };
-      } else {
-        throw new Error('Inconsistency: portId is not 0, but ' + portId + '');
-      }
-      break;
-    case 'output':
-      if (portId === 0) {
-        return {
-          x: boxPosition.pos.x,
-          y: boxPosition.pos.y,
-        };
-      } else {
-        throw new Error('Inconsistency: portId is not 0, but ' + portId + '');
-      }
-      break;
-    default:
-      assertNever(box);
-  }
-}
+import { useInteractionsData } from '@/app/v3/providers/interactions';
 
 export const Connector: FunctionComponent<{
   connectorElement: ConnectorElement;
@@ -112,10 +43,27 @@ export const Connector: FunctionComponent<{
 
 export const Connectors: FunctionComponent = () => {
   const data = useSketchStorageData();
+  const { floatingConnector } = useInteractionsData();
   const activeSketch = getActiveSketch(data);
-
   return (
     <>
+      {floatingConnector && (
+        <path
+          fill="none"
+          stroke={Math.random() > 0.5 ? 'green' : 'blue'}
+          strokeWidth={3}
+          shapeRendering="geometricPrecision"
+          d={roundPathCorners(
+            `M${floatingConnector.from.x} ${floatingConnector.from.y} ` +
+              `L${floatingConnector.from.x + plainConnectorExtensionMin} ${floatingConnector.from.y} ` +
+              `L${floatingConnector.to.x - plainConnectorExtensionMin} ${floatingConnector.to.y} ` +
+              `L${floatingConnector.to.x} ${floatingConnector.to.y} `,
+            plainConnectorExtensionMin / 3,
+            false,
+            false,
+          )}
+        />
+      )}
       {activeSketch.structure.main.connectorElements.map((connectorElement) => {
         const { fromBox, fromBoxPosition, toBox, toBoxPosition } = getActiveConnectorData(
           connectorElement,

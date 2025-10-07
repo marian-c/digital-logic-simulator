@@ -1,5 +1,14 @@
-import type { DataV3, Sketch } from '@/app/v3/types/data';
+import type { DataV3, PortKind, Sketch } from '@/app/v3/types/data';
 import type { BoxElement, ConnectorElement } from '@/app/v3/types/innerSketchStructure';
+import { assertNever } from '@/helpers/basics';
+import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
+import {
+  andGateHeight,
+  notGateHeight,
+  notGateWidth,
+  outputCircleToCircleDist,
+} from '@/app/v3/config';
+import { andGateWidth } from '@/app/v2/config';
 
 export function getActiveSketch(data: DataV3) {
   // TODO: error handling
@@ -15,13 +24,13 @@ export function getActiveBox(boxId: number, data: DataV3) {
   return getBoxById(boxId, activeSketch);
 }
 
+export function getBoxPositionById(boxId: number, activeSketch: Sketch) {
+  return activeSketch.positions.boxPositions.find((p) => p.boxId === boxId)!;
+}
+
 export function getActiveBoxPosition(boxId: number, data: DataV3) {
   const activeSketch = getActiveSketch(data);
   return getBoxPositionById(boxId, activeSketch);
-}
-
-export function getBoxPositionById(boxId: number, activeSketch: Sketch) {
-  return activeSketch.positions.boxPositions.find((p) => p.boxId === boxId)!;
 }
 
 export function getActiveConnectorData(connectorElement: ConnectorElement, data: DataV3) {
@@ -47,4 +56,89 @@ export function getActiveInputState(box: BoxElement, data: DataV3) {
   const activeSketch = getActiveSketch(data);
   const state = getActiveInputStateObject(box, activeSketch)?.state || false;
   return state;
+}
+
+export function getActiveIsPortDraggable(
+  portId: number,
+  portKind: PortKind,
+  boxElement: BoxElement,
+  data: DataV3,
+) {
+  const activeSketch = getActiveSketch(data);
+  let isActive = true;
+
+  switch (portKind) {
+    case 'inputPort':
+      const onConnector = activeSketch.structure.main.connectorElements.find(
+        (c) => c.toBoxId === boxElement.id && c.toPortId === portId,
+      );
+      isActive = onConnector === undefined;
+    case 'outputPort':
+      break;
+    default:
+      assertNever(portKind);
+  }
+  return isActive;
+}
+
+export function getPoint(box: BoxElement, boxPosition: SketchBoxPosition, portId: number) {
+  switch (box.boxElementKind) {
+    case 'and':
+      if (portId === 0) {
+        return {
+          x: boxPosition.pos.x,
+          y: boxPosition.pos.y + andGateHeight / 4,
+        };
+      } else if (portId == 1) {
+        return {
+          x: boxPosition.pos.x,
+          y: boxPosition.pos.y + (3 * andGateHeight) / 4,
+        };
+      } else if (portId === 2) {
+        return {
+          x: boxPosition.pos.x + andGateWidth,
+          y: boxPosition.pos.y + andGateHeight / 2,
+        };
+      } else {
+        throw new Error('Inconsistency: portId is not 0,1 or 2, but ' + portId + '');
+      }
+      break;
+    case 'not':
+      if (portId === 0) {
+        return {
+          x: boxPosition.pos.x,
+          y: boxPosition.pos.y + notGateHeight / 2,
+        };
+      } else if (portId === 1) {
+        return {
+          x: boxPosition.pos.x + notGateWidth,
+          y: boxPosition.pos.y + notGateHeight / 2,
+        };
+      } else {
+        throw new Error('Inconsistency: portId is not 0 or 1, but ' + portId + '');
+      }
+      break;
+    case 'input':
+      if (portId === 0) {
+        return {
+          x: boxPosition.pos.x + outputCircleToCircleDist,
+          y: boxPosition.pos.y,
+        };
+      } else {
+        throw new Error('Inconsistency: portId is not 0, but ' + portId + '');
+      }
+      break;
+    case 'output':
+      if (portId === 0) {
+        return {
+          x: boxPosition.pos.x,
+          y: boxPosition.pos.y,
+        };
+      } else {
+        throw new Error('Inconsistency: portId is not 0, but ' + portId + '');
+      }
+      break;
+    default:
+      assertNever(box);
+  }
 }
