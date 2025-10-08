@@ -37,3 +37,5 @@ https://redux-toolkit.js.org/
 
 
 https://preactjs.com/blog/simplifying-islands-arch
+
+https://github.com/maslianok/react-resize-detector
