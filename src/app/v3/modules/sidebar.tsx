@@ -14,6 +14,7 @@ import { useEffect, useRef } from 'react';
 export function Rotate() {
   const ref = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const avgRef = useRef<HTMLDivElement>(null);
   const stopRef = useRef(false);
   useEffect(() => {
     stopRef.current = false;
@@ -26,9 +27,13 @@ export function Rotate() {
 
     let deg = 0;
     let prevFrameTime = 0;
+    const deltas120: number[] = Array.from({ length: 20 });
     function fnFrame(time: number) {
       const diff = time - prevFrameTime;
       const stat = stats[deg % 60];
+      deltas120[deg % deltas120.length] = diff;
+      const avg = deltas120.reduce((a, b) => (a ?? 0) + (b ?? 0), 0) / deltas120.length;
+      (avgRef.current || ({} as any)).innerText = `AVG: ${Math.floor(1000 / avg)} FPS`;
       stat.remove();
       stat.style.height = `${diff * 3}px`;
       statsRef.current?.appendChild(stat);
@@ -67,6 +72,7 @@ export function Rotate() {
       <div className="inline-block" ref={ref}>
         Rotate this as well
       </div>
+      <div ref={avgRef}>AVG</div>
     </div>
   );
 }
