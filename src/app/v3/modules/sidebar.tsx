@@ -11,6 +11,17 @@ import {
 import { useInteractionsData } from '@/app/v3/providers/interactions';
 import { useEffect, useRef } from 'react';
 
+export function Exports() {
+  const data = useSketchStorageData();
+  const activeSketch = getActiveSketch(data);
+
+  return (
+    <div>
+      <textarea value={JSON.stringify(activeSketch, null, 2)} />
+    </div>
+  );
+}
+
 export function Rotate() {
   const ref = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
@@ -161,7 +172,7 @@ export function Sidebar() {
         <br />
         <Rotate />
         <br />
-        Sidebar
+        <Exports />
         <br />
         Sidebar
         <br />
