@@ -10,6 +10,7 @@ import { useFirstMount } from '@/hooks/useFirstMount';
 import { isBrowser } from '@/helpers/basics';
 import { examplesV3 } from '@/app/v3/data/load';
 import { useStateWithRef } from '@/hooks/useStateWithRef';
+import debounce from 'lodash/debounce';
 
 // it happens that empty data will not be written to
 const emptyData: DataV3 = Object.freeze({ sketches: [], selectedSketchUuid: '' });
@@ -35,6 +36,14 @@ DataStorageProviderData.displayName = 'DataStorageProviderData';
 const DataStorageProviderMethods = React.createContext<MethodsV3>(null as any);
 DataStorageProviderMethods.displayName = 'DataStorageProviderMethods';
 
+const safeToLocalStorage = debounce((data: DataV3) => {
+  try {
+    localStorageSetItemInCollection('v3Data', 'default', data);
+  } catch (e) {
+    console.error(e);
+  }
+}, 2000);
+
 export const DataStorageProvider: FunctionComponentWithChildren = ({ children }) => {
   const isFirstMount = useFirstMount();
   const [_data, $_setData, sketchDataRef] = useStateWithRef<DataV3>(() => {
@@ -55,8 +64,10 @@ export const DataStorageProvider: FunctionComponentWithChildren = ({ children })
   const methods = React.useMemo<MethodsV3>(() => {
     return {
       $setSketchData(ssa) {
-        // TODO: save to localstorage throttled
         $_setData(ssa);
+        // TODO: only save when relevant stuff changes, for example simulation data change does not need to save
+        //   also, for examples, maybe we don't need to save the input states chagnes
+        safeToLocalStorage(ssa);
       },
       sketchDataRef,
     };
