@@ -17,7 +17,7 @@ export function Exports() {
 
   return (
     <div>
-      <textarea value={JSON.stringify(activeSketch, null, 2)} />
+      <textarea value={JSON.stringify(activeSketch, null, 2)} readOnly />
     </div>
   );
 }
