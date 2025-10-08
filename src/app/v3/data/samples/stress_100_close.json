@@ -4,31 +4,31 @@
       "boxElements": [
         {
           "id": 1,
-          "boxElementKind": "and"
+          "boxElementKind": "not"
         },
         {
           "id": 2,
-          "boxElementKind": "input"
+          "boxElementKind": "output"
         },
         {
           "id": 3,
-          "boxElementKind": "input"
+          "boxElementKind": "and"
         },
         {
           "id": 4,
-          "boxElementKind": "input"
+          "boxElementKind": "not"
         },
         {
           "id": 5,
-          "boxElementKind": "output"
+          "boxElementKind": "not"
         },
         {
           "id": 6,
-          "boxElementKind": "output"
+          "boxElementKind": "input"
         },
         {
           "id": 7,
-          "boxElementKind": "input"
+          "boxElementKind": "output"
         },
         {
           "id": 8,
@@ -36,7 +36,7 @@
         },
         {
           "id": 9,
-          "boxElementKind": "not"
+          "boxElementKind": "input"
         },
         {
           "id": 10,
@@ -44,11 +44,11 @@
         },
         {
           "id": 11,
-          "boxElementKind": "input"
+          "boxElementKind": "and"
         },
         {
           "id": 12,
-          "boxElementKind": "not"
+          "boxElementKind": "output"
         },
         {
           "id": 13,
@@ -56,11 +56,11 @@
         },
         {
           "id": 14,
-          "boxElementKind": "not"
+          "boxElementKind": "output"
         },
         {
           "id": 15,
-          "boxElementKind": "not"
+          "boxElementKind": "output"
         },
         {
           "id": 16,
@@ -68,11 +68,11 @@
         },
         {
           "id": 17,
-          "boxElementKind": "not"
+          "boxElementKind": "and"
         },
         {
           "id": 18,
-          "boxElementKind": "input"
+          "boxElementKind": "output"
         },
         {
           "id": 19,
@@ -80,7 +80,7 @@
         },
         {
           "id": 20,
-          "boxElementKind": "output"
+          "boxElementKind": "and"
         },
         {
           "id": 21,
@@ -92,15 +92,15 @@
         },
         {
           "id": 23,
-          "boxElementKind": "input"
+          "boxElementKind": "and"
         },
         {
           "id": 24,
-          "boxElementKind": "not"
+          "boxElementKind": "input"
         },
         {
           "id": 25,
-          "boxElementKind": "and"
+          "boxElementKind": "input"
         },
         {
           "id": 26,
@@ -108,7 +108,7 @@
         },
         {
           "id": 27,
-          "boxElementKind": "and"
+          "boxElementKind": "not"
         },
         {
           "id": 28,
@@ -116,7 +116,7 @@
         },
         {
           "id": 29,
-          "boxElementKind": "not"
+          "boxElementKind": "output"
         },
         {
           "id": 30,
@@ -128,11 +128,11 @@
         },
         {
           "id": 32,
-          "boxElementKind": "and"
+          "boxElementKind": "not"
         },
         {
           "id": 33,
-          "boxElementKind": "not"
+          "boxElementKind": "input"
         },
         {
           "id": 34,
@@ -140,7 +140,7 @@
         },
         {
           "id": 35,
-          "boxElementKind": "output"
+          "boxElementKind": "and"
         },
         {
           "id": 36,
@@ -148,27 +148,27 @@
         },
         {
           "id": 37,
-          "boxElementKind": "not"
+          "boxElementKind": "output"
         },
         {
           "id": 38,
-          "boxElementKind": "input"
+          "boxElementKind": "not"
         },
         {
           "id": 39,
-          "boxElementKind": "output"
+          "boxElementKind": "and"
         },
         {
           "id": 40,
-          "boxElementKind": "input"
+          "boxElementKind": "and"
         },
         {
           "id": 41,
-          "boxElementKind": "output"
+          "boxElementKind": "input"
         },
         {
           "id": 42,
-          "boxElementKind": "not"
+          "boxElementKind": "and"
         },
         {
           "id": 43,
@@ -176,7 +176,7 @@
         },
         {
           "id": 44,
-          "boxElementKind": "output"
+          "boxElementKind": "input"
         },
         {
           "id": 45,
@@ -188,19 +188,19 @@
         },
         {
           "id": 47,
-          "boxElementKind": "not"
+          "boxElementKind": "input"
         },
         {
           "id": 48,
-          "boxElementKind": "not"
+          "boxElementKind": "and"
         },
         {
           "id": 49,
-          "boxElementKind": "not"
+          "boxElementKind": "input"
         },
         {
           "id": 50,
-          "boxElementKind": "input"
+          "boxElementKind": "output"
         },
         {
           "id": 51,
@@ -208,19 +208,19 @@
         },
         {
           "id": 52,
-          "boxElementKind": "input"
+          "boxElementKind": "not"
         },
         {
           "id": 53,
-          "boxElementKind": "output"
+          "boxElementKind": "not"
         },
         {
           "id": 54,
-          "boxElementKind": "and"
+          "boxElementKind": "input"
         },
         {
           "id": 55,
-          "boxElementKind": "not"
+          "boxElementKind": "and"
         },
         {
           "id": 56,
@@ -228,15 +228,15 @@
         },
         {
           "id": 57,
-          "boxElementKind": "output"
-        },
-        {
-          "id": 58,
           "boxElementKind": "input"
         },
         {
+          "id": 58,
+          "boxElementKind": "and"
+        },
+        {
           "id": 59,
-          "boxElementKind": "output"
+          "boxElementKind": "not"
         },
         {
           "id": 60,
@@ -244,15 +244,15 @@
         },
         {
           "id": 61,
-          "boxElementKind": "and"
+          "boxElementKind": "output"
         },
         {
           "id": 62,
-          "boxElementKind": "and"
+          "boxElementKind": "input"
         },
         {
           "id": 63,
-          "boxElementKind": "input"
+          "boxElementKind": "not"
         },
         {
           "id": 64,
@@ -260,27 +260,27 @@
         },
         {
           "id": 65,
-          "boxElementKind": "not"
-        },
-        {
-          "id": 66,
-          "boxElementKind": "not"
-        },
-        {
-          "id": 67,
-          "boxElementKind": "input"
-        },
-        {
-          "id": 68,
-          "boxElementKind": "and"
-        },
-        {
-          "id": 69,
           "boxElementKind": "output"
         },
         {
+          "id": 66,
+          "boxElementKind": "and"
+        },
+        {
+          "id": 67,
+          "boxElementKind": "output"
+        },
+        {
+          "id": 68,
+          "boxElementKind": "output"
+        },
+        {
+          "id": 69,
+          "boxElementKind": "not"
+        },
+        {
           "id": 70,
-          "boxElementKind": "input"
+          "boxElementKind": "not"
         },
         {
           "id": 71,
@@ -288,19 +288,19 @@
         },
         {
           "id": 72,
-          "boxElementKind": "not"
+          "boxElementKind": "and"
         },
         {
           "id": 73,
-          "boxElementKind": "output"
+          "boxElementKind": "and"
         },
         {
           "id": 74,
-          "boxElementKind": "input"
+          "boxElementKind": "not"
         },
         {
           "id": 75,
-          "boxElementKind": "and"
+          "boxElementKind": "not"
         },
         {
           "id": 76,
@@ -312,11 +312,11 @@
         },
         {
           "id": 78,
-          "boxElementKind": "output"
+          "boxElementKind": "and"
         },
         {
           "id": 79,
-          "boxElementKind": "input"
+          "boxElementKind": "and"
         },
         {
           "id": 80,
@@ -324,11 +324,11 @@
         },
         {
           "id": 81,
-          "boxElementKind": "not"
+          "boxElementKind": "input"
         },
         {
           "id": 82,
-          "boxElementKind": "input"
+          "boxElementKind": "and"
         },
         {
           "id": 83,
@@ -336,11 +336,11 @@
         },
         {
           "id": 84,
-          "boxElementKind": "output"
+          "boxElementKind": "input"
         },
         {
           "id": 85,
-          "boxElementKind": "output"
+          "boxElementKind": "input"
         },
         {
           "id": 86,
@@ -348,7 +348,7 @@
         },
         {
           "id": 87,
-          "boxElementKind": "output"
+          "boxElementKind": "input"
         },
         {
           "id": 88,
@@ -356,7 +356,7 @@
         },
         {
           "id": 89,
-          "boxElementKind": "and"
+          "boxElementKind": "output"
         },
         {
           "id": 90,
@@ -364,192 +364,192 @@
         },
         {
           "id": 91,
-          "boxElementKind": "not"
-        },
-        {
-          "id": 92,
-          "boxElementKind": "and"
-        },
-        {
-          "id": 93,
-          "boxElementKind": "input"
-        },
-        {
-          "id": 94,
-          "boxElementKind": "not"
-        },
-        {
-          "id": 95,
-          "boxElementKind": "and"
-        },
-        {
-          "id": 96,
-          "boxElementKind": "not"
-        },
-        {
-          "id": 97,
-          "boxElementKind": "input"
-        },
-        {
-          "id": 98,
           "boxElementKind": "output"
         },
         {
-          "id": 99,
+          "id": 92,
+          "boxElementKind": "input"
+        },
+        {
+          "id": 93,
+          "boxElementKind": "and"
+        },
+        {
+          "id": 94,
+          "boxElementKind": "input"
+        },
+        {
+          "id": 95,
+          "boxElementKind": "output"
+        },
+        {
+          "id": 96,
+          "boxElementKind": "output"
+        },
+        {
+          "id": 97,
           "boxElementKind": "not"
         },
         {
+          "id": 98,
+          "boxElementKind": "input"
+        },
+        {
+          "id": 99,
+          "boxElementKind": "input"
+        },
+        {
           "id": 100,
-          "boxElementKind": "not"
+          "boxElementKind": "and"
         }
       ],
       "connectorElements": [
         {
           "id": 101,
-          "fromBoxId": 4,
-          "fromPortId": 0,
+          "fromBoxId": 17,
+          "fromPortId": 2,
+          "toBoxId": 78,
+          "toPortId": 1
+        },
+        {
+          "id": 102,
+          "fromBoxId": 80,
+          "fromPortId": 1,
           "toBoxId": 89,
           "toPortId": 0
         },
         {
-          "id": 102,
-          "fromBoxId": 37,
-          "fromPortId": 1,
-          "toBoxId": 49,
-          "toPortId": 0
-        },
-        {
           "id": 103,
-          "fromBoxId": 19,
-          "fromPortId": 2,
-          "toBoxId": 92,
+          "fromBoxId": 21,
+          "fromPortId": 0,
+          "toBoxId": 88,
           "toPortId": 1
         },
         {
           "id": 104,
-          "fromBoxId": 12,
-          "fromPortId": 1,
-          "toBoxId": 84,
+          "fromBoxId": 81,
+          "fromPortId": 0,
+          "toBoxId": 18,
           "toPortId": 0
         },
         {
           "id": 105,
-          "fromBoxId": 55,
-          "fromPortId": 1,
-          "toBoxId": 73,
-          "toPortId": 0
-        },
-        {
-          "id": 106,
-          "fromBoxId": 79,
-          "fromPortId": 0,
-          "toBoxId": 25,
+          "fromBoxId": 48,
+          "fromPortId": 2,
+          "toBoxId": 72,
           "toPortId": 1
         },
         {
-          "id": 107,
-          "fromBoxId": 4,
+          "id": 106,
+          "fromBoxId": 9,
           "fromPortId": 0,
-          "toBoxId": 60,
+          "toBoxId": 31,
+          "toPortId": 0
+        },
+        {
+          "id": 107,
+          "fromBoxId": 100,
+          "fromPortId": 2,
+          "toBoxId": 66,
           "toPortId": 0
         },
         {
           "id": 108,
-          "fromBoxId": 48,
-          "fromPortId": 1,
-          "toBoxId": 54,
-          "toPortId": 1
+          "fromBoxId": 17,
+          "fromPortId": 2,
+          "toBoxId": 93,
+          "toPortId": 0
         },
         {
           "id": 109,
-          "fromBoxId": 96,
+          "fromBoxId": 27,
           "fromPortId": 1,
-          "toBoxId": 64,
-          "toPortId": 1
+          "toBoxId": 38,
+          "toPortId": 0
         },
         {
           "id": 110,
-          "fromBoxId": 17,
-          "fromPortId": 1,
-          "toBoxId": 20,
+          "fromBoxId": 72,
+          "fromPortId": 2,
+          "toBoxId": 13,
           "toPortId": 0
         },
         {
           "id": 111,
-          "fromBoxId": 64,
-          "fromPortId": 2,
-          "toBoxId": 15,
+          "fromBoxId": 63,
+          "fromPortId": 1,
+          "toBoxId": 71,
           "toPortId": 0
         },
         {
           "id": 112,
-          "fromBoxId": 23,
-          "fromPortId": 0,
-          "toBoxId": 68,
-          "toPortId": 1
-        },
-        {
-          "id": 113,
-          "fromBoxId": 82,
-          "fromPortId": 0,
-          "toBoxId": 59,
-          "toPortId": 0
-        },
-        {
-          "id": 114,
-          "fromBoxId": 61,
-          "fromPortId": 2,
-          "toBoxId": 55,
-          "toPortId": 0
-        },
-        {
-          "id": 115,
-          "fromBoxId": 92,
-          "fromPortId": 2,
-          "toBoxId": 46,
-          "toPortId": 0
-        },
-        {
-          "id": 116,
-          "fromBoxId": 22,
-          "fromPortId": 0,
-          "toBoxId": 8,
-          "toPortId": 0
-        },
-        {
-          "id": 117,
-          "fromBoxId": 60,
-          "fromPortId": 1,
-          "toBoxId": 44,
-          "toPortId": 0
-        },
-        {
-          "id": 118,
-          "fromBoxId": 74,
+          "fromBoxId": 49,
           "fromPortId": 0,
           "toBoxId": 91,
           "toPortId": 0
         },
         {
-          "id": 119,
-          "fromBoxId": 68,
+          "id": 113,
+          "fromBoxId": 49,
+          "fromPortId": 0,
+          "toBoxId": 39,
+          "toPortId": 0
+        },
+        {
+          "id": 114,
+          "fromBoxId": 71,
           "fromPortId": 2,
-          "toBoxId": 27,
+          "toBoxId": 70,
+          "toPortId": 0
+        },
+        {
+          "id": 115,
+          "fromBoxId": 1,
+          "fromPortId": 1,
+          "toBoxId": 61,
+          "toPortId": 0
+        },
+        {
+          "id": 116,
+          "fromBoxId": 94,
+          "fromPortId": 0,
+          "toBoxId": 97,
+          "toPortId": 0
+        },
+        {
+          "id": 117,
+          "fromBoxId": 82,
+          "fromPortId": 2,
+          "toBoxId": 20,
+          "toPortId": 0
+        },
+        {
+          "id": 118,
+          "fromBoxId": 79,
+          "fromPortId": 2,
+          "toBoxId": 50,
+          "toPortId": 0
+        },
+        {
+          "id": 119,
+          "fromBoxId": 39,
+          "fromPortId": 2,
+          "toBoxId": 82,
           "toPortId": 0
         },
         {
           "id": 120,
-          "fromBoxId": 1,
-          "fromPortId": 2,
-          "toBoxId": 77,
-          "toPortId": 0
+          "fromBoxId": 74,
+          "fromPortId": 1,
+          "toBoxId": 64,
+          "toPortId": 1
         }
       ]
     }
   },
   "meta": {
     "nextId": 121,
-    "uuid": "0199b60a-83f3-7262-9047-e18b678711ff",
+    "uuid": "0199c3e9-11c7-726b-a0f7-d3d819f416be",
     "name": "stress_100_close",
     "description": "",
     "isExample": true
@@ -35916,7 +35916,7 @@
     ]
   },
   "inputs": {
-    "todo": true
+    "inputsState": []
   },
   "simulation": {
     "todo": true

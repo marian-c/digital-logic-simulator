@@ -6,9 +6,11 @@ export interface ConnectorElement {
   toPortId: number;
 }
 
+export type BoxElementKind = 'and' | 'not' | 'input' | 'output';
+
 export interface BoxElementBase {
   id: number;
-  boxElementKind: 'and' | 'not' | 'input' | 'output';
+  boxElementKind: BoxElementKind;
 }
 
 export interface NotBoxElement extends BoxElementBase {

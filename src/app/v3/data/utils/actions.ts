@@ -6,7 +6,7 @@ import {
   getActiveSketch,
   getBoxPositionById,
 } from '@/app/v3/data/utils/selectors';
-import type { BoxElement } from '@/app/v3/types/innerSketchStructure';
+import type { BoxElement, BoxElementKind } from '@/app/v3/types/innerSketchStructure';
 
 export function actionAddEmptySketchAndSelect(newName: string, oldData: DataV3) {
   const uuid = uuidv7();
@@ -125,4 +125,17 @@ export function actionAddActiveConnector(
     toPortId: toBox.portId,
   });
   return { ...oldData };
+}
+
+export function actionAddNewBox(boxKind: BoxElementKind, x: number, y: number, oldData: DataV3) {
+  const activeSketch = getActiveSketch(oldData);
+  // XXX: just mutates
+  const boxId = activeSketch.meta.nextId++;
+  const newBox = { id: boxId, boxElementKind: boxKind };
+  const newPosition = { boxId, pos: { x, y } };
+  // XXX: just mutates
+  activeSketch.structure.main.boxElements.push(newBox);
+  // XXX: just mutates
+  activeSketch.positions.boxPositions.push(newPosition);
+  return [{ newBox, newPosition }, { ...oldData }] as const;
 }

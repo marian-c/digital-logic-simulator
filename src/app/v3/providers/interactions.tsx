@@ -13,12 +13,13 @@ import {
 } from '@/app/v3/data/utils/selectors';
 import {
   actionAddActiveConnector,
+  actionAddNewBox,
   actionSetActiveSketchPan,
   actionSetActiveSketchZoomAndPan,
   actionSnapActiveBox,
 } from '@/app/v3/data/utils/actions';
 import { useStateWithRefImmediate } from '@/hooks/useStateWithRefImmediate';
-import type { BoxElement } from '@/app/v3/types/innerSketchStructure';
+import type { BoxElement, BoxElementKind } from '@/app/v3/types/innerSketchStructure';
 import type { PortKind } from '@/app/v3/types/data';
 
 type Size = { width: number; height: number; left: number; top: number };
@@ -63,6 +64,8 @@ type CtxMethods = {
   ) => void;
   $onConnectorPointMouseOver: (portId: number, portKind: PortKind, boxElement: BoxElement) => void;
   $onConnectorPointMouseOut: (portId: number, portKind: PortKind, boxElement: BoxElement) => void;
+  $onNewBoxMouseDown: (boxKind: BoxElementKind) => void;
+  $onNewBoxMouseUp: (boxKind: BoxElementKind) => void;
 };
 
 type CtxData = {
@@ -78,6 +81,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   const { sketchDataRef, $setSketchData } = useSketchStorageMethods();
 
   // region: variables
+  const [, $setAboutToDragNewBoxKindRef, aboutToDragNewBoxKindRef] =
+    useStateWithRefImmediate<BoxElementKind | null>(null);
   const hasDraggedRef = React.useRef(false);
   const [floatingConnector, $setFloatingConnectorRef, floatingConnectorRef] =
     useStateWithRefImmediate<FloatingConnector | null>(null);
@@ -140,6 +145,19 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   // endregion
 
   // region: exposed event handlers
+  const $onNewBoxMouseDown = React.useCallback<CtxMethods['$onNewBoxMouseDown']>(
+    (boxKind) => {
+      $setAboutToDragNewBoxKindRef(boxKind);
+    },
+    [$setAboutToDragNewBoxKindRef],
+  );
+  const $onNewBoxMouseUp = React.useCallback<CtxMethods['$onNewBoxMouseUp']>(
+    (_boxKind) => {
+      $setAboutToDragNewBoxKindRef(null);
+    },
+    [$setAboutToDragNewBoxKindRef],
+  );
+
   const $onConnectorPointMouseOut = React.useCallback<CtxMethods['$onConnectorPointMouseOut']>(
     (_portId, _portKind, _boxElement) => {
       // is this enough?
@@ -280,14 +298,40 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         });
       }
 
+      if (aboutToDragNewBoxKindRef.current) {
+        const activeSketch = getActiveSketch(sketchDataRef.current);
+        // TODO: this positions the box at the mouseCanvasCoordinatesRef.current.x
+        //   we should offset that so the cursor is at the center of the box
+        const [{ newBox, newPosition }, newData] = actionAddNewBox(
+          aboutToDragNewBoxKindRef.current,
+          mouseCanvasCoordinatesRef.current.x / activeSketch.state.zoomFactor +
+            activeSketch.state.panX,
+          mouseCanvasCoordinatesRef.current.y / activeSketch.state.zoomFactor +
+            activeSketch.state.panY,
+          sketchDataRef.current,
+        );
+        $setSketchData(newData);
+        $setActiveBoxIdRef(newBox.id);
+        $setLastMouseCanvasCoordinatesRef({
+          x: mouseCanvasCoordinatesRef.current.x,
+          y: mouseCanvasCoordinatesRef.current.y,
+          in: true,
+        });
+        $setIsMouseDownForDraggingBoxesRef(newPosition.pos);
+        $setAboutToDragNewBoxKindRef(null);
+      }
       $setMouseDocCoordinatesRef(docCoordintes);
     },
     [
       $calculateCanvasCoordinates,
+      $setAboutToDragNewBoxKindRef,
+      $setActiveBoxIdRef,
       $setFloatingConnectorRef,
       $setIsMouseDownForDraggingBoxesRef,
+      $setLastMouseCanvasCoordinatesRef,
       $setMouseDocCoordinatesRef,
       $setSketchData,
+      aboutToDragNewBoxKindRef,
       activeBoxIdRef,
       floatingConnectorRef,
       isMouseDownForDraggingBoxesRef,
@@ -428,6 +472,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       $onConnectorPointMouseDown,
       $onConnectorPointMouseOver,
       $onConnectorPointMouseOut,
+      $onNewBoxMouseDown,
+      $onNewBoxMouseUp,
     } satisfies CtxMethods;
   }, [
     svgRef,
@@ -437,6 +483,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     $onConnectorPointMouseDown,
     $onConnectorPointMouseOver,
     $onConnectorPointMouseOut,
+    $onNewBoxMouseDown,
+    $onNewBoxMouseUp,
   ]);
 
   const dataVal = React.useMemo<CtxData>(() => {
