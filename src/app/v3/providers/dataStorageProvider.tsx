@@ -11,6 +11,8 @@ import { isBrowser } from '@/helpers/basics';
 import { examplesV3 } from '@/app/v3/data/load';
 import { useStateWithRef } from '@/hooks/useStateWithRef';
 import debounce from 'lodash/debounce';
+import { useStateWithRefImmediate } from '@/hooks/useStateWithRefImmediate';
+import { simulateV3a } from '@/app/v3/data/utils/simulateV3a';
 
 // it happens that empty data will not be written to
 const emptyData: DataV3 = Object.freeze({ sketches: [], selectedSketchUuid: '' });
@@ -46,13 +48,15 @@ const safeToLocalStorage = debounce((data: DataV3) => {
 
 export const DataStorageProvider: FunctionComponentWithChildren = ({ children }) => {
   const isFirstMount = useFirstMount();
+  // useStateWithRef sets the ref to be ready after it rendered
+  // this is not an issue as long as there's only one update before a render cycle
+  // const [_data, $_setData, sketchDataRef] = useStateWithRefImmediate<DataV3>(() => {
   const [_data, $_setData, sketchDataRef] = useStateWithRef<DataV3>(() => {
-    return (
-      localStorageGetItemInCollection('v3Data', 'default') || {
-        sketches: [],
-        selectedSketchUuid: defaultExampleUUID,
-      }
-    );
+    const r = localStorageGetItemInCollection('v3Data', 'default') || {
+      sketches: [],
+      selectedSketchUuid: defaultExampleUUID,
+    };
+    return r;
   });
 
   let data = _data;
@@ -64,15 +68,18 @@ export const DataStorageProvider: FunctionComponentWithChildren = ({ children })
   const methods = React.useMemo<MethodsV3>(() => {
     return {
       $setSketchData(ssa) {
-        $_setData(ssa);
         // TODO: only save when relevant stuff changes, for example simulation data change does not need to save
-        //   also, for examples, maybe we don't need to save the input states chagnes
+        //   also, for examples, maybe we don't need to save the input states changes
         safeToLocalStorage(ssa);
+        // simulate
+        const ssaWithSimulation = simulateV3a(ssa);
+
+        // TODO: simulate only when relevant data changes, structure and inputs
+        $_setData(ssaWithSimulation);
       },
       sketchDataRef,
     };
   }, [$_setData, sketchDataRef]);
-
   return (
     <DataStorageProviderData value={data}>
       <DataStorageProviderMethods value={methods}>{children}</DataStorageProviderMethods>

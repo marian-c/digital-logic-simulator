@@ -14,3 +14,5 @@
 - certain common components can be shortcut and avoid exploring their inner workings while simulating
 - when passing the dependencies to useCallback and those deps are actually stable, wouldn't it be better to use useCallback
   without the dependencies since they're stable and checking them is extra work that's not actually needed?
+- deep check for structure equality before simulating, and document the perf diff
+- maybe Structure can have a Version flag and we can skip simulating based on that
