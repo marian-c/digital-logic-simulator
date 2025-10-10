@@ -21,6 +21,7 @@ export const FloatingConnectorC: FunctionComponent<{ floatingConnector: Floating
   }
   return (
     <path
+      className="pointer-events-none"
       fill="none"
       stroke={floatingConnector.destinationBox ? 'green' : 'blue'}
       strokeWidth={3}
