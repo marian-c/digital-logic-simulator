@@ -347,13 +347,12 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       hasDraggedRef.current = false;
       if (floatingConnectorRef.current !== null) {
         if (floatingConnectorRef.current.destinationBox !== null) {
-          $setSketchData(
-            actionAddActiveConnector(
-              floatingConnectorRef.current.fromBox,
-              floatingConnectorRef.current.destinationBox,
-              sketchDataRef.current,
-            ),
-          );
+          let { fromBox, destinationBox } = floatingConnectorRef.current;
+          if (floatingConnectorRef.current.draggingFromPortKind === 'inputPort') {
+            fromBox = floatingConnectorRef.current.destinationBox;
+            destinationBox = floatingConnectorRef.current.fromBox;
+          }
+          $setSketchData(actionAddActiveConnector(fromBox, destinationBox, sketchDataRef.current));
         }
         $setFloatingConnectorRef(null);
       }

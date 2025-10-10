@@ -35,7 +35,7 @@ export function validateSketch(_sketch: Sketch): boolean {
    * focused element ID exists;
    * connector ids exist as boxes;
    * can't have multiple connectors coming into an input (possible when coming out of an output);
-   * connector must start from an output and end at an input;
+   * connector must start from an output and end at an input - in this order;
    * InnerSketchInputs must refer to valid inputs
    */
   return true;
