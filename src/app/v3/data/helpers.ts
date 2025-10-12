@@ -21,7 +21,7 @@ export function generateEmptySketch({ name, uuid }: { name: string; uuid: string
     inputs: {
       inputsState: [],
     },
-    simulation: { todo: true },
+    simulation: { boxSimState: [], connectorSimState: [] },
     state: { zoomFactor: 1, panX: 0, panY: 0 },
   };
 }

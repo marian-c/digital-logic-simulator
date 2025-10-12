@@ -9,11 +9,13 @@ import { getActiveInputState } from '@/app/v3/data/utils/selectors';
 import { actionToggleActiveInputState } from '@/app/v3/data/utils/actions';
 import { useInteractionsMethods } from '@/app/v3/providers/interactions';
 import { ConnectorPoint } from '@/app/v3/modules/canvas/boxes/connectorPoint';
+import type { BoxSimulationState } from '@/app/v3/types/innerSketchSimulation';
 
 export const InputBox: FunctionComponent<{
   boxElement: InputBoxElement;
   boxPosition: SketchBoxPosition;
-}> = ({ boxElement, boxPosition }) => {
+  boxSim: BoxSimulationState;
+}> = ({ boxElement, boxPosition, boxSim }) => {
   const { $setSketchData, sketchDataRef } = useSketchStorageMethods();
   const { hasDraggedRef } = useInteractionsMethods();
 
@@ -54,7 +56,7 @@ export const InputBox: FunctionComponent<{
           portId={0}
           boxElement={boxElement}
           cx={inputCircleToCircleDist}
-          state={Math.random() > 0.5}
+          state={boxSim.simStatesOutputs[0].state}
         />
       }
     />

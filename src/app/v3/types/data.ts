@@ -1,6 +1,7 @@
 import type { InnerSketchStructure } from '@/app/v3/types/innerSketchStructure';
 import type { InnerSketchPositions } from '@/app/v3/types/innerSketchPositions';
 import type { InnerSketchInputs } from '@/app/v3/types/innerSketchInputs';
+import type { InnerSketchSimulation } from '@/app/v3/types/innerSketchSimulation';
 
 // actual sketch and box connections
 export type SketchStructure = InnerSketchStructure;
@@ -21,9 +22,7 @@ export type SketchPositions = InnerSketchPositions;
 export type SketchInputs = InnerSketchInputs;
 
 // type of the data for calculated connector states
-export type SketchSimulation = {
-  todo: true;
-};
+export type SketchSimulation = InnerSketchSimulation;
 
 // zoom and panning
 export type SketchState = {

@@ -6,29 +6,31 @@ import React from 'react';
 import type { BoxElement } from '@/app/v3/types/innerSketchStructure';
 import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
 import { useSketchStorageData } from '@/app/v3/providers/dataStorageProvider';
-import { getActiveSketch, getBoxPositionById } from '@/app/v3/data/utils/selectors';
+import { getActiveSketch, getBoxPositionById, getBoxSimById } from '@/app/v3/data/utils/selectors';
 import { OutputBox } from '@/app/v3/modules/canvas/boxes/outputBox';
 import { InputBox } from '@/app/v3/modules/canvas/boxes/inputBox';
 import { AndBox } from '@/app/v3/modules/canvas/boxes/andBox';
 import { NotBox } from '@/app/v3/modules/canvas/boxes/notBox';
+import type { BoxSimulationState } from '@/app/v3/types/innerSketchSimulation';
 
-const Box: FunctionComponent<{ boxElement: BoxElement; boxPosition: SketchBoxPosition }> = ({
-  boxElement,
-  boxPosition,
-}) => {
+const Box: FunctionComponent<{
+  boxElement: BoxElement;
+  boxPosition: SketchBoxPosition;
+  boxSim: BoxSimulationState;
+}> = ({ boxElement, boxPosition, boxSim }) => {
   const { boxElementKind } = boxElement;
   switch (boxElementKind) {
     case 'not':
-      return <NotBox boxElement={boxElement} boxPosition={boxPosition} />;
+      return <NotBox boxElement={boxElement} boxPosition={boxPosition} boxSim={boxSim} />;
       break;
     case 'input':
-      return <InputBox boxElement={boxElement} boxPosition={boxPosition} />;
+      return <InputBox boxElement={boxElement} boxPosition={boxPosition} boxSim={boxSim} />;
       break;
     case 'output':
-      return <OutputBox boxElement={boxElement} boxPosition={boxPosition} />;
+      return <OutputBox boxElement={boxElement} boxPosition={boxPosition} boxSim={boxSim} />;
       break;
     case 'and':
-      return <AndBox boxElement={boxElement} boxPosition={boxPosition} />;
+      return <AndBox boxElement={boxElement} boxPosition={boxPosition} boxSim={boxSim} />;
       break;
     default:
       assertNever(boxElementKind);
@@ -44,8 +46,18 @@ export const Boxes: FunctionComponent = () => {
     <>
       {activeSketch.structure.main.boxElements.map((boxElement) => {
         // XXX: assumes valid sketch
+        // TODO: this loops a lot, maybe have a map of boxId to boxPosition?
         const boxPosition = getBoxPositionById(boxElement.id, activeSketch);
-        return <Box boxElement={boxElement} boxPosition={boxPosition} key={boxElement.id} />;
+        // TODO: this loops a lot, maybe have a map of boxId to boxSimState?
+        const boxSim = getBoxSimById(boxElement.id, activeSketch);
+        return (
+          <Box
+            boxElement={boxElement}
+            boxPosition={boxPosition}
+            boxSim={boxSim}
+            key={boxElement.id}
+          />
+        );
       })}
     </>
   );

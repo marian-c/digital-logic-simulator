@@ -1,30 +1,51 @@
 import { assertNever } from '@/helpers/basics';
 import type { DataV3, Sketch } from '@/app/v3/types/data';
 import { getActiveSketch } from '@/app/v3/data/utils/selectors';
+import type {
+  AndBoxElement,
+  BoxElement,
+  InputBoxElement,
+  NotBoxElement,
+  OutputBoxElement,
+} from '@/app/v3/types/innerSketchStructure';
+import type { BoxSimulationState } from '@/app/v3/types/innerSketchSimulation';
 
 /**
- * Strategy: start simulating from the extremities of the graph
+ * Strategy: start simulating from the extremities of the graph,
  * then recurse up until the dependency chain is solved
  */
 
-function hasConnector(boxElementId: number, portId: number, activeSketch: Sketch) {
+function getUpstreamBox(originBoxId: number, portNumber: number, activeSketch: Sketch) {
+  // XXX structure assumption
+  const connector = activeSketch.structure.main.connectorElements.find(function (connector) {
+    return connector.toBoxId === originBoxId && connector.toPortId === portNumber;
+  });
+  if (connector) {
+    const foundBox = activeSketch.structure.main.boxElements.find(function (boxElement) {
+      return boxElement.id === connector.fromBoxId;
+    });
+    if (foundBox) {
+      return [foundBox, connector] as const;
+    }
+  }
+  return undefined;
+}
+
+function hasConnectorOut(boxElementId: number, activeSketch: Sketch) {
   return activeSketch.structure.main.connectorElements.some(function (connector) {
-    return (
-      (connector.fromBoxId === boxElementId && connector.fromPortId === portId) ||
-      (connector.toBoxId === boxElementId && connector.toPortId === portId)
-    );
+    return connector.fromBoxId === boxElementId;
   });
 }
 
-function getStartingPoints(activeSketch: Sketch, _data: DataV3) {
+function getElementsWithoutOutput(activeSketch: Sketch, _data: DataV3) {
   return activeSketch.structure.main.boxElements.filter(function (boxElement) {
     switch (boxElement.boxElementKind) {
       case 'not':
-        return hasConnector(boxElement.id, 1, activeSketch);
+        return !hasConnectorOut(boxElement.id, activeSketch);
       case 'input':
-        return hasConnector(boxElement.id, 0, activeSketch);
+        return !hasConnectorOut(boxElement.id, activeSketch);
       case 'and':
-        return hasConnector(boxElement.id, 2, activeSketch);
+        return !hasConnectorOut(boxElement.id, activeSketch);
       case 'output':
         return true;
       default:
@@ -34,105 +55,133 @@ function getStartingPoints(activeSketch: Sketch, _data: DataV3) {
 }
 
 export function simulateV3a(data: DataV3) {
-  const activeSketch = getActiveSketch(data);
+  if (data.sketches.length === 0) {
+    return data;
+  }
+  /**
+   * +-------+
+   * | INPUT |----O
+   * +-------+
+   */
+  function handleInputBox(boxElement: InputBoxElement, activeSketch: Sketch): BoxSimulationState {
+    // TODO: handle not found either by throwing or validating at the beginning
+    const state = activeSketch.inputs.inputsState.find((s) => s.boxId === boxElement.id)!.state;
+    return {
+      boxId: boxElement.id,
+      simStatesInputs: [],
+      simStatesOutputs: [{ portId: 0, state }],
+    };
+  }
+
+  /**
+   *      +--------+
+   * 0----| OUTPUT |
+   *      +--------+
+   */
+  function handleOutputBox(boxElement: OutputBoxElement, activeSketch: Sketch): BoxSimulationState {
+    const ingress = getUpstreamSignal(boxElement.id, 0, activeSketch) || false;
+    return {
+      boxId: boxElement.id,
+      simStatesInputs: [{ portId: 0, state: ingress }],
+      simStatesOutputs: [],
+    };
+  }
+
+  /**
+   *      +-------+
+   * O----|  NOT  |----1
+   *      +-------+
+   */
+  function handleNotBox(boxElement: NotBoxElement, activeSketch: Sketch): BoxSimulationState {
+    const ingress = getUpstreamSignal(boxElement.id, 0, activeSketch) || false;
+    const out = !ingress;
+    return {
+      boxId: boxElement.id,
+      simStatesInputs: [{ portId: 0, state: ingress }],
+      simStatesOutputs: [{ portId: 1, state: out }],
+    };
+  }
+
+  /**
+   *      +-------+
+   * O----|       |
+   *      |  AND  |----2
+   * 1----|       |
+   *      +-------+
+   */
+  function handleAndBox(boxElement: AndBoxElement, activeSketch: Sketch): BoxSimulationState {
+    const in0 = getUpstreamSignal(boxElement.id, 0, activeSketch) || false;
+    const in1 = getUpstreamSignal(boxElement.id, 1, activeSketch) || false;
+    const out = in0 && in1;
+    return {
+      boxId: boxElement.id,
+      simStatesInputs: [
+        { portId: 0, state: in0 },
+        { portId: 1, state: in1 },
+      ],
+      simStatesOutputs: [{ portId: 2, state: out }],
+    };
+  }
+
+  function getUpstreamSignal(originBoxId: number, portNumber: number, activeSketch: Sketch) {
+    const upstream = getUpstreamBox(originBoxId, portNumber, activeSketch);
+    if (!upstream) {
+      return undefined;
+    }
+    const [upstreamBox, upstreamConnector] = upstream;
+    const sim = handleBox(upstreamBox, activeSketch);
+    const ingress =
+      sim.simStatesOutputs.find((o) => o.portId === upstreamConnector.fromPortId)!.state || false;
+    return ingress;
+  }
+
+  function handleBox(boxToHandle: BoxElement, activeSketch: Sketch): BoxSimulationState {
+    // TODO: detect cycles and fix some how (random?)
+    // TODO: don't handle twice, is it already handled?
+    // TODO: store connector states as well
+    let handled: BoxSimulationState;
+    // TODO: keep a cache of handled boxes so we don't solve them again
+    //   in case multiple boxes depend on the same box
+    switch (boxToHandle.boxElementKind) {
+      case 'input':
+        handled = handleInputBox(boxToHandle, activeSketch);
+        break;
+      case 'output':
+        handled = handleOutputBox(boxToHandle, activeSketch);
+        break;
+      case 'not':
+        handled = handleNotBox(boxToHandle, activeSketch);
+        break;
+      case 'and':
+        handled = handleAndBox(boxToHandle, activeSketch);
+        break;
+      default:
+        assertNever(boxToHandle);
+    }
+
+    activeSketch.simulation.boxSimState.push(handled);
+    return handled;
+  }
+
+  const _activeSketch = getActiveSketch(data);
+  // clean old sim data
+  // TODO: maybe if we don't clean it up we can avoid recreating all those objects
+  //   and just mutate what's there
+  _activeSketch.simulation.boxSimState = [];
 
   // start from the pieces that don't have outputs
+  const startingPoints = getElementsWithoutOutput(_activeSketch, data);
 
-  const startingPoints = getStartingPoints(activeSketch, data);
+  console.log('startingPoints', startingPoints);
 
+  startingPoints.forEach((box) => {
+    handleBox(box, _activeSketch);
+  });
+
+  // TODO: if after handling all the starting points and their dependencies,
+  //   we still have unsolved boxes, the rest are in a cycle and we need to pic a random one maybe
+  //   or detect the cycle and apply "the" fix
+
+  console.log('simulated', _activeSketch.simulation.boxSimState);
   return data;
-
-  // const startingPoints = circuit.boxElements.filter(function (boxElement) {
-  //   // output boxes only have inputs
-  //   if (boxElement.boxKind === 'output') {
-  //     return true;
-  //   }
-  //
-  //   // any other box that does not have a connector attached to the output
-  //   const connectorsOut = circuit.connectorElements.filter((connector) => {
-  //     if (connector.startElementId === boxElement.id) {
-  //       return true;
-  //     }
-  //     return false;
-  //   });
-  //
-  //   if (connectorsOut.length === 0) {
-  //     return true;
-  //   }
-  //
-  //   return false;
-  // });
-  //
-  // startingPoints.forEach(function handleBox(boxToHandle): boolean {
-  //   // TODO: precompute a box to connector mapping as an optimization
-  //   // TODO: throw if more than 1 connector is found to a port
-  //   const connectors = circuit.connectorElements
-  //     .filter((connector) => {
-  //       return connector.endElementId === boxToHandle.id;
-  //     })
-  //     .sort((a, b) => a.endElementInputId - b.endElementInputId);
-  //
-  //   switch (boxToHandle.boxKind) {
-  //     case 'input':
-  //       return boxToHandle.state;
-  //     case 'output':
-  //       if (!connectors.length) {
-  //         return (boxToHandle.state = false);
-  //       }
-  //
-  //       // TODO: only one connector in
-  //       const originBox = circuit.boxElements.find(
-  //         (box) => box.id === connectors[0].startElementId,
-  //       );
-  //       if (!originBox) {
-  //         throw new Error('should not happen');
-  //       }
-  //       return (boxToHandle.state = connectors[0].state = handleBox(originBox));
-  //     case 'custom':
-  //       throw new Error('Implement this');
-  //     case 'provided':
-  //       switch (boxToHandle.providedKind) {
-  //         case 'and': {
-  //           if (!connectors.length) {
-  //             return (boxToHandle.state = false);
-  //           }
-  //           // TODO: max 2 connectors
-  //           let state1 = false;
-  //           let state2 = false;
-  //           for (const [idx, connector] of connectors.entries()) {
-  //             const box = circuit.boxElements.find((b) => b.id === connector.startElementId);
-  //             if (!box) {
-  //               throw new Error('should not happen');
-  //             }
-  //             const result = handleBox(box);
-  //             connector.state = result;
-  //             if (idx === 0) {
-  //               state1 = result;
-  //             } else {
-  //               state2 = result;
-  //             }
-  //           }
-  //           return (boxToHandle.state = state1 && state2);
-  //         }
-  //         case 'not': {
-  //           // TODO: max 1 connector
-  //           if (!connectors.length) {
-  //             return (boxToHandle.state = true);
-  //           }
-  //           const originBox = circuit.boxElements.find(
-  //             (b) => b.id === connectors[0].startElementId,
-  //           );
-  //           if (!originBox) {
-  //             throw new Error('should not happen');
-  //           }
-  //           const result = handleBox(originBox);
-  //           connectors[0].state = result;
-  //           return (boxToHandle.state = !result);
-  //         }
-  //       }
-  //     default:
-  //       assertNever(boxToHandle);
-  //   }
-  // });
-  // return circuit;
 }

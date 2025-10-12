@@ -19,14 +19,18 @@ function generate(name: string, maxElements: number, maxConnectors: number, spre
       id: sketch.meta.nextId++,
       boxElementKind: getRandomKind(),
     });
-    const limitX = Math.sqrt(maxElements);
-
-    sketch.structure.main.boxElements.forEach((boxElement, index) => {
-      const x = Math.floor(index / limitX) * spread;
-      const y = Math.floor(index % limitX) * spread;
-      sketch.positions.boxPositions.push({ boxId: boxElement.id, pos: { x, y } });
-    });
   }
+
+  const limitX = Math.sqrt(maxElements);
+
+  sketch.structure.main.boxElements.forEach((boxElement, index) => {
+    const x = Math.floor(index / limitX) * spread;
+    const y = Math.floor(index % limitX) * spread;
+    sketch.positions.boxPositions.push({ boxId: boxElement.id, pos: { x, y } });
+    if (boxElement.boxElementKind === 'input') {
+      sketch.inputs.inputsState.push({ boxId: boxElement.id, state: Math.random() > 0.5 });
+    }
+  });
 
   const startBoxes = sketch.structure.main.boxElements.filter((b) => {
     switch (b.boxElementKind) {

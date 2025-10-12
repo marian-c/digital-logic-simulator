@@ -5,11 +5,13 @@ import { GenericBox } from '@/app/v3/modules/canvas/boxes/genericBox';
 import type { FunctionComponent } from '@/types/r-ui';
 import type { NotBoxElement } from '@/app/v3/types/innerSketchStructure';
 import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
+import type { BoxSimulationState } from '@/app/v3/types/innerSketchSimulation';
 
 export const NotBox: FunctionComponent<{
   boxElement: NotBoxElement;
   boxPosition: SketchBoxPosition;
-}> = ({ boxElement, boxPosition }) => {
+  boxSim: BoxSimulationState;
+}> = ({ boxElement, boxPosition, boxSim }) => {
   return (
     <GenericBox
       boxId={boxElement.id}
@@ -30,7 +32,7 @@ export const NotBox: FunctionComponent<{
             cy={notGateHeight / 2}
             portId={0}
             boxElement={boxElement}
-            state={Math.random() > 0.5}
+            state={boxSim.simStatesInputs[0].state}
           />
           <ConnectorPoint
             portKind="outputPort"
@@ -38,7 +40,7 @@ export const NotBox: FunctionComponent<{
             cy={notGateHeight / 2}
             portId={1}
             boxElement={boxElement}
-            state={Math.random() > 0.5}
+            state={boxSim.simStatesOutputs[0].state}
           />
         </>
       }

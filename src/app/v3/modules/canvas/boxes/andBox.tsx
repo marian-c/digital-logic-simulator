@@ -5,11 +5,13 @@ import React from 'react';
 import { GenericBox } from '@/app/v3/modules/canvas/boxes/genericBox';
 import { andGateColor, andGateHeight, andGateWidth } from '@/app/v3/config';
 import { ConnectorPoint } from '@/app/v3/modules/canvas/boxes/connectorPoint';
+import type { BoxSimulationState } from '@/app/v3/types/innerSketchSimulation';
 
 export const AndBox: FunctionComponent<{
   boxElement: AndBoxElement;
   boxPosition: SketchBoxPosition;
-}> = ({ boxElement, boxPosition }) => {
+  boxSim: BoxSimulationState;
+}> = ({ boxElement, boxPosition, boxSim }) => {
   return (
     <GenericBox
       boxId={boxElement.id}
@@ -30,7 +32,7 @@ export const AndBox: FunctionComponent<{
             cy={andGateHeight / 4}
             portId={0}
             boxElement={boxElement}
-            state={Math.random() > 0.5}
+            state={boxSim.simStatesInputs[0].state}
           />
           <ConnectorPoint
             portKind="inputPort"
@@ -38,7 +40,7 @@ export const AndBox: FunctionComponent<{
             cy={(3 * andGateHeight) / 4}
             portId={1}
             boxElement={boxElement}
-            state={Math.random() > 0.5}
+            state={boxSim.simStatesInputs[1].state}
           />
           <ConnectorPoint
             portKind="outputPort"
@@ -46,7 +48,7 @@ export const AndBox: FunctionComponent<{
             cy={andGateHeight / 2}
             portId={2}
             boxElement={boxElement}
-            state={Math.random() > 0.5}
+            state={boxSim.simStatesOutputs[0].state}
           />
         </>
       }

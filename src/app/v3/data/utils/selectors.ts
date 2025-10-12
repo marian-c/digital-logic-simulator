@@ -28,6 +28,10 @@ export function getBoxPositionById(boxId: number, activeSketch: Sketch) {
   return activeSketch.positions.boxPositions.find((p) => p.boxId === boxId)!;
 }
 
+export function getBoxSimById(boxId: number, activeSketch: Sketch) {
+  return activeSketch.simulation.boxSimState.find((p) => p.boxId === boxId)!;
+}
+
 export function getActiveBoxPosition(boxId: number, data: DataV3) {
   const activeSketch = getActiveSketch(data);
   return getBoxPositionById(boxId, activeSketch);

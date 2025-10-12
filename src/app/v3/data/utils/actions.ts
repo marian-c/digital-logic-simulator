@@ -7,6 +7,7 @@ import {
   getBoxPositionById,
 } from '@/app/v3/data/utils/selectors';
 import type { BoxElement, BoxElementKind } from '@/app/v3/types/innerSketchStructure';
+import { assertNever } from '@/helpers/basics';
 
 export function actionAddEmptySketchAndSelect(newName: string, oldData: DataV3) {
   const uuid = uuidv7();
@@ -137,5 +138,19 @@ export function actionAddNewBox(boxKind: BoxElementKind, x: number, y: number, o
   activeSketch.structure.main.boxElements.push(newBox);
   // XXX: just mutates
   activeSketch.positions.boxPositions.push(newPosition);
+
+  switch (boxKind) {
+    case 'and':
+    case 'not':
+    case 'output':
+      break;
+    case 'input':
+      // XXX: just mutates
+      activeSketch.inputs.inputsState.push({ boxId, state: false });
+      break;
+    default:
+      assertNever(boxKind);
+  }
+
   return [{ newBox, newPosition }, { ...oldData }] as const;
 }

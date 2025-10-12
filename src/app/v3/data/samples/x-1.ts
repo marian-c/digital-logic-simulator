@@ -51,11 +51,12 @@ export const positions: SketchPositions = {
 };
 
 export const inputs: SketchInputs = {
-  inputsState: [],
+  inputsState: [{ boxId: 5, state: false }],
 };
 
 export const simulation: SketchSimulation = {
-  todo: true,
+  boxSimState: [],
+  connectorSimState: [],
 };
 
 export const state: SketchState = {

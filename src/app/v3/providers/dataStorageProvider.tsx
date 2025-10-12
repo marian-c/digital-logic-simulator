@@ -56,7 +56,9 @@ export const DataStorageProvider: FunctionComponentWithChildren = ({ children })
       sketches: [],
       selectedSketchUuid: defaultExampleUUID,
     };
-    return r;
+    // return r;
+    const rSimulated = simulateV3a(r);
+    return rSimulated;
   });
 
   let data = _data;
