@@ -6,6 +6,7 @@ import type { BoxElement, ConnectorElement } from '@/app/v3/types/innerSketchStr
 import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
 import { plainConnectorExtensionMin } from '@/app/v3/config';
 import roundPathCorners from '@/helpers/rounding';
+import { useInteractionsData, useInteractionsMethods } from '@/app/v3/providers/interactions';
 
 export const Connector: FunctionComponent<{
   connectorElement: ConnectorElement;
@@ -16,27 +17,48 @@ export const Connector: FunctionComponent<{
 }> = ({ connectorElement, fromBox, fromBoxPosition, toBox, toBoxPosition }) => {
   const start = getPoint(fromBox, fromBoxPosition, connectorElement.fromPortId);
   const end = getPoint(toBox, toBoxPosition, connectorElement.toPortId);
-  // TODO: when it's focused, render twice, the second one acts as a shadow (the focus effect)
+  const { $onConnectorMouseDown } = useInteractionsMethods();
+  const { activeConnectorId } = useInteractionsData();
   return (
-    <path
-      data-desc={`connector-id-${connectorElement.id}`}
-      fill="none"
-      stroke={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
-      strokeWidth={3}
-      shapeRendering="geometricPrecision"
-      onClick={() => {
-        // TODO: focus element
-      }}
-      d={roundPathCorners(
-        `M${start.x} ${start.y} ` +
-          `L${start.x + plainConnectorExtensionMin} ${start.y} ` +
-          `L${end.x - plainConnectorExtensionMin} ${end.y} ` +
-          `L${end.x} ${end.y} `,
-        plainConnectorExtensionMin / 3,
-        false,
-        false,
-      )}
-    />
+    <>
+      {activeConnectorId === connectorElement.id ? (
+        <path
+          data-desc={`connector-id-${connectorElement.id}`}
+          fill="none"
+          stroke="#969696a3"
+          strokeWidth={7}
+          shapeRendering="geometricPrecision"
+          d={roundPathCorners(
+            `M${start.x} ${start.y} ` +
+              `L${start.x + plainConnectorExtensionMin} ${start.y} ` +
+              `L${end.x - plainConnectorExtensionMin} ${end.y} ` +
+              `L${end.x} ${end.y} `,
+            plainConnectorExtensionMin / 3,
+            false,
+            false,
+          )}
+        />
+      ) : null}
+      <path
+        data-desc={`connector-id-${connectorElement.id}`}
+        fill="none"
+        stroke={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
+        strokeWidth={3}
+        shapeRendering="geometricPrecision"
+        onMouseDown={(mouseEvent) => {
+          $onConnectorMouseDown(connectorElement.id, mouseEvent);
+        }}
+        d={roundPathCorners(
+          `M${start.x} ${start.y} ` +
+            `L${start.x + plainConnectorExtensionMin} ${start.y} ` +
+            `L${end.x - plainConnectorExtensionMin} ${end.y} ` +
+            `L${end.x} ${end.y} `,
+          plainConnectorExtensionMin / 3,
+          false,
+          false,
+        )}
+      />
+    </>
   );
 };
 
