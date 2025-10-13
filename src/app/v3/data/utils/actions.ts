@@ -129,6 +129,7 @@ export function actionAddActiveConnector(
 }
 
 export function actionAddNewBox(boxKind: BoxElementKind, x: number, y: number, oldData: DataV3) {
+  // TODO: this is a big function, should validate at the end
   const activeSketch = getActiveSketch(oldData);
   // XXX: just mutates
   const boxId = activeSketch.meta.nextId++;
@@ -141,11 +142,35 @@ export function actionAddNewBox(boxKind: BoxElementKind, x: number, y: number, o
 
   switch (boxKind) {
     case 'and':
+      activeSketch.simulation.boxSimState.push({
+        boxId,
+        simStatesInputs: [
+          { portId: 0, state: false },
+          { portId: 1, state: false },
+        ],
+        simStatesOutputs: [{ portId: 2, state: false }],
+      });
+      break;
     case 'not':
+      activeSketch.simulation.boxSimState.push({
+        boxId,
+        simStatesInputs: [{ portId: 0, state: false }],
+        simStatesOutputs: [{ portId: 1, state: false }],
+      });
+      break;
     case 'output':
+      activeSketch.simulation.boxSimState.push({
+        boxId,
+        simStatesInputs: [{ portId: 0, state: false }],
+        simStatesOutputs: [],
+      });
       break;
     case 'input':
-      // XXX: just mutates
+      activeSketch.simulation.boxSimState.push({
+        boxId,
+        simStatesInputs: [],
+        simStatesOutputs: [{ portId: 0, state: false }],
+      });
       activeSketch.inputs.inputsState.push({ boxId, state: false });
       break;
     default:
