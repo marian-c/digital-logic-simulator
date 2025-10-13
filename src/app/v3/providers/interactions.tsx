@@ -81,16 +81,34 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   const { sketchDataRef, $setSketchData } = useSketchStorageMethods();
 
   // region: variables
+
+  // set on mouse down in NEW boxes to the kind of box, when set,
+  //  the next mouse down will add that box and unset it
   const [, $setAboutToDragNewBoxKindRef, aboutToDragNewBoxKindRef] =
     useStateWithRefImmediate<BoxElementKind | null>(null);
+
+  // set on mouse down on boxes, makes the active box highlighted
+  //  remains active even after the drag operation has moved
+  const [activeBoxId, $setActiveBoxIdRef, activeBoxIdRef] = useStateWithRefImmediate<number>(0);
+
+  // set on mouse down on boxes, internal marker for dragging operation
+  //  unset on mouse up; Holds the un-snapped coordinates of the box
+  const [, $setIsMouseDownForDraggingBoxesRef, isMouseDownForDraggingBoxesRef] =
+    useStateWithRefImmediate<false | MouseCoordinates>(false);
+
+  // set on first mouse move, unset on mouse up
+  // external marker to distinguish between drags and clicks when mouse up
   const hasDraggedRef = React.useRef(false);
-  const [floatingConnector, $setFloatingConnectorRef, floatingConnectorRef] =
-    useStateWithRefImmediate<FloatingConnector | null>(null);
+
+  // keep track of the mouse position in the document, based on this and the position of the canvas we derive other coordinates
+  // when the mouse moves or when the size changes, we recalculate the canvas coordinates
   const [, $setMouseDocCoordinatesRef, mouseDocCoordinatesRef] =
     useStateWithRefImmediate<MouseCoordinates>({
       x: 0,
       y: 0,
     });
+
+  // coordinates relative to the canvas position
   const [, $setMouseCanvasCoordinatesRef, mouseCanvasCoordinatesRef] =
     useStateWithRefImmediate<MouseCanvasCoordinates>({
       x: 0,
@@ -98,16 +116,22 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       in: true,
       empty: true,
     });
-  const [, $setLastMouseCanvasCoordinatesRef, lastMouseCanvasCoordinatesRef] =
+
+  // set only when the mouse is over the canvas and there something dragging, used by the moving boxes operation
+  //  since that uses a delta move to calculate positions
+  const [, $setLastMouseCoordinatesInCanvasRef, lastMouseCoordinatesInCanvasRef] =
     useStateWithRefImmediate<MouseCanvasCoordinates>({
       x: 0,
       y: 0,
       in: true,
       empty: true,
     });
-  const [, $setIsMouseDownForDraggingBoxesRef, isMouseDownForDraggingBoxesRef] =
-    useStateWithRefImmediate<false | MouseCoordinates>(false);
-  const [activeBoxId, $setActiveBoxIdRef, activeBoxIdRef] = useStateWithRefImmediate<number>(0);
+
+  const [floatingConnector, $setFloatingConnectorRef, floatingConnectorRef] =
+    useStateWithRefImmediate<FloatingConnector | null>(null);
+
+  // size and position of the canvas, together with the mouse position in the document,
+  //  is used to calculate the canvas coordinates
   const [size, $setSizeRef, sizeRef] = useStateWithRefImmediate<Size>({
     width: 0,
     height: 0,
@@ -129,7 +153,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         in: !isOut,
       });
       if (!isOut && isMouseDownForDraggingBoxesRef.current) {
-        $setLastMouseCanvasCoordinatesRef({
+        $setLastMouseCoordinatesInCanvasRef({
           x: coordX,
           y: coordY,
           in: !isOut,
@@ -137,7 +161,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       }
     },
     [
-      $setLastMouseCanvasCoordinatesRef,
+      $setLastMouseCoordinatesInCanvasRef,
       $setMouseCanvasCoordinatesRef,
       isMouseDownForDraggingBoxesRef,
     ],
@@ -256,9 +280,9 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   const $handleDocumentMouseMoveMouseCoordinates = React.useCallback(
     (mouseEvent: MouseEvent) => {
       const docCoordintes = { x: mouseEvent.clientX, y: mouseEvent.clientY };
-      const oldCanvasCoordinates = lastMouseCanvasCoordinatesRef.current;
+      const oldCanvasCoordinates = lastMouseCoordinatesInCanvasRef.current;
       $calculateCanvasCoordinates(docCoordintes, sizeRef.current);
-      const newCanvasCoordinates = lastMouseCanvasCoordinatesRef.current;
+      const newCanvasCoordinates = lastMouseCoordinatesInCanvasRef.current;
       if (isMouseDownForDraggingBoxesRef.current) {
         hasDraggedRef.current = true;
       }
@@ -312,7 +336,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         );
         $setSketchData(newData);
         $setActiveBoxIdRef(newBox.id);
-        $setLastMouseCanvasCoordinatesRef({
+        $setLastMouseCoordinatesInCanvasRef({
           x: mouseCanvasCoordinatesRef.current.x,
           y: mouseCanvasCoordinatesRef.current.y,
           in: true,
@@ -328,14 +352,14 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       $setActiveBoxIdRef,
       $setFloatingConnectorRef,
       $setIsMouseDownForDraggingBoxesRef,
-      $setLastMouseCanvasCoordinatesRef,
+      $setLastMouseCoordinatesInCanvasRef,
       $setMouseDocCoordinatesRef,
       $setSketchData,
       aboutToDragNewBoxKindRef,
       activeBoxIdRef,
       floatingConnectorRef,
       isMouseDownForDraggingBoxesRef,
-      lastMouseCanvasCoordinatesRef,
+      lastMouseCoordinatesInCanvasRef,
       mouseCanvasCoordinatesRef,
       sizeRef,
       sketchDataRef,
