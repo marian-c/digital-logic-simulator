@@ -18,7 +18,7 @@ export type BoxSimulationState = {
 type ConnectorSimState = {
   connectorId: number;
   state: boolean;
-}[];
+};
 
 export type InnerSketchSimulation = {
   boxSimState: BoxSimulationState[];

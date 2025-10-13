@@ -111,6 +111,22 @@ export function actionToggleActiveInputState(box: BoxElement, oldData: DataV3) {
   return { ...oldData };
 }
 
+export function actionAddMutateConnector(
+  fromBox: { boxId: number; portId: number },
+  toBox: { boxId: number; portId: number },
+  sketch: Sketch,
+) {
+  const id = sketch.meta.nextId++;
+  sketch.structure.main.connectorElements.push({
+    id,
+    fromBoxId: fromBox.boxId,
+    fromPortId: fromBox.portId,
+    toBoxId: toBox.boxId,
+    toPortId: toBox.portId,
+  });
+  sketch.simulation.connectorSimState.push({ connectorId: id, state: false });
+}
+
 export function actionAddActiveConnector(
   fromBox: { boxId: number; portId: number },
   toBox: { boxId: number; portId: number },
@@ -118,13 +134,7 @@ export function actionAddActiveConnector(
 ) {
   const activeSketch = getActiveSketch(oldData);
   // XXX: just mutates
-  activeSketch.structure.main.connectorElements.push({
-    id: activeSketch.meta.nextId++,
-    fromBoxId: fromBox.boxId,
-    fromPortId: fromBox.portId,
-    toBoxId: toBox.boxId,
-    toPortId: toBox.portId,
-  });
+  actionAddMutateConnector(fromBox, toBox, activeSketch);
   return { ...oldData };
 }
 

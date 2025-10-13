@@ -5,7 +5,7 @@ import { v7 as uuidv7 } from 'uuid';
 import * as fs from 'node:fs';
 import { assertNever } from '@/helpers/basics';
 import type { BoxElement } from '@/app/v3/types/innerSketchStructure';
-import { actionAddMutateNewBox } from '@/app/v3/data/utils/actions';
+import { actionAddMutateConnector, actionAddMutateNewBox } from '@/app/v3/data/utils/actions';
 
 function getRandomKind() {
   const items = ['and', 'not', 'input', 'output'] as const;
@@ -82,13 +82,11 @@ function generate(name: string, maxElements: number, maxConnectors: number, spre
     const startBox = startBoxes[Math.floor(Math.random() * startBoxes.length)];
     const endBox = endBoxes[Math.floor(Math.random() * endBoxes.length)];
     endBoxes = endBoxes.filter((b) => b !== endBox);
-    sketch.structure.main.connectorElements.push({
-      id: sketch.meta.nextId++,
-      fromBoxId: startBox.id,
-      fromPortId: getRandomOutPortId(startBox),
-      toBoxId: endBox.id,
-      toPortId: getRandomInputPortId(endBox),
-    });
+    actionAddMutateConnector(
+      { boxId: startBox.id, portId: getRandomOutPortId(startBox) },
+      { boxId: endBox.id, portId: getRandomInputPortId(endBox) },
+      sketch,
+    );
   }
   fs.writeFileSync(
     __dirname + '/samples/' + name + '.json',
