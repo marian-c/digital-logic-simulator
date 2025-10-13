@@ -181,7 +181,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       $setActiveBoxIdRef(0);
       $setActiveConnectorIdRef(connectorId);
     },
-    [],
+    [$setActiveBoxIdRef, $setActiveConnectorIdRef],
   );
   const $onNewBoxMouseDown = React.useCallback<CtxMethods['$onNewBoxMouseDown']>(
     (boxKind) => {
@@ -283,6 +283,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     [
       $calculateCanvasCoordinates,
       $setActiveBoxIdRef,
+      $setActiveConnectorIdRef,
       $setIsMouseDownForDraggingBoxesRef,
       mouseDocCoordinatesRef,
       sizeRef,
@@ -366,6 +367,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       $calculateCanvasCoordinates,
       $setAboutToDragNewBoxKindRef,
       $setActiveBoxIdRef,
+      $setActiveConnectorIdRef,
       $setFloatingConnectorRef,
       $setIsMouseDownForDraggingBoxesRef,
       $setLastMouseCoordinatesInCanvasRef,
@@ -381,6 +383,21 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       sketchDataRef,
     ],
   );
+  const $handleDocumentKeyDown = React.useCallback(
+    (keyEvent: KeyboardEvent) => {
+      if (
+        (keyEvent.code === 'Backspace' || keyEvent.code === 'Delete') &&
+        isMouseDownForDraggingBoxesRef.current === false &&
+        floatingConnectorRef.current === null &&
+        aboutToDragNewBoxKindRef.current === null
+      ) {
+        // if we allow deletion while dragging, we need to worry about cleaning up, normally mouse up would do it
+        console.log('TODO: delete');
+      }
+    },
+    [aboutToDragNewBoxKindRef, floatingConnectorRef, isMouseDownForDraggingBoxesRef],
+  );
+
   const $handleDocumentMouseMouseUp = React.useCallback(
     (_mouseEvent: MouseEvent) => {
       $setIsMouseDownForDraggingBoxesRef(false);
@@ -482,6 +499,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       if (el) {
         document.addEventListener('mousemove', $handleDocumentMouseMoveMouseCoordinates);
         document.addEventListener('mouseup', $handleDocumentMouseMouseUp);
+        document.addEventListener('keydown', $handleDocumentKeyDown);
         el.addEventListener('wheel', onWheel, { passive: false });
       }
       return () => {
@@ -491,6 +509,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       };
     },
     [
+      $handleDocumentKeyDown,
       $handleDocumentMouseMouseUp,
       $handleDocumentMouseMoveMouseCoordinates,
       $handleSvgWheelPan,
