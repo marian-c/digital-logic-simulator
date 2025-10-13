@@ -31,4 +31,4 @@
 TODOs:
 
 - [x] add inputs state when dragging inputs / [ ] remove when removing inputs
-- [ ] add default simStates when adding boxes / [ ] connectors / [ ] remove when removing boxes / [ ] connectors
+- [x] add default simStates when adding boxes / [ ] connectors / [ ] remove when removing boxes / [ ] connectors

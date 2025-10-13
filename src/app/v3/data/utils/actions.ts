@@ -1,4 +1,4 @@
-import type { DataV3 } from '@/app/v3/types/data';
+import type { DataV3, Sketch } from '@/app/v3/types/data';
 import { v7 as uuidv7 } from 'uuid';
 import { generateEmptySketch } from '@/app/v3/data/helpers';
 import {
@@ -128,21 +128,22 @@ export function actionAddActiveConnector(
   return { ...oldData };
 }
 
-export function actionAddNewBox(boxKind: BoxElementKind, x: number, y: number, oldData: DataV3) {
+export function actionAddMutateNewBox(
+  boxKind: BoxElementKind,
+  x: number,
+  y: number,
+  sketch: Sketch,
+) {
   // TODO: this is a big function, should validate at the end
-  const activeSketch = getActiveSketch(oldData);
-  // XXX: just mutates
-  const boxId = activeSketch.meta.nextId++;
+  const boxId = sketch.meta.nextId++;
   const newBox = { id: boxId, boxElementKind: boxKind };
   const newPosition = { boxId, pos: { x, y } };
-  // XXX: just mutates
-  activeSketch.structure.main.boxElements.push(newBox);
-  // XXX: just mutates
-  activeSketch.positions.boxPositions.push(newPosition);
+  sketch.structure.main.boxElements.push(newBox);
+  sketch.positions.boxPositions.push(newPosition);
 
   switch (boxKind) {
     case 'and':
-      activeSketch.simulation.boxSimState.push({
+      sketch.simulation.boxSimState.push({
         boxId,
         simStatesInputs: [
           { portId: 0, state: false },
@@ -152,30 +153,41 @@ export function actionAddNewBox(boxKind: BoxElementKind, x: number, y: number, o
       });
       break;
     case 'not':
-      activeSketch.simulation.boxSimState.push({
+      sketch.simulation.boxSimState.push({
         boxId,
         simStatesInputs: [{ portId: 0, state: false }],
         simStatesOutputs: [{ portId: 1, state: false }],
       });
       break;
     case 'output':
-      activeSketch.simulation.boxSimState.push({
+      sketch.simulation.boxSimState.push({
         boxId,
         simStatesInputs: [{ portId: 0, state: false }],
         simStatesOutputs: [],
       });
       break;
     case 'input':
-      activeSketch.simulation.boxSimState.push({
+      sketch.simulation.boxSimState.push({
         boxId,
         simStatesInputs: [],
         simStatesOutputs: [{ portId: 0, state: false }],
       });
-      activeSketch.inputs.inputsState.push({ boxId, state: false });
+      sketch.inputs.inputsState.push({ boxId, state: false });
       break;
     default:
       assertNever(boxKind);
   }
 
-  return [{ newBox, newPosition }, { ...oldData }] as const;
+  return [{ newBox, newPosition }, sketch] as const;
+}
+export function actionActiveAddNewBox(
+  boxKind: BoxElementKind,
+  x: number,
+  y: number,
+  oldData: DataV3,
+) {
+  const sketch = getActiveSketch(oldData);
+  // XXX mutates
+  const [extra] = actionAddMutateNewBox(boxKind, x, y, sketch);
+  return [extra, { ...oldData }] as const;
 }

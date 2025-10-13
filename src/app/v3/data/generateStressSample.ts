@@ -5,6 +5,7 @@ import { v7 as uuidv7 } from 'uuid';
 import * as fs from 'node:fs';
 import { assertNever } from '@/helpers/basics';
 import type { BoxElement } from '@/app/v3/types/innerSketchStructure';
+import { actionAddMutateNewBox } from '@/app/v3/data/utils/actions';
 
 function getRandomKind() {
   const items = ['and', 'not', 'input', 'output'] as const;
@@ -14,23 +15,15 @@ function getRandomKind() {
 function generate(name: string, maxElements: number, maxConnectors: number, spread: number) {
   const sketch = generateEmptySketch({ name, uuid: uuidv7() });
   sketch.meta.isExample = true;
-  for (let i = 0; i < maxElements; i++) {
-    sketch.structure.main.boxElements.push({
-      id: sketch.meta.nextId++,
-      boxElementKind: getRandomKind(),
-    });
-  }
 
   const limitX = Math.sqrt(maxElements);
 
-  sketch.structure.main.boxElements.forEach((boxElement, index) => {
-    const x = Math.floor(index / limitX) * spread;
-    const y = Math.floor(index % limitX) * spread;
-    sketch.positions.boxPositions.push({ boxId: boxElement.id, pos: { x, y } });
-    if (boxElement.boxElementKind === 'input') {
-      sketch.inputs.inputsState.push({ boxId: boxElement.id, state: Math.random() > 0.5 });
-    }
-  });
+  for (let i = 0; i < maxElements; i++) {
+    const x = Math.floor(i / limitX) * spread;
+    const y = Math.floor(i % limitX) * spread;
+    const kind = getRandomKind();
+    actionAddMutateNewBox(kind, x, y, sketch);
+  }
 
   const startBoxes = sketch.structure.main.boxElements.filter((b) => {
     switch (b.boxElementKind) {

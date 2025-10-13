@@ -8,19 +8,19 @@
         },
         {
           "id": 2,
-          "boxElementKind": "and"
+          "boxElementKind": "not"
         },
         {
           "id": 3,
-          "boxElementKind": "output"
+          "boxElementKind": "input"
         },
         {
           "id": 4,
-          "boxElementKind": "output"
+          "boxElementKind": "and"
         },
         {
           "id": 5,
-          "boxElementKind": "not"
+          "boxElementKind": "output"
         },
         {
           "id": 6,
@@ -28,27 +28,27 @@
         },
         {
           "id": 7,
-          "boxElementKind": "not"
+          "boxElementKind": "input"
         },
         {
           "id": 8,
-          "boxElementKind": "and"
+          "boxElementKind": "input"
         },
         {
           "id": 9,
-          "boxElementKind": "input"
-        },
-        {
-          "id": 10,
-          "boxElementKind": "input"
-        },
-        {
-          "id": 11,
           "boxElementKind": "and"
         },
         {
+          "id": 10,
+          "boxElementKind": "not"
+        },
+        {
+          "id": 11,
+          "boxElementKind": "not"
+        },
+        {
           "id": 12,
-          "boxElementKind": "input"
+          "boxElementKind": "and"
         },
         {
           "id": 13,
@@ -56,7 +56,7 @@
         },
         {
           "id": 14,
-          "boxElementKind": "output"
+          "boxElementKind": "and"
         },
         {
           "id": 15,
@@ -64,15 +64,15 @@
         },
         {
           "id": 16,
-          "boxElementKind": "output"
-        },
-        {
-          "id": 17,
           "boxElementKind": "and"
         },
         {
+          "id": 17,
+          "boxElementKind": "input"
+        },
+        {
           "id": 18,
-          "boxElementKind": "output"
+          "boxElementKind": "input"
         },
         {
           "id": 19,
@@ -80,51 +80,51 @@
         },
         {
           "id": 20,
-          "boxElementKind": "output"
+          "boxElementKind": "input"
         },
         {
           "id": 21,
-          "boxElementKind": "output"
+          "boxElementKind": "input"
         },
         {
           "id": 22,
-          "boxElementKind": "not"
+          "boxElementKind": "output"
         },
         {
           "id": 23,
-          "boxElementKind": "not"
+          "boxElementKind": "output"
         },
         {
           "id": 24,
-          "boxElementKind": "input"
+          "boxElementKind": "output"
         },
         {
           "id": 25,
-          "boxElementKind": "and"
+          "boxElementKind": "not"
         },
         {
           "id": 26,
-          "boxElementKind": "input"
+          "boxElementKind": "and"
         },
         {
           "id": 27,
-          "boxElementKind": "output"
+          "boxElementKind": "not"
         },
         {
           "id": 28,
-          "boxElementKind": "and"
+          "boxElementKind": "not"
         },
         {
           "id": 29,
-          "boxElementKind": "input"
+          "boxElementKind": "not"
         },
         {
           "id": 30,
-          "boxElementKind": "and"
+          "boxElementKind": "input"
         },
         {
           "id": 31,
-          "boxElementKind": "output"
+          "boxElementKind": "input"
         },
         {
           "id": 32,
@@ -136,15 +136,15 @@
         },
         {
           "id": 34,
-          "boxElementKind": "output"
+          "boxElementKind": "not"
         },
         {
           "id": 35,
-          "boxElementKind": "input"
+          "boxElementKind": "output"
         },
         {
           "id": 36,
-          "boxElementKind": "and"
+          "boxElementKind": "not"
         },
         {
           "id": 37,
@@ -152,7 +152,7 @@
         },
         {
           "id": 38,
-          "boxElementKind": "not"
+          "boxElementKind": "input"
         },
         {
           "id": 39,
@@ -160,35 +160,35 @@
         },
         {
           "id": 40,
-          "boxElementKind": "and"
-        },
-        {
-          "id": 41,
-          "boxElementKind": "input"
-        },
-        {
-          "id": 42,
-          "boxElementKind": "input"
-        },
-        {
-          "id": 43,
           "boxElementKind": "not"
         },
         {
+          "id": 41,
+          "boxElementKind": "output"
+        },
+        {
+          "id": 42,
+          "boxElementKind": "not"
+        },
+        {
+          "id": 43,
+          "boxElementKind": "output"
+        },
+        {
           "id": 44,
-          "boxElementKind": "and"
+          "boxElementKind": "not"
         },
         {
           "id": 45,
-          "boxElementKind": "and"
+          "boxElementKind": "not"
         },
         {
           "id": 46,
-          "boxElementKind": "and"
+          "boxElementKind": "output"
         },
         {
           "id": 47,
-          "boxElementKind": "output"
+          "boxElementKind": "and"
         },
         {
           "id": 48,
@@ -200,15 +200,15 @@
         },
         {
           "id": 50,
-          "boxElementKind": "not"
+          "boxElementKind": "input"
         },
         {
           "id": 51,
-          "boxElementKind": "not"
+          "boxElementKind": "output"
         },
         {
           "id": 52,
-          "boxElementKind": "and"
+          "boxElementKind": "not"
         },
         {
           "id": 53,
@@ -220,7 +220,7 @@
         },
         {
           "id": 55,
-          "boxElementKind": "input"
+          "boxElementKind": "not"
         },
         {
           "id": 56,
@@ -232,11 +232,11 @@
         },
         {
           "id": 58,
-          "boxElementKind": "and"
+          "boxElementKind": "input"
         },
         {
           "id": 59,
-          "boxElementKind": "output"
+          "boxElementKind": "and"
         },
         {
           "id": 60,
@@ -244,11 +244,11 @@
         },
         {
           "id": 61,
-          "boxElementKind": "input"
+          "boxElementKind": "output"
         },
         {
           "id": 62,
-          "boxElementKind": "input"
+          "boxElementKind": "output"
         },
         {
           "id": 63,
@@ -256,7 +256,7 @@
         },
         {
           "id": 64,
-          "boxElementKind": "output"
+          "boxElementKind": "not"
         },
         {
           "id": 65,
@@ -264,7 +264,7 @@
         },
         {
           "id": 66,
-          "boxElementKind": "and"
+          "boxElementKind": "output"
         },
         {
           "id": 67,
@@ -276,19 +276,19 @@
         },
         {
           "id": 69,
-          "boxElementKind": "input"
+          "boxElementKind": "and"
         },
         {
           "id": 70,
-          "boxElementKind": "and"
-        },
-        {
-          "id": 71,
           "boxElementKind": "input"
         },
         {
-          "id": 72,
+          "id": 71,
           "boxElementKind": "and"
+        },
+        {
+          "id": 72,
+          "boxElementKind": "input"
         },
         {
           "id": 73,
@@ -296,7 +296,7 @@
         },
         {
           "id": 74,
-          "boxElementKind": "output"
+          "boxElementKind": "and"
         },
         {
           "id": 75,
@@ -304,23 +304,23 @@
         },
         {
           "id": 76,
-          "boxElementKind": "not"
-        },
-        {
-          "id": 77,
           "boxElementKind": "output"
         },
         {
-          "id": 78,
+          "id": 77,
           "boxElementKind": "not"
+        },
+        {
+          "id": 78,
+          "boxElementKind": "input"
         },
         {
           "id": 79,
-          "boxElementKind": "not"
+          "boxElementKind": "input"
         },
         {
           "id": 80,
-          "boxElementKind": "not"
+          "boxElementKind": "output"
         },
         {
           "id": 81,
@@ -328,35 +328,35 @@
         },
         {
           "id": 82,
-          "boxElementKind": "and"
+          "boxElementKind": "output"
         },
         {
           "id": 83,
-          "boxElementKind": "and"
+          "boxElementKind": "input"
         },
         {
           "id": 84,
-          "boxElementKind": "and"
+          "boxElementKind": "input"
         },
         {
           "id": 85,
-          "boxElementKind": "and"
+          "boxElementKind": "input"
         },
         {
           "id": 86,
-          "boxElementKind": "output"
-        },
-        {
-          "id": 87,
-          "boxElementKind": "output"
-        },
-        {
-          "id": 88,
           "boxElementKind": "and"
         },
         {
+          "id": 87,
+          "boxElementKind": "and"
+        },
+        {
+          "id": 88,
+          "boxElementKind": "output"
+        },
+        {
           "id": 89,
-          "boxElementKind": "not"
+          "boxElementKind": "input"
         },
         {
           "id": 90,
@@ -364,192 +364,192 @@
         },
         {
           "id": 91,
-          "boxElementKind": "not"
+          "boxElementKind": "and"
         },
         {
           "id": 92,
-          "boxElementKind": "output"
+          "boxElementKind": "not"
         },
         {
           "id": 93,
-          "boxElementKind": "input"
+          "boxElementKind": "not"
         },
         {
           "id": 94,
-          "boxElementKind": "not"
+          "boxElementKind": "and"
         },
         {
           "id": 95,
-          "boxElementKind": "not"
+          "boxElementKind": "and"
         },
         {
           "id": 96,
-          "boxElementKind": "not"
+          "boxElementKind": "input"
         },
         {
           "id": 97,
-          "boxElementKind": "input"
+          "boxElementKind": "and"
         },
         {
           "id": 98,
-          "boxElementKind": "output"
-        },
-        {
-          "id": 99,
           "boxElementKind": "not"
         },
         {
+          "id": 99,
+          "boxElementKind": "and"
+        },
+        {
           "id": 100,
-          "boxElementKind": "input"
+          "boxElementKind": "output"
         }
       ],
       "connectorElements": [
         {
           "id": 101,
-          "fromBoxId": 37,
-          "fromPortId": 2,
-          "toBoxId": 32,
+          "fromBoxId": 42,
+          "fromPortId": 1,
+          "toBoxId": 39,
           "toPortId": 0
         },
         {
           "id": 102,
-          "fromBoxId": 89,
+          "fromBoxId": 60,
           "fromPortId": 1,
-          "toBoxId": 68,
+          "toBoxId": 42,
           "toPortId": 0
         },
         {
           "id": 103,
-          "fromBoxId": 65,
-          "fromPortId": 2,
-          "toBoxId": 47,
-          "toPortId": 0
+          "fromBoxId": 40,
+          "fromPortId": 1,
+          "toBoxId": 59,
+          "toPortId": 1
         },
         {
           "id": 104,
-          "fromBoxId": 96,
-          "fromPortId": 1,
-          "toBoxId": 56,
+          "fromBoxId": 97,
+          "fromPortId": 2,
+          "toBoxId": 90,
           "toPortId": 0
         },
         {
           "id": 105,
-          "fromBoxId": 75,
-          "fromPortId": 0,
-          "toBoxId": 20,
+          "fromBoxId": 44,
+          "fromPortId": 1,
+          "toBoxId": 23,
           "toPortId": 0
         },
         {
           "id": 106,
-          "fromBoxId": 55,
+          "fromBoxId": 72,
           "fromPortId": 0,
-          "toBoxId": 54,
+          "toBoxId": 34,
           "toPortId": 0
         },
         {
           "id": 107,
-          "fromBoxId": 55,
-          "fromPortId": 0,
-          "toBoxId": 28,
-          "toPortId": 0
+          "fromBoxId": 11,
+          "fromPortId": 1,
+          "toBoxId": 26,
+          "toPortId": 1
         },
         {
           "id": 108,
-          "fromBoxId": 29,
+          "fromBoxId": 18,
           "fromPortId": 0,
-          "toBoxId": 78,
+          "toBoxId": 62,
           "toPortId": 0
         },
         {
           "id": 109,
-          "fromBoxId": 24,
-          "fromPortId": 0,
-          "toBoxId": 45,
+          "fromBoxId": 92,
+          "fromPortId": 1,
+          "toBoxId": 12,
           "toPortId": 0
         },
         {
           "id": 110,
-          "fromBoxId": 11,
-          "fromPortId": 2,
-          "toBoxId": 51,
+          "fromBoxId": 34,
+          "fromPortId": 1,
+          "toBoxId": 100,
           "toPortId": 0
         },
         {
           "id": 111,
-          "fromBoxId": 71,
-          "fromPortId": 0,
-          "toBoxId": 57,
-          "toPortId": 1
+          "fromBoxId": 12,
+          "fromPortId": 2,
+          "toBoxId": 55,
+          "toPortId": 0
         },
         {
           "id": 112,
-          "fromBoxId": 66,
-          "fromPortId": 2,
-          "toBoxId": 64,
+          "fromBoxId": 85,
+          "fromPortId": 0,
+          "toBoxId": 88,
           "toPortId": 0
         },
         {
           "id": 113,
-          "fromBoxId": 19,
-          "fromPortId": 2,
-          "toBoxId": 5,
-          "toPortId": 0
+          "fromBoxId": 18,
+          "fromPortId": 0,
+          "toBoxId": 94,
+          "toPortId": 1
         },
         {
           "id": 114,
-          "fromBoxId": 55,
-          "fromPortId": 0,
-          "toBoxId": 66,
+          "fromBoxId": 91,
+          "fromPortId": 2,
+          "toBoxId": 74,
           "toPortId": 1
         },
         {
           "id": 115,
-          "fromBoxId": 56,
-          "fromPortId": 1,
-          "toBoxId": 27,
-          "toPortId": 0
+          "fromBoxId": 95,
+          "fromPortId": 2,
+          "toBoxId": 67,
+          "toPortId": 1
         },
         {
           "id": 116,
-          "fromBoxId": 7,
-          "fromPortId": 1,
-          "toBoxId": 99,
+          "fromBoxId": 78,
+          "fromPortId": 0,
+          "toBoxId": 97,
           "toPortId": 0
         },
         {
           "id": 117,
-          "fromBoxId": 33,
+          "fromBoxId": 18,
           "fromPortId": 0,
-          "toBoxId": 6,
+          "toBoxId": 24,
           "toPortId": 0
         },
         {
           "id": 118,
-          "fromBoxId": 76,
-          "fromPortId": 1,
-          "toBoxId": 7,
+          "fromBoxId": 99,
+          "fromPortId": 2,
+          "toBoxId": 61,
           "toPortId": 0
         },
         {
           "id": 119,
-          "fromBoxId": 97,
+          "fromBoxId": 30,
           "fromPortId": 0,
-          "toBoxId": 48,
-          "toPortId": 1
+          "toBoxId": 1,
+          "toPortId": 0
         },
         {
           "id": 120,
-          "fromBoxId": 22,
-          "fromPortId": 1,
-          "toBoxId": 65,
-          "toPortId": 1
+          "fromBoxId": 83,
+          "fromPortId": 0,
+          "toBoxId": 56,
+          "toPortId": 0
         }
       ]
     }
   },
   "meta": {
     "nextId": 121,
-    "uuid": "0199d500-4f96-71df-86fa-32c69818b5ce",
+    "uuid": "0199df60-6d68-7479-8c7a-1164b0038e39",
     "name": "stress_100_close",
     "description": "",
     "isExample": true
@@ -1268,16 +1268,16 @@
   "inputs": {
     "inputsState": [
       {
-        "boxId": 9,
-        "state": true
-      },
-      {
-        "boxId": 10,
+        "boxId": 3,
         "state": false
       },
       {
-        "boxId": 12,
-        "state": true
+        "boxId": 7,
+        "state": false
+      },
+      {
+        "boxId": 8,
+        "state": false
       },
       {
         "boxId": 13,
@@ -1288,43 +1288,43 @@
         "state": false
       },
       {
-        "boxId": 24,
-        "state": true
+        "boxId": 17,
+        "state": false
       },
       {
-        "boxId": 26,
-        "state": true
+        "boxId": 18,
+        "state": false
       },
       {
-        "boxId": 29,
+        "boxId": 20,
+        "state": false
+      },
+      {
+        "boxId": 21,
+        "state": false
+      },
+      {
+        "boxId": 30,
+        "state": false
+      },
+      {
+        "boxId": 31,
         "state": false
       },
       {
         "boxId": 33,
-        "state": true
+        "state": false
       },
       {
-        "boxId": 35,
-        "state": true
+        "boxId": 38,
+        "state": false
       },
       {
-        "boxId": 41,
-        "state": true
+        "boxId": 50,
+        "state": false
       },
       {
-        "boxId": 42,
-        "state": true
-      },
-      {
-        "boxId": 55,
-        "state": true
-      },
-      {
-        "boxId": 61,
-        "state": true
-      },
-      {
-        "boxId": 62,
+        "boxId": 58,
         "state": false
       },
       {
@@ -1332,33 +1332,1406 @@
         "state": false
       },
       {
-        "boxId": 69,
+        "boxId": 70,
         "state": false
       },
       {
-        "boxId": 71,
-        "state": true
+        "boxId": 72,
+        "state": false
       },
       {
         "boxId": 75,
-        "state": true
+        "state": false
       },
       {
-        "boxId": 93,
-        "state": true
+        "boxId": 78,
+        "state": false
       },
       {
-        "boxId": 97,
-        "state": true
+        "boxId": 79,
+        "state": false
       },
       {
-        "boxId": 100,
-        "state": true
+        "boxId": 83,
+        "state": false
+      },
+      {
+        "boxId": 84,
+        "state": false
+      },
+      {
+        "boxId": 85,
+        "state": false
+      },
+      {
+        "boxId": 89,
+        "state": false
+      },
+      {
+        "boxId": 96,
+        "state": false
       }
     ]
   },
   "simulation": {
-    "boxSimState": []
+    "boxSimState": [
+      {
+        "boxId": 1,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 2,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 3,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 4,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 5,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 6,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 7,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 8,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 9,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 10,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 11,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 12,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 13,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 14,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 15,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 16,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 17,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 18,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 19,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 20,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 21,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 22,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 23,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 24,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 25,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 26,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 27,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 28,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 29,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 30,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 31,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 32,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 33,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 34,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 35,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 36,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 37,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 38,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 39,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 40,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 41,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 42,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 43,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 44,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 45,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 46,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 47,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 48,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 49,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 50,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 51,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 52,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 53,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 54,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 55,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 56,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 57,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 58,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 59,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 60,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 61,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 62,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 63,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 64,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 65,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 66,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 67,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 68,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 69,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 70,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 71,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 72,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 73,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 74,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 75,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 76,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 77,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 78,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 79,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 80,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 81,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 82,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 83,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 84,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 85,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 86,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 87,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 88,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 89,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 90,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 91,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 92,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 93,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 94,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 95,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 96,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 97,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 98,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 99,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 100,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      }
+    ],
+    "connectorSimState": []
   },
   "state": {
     "zoomFactor": 1,

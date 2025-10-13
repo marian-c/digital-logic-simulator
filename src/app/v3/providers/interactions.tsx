@@ -13,7 +13,7 @@ import {
 } from '@/app/v3/data/utils/selectors';
 import {
   actionAddActiveConnector,
-  actionAddNewBox,
+  actionActiveAddNewBox,
   actionSetActiveSketchPan,
   actionSetActiveSketchZoomAndPan,
   actionSnapActiveBox,
@@ -342,7 +342,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         const activeSketch = getActiveSketch(sketchDataRef.current);
         // TODO: this positions the box at the mouseCanvasCoordinatesRef.current.x
         //   we should offset that so the cursor is at the center of the box
-        const [{ newBox, newPosition }, newData] = actionAddNewBox(
+        const [{ newBox, newPosition }, newData] = actionActiveAddNewBox(
           aboutToDragNewBoxKindRef.current,
           mouseCanvasCoordinatesRef.current.x / activeSketch.state.zoomFactor +
             activeSketch.state.panX,
