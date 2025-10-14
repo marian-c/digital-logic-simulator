@@ -1,12 +1,18 @@
 import type { FunctionComponent } from '@/types/r-ui';
 import { useSketchStorageData } from '@/app/v3/providers/dataStorageProvider';
-import { getActiveConnectorData, getActiveSketch, getPoint } from '@/app/v3/data/utils/selectors';
+import {
+  getActiveConnectorData,
+  getActiveSketch,
+  getConnectorSimById,
+  getPoint,
+} from '@/app/v3/data/utils/selectors';
 import React from 'react';
 import type { BoxElement, ConnectorElement } from '@/app/v3/types/innerSketchStructure';
 import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
 import { plainConnectorExtensionMin } from '@/app/v3/config';
 import roundPathCorners from '@/helpers/rounding';
 import { useInteractionsData, useInteractionsMethods } from '@/app/v3/providers/interactions';
+import type { ConnectorSimState } from '@/app/v3/types/innerSketchSimulation';
 
 export const Connector: FunctionComponent<{
   connectorElement: ConnectorElement;
@@ -14,7 +20,8 @@ export const Connector: FunctionComponent<{
   fromBoxPosition: SketchBoxPosition;
   toBox: BoxElement;
   toBoxPosition: SketchBoxPosition;
-}> = ({ connectorElement, fromBox, fromBoxPosition, toBox, toBoxPosition }) => {
+  sim: ConnectorSimState;
+}> = ({ connectorElement, fromBox, fromBoxPosition, toBox, toBoxPosition, sim }) => {
   const start = getPoint(fromBox, fromBoxPosition, connectorElement.fromPortId);
   const end = getPoint(toBox, toBoxPosition, connectorElement.toPortId);
   const { $onConnectorMouseDown } = useInteractionsMethods();
@@ -42,7 +49,7 @@ export const Connector: FunctionComponent<{
       <path
         data-desc={`connector-id-${connectorElement.id}`}
         fill="none"
-        stroke={Math.random() > 0.5 ? 'crimson' : 'dimgray'}
+        stroke={sim.state ? 'crimson' : 'dimgray'}
         strokeWidth={3}
         shapeRendering="geometricPrecision"
         onMouseDown={(mouseEvent) => {
@@ -73,6 +80,7 @@ export const Connectors: FunctionComponent = () => {
           connectorElement,
           data,
         );
+        const sim = getConnectorSimById(connectorElement.id, activeSketch);
 
         return (
           <Connector
@@ -82,6 +90,7 @@ export const Connectors: FunctionComponent = () => {
             fromBoxPosition={fromBoxPosition}
             toBox={toBox}
             toBoxPosition={toBoxPosition}
+            sim={sim}
           />
         );
       })}

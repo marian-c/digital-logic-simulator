@@ -32,5 +32,3 @@ TODOs:
 
 - [x] add inputs state when dragging inputs / [ ] remove when removing inputs
 - [x] add default simStates when adding boxes / [x] connectors / [ ] remove when removing boxes / [ ] connectors
-- [ ] sim: don't handle twice, is it already handled?
-- [ ] sim: store connector states as well

@@ -137,11 +137,14 @@ export function simulateV3a(data: DataV3) {
 
   function handleBox(boxToHandle: BoxElement, activeSketch: Sketch): BoxSimulationState {
     // TODO: detect cycles and fix some how (random?)
-    // TODO: don't handle twice, is it already handled?
-    // TODO: store connector states as well
+
+    const simulated = activeSketch.simulation.boxSimState.find((s) => s.boxId === boxToHandle.id);
+    if (simulated) {
+      return simulated;
+    }
+
     let handled: BoxSimulationState;
-    // TODO: keep a cache of handled boxes so we don't solve them again
-    //   in case multiple boxes depend on the same box
+
     switch (boxToHandle.boxElementKind) {
       case 'input':
         handled = handleInputBox(boxToHandle, activeSketch);
@@ -159,6 +162,17 @@ export function simulateV3a(data: DataV3) {
         assertNever(boxToHandle);
     }
 
+    handled.simStatesOutputs.forEach((output) => {
+      const connectors = activeSketch.structure.main.connectorElements.filter(function (connector) {
+        return connector.fromBoxId === boxToHandle.id && connector.fromPortId === output.portId;
+      });
+      for (const connector of connectors) {
+        activeSketch.simulation.connectorSimState.push({
+          connectorId: connector.id,
+          state: output.state,
+        });
+      }
+    });
     activeSketch.simulation.boxSimState.push(handled);
     return handled;
   }
@@ -168,11 +182,10 @@ export function simulateV3a(data: DataV3) {
   // TODO: maybe if we don't clean it up we can avoid recreating all those objects
   //   and just mutate what's there
   _activeSketch.simulation.boxSimState = [];
+  _activeSketch.simulation.connectorSimState = [];
 
   // start from the pieces that don't have outputs
   const startingPoints = getElementsWithoutOutput(_activeSketch, data);
-
-  console.log('startingPoints', startingPoints);
 
   startingPoints.forEach((box) => {
     handleBox(box, _activeSketch);
@@ -182,6 +195,5 @@ export function simulateV3a(data: DataV3) {
   //   we still have unsolved boxes, the rest are in a cycle and we need to pic a random one maybe
   //   or detect the cycle and apply "the" fix
 
-  console.log('simulated', _activeSketch.simulation.boxSimState);
   return data;
 }

@@ -32,6 +32,10 @@ export function getBoxSimById(boxId: number, activeSketch: Sketch) {
   return activeSketch.simulation.boxSimState.find((p) => p.boxId === boxId)!;
 }
 
+export function getConnectorSimById(connectorId: number, activeSketch: Sketch) {
+  return activeSketch.simulation.connectorSimState.find((p) => p.connectorId === connectorId)!;
+}
+
 export function getActiveBoxPosition(boxId: number, data: DataV3) {
   const activeSketch = getActiveSketch(data);
   return getBoxPositionById(boxId, activeSketch);

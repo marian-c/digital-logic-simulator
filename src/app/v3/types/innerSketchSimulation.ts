@@ -15,7 +15,7 @@ export type BoxSimulationState = {
 
 // not strictly necessary since we have the inputs
 // but storing connectors also, will avoid lookup at render time
-type ConnectorSimState = {
+export type ConnectorSimState = {
   connectorId: number;
   state: boolean;
 };
