@@ -17,6 +17,8 @@ import {
   actionSetActiveSketchPan,
   actionSetActiveSketchZoomAndPan,
   actionSnapActiveBox,
+  actionRemoveActiveBox,
+  actionRemoveActiveConnector,
 } from '@/app/v3/data/utils/actions';
 import { useStateWithRefImmediate } from '@/hooks/useStateWithRefImmediate';
 import type { BoxElement, BoxElementKind } from '@/app/v3/types/innerSketchStructure';
@@ -96,7 +98,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   //  remains active even after the drag operation has moved
   const [activeBoxId, $setActiveBoxIdRef, activeBoxIdRef] = useStateWithRefImmediate<number>(0);
 
-  const [activeConnectorId, $setActiveConnectorIdRef] = useStateWithRefImmediate<number>(0);
+  const [activeConnectorId, $setActiveConnectorIdRef, activeConnectorIdRef] =
+    useStateWithRefImmediate<number>(0);
 
   // set on mouse down on boxes, internal marker for dragging operation
   //  unset on mouse up; Holds the un-snapped coordinates of the box
@@ -391,11 +394,32 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         floatingConnectorRef.current === null &&
         aboutToDragNewBoxKindRef.current === null
       ) {
+        console.log('delete');
         // if we allow deletion while dragging, we need to worry about cleaning up, normally mouse up would do it
-        console.log('TODO: delete');
+        if (activeBoxIdRef.current !== 0) {
+          $setSketchData(actionRemoveActiveBox(activeBoxIdRef.current, sketchDataRef.current));
+          $setActiveBoxIdRef(0);
+        }
+
+        if (activeConnectorIdRef.current !== 0) {
+          $setSketchData(
+            actionRemoveActiveConnector(activeConnectorIdRef.current, sketchDataRef.current),
+          );
+          $setActiveConnectorIdRef(0);
+        }
       }
     },
-    [aboutToDragNewBoxKindRef, floatingConnectorRef, isMouseDownForDraggingBoxesRef],
+    [
+      $setActiveBoxIdRef,
+      $setActiveConnectorIdRef,
+      $setSketchData,
+      aboutToDragNewBoxKindRef,
+      activeBoxIdRef,
+      activeConnectorIdRef,
+      floatingConnectorRef,
+      isMouseDownForDraggingBoxesRef,
+      sketchDataRef,
+    ],
   );
 
   const $handleDocumentMouseMouseUp = React.useCallback(
@@ -505,6 +529,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       return () => {
         document.removeEventListener('mousemove', $handleDocumentMouseMoveMouseCoordinates);
         document.removeEventListener('mouseup', $handleDocumentMouseMouseUp);
+        document.removeEventListener('keydown', $handleDocumentKeyDown);
         el?.removeEventListener('wheel', onWheel);
       };
     },

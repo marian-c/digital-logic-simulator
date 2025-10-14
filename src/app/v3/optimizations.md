@@ -18,17 +18,9 @@
 - maybe Structure can have a Version flag and we can skip simulating based on that
 
 - when simulating
-  - [ ] don't handle box twice, is it already handled?
-  - [ ] store the connectors as well, leaving us with all 3 types simulated with minimal lookup
-    - only outputs or connector are actually required
-    - to avoid all lookup at render time, we can use a map instead of an array
+  - to avoid all lookup at render time, we can use maps instead of arrays
   - try storing only box outputs vs. storing only connectors, look up at render time everything else
   - don't store inputs, loop up at render time, don't store connectors, loop up at render time
   - store inputs, avoid loop up at render time
   - store connectors, avoid loop up at render time
   - all these might be faster if we ref link between box/connector and simState
-
-TODOs:
-
-- [x] add inputs state when dragging inputs / [ ] remove when removing inputs
-- [x] add default simStates when adding boxes / [x] connectors / [ ] remove when removing boxes / [ ] connectors

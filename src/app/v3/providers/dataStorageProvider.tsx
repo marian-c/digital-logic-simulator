@@ -75,6 +75,10 @@ export const DataStorageProvider: FunctionComponentWithChildren = ({ children })
         safeToLocalStorage(ssa);
         // simulate
         const ssaWithSimulation = simulateV3a(ssa);
+        console.log(
+          'simulated',
+          ssaWithSimulation.sketches.find((s) => s.meta.uuid === ssa.selectedSketchUuid),
+        );
 
         // TODO: simulate only when relevant data changes, structure and inputs
         $_setData(ssaWithSimulation);

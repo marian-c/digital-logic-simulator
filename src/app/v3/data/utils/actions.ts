@@ -138,6 +138,89 @@ export function actionAddActiveConnector(
   return { ...oldData };
 }
 
+export function actionRemoveActiveConnector(connectorId: number, oldData: DataV3) {
+  const activeSketch = getActiveSketch(oldData);
+  const connectorIdx = activeSketch.structure.main.connectorElements.findIndex((c) => {
+    return c.id === connectorId;
+  });
+  if (connectorIdx !== -1) {
+    activeSketch.structure.main.connectorElements.splice(connectorIdx, 1);
+  } else {
+    console.warn(`could not find connector to remove ${connectorId}, skipping`);
+  }
+
+  const simIdx = activeSketch.simulation.connectorSimState.findIndex((s) => {
+    return s.connectorId === connectorId;
+  });
+  if (simIdx !== -1) {
+    activeSketch.simulation.connectorSimState.splice(simIdx, 1);
+  } else {
+    console.warn(`could not find connector sim state to remove ${connectorId}, skipping`);
+  }
+  return { ...oldData };
+}
+
+export function actionRemoveActiveBox(boxId: number, oldData: DataV3) {
+  const activeSketch = getActiveSketch(oldData);
+  const boxIdx = activeSketch.structure.main.boxElements.findIndex((b) => {
+    return b.id === boxId;
+  });
+  const box = activeSketch.structure.main.boxElements[boxIdx];
+  if (boxIdx !== -1) {
+    activeSketch.structure.main.boxElements.splice(boxIdx, 1);
+  } else {
+    console.warn(`could not find box to remove ${boxId}, skipping`);
+  }
+
+  const idxs: number[] = [];
+  activeSketch.structure.main.connectorElements.forEach((connector, idx) => {
+    if (connector.fromBoxId === boxId || connector.toBoxId === boxId) {
+      idxs.push(idx);
+    }
+  });
+  idxs.reverse().forEach((idx) => {
+    activeSketch.structure.main.connectorElements.splice(idx, 1);
+  });
+
+  const boxPositionIdx = activeSketch.positions.boxPositions.findIndex((b) => {
+    return b.boxId === boxId;
+  });
+  if (boxPositionIdx !== -1) {
+    activeSketch.positions.boxPositions.splice(boxPositionIdx, 1);
+  } else {
+    console.warn(`could not find box position to remove ${boxId}, skipping`);
+  }
+
+  const boxSimIdx = activeSketch.simulation.boxSimState.findIndex((s) => {
+    return s.boxId === boxId;
+  });
+  if (boxSimIdx !== -1) {
+    activeSketch.simulation.boxSimState.splice(boxSimIdx, 1);
+  } else {
+    console.warn(`could not find box sim state to remove ${boxId}, skipping`);
+  }
+
+  switch (box.boxElementKind) {
+    case 'and':
+    case 'not':
+    case 'output':
+      break;
+    case 'input':
+      const inputStateIdx = activeSketch.inputs.inputsState.findIndex((s) => {
+        return s.boxId === boxId;
+      });
+      if (inputStateIdx !== -1) {
+        activeSketch.inputs.inputsState.splice(inputStateIdx, 1);
+      } else {
+        console.warn(`could not find input state to remove ${boxId}, skipping`);
+      }
+      break;
+    default:
+      assertNever(box);
+  }
+  return { ...oldData };
+}
+
 export function actionAddMutateNewBox(
   boxKind: BoxElementKind,
   x: number,
