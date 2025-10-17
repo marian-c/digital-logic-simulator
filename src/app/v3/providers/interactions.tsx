@@ -21,7 +21,12 @@ import {
   actionRemoveActiveConnector,
 } from '@/app/v3/data/utils/actions';
 import { useStateWithRefImmediate } from '@/hooks/useStateWithRefImmediate';
-import type { BoxElement, BoxElementKind } from '@/app/v3/types/innerSketchStructure';
+import type {
+  BoxElement,
+  BoxElementKind,
+  BoxParams,
+  KindToElement,
+} from '@/app/v3/types/innerSketchStructure';
 import type { PortKind } from '@/app/v3/types/data';
 
 type Size = { width: number; height: number; left: number; top: number };
@@ -66,8 +71,11 @@ type CtxMethods = {
   ) => void;
   $onConnectorPointMouseOver: (portId: number, portKind: PortKind, boxElement: BoxElement) => void;
   $onConnectorPointMouseOut: (portId: number, portKind: PortKind, boxElement: BoxElement) => void;
-  $onNewBoxMouseDown: (boxKind: BoxElementKind) => void;
-  $onNewBoxMouseUp: (boxKind: BoxElementKind) => void;
+  $onNewBoxMouseDown: <K extends BoxElementKind>(
+    kind: K,
+    params: KindToElement<K>['params'],
+  ) => void;
+  $onNewBoxMouseUp: () => void;
   $onConnectorMouseDown: (
     connectorId: number,
     mouseEvent: React.MouseEvent<SVGElement, MouseEvent>,
@@ -92,7 +100,7 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   // set on mouse down in NEW boxes to the kind of box, when set,
   //  the next mouse down will add that box and unset it
   const [, $setAboutToDragNewBoxKindRef, aboutToDragNewBoxKindRef] =
-    useStateWithRefImmediate<BoxElementKind | null>(null);
+    useStateWithRefImmediate<BoxParams | null>(null);
 
   // set on mouse down on boxes, makes the active box highlighted
   //  remains active even after the drag operation has moved
@@ -187,17 +195,14 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     [$setActiveBoxIdRef, $setActiveConnectorIdRef],
   );
   const $onNewBoxMouseDown = React.useCallback<CtxMethods['$onNewBoxMouseDown']>(
-    (boxKind) => {
-      $setAboutToDragNewBoxKindRef(boxKind);
+    (kind, params) => {
+      $setAboutToDragNewBoxKindRef([kind, params] as BoxParams);
     },
     [$setAboutToDragNewBoxKindRef],
   );
-  const $onNewBoxMouseUp = React.useCallback<CtxMethods['$onNewBoxMouseUp']>(
-    (_boxKind) => {
-      $setAboutToDragNewBoxKindRef(null);
-    },
-    [$setAboutToDragNewBoxKindRef],
-  );
+  const $onNewBoxMouseUp = React.useCallback<CtxMethods['$onNewBoxMouseUp']>(() => {
+    $setAboutToDragNewBoxKindRef(null);
+  }, [$setAboutToDragNewBoxKindRef]);
 
   const $onConnectorPointMouseOut = React.useCallback<CtxMethods['$onConnectorPointMouseOut']>(
     (_portId, _portKind, _boxElement) => {

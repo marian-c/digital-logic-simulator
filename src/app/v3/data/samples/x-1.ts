@@ -11,12 +11,12 @@ import type {
 export const structure: SketchStructure = {
   main: {
     boxElements: [
-      { id: 1, boxElementKind: 'not' },
-      { id: 2, boxElementKind: 'not' },
-      { id: 3, boxElementKind: 'not' },
-      { id: 4, boxElementKind: 'output' },
-      { id: 5, boxElementKind: 'input' },
-      { id: 6, boxElementKind: 'and' },
+      { id: 1, kind: 'not', params: undefined },
+      { id: 2, kind: 'not', params: undefined },
+      { id: 3, kind: 'not', params: undefined },
+      { id: 4, kind: 'output', params: undefined },
+      { id: 5, kind: 'input', params: undefined },
+      { id: 6, kind: 'and', params: undefined },
     ],
     connectorElements: [
       {
@@ -72,4 +72,5 @@ export const sketch: Sketch = {
   inputs,
   simulation,
   state,
+  customSketchesSupportData: [],
 };

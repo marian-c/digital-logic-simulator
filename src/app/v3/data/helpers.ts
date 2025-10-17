@@ -23,6 +23,7 @@ export function generateEmptySketch({ name, uuid }: { name: string; uuid: string
     },
     simulation: { boxSimState: [], connectorSimState: [] },
     state: { zoomFactor: 1, panX: 0, panY: 0 },
+    customSketchesSupportData: [],
   };
 }
 
@@ -37,6 +38,9 @@ export function validateSketch(_sketch: Sketch): boolean {
    * can't have multiple connectors coming into an input (possible when coming out of an output);
    * connector must start from an output and end at an input - in this order;
    * InnerSketchInputs must refer to valid inputs
+   * attachedSketchesStuff exists for sketches with attached sketches
+   *    - and have valid data
+   * connectors from/to custom boxes must have valid port ids (ids of inputs/outputs of the custom box)
    */
   return true;
 }

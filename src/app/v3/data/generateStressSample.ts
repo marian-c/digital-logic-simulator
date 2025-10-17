@@ -9,7 +9,7 @@ import { actionAddMutateConnector, actionAddMutateNewBox } from '@/app/v3/data/u
 
 function getRandomKind() {
   const items = ['and', 'not', 'input', 'output'] as const;
-  return items[Math.floor(Math.random() * items.length)];
+  return items[Math.floor(Math.random() * items.length)]!;
 }
 
 function generate(name: string, maxElements: number, maxConnectors: number, spread: number) {
@@ -22,28 +22,30 @@ function generate(name: string, maxElements: number, maxConnectors: number, spre
     const x = Math.floor(i / limitX) * spread;
     const y = Math.floor(i % limitX) * spread;
     const kind = getRandomKind();
-    actionAddMutateNewBox(kind, x, y, sketch);
+    actionAddMutateNewBox([kind, undefined], x, y, sketch);
   }
 
   const startBoxes = sketch.structure.main.boxElements.filter((b) => {
-    switch (b.boxElementKind) {
+    switch (b.kind) {
       case 'and':
       case 'input':
       case 'not':
         return true;
       case 'output':
+      case 'custom':
         return false;
       default:
         assertNever(b);
     }
   });
   let endBoxes = sketch.structure.main.boxElements.filter((b) => {
-    switch (b.boxElementKind) {
+    switch (b.kind) {
       case 'and':
       case 'output':
       case 'not':
         return true;
       case 'input':
+      case 'custom':
         return false;
       default:
         assertNever(b);
@@ -51,13 +53,15 @@ function generate(name: string, maxElements: number, maxConnectors: number, spre
   });
 
   function getRandomOutPortId(box: BoxElement) {
-    switch (box.boxElementKind) {
+    switch (box.kind) {
       case 'and':
         return 2;
       case 'not':
         return 1;
       case 'input':
         return 0;
+      case 'custom':
+        throw new Error('Custom boxes not supported yet');
       case 'output':
         throw new Error('Output boxes have no output ports');
       default:
@@ -65,11 +69,13 @@ function generate(name: string, maxElements: number, maxConnectors: number, spre
     }
   }
   function getRandomInputPortId(box: BoxElement) {
-    switch (box.boxElementKind) {
+    switch (box.kind) {
       case 'and':
         return Math.floor(Math.random() * 2);
       case 'not':
         return 0;
+      case 'custom':
+        throw new Error('Custom boxes not supported yet');
       case 'input':
         throw new Error('Input boxes have no input ports');
       case 'output':
@@ -79,8 +85,8 @@ function generate(name: string, maxElements: number, maxConnectors: number, spre
     }
   }
   for (let i = 0; i < maxConnectors; i++) {
-    const startBox = startBoxes[Math.floor(Math.random() * startBoxes.length)];
-    const endBox = endBoxes[Math.floor(Math.random() * endBoxes.length)];
+    const startBox = startBoxes[Math.floor(Math.random() * startBoxes.length)]!;
+    const endBox = endBoxes[Math.floor(Math.random() * endBoxes.length)]!;
     endBoxes = endBoxes.filter((b) => b !== endBox);
     actionAddMutateConnector(
       { boxId: startBox.id, portId: getRandomOutPortId(startBox) },

@@ -32,7 +32,7 @@ export const NotBox: FunctionComponent<{
             cy={notGateHeight / 2}
             portId={0}
             boxElement={boxElement}
-            state={boxSim.simStatesInputs[0].state}
+            state={boxSim.simStatesInputs[0]!.state}
           />
           <ConnectorPoint
             portKind="outputPort"
@@ -40,7 +40,7 @@ export const NotBox: FunctionComponent<{
             cy={notGateHeight / 2}
             portId={1}
             boxElement={boxElement}
-            state={boxSim.simStatesOutputs[0].state}
+            state={boxSim.simStatesOutputs[0]!.state}
           />
         </>
       }

@@ -56,7 +56,7 @@ export const InputBox: FunctionComponent<{
           portId={0}
           boxElement={boxElement}
           cx={inputCircleToCircleDist}
-          state={boxSim.simStatesOutputs[0].state}
+          state={boxSim.simStatesOutputs[0]!.state}
         />
       }
     />

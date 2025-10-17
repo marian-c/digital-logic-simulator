@@ -90,7 +90,7 @@ export function getActiveIsPortDraggable(
 }
 
 export function getPoint(box: BoxElement, boxPosition: SketchBoxPosition, portId: number) {
-  switch (box.boxElementKind) {
+  switch (box.kind) {
     case 'and':
       if (portId === 0) {
         return {
@@ -146,6 +146,8 @@ export function getPoint(box: BoxElement, boxPosition: SketchBoxPosition, portId
         throw new Error('Inconsistency: portId is not 0, but ' + portId + '');
       }
       break;
+    case 'custom':
+      throw new Error('// TODO: XXX');
     default:
       assertNever(box);
   }

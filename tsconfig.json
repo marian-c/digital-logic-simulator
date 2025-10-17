@@ -18,6 +18,7 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "noUncheckedIndexedAccess": true,
     "allowSyntheticDefaultImports": true,
     "resolvePackageJsonExports": true,
     "resolvePackageJsonImports": true,
@@ -52,6 +53,6 @@
   ],
   "exclude": [
     "node_modules",
-    ".IGNORED"
+    ".IGNORED",
   ]
 }

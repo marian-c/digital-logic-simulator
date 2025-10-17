@@ -7,6 +7,7 @@ const {
   inputs,
   simulation,
   state,
+  customSketchesSupportData,
   // eslint-disable-next-line @typescript-eslint/no-require-imports
 } = require('./stress_100_close.json');
 
@@ -17,4 +18,5 @@ export const sketch: Sketch = {
   inputs,
   simulation,
   state,
+  customSketchesSupportData,
 };

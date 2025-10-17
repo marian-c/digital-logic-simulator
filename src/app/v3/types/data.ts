@@ -31,6 +31,13 @@ export type SketchState = {
   panY: number;
 };
 
+export type CustomSketchesSupportData = {
+  boxId: number;
+  inputs: SketchInputs;
+  simulation: SketchSimulation;
+  customSketchesSupportData: CustomSketchesSupportData[];
+};
+
 export type Sketch = {
   structure: SketchStructure;
   meta: SketchMeta;
@@ -38,6 +45,7 @@ export type Sketch = {
   inputs: SketchInputs;
   simulation: SketchSimulation;
   state: SketchState;
+  customSketchesSupportData: CustomSketchesSupportData[]; // TODO: XXX: on add cusom box, on remove custom box, on load active sketch for every custom box inside
 };
 
 export type DataV3 = {

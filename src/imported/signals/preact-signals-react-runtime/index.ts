@@ -23,6 +23,7 @@ const [major] = reactVersion.split('.').map(Number);
 const Empty = [] as const;
 // V19 https://github.com/facebook/react/blob/346c7d4c43a0717302d446da9e7423a8e28d8996/packages/shared/ReactSymbols.js#L15
 // V18 https://github.com/facebook/react/blob/346c7d4c43a0717302d446da9e7423a8e28d8996/packages/shared/ReactSymbols.js#L15
+// @ts-ignore major can technically be undefined
 const ReactElemType = Symbol.for(major >= 19 ? 'react.transitional.element' : 'react.element');
 
 export function wrapJsx<T>(jsx: T): T {

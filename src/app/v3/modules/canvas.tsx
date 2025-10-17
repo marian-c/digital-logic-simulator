@@ -9,11 +9,32 @@ const gridSize = 40;
 const cn = 'border border-amber-700 cursor-pointer';
 
 export function CanvasV3() {
+  const data = useSketchStorageData();
   const {
     state: { panY, panX, zoomFactor },
-  } = getActiveSketch(useSketchStorageData());
+  } = getActiveSketch(data);
   const { svgRef, canvasRef, $onNewBoxMouseDown, $onNewBoxMouseUp } = useInteractionsMethods();
   const { size } = useInteractionsData();
+
+  const extraBoxes = data.sketches
+    .filter((s) => s.meta.uuid !== data.selectedSketchUuid)
+    .map((sketch) => {
+      return (
+        <div
+          key={sketch.meta.uuid}
+          className={cn}
+          onMouseDown={() => {
+            $onNewBoxMouseDown('custom', { uuid: sketch.meta.uuid });
+          }}
+          onMouseUp={() => {
+            $onNewBoxMouseUp();
+          }}
+        >
+          {sketch.meta.name}
+        </div>
+      );
+    });
+
   return (
     <div className="flex flex-col flex-grow bg-zinc-200 relative">
       {/*canvasRef and svgRef MUST overlap perfectly*/}
@@ -22,10 +43,10 @@ export function CanvasV3() {
           <div
             className={cn}
             onMouseDown={() => {
-              $onNewBoxMouseDown('input');
+              $onNewBoxMouseDown('input', undefined);
             }}
             onMouseUp={() => {
-              $onNewBoxMouseUp('input');
+              $onNewBoxMouseUp();
             }}
           >
             Input
@@ -33,10 +54,10 @@ export function CanvasV3() {
           <div
             className={cn}
             onMouseDown={() => {
-              $onNewBoxMouseDown('output');
+              $onNewBoxMouseDown('output', undefined);
             }}
             onMouseUp={() => {
-              $onNewBoxMouseUp('output');
+              $onNewBoxMouseUp();
             }}
           >
             Output
@@ -44,10 +65,10 @@ export function CanvasV3() {
           <div
             className={cn}
             onMouseDown={() => {
-              $onNewBoxMouseDown('not');
+              $onNewBoxMouseDown('not', undefined);
             }}
             onMouseUp={() => {
-              $onNewBoxMouseUp('not');
+              $onNewBoxMouseUp();
             }}
           >
             Not
@@ -55,14 +76,15 @@ export function CanvasV3() {
           <div
             className={cn}
             onMouseDown={() => {
-              $onNewBoxMouseDown('and');
+              $onNewBoxMouseDown('and', undefined);
             }}
             onMouseUp={() => {
-              $onNewBoxMouseUp('and');
+              $onNewBoxMouseUp();
             }}
           >
             And
           </div>
+          {extraBoxes}
         </div>
         <svg
           ref={svgRef}

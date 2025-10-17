@@ -12,14 +12,14 @@ import { InputBox } from '@/app/v3/modules/canvas/boxes/inputBox';
 import { AndBox } from '@/app/v3/modules/canvas/boxes/andBox';
 import { NotBox } from '@/app/v3/modules/canvas/boxes/notBox';
 import type { BoxSimulationState } from '@/app/v3/types/innerSketchSimulation';
+import { CustomBox } from '@/app/v3/modules/canvas/boxes/customBox';
 
 const Box: FunctionComponent<{
   boxElement: BoxElement;
   boxPosition: SketchBoxPosition;
   boxSim: BoxSimulationState;
 }> = ({ boxElement, boxPosition, boxSim }) => {
-  const { boxElementKind } = boxElement;
-  switch (boxElementKind) {
+  switch (boxElement.kind) {
     case 'not':
       return <NotBox boxElement={boxElement} boxPosition={boxPosition} boxSim={boxSim} />;
       break;
@@ -32,8 +32,11 @@ const Box: FunctionComponent<{
     case 'and':
       return <AndBox boxElement={boxElement} boxPosition={boxPosition} boxSim={boxSim} />;
       break;
+    case 'custom':
+      return <CustomBox boxElement={boxElement} boxPosition={boxPosition} boxSim={boxSim} />;
+      break;
     default:
-      assertNever(boxElementKind);
+      assertNever(boxElement);
       break;
   }
 };

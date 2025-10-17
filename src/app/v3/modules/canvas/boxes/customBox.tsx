@@ -1,5 +1,5 @@
 import type { FunctionComponent } from '@/types/r-ui';
-import type { AndBoxElement } from '@/app/v3/types/innerSketchStructure';
+import type { CustomBoxElement } from '@/app/v3/types/innerSketchStructure';
 import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
 import React from 'react';
 import { GenericBox } from '@/app/v3/modules/canvas/boxes/genericBox';
@@ -7,11 +7,12 @@ import { andGateColor, andGateHeight, andGateWidth } from '@/app/v3/config';
 import { ConnectorPoint } from '@/app/v3/modules/canvas/boxes/connectorPoint';
 import type { BoxSimulationState } from '@/app/v3/types/innerSketchSimulation';
 
-export const AndBox: FunctionComponent<{
-  boxElement: AndBoxElement;
+export const CustomBox: FunctionComponent<{
+  boxElement: CustomBoxElement;
   boxPosition: SketchBoxPosition;
   boxSim: BoxSimulationState;
 }> = ({ boxElement, boxPosition, boxSim }) => {
+  // TODO: XXX
   return (
     <GenericBox
       boxId={boxElement.id}

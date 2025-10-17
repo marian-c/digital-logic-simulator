@@ -6,23 +6,28 @@ export const sketch: Sketch = {
       boxElements: [
         {
           id: 4,
-          boxElementKind: 'input',
+          kind: 'input',
+          params: undefined,
         },
         {
           id: 6,
-          boxElementKind: 'input',
+          kind: 'input',
+          params: undefined,
         },
         {
           id: 7,
-          boxElementKind: 'and',
+          kind: 'and',
+          params: undefined,
         },
         {
           id: 8,
-          boxElementKind: 'not',
+          kind: 'not',
+          params: undefined,
         },
         {
           id: 9,
-          boxElementKind: 'output',
+          kind: 'output',
+          params: undefined,
         },
       ],
       connectorElements: [
@@ -212,4 +217,5 @@ export const sketch: Sketch = {
     panX: -128,
     panY: -74,
   },
+  customSketchesSupportData: [],
 };

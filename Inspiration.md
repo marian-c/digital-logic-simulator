@@ -23,8 +23,11 @@ https://www.youtube.com/playlist?list=PLmYaQynVkBpYavu_MuNQ7cICDuQJHgUx1
 David Black-Schaffer ordered videos
 https://www.youtube.com/playlist?list=PL9b_pbvWZfKjzceHxm8aceOvNR_6icJI-
 
-
-
+https://www.youtube.com/watch?v=l3d8uFKsJiY&list=WL&index=10&t=209s
+https://www.youtube.com/watch?v=ZNunxg7o8l0
+https://www.youtube.com/watch?v=lzXMImK_wyM
+https://youtu.be/5vRAACeebjI?t=706
+https://www.fpga4fun.com/Debouncer.html
 
 https://react.dev/reference/react/useReducer#examples-basic
 https://github.com/immerjs/use-immer#useimmerreducer

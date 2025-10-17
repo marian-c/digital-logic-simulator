@@ -51,12 +51,12 @@ export function simulate(circuit: CustomBoxElement): CustomBoxElement {
 
         // TODO: only one connector in
         const originBox = circuit.boxElements.find(
-          (box) => box.id === connectors[0].startElementId,
+          (box) => box.id === connectors[0]!.startElementId,
         );
         if (!originBox) {
           throw new Error('should not happen');
         }
-        return (boxToHandle.state = connectors[0].state = handleBox(originBox));
+        return (boxToHandle.state = connectors[0]!.state = handleBox(originBox));
       case 'custom':
         throw new Error('Implement this');
       case 'provided':
@@ -89,13 +89,13 @@ export function simulate(circuit: CustomBoxElement): CustomBoxElement {
               return (boxToHandle.state = true);
             }
             const originBox = circuit.boxElements.find(
-              (b) => b.id === connectors[0].startElementId,
+              (b) => b.id === connectors[0]!.startElementId,
             );
             if (!originBox) {
               throw new Error('should not happen');
             }
             const result = handleBox(originBox);
-            connectors[0].state = result;
+            connectors[0]!.state = result;
             return (boxToHandle.state = !result);
           }
         }

@@ -28,7 +28,7 @@ export const OutputBox: FunctionComponent<{
           />
 
           <rect
-            fill={boxSim.simStatesInputs[0].state ? 'crimson' : 'dimgray'}
+            fill={boxSim.simStatesInputs[0]!.state ? 'crimson' : 'dimgray'}
             stroke="#E8AA2DFF"
             width={30}
             height={20}
@@ -42,7 +42,7 @@ export const OutputBox: FunctionComponent<{
           portKind="inputPort"
           portId={0}
           boxElement={boxElement}
-          state={boxSim.simStatesInputs[0].state}
+          state={boxSim.simStatesInputs[0]!.state}
         />
       }
     />

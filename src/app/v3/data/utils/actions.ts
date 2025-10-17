@@ -6,8 +6,13 @@ import {
   getActiveSketch,
   getBoxPositionById,
 } from '@/app/v3/data/utils/selectors';
-import type { BoxElement, BoxElementKind } from '@/app/v3/types/innerSketchStructure';
+import type { BoxElement, BoxParams } from '@/app/v3/types/innerSketchStructure';
 import { assertNever } from '@/helpers/basics';
+import {
+  generateBoxInputState,
+  generateBoxSimState,
+  genNewBox,
+} from '@/app/v3/data/utils/generate';
 
 export function actionAddEmptySketchAndSelect(newName: string, oldData: DataV3) {
   const uuid = uuidv7();
@@ -165,7 +170,7 @@ export function actionRemoveActiveBox(boxId: number, oldData: DataV3) {
   const boxIdx = activeSketch.structure.main.boxElements.findIndex((b) => {
     return b.id === boxId;
   });
-  const box = activeSketch.structure.main.boxElements[boxIdx];
+  const box = activeSketch.structure.main.boxElements[boxIdx]!;
   if (boxIdx !== -1) {
     activeSketch.structure.main.boxElements.splice(boxIdx, 1);
   } else {
@@ -200,10 +205,13 @@ export function actionRemoveActiveBox(boxId: number, oldData: DataV3) {
     console.warn(`could not find box sim state to remove ${boxId}, skipping`);
   }
 
-  switch (box.boxElementKind) {
+  switch (box.kind) {
     case 'and':
     case 'not':
     case 'output':
+      break;
+    case 'custom':
+      // TODO: XXX if this is a custom box remove additionalSketchStuff
       break;
     case 'input':
       const inputStateIdx = activeSketch.inputs.inputsState.findIndex((s) => {
@@ -221,66 +229,30 @@ export function actionRemoveActiveBox(boxId: number, oldData: DataV3) {
   return { ...oldData };
 }
 
-export function actionAddMutateNewBox(
-  boxKind: BoxElementKind,
-  x: number,
-  y: number,
-  sketch: Sketch,
-) {
+export function actionAddMutateNewBox(boxParams: BoxParams, x: number, y: number, sketch: Sketch) {
+  // TODO: XXX if this is a custom box fill in additionalSketchStuff
   // TODO: this is a big function, should validate at the end
   const boxId = sketch.meta.nextId++;
-  const newBox = { id: boxId, boxElementKind: boxKind };
-  const newPosition = { boxId, pos: { x, y } };
+
+  const newBox = genNewBox(boxId, boxParams);
   sketch.structure.main.boxElements.push(newBox);
+
+  const newPosition = { boxId, pos: { x, y } };
   sketch.positions.boxPositions.push(newPosition);
 
-  switch (boxKind) {
-    case 'and':
-      sketch.simulation.boxSimState.push({
-        boxId,
-        simStatesInputs: [
-          { portId: 0, state: false },
-          { portId: 1, state: false },
-        ],
-        simStatesOutputs: [{ portId: 2, state: false }],
-      });
-      break;
-    case 'not':
-      sketch.simulation.boxSimState.push({
-        boxId,
-        simStatesInputs: [{ portId: 0, state: false }],
-        simStatesOutputs: [{ portId: 1, state: false }],
-      });
-      break;
-    case 'output':
-      sketch.simulation.boxSimState.push({
-        boxId,
-        simStatesInputs: [{ portId: 0, state: false }],
-        simStatesOutputs: [],
-      });
-      break;
-    case 'input':
-      sketch.simulation.boxSimState.push({
-        boxId,
-        simStatesInputs: [],
-        simStatesOutputs: [{ portId: 0, state: false }],
-      });
-      sketch.inputs.inputsState.push({ boxId, state: false });
-      break;
-    default:
-      assertNever(boxKind);
+  const simState = generateBoxSimState(boxId, boxParams);
+  sketch.simulation.boxSimState.push(simState);
+
+  const inputState = generateBoxInputState(boxId, boxParams);
+  if (inputState !== null) {
+    sketch.inputs.inputsState.push(inputState);
   }
 
   return [{ newBox, newPosition }, sketch] as const;
 }
-export function actionActiveAddNewBox(
-  boxKind: BoxElementKind,
-  x: number,
-  y: number,
-  oldData: DataV3,
-) {
+export function actionActiveAddNewBox(boxParams: BoxParams, x: number, y: number, oldData: DataV3) {
   const sketch = getActiveSketch(oldData);
   // XXX mutates
-  const [extra] = actionAddMutateNewBox(boxKind, x, y, sketch);
+  const [extra] = actionAddMutateNewBox(boxParams, x, y, sketch);
   return [extra, { ...oldData }] as const;
 }

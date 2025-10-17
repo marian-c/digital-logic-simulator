@@ -41,7 +41,7 @@ export function Rotate() {
     const deltas120: number[] = Array.from({ length: 20 });
     function fnFrame(time: number) {
       const diff = time - prevFrameTime;
-      const stat = stats[deg % 60];
+      const stat = stats[deg % 60]!;
       deltas120[deg % deltas120.length] = diff;
       const avg = deltas120.reduce((a, b) => (a ?? 0) + (b ?? 0), 0) / deltas120.length;
       (avgRef.current || ({} as any)).innerText = `AVG: ${Math.floor(1000 / avg)} FPS`;

@@ -24,7 +24,7 @@ export const UseUpdate: Story = {
         () => {
           doAction(`Person ID changed ${person.id}`);
         },
-        [person],
+        [person] as const,
         (prevDeps, nextDeps) => prevDeps[0].id === nextDeps[0].id,
       );
 

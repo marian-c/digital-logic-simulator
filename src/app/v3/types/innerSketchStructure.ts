@@ -6,27 +6,63 @@ export interface ConnectorElement {
   toPortId: number;
 }
 
-export type BoxElementKind = 'and' | 'not' | 'input' | 'output';
+export type BoxElementKind = 'and' | 'not' | 'input' | 'output' | 'custom';
+
+export type BoxParams =
+  | ['and', undefined]
+  | ['not', undefined]
+  | ['input', undefined]
+  | ['output', undefined]
+  | ['custom', { uuid: string }];
+
+export type BoxElement =
+  | NotBoxElement
+  | AndBoxElement
+  | InputBoxElement
+  | OutputBoxElement
+  | CustomBoxElement;
+
+export type KindToElement<Kind extends BoxElementKind = any> = Kind extends 'and'
+  ? AndBoxElement
+  : Kind extends 'not'
+    ? NotBoxElement
+    : Kind extends 'input'
+      ? InputBoxElement
+      : Kind extends 'output'
+        ? OutputBoxElement
+        : Kind extends 'custom'
+          ? CustomBoxElement
+          : never;
 
 export interface BoxElementBase {
   id: number;
-  boxElementKind: BoxElementKind;
+  kind: BoxElementKind;
+  params: unknown;
 }
 
 export interface NotBoxElement extends BoxElementBase {
-  boxElementKind: 'not';
+  kind: 'not';
+  params: undefined;
 }
 export interface AndBoxElement extends BoxElementBase {
-  boxElementKind: 'and';
+  kind: 'and';
+  params: undefined;
 }
 export interface InputBoxElement extends BoxElementBase {
-  boxElementKind: 'input';
+  kind: 'input';
+  params: undefined;
 }
 export interface OutputBoxElement extends BoxElementBase {
-  boxElementKind: 'output';
+  kind: 'output';
+  params: undefined;
 }
 
-export type BoxElement = NotBoxElement | AndBoxElement | InputBoxElement | OutputBoxElement;
+export interface CustomBoxElement extends BoxElementBase {
+  kind: 'custom';
+  params: {
+    uuid: string;
+  };
+}
 
 export interface InnerSketchStructure {
   // TODO: flatten if there only one element (main)

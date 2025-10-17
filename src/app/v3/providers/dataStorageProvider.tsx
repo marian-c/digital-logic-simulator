@@ -12,7 +12,7 @@ import { examplesV3 } from '@/app/v3/data/load';
 import { useStateWithRef } from '@/hooks/useStateWithRef';
 import debounce from 'lodash/debounce';
 import { useStateWithRefImmediate } from '@/hooks/useStateWithRefImmediate';
-import { simulateV3a } from '@/app/v3/data/utils/simulateV3a';
+import { simulateV3a } from '@/app/v3/data/utils/simulate/simulateV3a';
 
 // it happens that empty data will not be written to
 const emptyData: DataV3 = Object.freeze({ sketches: [], selectedSketchUuid: '' });
