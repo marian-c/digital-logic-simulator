@@ -1,4 +1,4 @@
-import type { DataV3, PortKind, Sketch } from '@/app/v3/types/data';
+import type { DataV3, PortKind, Sketch, SketchStructure } from '@/app/v3/types/data';
 import type { BoxElement, ConnectorElement } from '@/app/v3/types/innerSketchStructure';
 import { assertNever } from '@/helpers/basics';
 import type { SketchBoxPosition } from '@/app/v3/types/innerSketchPositions';
@@ -17,6 +17,10 @@ export function getActiveSketch(data: DataV3) {
 
 export function getBoxById(boxId: number, activeSketch: Sketch) {
   return activeSketch.structure.main.boxElements.find((b) => b.id === boxId)!;
+}
+
+export function getConnectorById(connectorId: number, activeSketch: Sketch) {
+  return activeSketch.structure.main.connectorElements.find((c) => c.id === connectorId)!;
 }
 
 export function getActiveBox(boxId: number, data: DataV3) {
@@ -212,5 +216,28 @@ export function getBias(connectorElementId: number, data: DataV3) {
   if (!bias) {
     console.warn('Bias not found for connector ' + connectorElementId);
   }
-  return bias?.bias || 0;
+  return bias;
+}
+
+export function getActiveBoxLabel(boxId: number, data: DataV3) {
+  const activeSketch = getActiveSketch(data);
+  const box = getBoxById(boxId, activeSketch);
+  return box.label || '';
+}
+export function getActiveConnectorLabel(connectorId: number, data: DataV3) {
+  const activeSketch = getActiveSketch(data);
+  const connector = getConnectorById(connectorId, activeSketch);
+  return connector.label || '';
+}
+
+export function getActiveConnector(connectorId: number, data: DataV3) {
+  const activeSketch = getActiveSketch(data);
+  return getConnectorById(connectorId, activeSketch);
+}
+
+export function getConnectorComputedLabel(connectorId: number, structure: SketchStructure) {
+  const connector = structure.main.connectorElements.find((c) => c.id === connectorId)!;
+  const startBox = structure.main.boxElements.find((b) => b.id === connector.fromBoxId)!;
+  const endBox = structure.main.boxElements.find((b) => b.id === connector.toBoxId)!;
+  return `${startBox.label}(${startBox.id}) -> ${endBox.label}(${endBox.id})`;
 }

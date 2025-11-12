@@ -85,6 +85,7 @@ export function CanvasV3() {
           {extraBoxes}
         </div>
         <svg
+          tabIndex={0}
           ref={svgRef}
           className="select-none bg-white bg-grid absolute top-0 left-0"
           width={size.width}

@@ -2,9 +2,13 @@ import type { DataV3, Sketch } from '@/app/v3/types/data';
 import { v7 as uuidv7 } from 'uuid';
 import { generateEmptySketch } from '@/app/v3/data/helpers';
 import {
+  getActiveConnectorData,
   getActiveInputStateObject,
   getActiveSketch,
+  getBoxById,
   getBoxPositionById,
+  getConnectorById,
+  getPoint,
 } from '@/app/v3/data/utils/selectors';
 import type { BoxElement, BoxParams } from '@/app/v3/types/innerSketchStructure';
 import { assertNever } from '@/helpers/basics';
@@ -136,7 +140,7 @@ export function actionAddMutateConnector(
     toPortId: toBox.portId,
   });
   sketch.simulation.connectorSimState.push({ connectorId: id, state: false });
-  sketch.positions.connectorBiases.push({ connectorId: id, bias: 0 });
+  sketch.positions.connectorBiases.push({ connectorId: id, mid: 0, start: 0, end: 0 });
 }
 
 export function actionAddActiveConnector(
@@ -297,16 +301,99 @@ export function actionActiveAddNewBox(boxParams: BoxParams, x: number, y: number
 
 export function actionAdjustActiveConnectorBias(
   activeConnectorId: number,
-  delta: number,
   oldData: DataV3,
+  keyCode: 'ArrowUp' | 'ArrowDown' | 'ArrowLeft' | 'ArrowRight',
+  isShift: boolean,
+  isAlt: boolean,
 ): DataV3 {
   const sketch = getActiveSketch(oldData);
-  sketch.positions.connectorBiases.find((cb) => cb.connectorId === activeConnectorId)!.bias +=
-    delta;
+  const connector = sketch.structure.main.connectorElements.find(
+    (c) => c.id === activeConnectorId,
+  )!;
+  const { fromBox, fromBoxPosition, toBox, toBoxPosition } = getActiveConnectorData(
+    connector,
+    oldData,
+  );
+  const start = getPoint(fromBox, fromBoxPosition, connector.fromPortId, oldData);
+  const end = getPoint(toBox, toBoxPosition, connector.toPortId, oldData);
+  const bias = sketch.positions.connectorBiases.find((cb) => cb.connectorId === activeConnectorId)!;
+
+  const isComplex = start.x > end.x;
+
+  if (!isComplex) {
+    if (keyCode === 'ArrowLeft' || keyCode === 'ArrowRight') {
+      let delta = keyCode === 'ArrowRight' ? -1 : 1;
+      if (isShift) {
+        delta *= 10;
+      }
+      bias.mid += delta;
+    }
+  } else {
+    if (keyCode === 'ArrowUp' || keyCode === 'ArrowDown') {
+      let delta = keyCode === 'ArrowDown' ? -1 : 1;
+      if (isShift) {
+        delta *= 10;
+      }
+      bias.mid += delta;
+    }
+    if (keyCode === 'ArrowLeft' || keyCode === 'ArrowRight') {
+      let delta = keyCode === 'ArrowLeft' ? -1 : 1;
+      if (isShift) {
+        delta *= 10;
+      }
+      if (isAlt) {
+        bias.end += -delta;
+      } else {
+        bias.start += delta;
+      }
+    }
+  }
+
   return { ...oldData };
 }
 export function actionResetActiveConnectorBias(activeConnectorId: number, oldData: DataV3): DataV3 {
   const sketch = getActiveSketch(oldData);
-  sketch.positions.connectorBiases.find((cb) => cb.connectorId === activeConnectorId)!.bias = 0;
+  const bias = sketch.positions.connectorBiases.find((cb) => cb.connectorId === activeConnectorId)!;
+  bias.mid = 0;
+  bias.start = 0;
+  bias.end = 0;
+  return { ...oldData };
+}
+
+export function actionSetActiveBoxLabel(boxId: number, newLabel: string, oldData: DataV3): DataV3 {
+  const activeSketch = getActiveSketch(oldData);
+  const box = getBoxById(boxId, activeSketch);
+  box.label = newLabel;
+  return { ...oldData };
+}
+export function actionSetActiveConnectorLabel(
+  connectorId: number,
+  newLabel: string,
+  oldData: DataV3,
+): DataV3 {
+  const activeSketch = getActiveSketch(oldData);
+  const connector = getConnectorById(connectorId, activeSketch);
+  connector.label = newLabel;
+  return { ...oldData };
+}
+export function actionSetActiveConnectorLabelVisibility(
+  connectorId: number,
+  show: boolean,
+  oldData: DataV3,
+): DataV3 {
+  const activeSketch = getActiveSketch(oldData);
+  const connector = getConnectorById(connectorId, activeSketch);
+  connector.hideLabel = !show;
+  return { ...oldData };
+}
+
+export function actionSetActiveBoxLabelVisibility(
+  boxId: number,
+  show: boolean,
+  oldData: DataV3,
+): DataV3 {
+  const activeSketch = getActiveSketch(oldData);
+  const box = getBoxById(boxId, activeSketch);
+  box.hideLabel = !show;
   return { ...oldData };
 }

@@ -135,11 +135,11 @@ export const sketch: Sketch = {
       },
     ],
     connectorBiases: [
-      { connectorId: 5, bias: 0 },
-      { connectorId: 8, bias: 0 },
-      { connectorId: 9, bias: 0 },
-      { connectorId: 10, bias: 0 },
-      { connectorId: 11, bias: 0 },
+      { connectorId: 5, start: 0, end: 0, mid: 0 },
+      { connectorId: 8, start: 0, end: 0, mid: 0 },
+      { connectorId: 9, start: 0, end: 0, mid: 0 },
+      { connectorId: 10, start: 0, end: 0, mid: 0 },
+      { connectorId: 11, start: 0, end: 0, mid: 0 },
     ],
   },
   inputs: {

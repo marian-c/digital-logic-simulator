@@ -39,10 +39,17 @@ export const Connector: FunctionComponent<{
           strokeWidth={7}
           shapeRendering="geometricPrecision"
           d={roundPathCorners(
-            `M${start.x} ${start.y} ` +
-              `L${start.x + (end.x - start.x) / 2 - bias} ${start.y} ` +
-              `L${end.x - (end.x - start.x) / 2 - bias} ${end.y} ` +
-              `L${end.x} ${end.y} `,
+            start.x > end.x
+              ? `M${start.x} ${start.y} ` +
+                  `L${start.x + (bias.start + 30)} ${start.y} ` +
+                  `L${start.x + (bias.start + 30)} ${start.y + (end.y - start.y) / 2 - bias.mid} ` +
+                  `L${end.x - (bias.end + 30)} ${start.y + (end.y - start.y) / 2 - bias.mid} ` +
+                  `L${end.x - (bias.end + 30)} ${end.y} ` +
+                  `L${end.x} ${end.y} `
+              : `M${start.x} ${start.y} ` +
+                  `L${start.x + (end.x - start.x) / 2 - bias.mid} ${start.y} ` +
+                  `L${end.x - (end.x - start.x) / 2 - bias.mid} ${end.y} ` +
+                  `L${end.x} ${end.y} `,
             plainConnectorExtensionMin / 2,
             false,
             false,
@@ -52,7 +59,7 @@ export const Connector: FunctionComponent<{
       <path
         data-desc={`connector-id-${connectorElement.id}`}
         fill="none"
-        stroke={start.x > end.x ? 'red' : sim.state ? 'crimson' : 'dimgray'}
+        stroke={sim.state ? 'crimson' : 'dimgray'}
         strokeWidth={3}
         shapeRendering="geometricPrecision"
         onMouseDown={(mouseEvent) => {
@@ -61,11 +68,14 @@ export const Connector: FunctionComponent<{
         d={roundPathCorners(
           start.x > end.x
             ? `M${start.x} ${start.y} ` +
-                `L${start.x + 30} ${start.y} ` +
-                `L${start.x + 30} ${start.y + (end.y - start.y) / 2 - bias} `
+                `L${start.x + (bias.start + 30)} ${start.y} ` +
+                `L${start.x + (bias.start + 30)} ${start.y + (end.y - start.y) / 2 - bias.mid} ` +
+                `L${end.x - (bias.end + 30)} ${start.y + (end.y - start.y) / 2 - bias.mid} ` +
+                `L${end.x - (bias.end + 30)} ${end.y} ` +
+                `L${end.x} ${end.y} `
             : `M${start.x} ${start.y} ` +
-                `L${start.x + (end.x - start.x) / 2 - bias} ${start.y} ` +
-                `L${end.x - (end.x - start.x) / 2 - bias} ${end.y} ` +
+                `L${start.x + (end.x - start.x) / 2 - bias.mid} ${start.y} ` +
+                `L${end.x - (end.x - start.x) / 2 - bias.mid} ${end.y} ` +
                 `L${end.x} ${end.y} `,
           plainConnectorExtensionMin / 2,
           false,

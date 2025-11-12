@@ -57,6 +57,8 @@ export type FloatingConnector = {
 };
 
 type CtxMethods = {
+  activeBoxIdRef: React.RefObject<number>;
+  activeConnectorIdRef: React.RefObject<number>;
   svgRef: React.RefCallback<SVGSVGElement>;
   canvasRef: React.RefObject<HTMLDivElement | null>;
   $onBoxWrapperClick: (boxId: number, mouseEvent: React.MouseEvent<SVGElement, MouseEvent>) => void;
@@ -98,6 +100,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
   const { sketchDataRef, $setSketchData } = useSketchStorageMethods();
 
   // region: variables
+
+  const isFocusedRef = React.useRef<boolean>(false);
 
   // set on mouse down in NEW boxes to the kind of box, when set,
   //  the next mouse down will add that box and unset it
@@ -393,24 +397,34 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       sketchDataRef,
     ],
   );
+  const $handleSvgFocus = React.useCallback(() => {
+    isFocusedRef.current = true;
+  }, [isFocusedRef]);
+  const $handleSvgBlur = React.useCallback(() => {
+    isFocusedRef.current = false;
+  }, [isFocusedRef]);
   const $handleDocumentKeyDown = React.useCallback(
     (keyEvent: KeyboardEvent) => {
+      if (!isFocusedRef.current) {
+        return;
+      }
       if (
-        (keyEvent.code === 'ArrowRight' || keyEvent.code === 'ArrowLeft') &&
+        (keyEvent.code === 'ArrowRight' ||
+          keyEvent.code === 'ArrowLeft' ||
+          keyEvent.code === 'ArrowUp' ||
+          keyEvent.code === 'ArrowDown') &&
         activeConnectorIdRef.current !== 0 &&
         isMouseDownForDraggingBoxesRef.current === false &&
         floatingConnectorRef.current === null &&
         aboutToDragNewBoxKindRef.current === null
       ) {
-        let bias = keyEvent.code === 'ArrowRight' ? -1 : 1;
-        if (keyEvent.shiftKey) {
-          bias *= 10;
-        }
         $setSketchData(
           actionAdjustActiveConnectorBias(
             activeConnectorIdRef.current,
-            bias,
             sketchDataRef.current,
+            keyEvent.code,
+            keyEvent.shiftKey,
+            keyEvent.altKey,
           ),
         );
       }
@@ -562,6 +576,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
         document.addEventListener('mouseup', $handleDocumentMouseMouseUp);
         document.addEventListener('keydown', $handleDocumentKeyDown);
         el.addEventListener('wheel', onWheel, { passive: false });
+        el.addEventListener('focus', $handleSvgFocus);
+        el.addEventListener('blur', $handleSvgBlur);
       }
       return () => {
         document.removeEventListener('mousemove', $handleDocumentMouseMoveMouseCoordinates);
@@ -574,6 +590,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       $handleDocumentKeyDown,
       $handleDocumentMouseMouseUp,
       $handleDocumentMouseMoveMouseCoordinates,
+      $handleSvgBlur,
+      $handleSvgFocus,
       $handleSvgWheelPan,
       $handleSvgWheelPinch,
     ],
@@ -584,6 +602,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
 
   const contextVal = React.useMemo<CtxMethods>(() => {
     return {
+      activeBoxIdRef,
+      activeConnectorIdRef,
       svgRef,
       canvasRef,
       $onBoxWrapperClick,
@@ -597,6 +617,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
       $onConnectorMouseDown,
     } satisfies CtxMethods;
   }, [
+    activeBoxIdRef,
+    activeConnectorIdRef,
     svgRef,
     canvasRef,
     $onBoxWrapperClick,

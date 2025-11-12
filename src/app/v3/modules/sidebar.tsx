@@ -1,14 +1,18 @@
-import { getActiveSketch } from '@/app/v3/data/utils/selectors';
+import { getActiveBox, getActiveConnector, getActiveSketch } from '@/app/v3/data/utils/selectors';
 import {
   useSketchStorageData,
   useSketchStorageMethods,
 } from '@/app/v3/providers/dataStorageProvider';
 import {
+  actionSetActiveBoxLabel,
+  actionSetActiveBoxLabelVisibility,
+  actionSetActiveConnectorLabel,
+  actionSetActiveConnectorLabelVisibility,
   actionSetActiveSketchDescription,
   actionSetActiveSketchName,
   actionSetActiveSketchZoom,
 } from '@/app/v3/data/utils/actions';
-import { useInteractionsData } from '@/app/v3/providers/interactions';
+import { useInteractionsData, useInteractionsMethods } from '@/app/v3/providers/interactions';
 import { useEffect, useRef } from 'react';
 
 export function Exports() {
@@ -95,6 +99,99 @@ export function Rotate() {
   );
 }
 
+function ActiveBoxControls() {
+  const { $setSketchData, sketchDataRef } = useSketchStorageMethods();
+  const { activeBoxId } = useInteractionsData();
+  const { activeBoxIdRef } = useInteractionsMethods();
+  const box = getActiveBox(activeBoxId, sketchDataRef.current);
+  return (
+    <div>
+      Active box id: {activeBoxId}
+      <br />
+      Label:{' '}
+      <input
+        value={box.label || ''}
+        onChange={(e) => {
+          const newValue = e.target.value;
+          // TODO: validate (size?)
+          $setSketchData(
+            actionSetActiveBoxLabel(activeBoxIdRef.current, newValue, sketchDataRef.current),
+          );
+        }}
+      />
+      <br />
+      Show Label:
+      <input
+        type="checkbox"
+        checked={!box.hideLabel}
+        onChange={(e) => {
+          $setSketchData(
+            actionSetActiveBoxLabelVisibility(
+              activeBoxIdRef.current,
+              e.target.checked,
+              sketchDataRef.current,
+            ),
+          );
+        }}
+      />
+    </div>
+  );
+}
+
+function ActiveConnectorControls() {
+  const { $setSketchData, sketchDataRef } = useSketchStorageMethods();
+  const { activeConnectorId } = useInteractionsData();
+  const { activeConnectorIdRef } = useInteractionsMethods();
+  const connector = getActiveConnector(activeConnectorId, sketchDataRef.current);
+  return (
+    <div>
+      Active connector id: {activeConnectorId}
+      <br />
+      Label:{' '}
+      <input
+        value={connector.label || ''}
+        onChange={(e) => {
+          const newValue = e.target.value;
+          // TODO: validate (size?)
+          $setSketchData(
+            actionSetActiveConnectorLabel(
+              activeConnectorIdRef.current,
+              newValue,
+              sketchDataRef.current,
+            ),
+          );
+        }}
+      />
+      <br />
+      Show Label:
+      <input
+        type="checkbox"
+        checked={!connector.hideLabel}
+        onChange={(e) => {
+          $setSketchData(
+            actionSetActiveConnectorLabelVisibility(
+              activeConnectorIdRef.current,
+              e.target.checked,
+              sketchDataRef.current,
+            ),
+          );
+        }}
+      />
+    </div>
+  );
+}
+function ActiveControls() {
+  const { activeBoxId, activeConnectorId } = useInteractionsData();
+
+  if (activeBoxId) {
+    return <ActiveBoxControls />;
+  }
+  if (activeConnectorId) {
+    return <ActiveConnectorControls />;
+  }
+
+  return <div>No active box or connector</div>;
+}
 function ZoomControls() {
   const { state } = getActiveSketch(useSketchStorageData());
   const { $setSketchData, sketchDataRef } = useSketchStorageMethods();
@@ -139,7 +236,7 @@ export function Sidebar() {
   const data = useSketchStorageData();
   const { meta } = getActiveSketch(data);
   const { $setSketchData } = useSketchStorageMethods();
-  const { activeBoxId } = useInteractionsData();
+
   return (
     <div className="flex flex-col w-80 overflow-auto border border-green-500 bg-gray-200">
       <div className="overflow-auto flex-grow h-0">
@@ -151,6 +248,10 @@ export function Sidebar() {
         >
           localstorage.clear()
         </button>
+        <br />
+        <button onClick={() => {}}>Simulate</button>
+        <br />
+        <button onClick={() => {}}>Clear & Simulate</button>
         <br />
         Sketch name: <br />
         <input
@@ -173,7 +274,7 @@ export function Sidebar() {
         <br />
         <ZoomControls />
         <br />
-        Focused: {activeBoxId}
+        <ActiveControls />
         <br />
         <span className="rotate">ROTATE</span>
         <br />

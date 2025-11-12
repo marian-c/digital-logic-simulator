@@ -10,6 +10,8 @@ export interface InnerSketchPositions {
   boxPositions: SketchBoxPosition[];
   connectorBiases: {
     connectorId: number;
-    bias: number;
+    mid: number;
+    start: number;
+    end: number;
   }[];
 }

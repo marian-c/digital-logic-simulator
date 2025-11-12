@@ -118,19 +118,27 @@ export const sketch: Sketch = {
     connectorBiases: [
       {
         connectorId: 19,
-        bias: 0,
+        start: 0,
+        end: 0,
+        mid: 0,
       },
       {
         connectorId: 20,
-        bias: 0,
+        start: 0,
+        end: 0,
+        mid: 0,
       },
       {
         connectorId: 21,
-        bias: 0,
+        start: 0,
+        end: 0,
+        mid: 0,
       },
       {
         connectorId: 22,
-        bias: 0,
+        start: 0,
+        end: 0,
+        mid: 0,
       },
     ],
   },

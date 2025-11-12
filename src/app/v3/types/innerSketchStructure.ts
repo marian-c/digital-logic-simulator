@@ -1,5 +1,7 @@
 export interface ConnectorElement {
   id: number;
+  label?: string;
+  hideLabel?: boolean;
   fromBoxId: number;
   toBoxId: number;
   fromPortId: number;
@@ -36,6 +38,8 @@ export type KindToElement<Kind extends BoxElementKind = any> = Kind extends 'and
 
 export interface BoxElementBase {
   id: number;
+  label?: string;
+  hideLabel?: boolean;
   kind: BoxElementKind;
   params: unknown;
 }

@@ -17,7 +17,6 @@ export default function useTimeoutFn(fn: Function, ms: number = 0): UseTimeoutFn
 
   const set = useCallback(() => {
     ready.current = false;
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     timeout.current && clearTimeout(timeout.current);
 
     timeout.current = setTimeout(() => {
@@ -28,7 +27,6 @@ export default function useTimeoutFn(fn: Function, ms: number = 0): UseTimeoutFn
 
   const clear = useCallback(() => {
     ready.current = null;
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     timeout.current && clearTimeout(timeout.current);
   }, []);
 

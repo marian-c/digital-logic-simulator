@@ -48,7 +48,7 @@ export const positions: SketchPositions = {
     { boxId: 5, pos: { x: 100, y: 60 } },
     { boxId: 6, pos: { x: 30, y: 140 } },
   ],
-  connectorBiases: [{ connectorId: 7, bias: 10 }],
+  connectorBiases: [{ connectorId: 7, mid: 10, start: 0, end: 0 }],
 };
 
 export const inputs: SketchInputs = {

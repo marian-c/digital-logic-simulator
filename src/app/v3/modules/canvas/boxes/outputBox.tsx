@@ -38,12 +38,26 @@ export const OutputBox: FunctionComponent<{
         </>
       }
       overChildren={
-        <ConnectorPoint
-          portKind="inputPort"
-          portId={0}
-          boxElement={boxElement}
-          state={boxSim.simStatesInputs[0]!.state}
-        />
+        <>
+          {!boxElement.hideLabel && (
+            <text
+              textAnchor="end"
+              x={outputCircleToCircleDist + 15}
+              y="-15"
+              fill="black"
+              fontSize={13}
+              fontWeight="bold"
+            >
+              {boxElement.label} ({boxElement.id})
+            </text>
+          )}
+          <ConnectorPoint
+            portKind="inputPort"
+            portId={0}
+            boxElement={boxElement}
+            state={boxSim.simStatesInputs[0]!.state}
+          />
+        </>
       }
     />
   );

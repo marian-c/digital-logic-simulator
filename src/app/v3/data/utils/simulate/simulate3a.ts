@@ -11,7 +11,7 @@ import type {
 } from '@/app/v3/types/innerSketchStructure';
 import type { BoxSimulationState } from '@/app/v3/types/innerSketchSimulation';
 import { getElementsWithoutOutput, getUpstreamBox } from '@/app/v3/data/utils/simulate/helpers';
-import type { SimulationData } from '@/app/v3/data/utils/simulate/types';
+import type { SimulationInput } from '@/app/v3/data/utils/simulate/types';
 
 /**
  * Strategy: start simulating from the extremities of the graph,
@@ -25,7 +25,7 @@ import type { SimulationData } from '@/app/v3/data/utils/simulate/types';
  */
 function handleInputBox(
   boxElement: InputBoxElement,
-  simulationData: SimulationData,
+  simulationData: SimulationInput,
   _data: DataV3,
 ): BoxSimulationState {
   const { inputs } = simulationData;
@@ -45,7 +45,7 @@ function handleInputBox(
  */
 function handleOutputBox(
   boxElement: OutputBoxElement,
-  simulationData: SimulationData,
+  simulationData: SimulationInput,
   data: DataV3,
 ): BoxSimulationState {
   const ingress = getUpstreamSignal(boxElement.id, 0, simulationData, data) || false;
@@ -63,7 +63,7 @@ function handleOutputBox(
  */
 function handleNotBox(
   boxElement: NotBoxElement,
-  simulaationData: SimulationData,
+  simulaationData: SimulationInput,
   data: DataV3,
 ): BoxSimulationState {
   const ingress = getUpstreamSignal(boxElement.id, 0, simulaationData, data) || false;
@@ -84,7 +84,7 @@ function handleNotBox(
  */
 function handleAndBox(
   boxElement: AndBoxElement,
-  simulationData: SimulationData,
+  simulationData: SimulationInput,
   data: DataV3,
 ): BoxSimulationState {
   const in0 = getUpstreamSignal(boxElement.id, 0, simulationData, data) || false;
@@ -111,7 +111,7 @@ function handleAndBox(
  */
 function handleCustomBox(
   boxElement: CustomBoxElement,
-  simulationData: SimulationData,
+  simulationData: SimulationInput,
   data: DataV3,
 ): BoxSimulationState {
   const customSketch = data.sketches.find((s) => s.meta.uuid === boxElement.params.uuid)!;
@@ -156,7 +156,7 @@ function handleCustomBox(
 function getUpstreamSignal(
   originBoxId: number,
   portNumber: number,
-  simulationData: SimulationData,
+  simulationData: SimulationInput,
   data: DataV3,
 ) {
   const upstream = getUpstreamBox(originBoxId, portNumber, simulationData);
@@ -172,7 +172,7 @@ function getUpstreamSignal(
 
 function handleBox(
   boxToHandle: BoxElement,
-  simulationData: SimulationData,
+  simulationData: SimulationInput,
   data: DataV3,
 ): BoxSimulationState {
   // TODO: detect cycles and fix some how (random?)
@@ -220,7 +220,7 @@ function handleBox(
   return handled;
 }
 
-function simulateSketch(simulationData: SimulationData, data: DataV3) {
+function simulateSketch(simulationData: SimulationInput, data: DataV3) {
   // clean old sim data
   // TODO: maybe if we don't clean it up we can avoid recreating all those objects
   //   and just mutate what's there

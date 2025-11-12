@@ -51,13 +51,20 @@ export const InputBox: FunctionComponent<{
         </>
       }
       overChildren={
-        <ConnectorPoint
-          portKind="outputPort"
-          portId={0}
-          boxElement={boxElement}
-          cx={inputCircleToCircleDist}
-          state={boxSim.simStatesOutputs[0]!.state}
-        />
+        <>
+          {!boxElement.hideLabel && (
+            <text x="-15" y="-15" fill="black" fontSize={13} fontWeight="bold">
+              {boxElement.label} ({boxElement.id})
+            </text>
+          )}
+          <ConnectorPoint
+            portKind="outputPort"
+            portId={0}
+            boxElement={boxElement}
+            cx={inputCircleToCircleDist}
+            state={boxSim.simStatesOutputs[0]!.state}
+          />
+        </>
       }
     />
   );

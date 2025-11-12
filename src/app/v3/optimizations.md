@@ -38,3 +38,16 @@ TODO:
 - we don't need to store simulation and customSketchesSupportData to local storage,
 - the cleanup function should also fill in the simulation.
 - move all the examples to JSON files
+- MUST not store simulation data in local storage
+
+FEATURES:
+
+- multi selection, with shift and with drag
+- copy paste selection
+- details: id, label for boxes etc, overview of the sketch
+- drag connector edges, not only keyboard
+- bus with multiline
+- clock at any level with varying speeds
+- multiple input, output and connector types
+- displays
+- loading dumps into memory

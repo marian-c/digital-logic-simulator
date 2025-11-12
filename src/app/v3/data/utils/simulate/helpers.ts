@@ -1,11 +1,11 @@
 import { assertNever } from '@/helpers/basics';
 import type { DataV3 } from '@/app/v3/types/data';
-import type { SimulationData } from '@/app/v3/data/utils/simulate/types';
+import type { SimulationInput } from '@/app/v3/data/utils/simulate/types';
 
 export function getUpstreamBox(
   downstreamBoxId: number,
   downstreamPortNumber: number,
-  simulationData: SimulationData,
+  simulationData: SimulationInput,
 ) {
   // XXX structure assumption
   const connector = simulationData.structure.main.connectorElements.find(function (connector) {
@@ -24,7 +24,7 @@ export function getUpstreamBox(
 
 export function hasConnectorOut(
   boxElementId: number,
-  simulationData: SimulationData,
+  simulationData: SimulationInput,
   _data: DataV3,
 ) {
   return simulationData.structure.main.connectorElements.some(function (connector) {
@@ -32,7 +32,7 @@ export function hasConnectorOut(
   });
 }
 
-export function getElementsWithoutOutput(simulationData: SimulationData, data: DataV3) {
+export function getElementsWithoutOutput(simulationData: SimulationInput, data: DataV3) {
   return simulationData.structure.main.boxElements.filter(function (boxElement) {
     switch (boxElement.kind) {
       case 'not':
