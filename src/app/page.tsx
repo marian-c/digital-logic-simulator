@@ -1,3 +1,3 @@
-import V1 from '@/app/v1/page';
+import Page from '@/app/v3/page';
 
-export default V1;
+export default Page;

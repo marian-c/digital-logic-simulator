@@ -1,12 +1,12 @@
 import type { DataV3, Sketch } from '@/app/v3/types/data';
-import { meta as meta1 } from '@/app/v3/data/samples/x-1';
+import { sketch as mainExample } from '@/app/v3/data/samples/box-adder';
 import { generateBoxCustomSketchesSupportData } from '@/app/v3/data/utils/generate';
 import {
   actionRemoveMutateActiveBox,
   actionRemoveMutateActiveConnector,
 } from '@/app/v3/data/utils/actions';
 
-export const defaultExampleUUID = meta1.uuid;
+export const defaultExampleUUID = mainExample.meta.uuid;
 
 export function generateEmptySketch({ name, uuid }: { name: string; uuid: string }): Sketch {
   return {

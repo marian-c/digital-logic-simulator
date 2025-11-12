@@ -22,12 +22,13 @@ export function Exports() {
   return (
     <div>
       <textarea value={JSON.stringify(activeSketch, null, 2)} readOnly />
+      <br />
       <button
         onClick={() => {
           console.log('fullData', JSON.parse(JSON.stringify(data, null, 2)));
         }}
       >
-        LOG
+        Log to console
       </button>
     </div>
   );
@@ -276,86 +277,7 @@ export function Sidebar() {
         <br />
         <ActiveControls />
         <br />
-        <span className="rotate">ROTATE</span>
-        <br />
-        <Rotate />
-        <br />
         <Exports />
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
-        Sidebar
-        <br />
       </div>
     </div>
   );
