@@ -1,0 +1,4 @@
+page_bk.tsx
+src/app/v3/data/samples/*.json
+src/imported/**/*.*
+!src/imported/**/*.mine.stories.*

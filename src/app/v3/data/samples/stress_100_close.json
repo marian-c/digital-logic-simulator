@@ -1,0 +1,2789 @@
+{
+  "structure": {
+    "main": {
+      "boxElements": [
+        {
+          "id": 1,
+          "kind": "not"
+        },
+        {
+          "id": 2,
+          "kind": "output"
+        },
+        {
+          "id": 3,
+          "kind": "output"
+        },
+        {
+          "id": 4,
+          "kind": "not"
+        },
+        {
+          "id": 5,
+          "kind": "not"
+        },
+        {
+          "id": 6,
+          "kind": "input"
+        },
+        {
+          "id": 7,
+          "kind": "not"
+        },
+        {
+          "id": 8,
+          "kind": "and"
+        },
+        {
+          "id": 9,
+          "kind": "input"
+        },
+        {
+          "id": 10,
+          "kind": "output"
+        },
+        {
+          "id": 11,
+          "kind": "and"
+        },
+        {
+          "id": 12,
+          "kind": "input"
+        },
+        {
+          "id": 13,
+          "kind": "not"
+        },
+        {
+          "id": 14,
+          "kind": "and"
+        },
+        {
+          "id": 15,
+          "kind": "not"
+        },
+        {
+          "id": 16,
+          "kind": "output"
+        },
+        {
+          "id": 17,
+          "kind": "input"
+        },
+        {
+          "id": 18,
+          "kind": "not"
+        },
+        {
+          "id": 19,
+          "kind": "output"
+        },
+        {
+          "id": 20,
+          "kind": "output"
+        },
+        {
+          "id": 21,
+          "kind": "input"
+        },
+        {
+          "id": 22,
+          "kind": "and"
+        },
+        {
+          "id": 23,
+          "kind": "not"
+        },
+        {
+          "id": 24,
+          "kind": "and"
+        },
+        {
+          "id": 25,
+          "kind": "not"
+        },
+        {
+          "id": 26,
+          "kind": "not"
+        },
+        {
+          "id": 27,
+          "kind": "and"
+        },
+        {
+          "id": 28,
+          "kind": "and"
+        },
+        {
+          "id": 29,
+          "kind": "output"
+        },
+        {
+          "id": 30,
+          "kind": "input"
+        },
+        {
+          "id": 31,
+          "kind": "input"
+        },
+        {
+          "id": 32,
+          "kind": "output"
+        },
+        {
+          "id": 33,
+          "kind": "and"
+        },
+        {
+          "id": 34,
+          "kind": "and"
+        },
+        {
+          "id": 35,
+          "kind": "output"
+        },
+        {
+          "id": 36,
+          "kind": "input"
+        },
+        {
+          "id": 37,
+          "kind": "input"
+        },
+        {
+          "id": 38,
+          "kind": "and"
+        },
+        {
+          "id": 39,
+          "kind": "input"
+        },
+        {
+          "id": 40,
+          "kind": "output"
+        },
+        {
+          "id": 41,
+          "kind": "not"
+        },
+        {
+          "id": 42,
+          "kind": "output"
+        },
+        {
+          "id": 43,
+          "kind": "not"
+        },
+        {
+          "id": 44,
+          "kind": "and"
+        },
+        {
+          "id": 45,
+          "kind": "and"
+        },
+        {
+          "id": 46,
+          "kind": "not"
+        },
+        {
+          "id": 47,
+          "kind": "output"
+        },
+        {
+          "id": 48,
+          "kind": "output"
+        },
+        {
+          "id": 49,
+          "kind": "and"
+        },
+        {
+          "id": 50,
+          "kind": "not"
+        },
+        {
+          "id": 51,
+          "kind": "output"
+        },
+        {
+          "id": 52,
+          "kind": "not"
+        },
+        {
+          "id": 53,
+          "kind": "not"
+        },
+        {
+          "id": 54,
+          "kind": "input"
+        },
+        {
+          "id": 55,
+          "kind": "not"
+        },
+        {
+          "id": 56,
+          "kind": "input"
+        },
+        {
+          "id": 57,
+          "kind": "and"
+        },
+        {
+          "id": 58,
+          "kind": "output"
+        },
+        {
+          "id": 59,
+          "kind": "not"
+        },
+        {
+          "id": 60,
+          "kind": "not"
+        },
+        {
+          "id": 61,
+          "kind": "output"
+        },
+        {
+          "id": 62,
+          "kind": "not"
+        },
+        {
+          "id": 63,
+          "kind": "output"
+        },
+        {
+          "id": 64,
+          "kind": "and"
+        },
+        {
+          "id": 65,
+          "kind": "not"
+        },
+        {
+          "id": 66,
+          "kind": "output"
+        },
+        {
+          "id": 67,
+          "kind": "output"
+        },
+        {
+          "id": 68,
+          "kind": "not"
+        },
+        {
+          "id": 69,
+          "kind": "output"
+        },
+        {
+          "id": 70,
+          "kind": "not"
+        },
+        {
+          "id": 71,
+          "kind": "input"
+        },
+        {
+          "id": 72,
+          "kind": "output"
+        },
+        {
+          "id": 73,
+          "kind": "input"
+        },
+        {
+          "id": 74,
+          "kind": "and"
+        },
+        {
+          "id": 75,
+          "kind": "input"
+        },
+        {
+          "id": 76,
+          "kind": "input"
+        },
+        {
+          "id": 77,
+          "kind": "not"
+        },
+        {
+          "id": 78,
+          "kind": "input"
+        },
+        {
+          "id": 79,
+          "kind": "not"
+        },
+        {
+          "id": 80,
+          "kind": "output"
+        },
+        {
+          "id": 81,
+          "kind": "and"
+        },
+        {
+          "id": 82,
+          "kind": "and"
+        },
+        {
+          "id": 83,
+          "kind": "output"
+        },
+        {
+          "id": 84,
+          "kind": "and"
+        },
+        {
+          "id": 85,
+          "kind": "and"
+        },
+        {
+          "id": 86,
+          "kind": "not"
+        },
+        {
+          "id": 87,
+          "kind": "input"
+        },
+        {
+          "id": 88,
+          "kind": "input"
+        },
+        {
+          "id": 89,
+          "kind": "output"
+        },
+        {
+          "id": 90,
+          "kind": "and"
+        },
+        {
+          "id": 91,
+          "kind": "input"
+        },
+        {
+          "id": 92,
+          "kind": "not"
+        },
+        {
+          "id": 93,
+          "kind": "output"
+        },
+        {
+          "id": 94,
+          "kind": "input"
+        },
+        {
+          "id": 95,
+          "kind": "output"
+        },
+        {
+          "id": 96,
+          "kind": "not"
+        },
+        {
+          "id": 97,
+          "kind": "input"
+        },
+        {
+          "id": 98,
+          "kind": "input"
+        },
+        {
+          "id": 99,
+          "kind": "input"
+        },
+        {
+          "id": 100,
+          "kind": "output"
+        }
+      ],
+      "connectorElements": [
+        {
+          "id": 101,
+          "fromBoxId": 5,
+          "fromPortId": 1,
+          "toBoxId": 11,
+          "toPortId": 0
+        },
+        {
+          "id": 102,
+          "fromBoxId": 68,
+          "fromPortId": 1,
+          "toBoxId": 33,
+          "toPortId": 1
+        },
+        {
+          "id": 103,
+          "fromBoxId": 56,
+          "fromPortId": 0,
+          "toBoxId": 83,
+          "toPortId": 0
+        },
+        {
+          "id": 104,
+          "fromBoxId": 38,
+          "fromPortId": 2,
+          "toBoxId": 16,
+          "toPortId": 0
+        },
+        {
+          "id": 105,
+          "fromBoxId": 70,
+          "fromPortId": 1,
+          "toBoxId": 40,
+          "toPortId": 0
+        },
+        {
+          "id": 106,
+          "fromBoxId": 36,
+          "fromPortId": 0,
+          "toBoxId": 1,
+          "toPortId": 0
+        },
+        {
+          "id": 107,
+          "fromBoxId": 11,
+          "fromPortId": 2,
+          "toBoxId": 96,
+          "toPortId": 0
+        },
+        {
+          "id": 108,
+          "fromBoxId": 15,
+          "fromPortId": 1,
+          "toBoxId": 52,
+          "toPortId": 0
+        },
+        {
+          "id": 109,
+          "fromBoxId": 60,
+          "fromPortId": 1,
+          "toBoxId": 8,
+          "toPortId": 1
+        },
+        {
+          "id": 110,
+          "fromBoxId": 45,
+          "fromPortId": 2,
+          "toBoxId": 62,
+          "toPortId": 0
+        },
+        {
+          "id": 111,
+          "fromBoxId": 39,
+          "fromPortId": 0,
+          "toBoxId": 43,
+          "toPortId": 0
+        },
+        {
+          "id": 112,
+          "fromBoxId": 45,
+          "fromPortId": 2,
+          "toBoxId": 95,
+          "toPortId": 0
+        },
+        {
+          "id": 113,
+          "fromBoxId": 45,
+          "fromPortId": 2,
+          "toBoxId": 46,
+          "toPortId": 0
+        },
+        {
+          "id": 114,
+          "fromBoxId": 22,
+          "fromPortId": 2,
+          "toBoxId": 82,
+          "toPortId": 1
+        },
+        {
+          "id": 115,
+          "fromBoxId": 92,
+          "fromPortId": 1,
+          "toBoxId": 7,
+          "toPortId": 0
+        },
+        {
+          "id": 116,
+          "fromBoxId": 38,
+          "fromPortId": 2,
+          "toBoxId": 77,
+          "toPortId": 0
+        },
+        {
+          "id": 117,
+          "fromBoxId": 76,
+          "fromPortId": 0,
+          "toBoxId": 51,
+          "toPortId": 0
+        },
+        {
+          "id": 118,
+          "fromBoxId": 23,
+          "fromPortId": 1,
+          "toBoxId": 27,
+          "toPortId": 1
+        },
+        {
+          "id": 119,
+          "fromBoxId": 15,
+          "fromPortId": 1,
+          "toBoxId": 26,
+          "toPortId": 0
+        },
+        {
+          "id": 120,
+          "fromBoxId": 81,
+          "fromPortId": 2,
+          "toBoxId": 42,
+          "toPortId": 0
+        }
+      ]
+    }
+  },
+  "meta": {
+    "nextId": 121,
+    "uuid": "0199fb55-27ee-77dc-8804-2c6f1c566dfa",
+    "name": "stress_100_close",
+    "description": "",
+    "isExample": true
+  },
+  "positions": {
+    "boxPositions": [
+      {
+        "boxId": 0,
+        "pos": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "boxId": 1,
+        "pos": {
+          "x": 0,
+          "y": 0
+        }
+      },
+      {
+        "boxId": 2,
+        "pos": {
+          "x": 0,
+          "y": 60
+        }
+      },
+      {
+        "boxId": 3,
+        "pos": {
+          "x": 0,
+          "y": 120
+        }
+      },
+      {
+        "boxId": 4,
+        "pos": {
+          "x": 0,
+          "y": 180
+        }
+      },
+      {
+        "boxId": 5,
+        "pos": {
+          "x": 0,
+          "y": 240
+        }
+      },
+      {
+        "boxId": 6,
+        "pos": {
+          "x": 0,
+          "y": 300
+        }
+      },
+      {
+        "boxId": 7,
+        "pos": {
+          "x": 0,
+          "y": 360
+        }
+      },
+      {
+        "boxId": 8,
+        "pos": {
+          "x": 0,
+          "y": 420
+        }
+      },
+      {
+        "boxId": 9,
+        "pos": {
+          "x": 0,
+          "y": 480
+        }
+      },
+      {
+        "boxId": 10,
+        "pos": {
+          "x": 0,
+          "y": 540
+        }
+      },
+      {
+        "boxId": 11,
+        "pos": {
+          "x": 60,
+          "y": 0
+        }
+      },
+      {
+        "boxId": 12,
+        "pos": {
+          "x": 60,
+          "y": 60
+        }
+      },
+      {
+        "boxId": 13,
+        "pos": {
+          "x": 60,
+          "y": 120
+        }
+      },
+      {
+        "boxId": 14,
+        "pos": {
+          "x": 60,
+          "y": 180
+        }
+      },
+      {
+        "boxId": 15,
+        "pos": {
+          "x": 60,
+          "y": 240
+        }
+      },
+      {
+        "boxId": 16,
+        "pos": {
+          "x": 60,
+          "y": 300
+        }
+      },
+      {
+        "boxId": 17,
+        "pos": {
+          "x": 60,
+          "y": 360
+        }
+      },
+      {
+        "boxId": 18,
+        "pos": {
+          "x": 60,
+          "y": 420
+        }
+      },
+      {
+        "boxId": 19,
+        "pos": {
+          "x": 60,
+          "y": 480
+        }
+      },
+      {
+        "boxId": 20,
+        "pos": {
+          "x": 60,
+          "y": 540
+        }
+      },
+      {
+        "boxId": 21,
+        "pos": {
+          "x": 120,
+          "y": 0
+        }
+      },
+      {
+        "boxId": 22,
+        "pos": {
+          "x": 120,
+          "y": 60
+        }
+      },
+      {
+        "boxId": 23,
+        "pos": {
+          "x": 120,
+          "y": 120
+        }
+      },
+      {
+        "boxId": 24,
+        "pos": {
+          "x": 120,
+          "y": 180
+        }
+      },
+      {
+        "boxId": 25,
+        "pos": {
+          "x": 120,
+          "y": 240
+        }
+      },
+      {
+        "boxId": 26,
+        "pos": {
+          "x": 120,
+          "y": 300
+        }
+      },
+      {
+        "boxId": 27,
+        "pos": {
+          "x": 120,
+          "y": 360
+        }
+      },
+      {
+        "boxId": 28,
+        "pos": {
+          "x": 120,
+          "y": 420
+        }
+      },
+      {
+        "boxId": 29,
+        "pos": {
+          "x": 120,
+          "y": 480
+        }
+      },
+      {
+        "boxId": 30,
+        "pos": {
+          "x": 120,
+          "y": 540
+        }
+      },
+      {
+        "boxId": 31,
+        "pos": {
+          "x": 180,
+          "y": 0
+        }
+      },
+      {
+        "boxId": 32,
+        "pos": {
+          "x": 180,
+          "y": 60
+        }
+      },
+      {
+        "boxId": 33,
+        "pos": {
+          "x": 180,
+          "y": 120
+        }
+      },
+      {
+        "boxId": 34,
+        "pos": {
+          "x": 180,
+          "y": 180
+        }
+      },
+      {
+        "boxId": 35,
+        "pos": {
+          "x": 180,
+          "y": 240
+        }
+      },
+      {
+        "boxId": 36,
+        "pos": {
+          "x": 180,
+          "y": 300
+        }
+      },
+      {
+        "boxId": 37,
+        "pos": {
+          "x": 180,
+          "y": 360
+        }
+      },
+      {
+        "boxId": 38,
+        "pos": {
+          "x": 180,
+          "y": 420
+        }
+      },
+      {
+        "boxId": 39,
+        "pos": {
+          "x": 180,
+          "y": 480
+        }
+      },
+      {
+        "boxId": 40,
+        "pos": {
+          "x": 180,
+          "y": 540
+        }
+      },
+      {
+        "boxId": 41,
+        "pos": {
+          "x": 240,
+          "y": 0
+        }
+      },
+      {
+        "boxId": 42,
+        "pos": {
+          "x": 240,
+          "y": 60
+        }
+      },
+      {
+        "boxId": 43,
+        "pos": {
+          "x": 240,
+          "y": 120
+        }
+      },
+      {
+        "boxId": 44,
+        "pos": {
+          "x": 240,
+          "y": 180
+        }
+      },
+      {
+        "boxId": 45,
+        "pos": {
+          "x": 240,
+          "y": 240
+        }
+      },
+      {
+        "boxId": 46,
+        "pos": {
+          "x": 240,
+          "y": 300
+        }
+      },
+      {
+        "boxId": 47,
+        "pos": {
+          "x": 240,
+          "y": 360
+        }
+      },
+      {
+        "boxId": 48,
+        "pos": {
+          "x": 240,
+          "y": 420
+        }
+      },
+      {
+        "boxId": 49,
+        "pos": {
+          "x": 240,
+          "y": 480
+        }
+      },
+      {
+        "boxId": 50,
+        "pos": {
+          "x": 240,
+          "y": 540
+        }
+      },
+      {
+        "boxId": 51,
+        "pos": {
+          "x": 300,
+          "y": 0
+        }
+      },
+      {
+        "boxId": 52,
+        "pos": {
+          "x": 300,
+          "y": 60
+        }
+      },
+      {
+        "boxId": 53,
+        "pos": {
+          "x": 300,
+          "y": 120
+        }
+      },
+      {
+        "boxId": 54,
+        "pos": {
+          "x": 300,
+          "y": 180
+        }
+      },
+      {
+        "boxId": 55,
+        "pos": {
+          "x": 300,
+          "y": 240
+        }
+      },
+      {
+        "boxId": 56,
+        "pos": {
+          "x": 300,
+          "y": 300
+        }
+      },
+      {
+        "boxId": 57,
+        "pos": {
+          "x": 300,
+          "y": 360
+        }
+      },
+      {
+        "boxId": 58,
+        "pos": {
+          "x": 300,
+          "y": 420
+        }
+      },
+      {
+        "boxId": 59,
+        "pos": {
+          "x": 300,
+          "y": 480
+        }
+      },
+      {
+        "boxId": 60,
+        "pos": {
+          "x": 300,
+          "y": 540
+        }
+      },
+      {
+        "boxId": 61,
+        "pos": {
+          "x": 360,
+          "y": 0
+        }
+      },
+      {
+        "boxId": 62,
+        "pos": {
+          "x": 360,
+          "y": 60
+        }
+      },
+      {
+        "boxId": 63,
+        "pos": {
+          "x": 360,
+          "y": 120
+        }
+      },
+      {
+        "boxId": 64,
+        "pos": {
+          "x": 360,
+          "y": 180
+        }
+      },
+      {
+        "boxId": 65,
+        "pos": {
+          "x": 360,
+          "y": 240
+        }
+      },
+      {
+        "boxId": 66,
+        "pos": {
+          "x": 360,
+          "y": 300
+        }
+      },
+      {
+        "boxId": 67,
+        "pos": {
+          "x": 360,
+          "y": 360
+        }
+      },
+      {
+        "boxId": 68,
+        "pos": {
+          "x": 360,
+          "y": 420
+        }
+      },
+      {
+        "boxId": 69,
+        "pos": {
+          "x": 360,
+          "y": 480
+        }
+      },
+      {
+        "boxId": 70,
+        "pos": {
+          "x": 360,
+          "y": 540
+        }
+      },
+      {
+        "boxId": 71,
+        "pos": {
+          "x": 420,
+          "y": 0
+        }
+      },
+      {
+        "boxId": 72,
+        "pos": {
+          "x": 420,
+          "y": 60
+        }
+      },
+      {
+        "boxId": 73,
+        "pos": {
+          "x": 420,
+          "y": 120
+        }
+      },
+      {
+        "boxId": 74,
+        "pos": {
+          "x": 420,
+          "y": 180
+        }
+      },
+      {
+        "boxId": 75,
+        "pos": {
+          "x": 420,
+          "y": 240
+        }
+      },
+      {
+        "boxId": 76,
+        "pos": {
+          "x": 420,
+          "y": 300
+        }
+      },
+      {
+        "boxId": 77,
+        "pos": {
+          "x": 420,
+          "y": 360
+        }
+      },
+      {
+        "boxId": 78,
+        "pos": {
+          "x": 420,
+          "y": 420
+        }
+      },
+      {
+        "boxId": 79,
+        "pos": {
+          "x": 420,
+          "y": 480
+        }
+      },
+      {
+        "boxId": 80,
+        "pos": {
+          "x": 420,
+          "y": 540
+        }
+      },
+      {
+        "boxId": 81,
+        "pos": {
+          "x": 480,
+          "y": 0
+        }
+      },
+      {
+        "boxId": 82,
+        "pos": {
+          "x": 480,
+          "y": 60
+        }
+      },
+      {
+        "boxId": 83,
+        "pos": {
+          "x": 480,
+          "y": 120
+        }
+      },
+      {
+        "boxId": 84,
+        "pos": {
+          "x": 480,
+          "y": 180
+        }
+      },
+      {
+        "boxId": 85,
+        "pos": {
+          "x": 480,
+          "y": 240
+        }
+      },
+      {
+        "boxId": 86,
+        "pos": {
+          "x": 480,
+          "y": 300
+        }
+      },
+      {
+        "boxId": 87,
+        "pos": {
+          "x": 480,
+          "y": 360
+        }
+      },
+      {
+        "boxId": 88,
+        "pos": {
+          "x": 480,
+          "y": 420
+        }
+      },
+      {
+        "boxId": 89,
+        "pos": {
+          "x": 480,
+          "y": 480
+        }
+      },
+      {
+        "boxId": 90,
+        "pos": {
+          "x": 480,
+          "y": 540
+        }
+      },
+      {
+        "boxId": 91,
+        "pos": {
+          "x": 540,
+          "y": 0
+        }
+      },
+      {
+        "boxId": 92,
+        "pos": {
+          "x": 540,
+          "y": 60
+        }
+      },
+      {
+        "boxId": 93,
+        "pos": {
+          "x": 540,
+          "y": 120
+        }
+      },
+      {
+        "boxId": 94,
+        "pos": {
+          "x": 540,
+          "y": 180
+        }
+      },
+      {
+        "boxId": 95,
+        "pos": {
+          "x": 540,
+          "y": 240
+        }
+      },
+      {
+        "boxId": 96,
+        "pos": {
+          "x": 540,
+          "y": 300
+        }
+      },
+      {
+        "boxId": 97,
+        "pos": {
+          "x": 540,
+          "y": 360
+        }
+      },
+      {
+        "boxId": 98,
+        "pos": {
+          "x": 540,
+          "y": 420
+        }
+      },
+      {
+        "boxId": 99,
+        "pos": {
+          "x": 540,
+          "y": 480
+        }
+      },
+      {
+        "boxId": 100,
+        "pos": {
+          "x": 540,
+          "y": 540
+        }
+      }
+    ]
+  },
+  "inputs": {
+    "inputsState": [
+      {
+        "boxId": 6,
+        "state": false
+      },
+      {
+        "boxId": 9,
+        "state": false
+      },
+      {
+        "boxId": 12,
+        "state": false
+      },
+      {
+        "boxId": 17,
+        "state": false
+      },
+      {
+        "boxId": 21,
+        "state": false
+      },
+      {
+        "boxId": 30,
+        "state": false
+      },
+      {
+        "boxId": 31,
+        "state": false
+      },
+      {
+        "boxId": 36,
+        "state": false
+      },
+      {
+        "boxId": 37,
+        "state": false
+      },
+      {
+        "boxId": 39,
+        "state": false
+      },
+      {
+        "boxId": 54,
+        "state": false
+      },
+      {
+        "boxId": 56,
+        "state": false
+      },
+      {
+        "boxId": 71,
+        "state": false
+      },
+      {
+        "boxId": 73,
+        "state": false
+      },
+      {
+        "boxId": 75,
+        "state": false
+      },
+      {
+        "boxId": 76,
+        "state": false
+      },
+      {
+        "boxId": 78,
+        "state": false
+      },
+      {
+        "boxId": 87,
+        "state": false
+      },
+      {
+        "boxId": 88,
+        "state": false
+      },
+      {
+        "boxId": 91,
+        "state": false
+      },
+      {
+        "boxId": 94,
+        "state": false
+      },
+      {
+        "boxId": 97,
+        "state": false
+      },
+      {
+        "boxId": 98,
+        "state": false
+      },
+      {
+        "boxId": 99,
+        "state": false
+      }
+    ]
+  },
+  "simulation": {
+    "boxSimState": [
+      {
+        "boxId": 1,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 2,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 3,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 4,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 5,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 6,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 7,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 8,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 9,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 10,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 11,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 12,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 13,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 14,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 15,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 16,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 17,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 18,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 19,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 20,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 21,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 22,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 23,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 24,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 25,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 26,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 27,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 28,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 29,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 30,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 31,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 32,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 33,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 34,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 35,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 36,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 37,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 38,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 39,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 40,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 41,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 42,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 43,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 44,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 45,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 46,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 47,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 48,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 49,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 50,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 51,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 52,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 53,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 54,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 55,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 56,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 57,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 58,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 59,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 60,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 61,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 62,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 63,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 64,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 65,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 66,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 67,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 68,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 69,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 70,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 71,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 72,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 73,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 74,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 75,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 76,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 77,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 78,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 79,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 80,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 81,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 82,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 83,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 84,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 85,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 86,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 87,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 88,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 89,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 90,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          },
+          {
+            "portId": 1,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 2,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 91,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 92,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 93,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 94,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 95,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      },
+      {
+        "boxId": 96,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": [
+          {
+            "portId": 1,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 97,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 98,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 99,
+        "simStatesInputs": [],
+        "simStatesOutputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ]
+      },
+      {
+        "boxId": 100,
+        "simStatesInputs": [
+          {
+            "portId": 0,
+            "state": false
+          }
+        ],
+        "simStatesOutputs": []
+      }
+    ],
+    "connectorSimState": [
+      {
+        "connectorId": 101,
+        "state": false
+      },
+      {
+        "connectorId": 102,
+        "state": false
+      },
+      {
+        "connectorId": 103,
+        "state": false
+      },
+      {
+        "connectorId": 104,
+        "state": false
+      },
+      {
+        "connectorId": 105,
+        "state": false
+      },
+      {
+        "connectorId": 106,
+        "state": false
+      },
+      {
+        "connectorId": 107,
+        "state": false
+      },
+      {
+        "connectorId": 108,
+        "state": false
+      },
+      {
+        "connectorId": 109,
+        "state": false
+      },
+      {
+        "connectorId": 110,
+        "state": false
+      },
+      {
+        "connectorId": 111,
+        "state": false
+      },
+      {
+        "connectorId": 112,
+        "state": false
+      },
+      {
+        "connectorId": 113,
+        "state": false
+      },
+      {
+        "connectorId": 114,
+        "state": false
+      },
+      {
+        "connectorId": 115,
+        "state": false
+      },
+      {
+        "connectorId": 116,
+        "state": false
+      },
+      {
+        "connectorId": 117,
+        "state": false
+      },
+      {
+        "connectorId": 118,
+        "state": false
+      },
+      {
+        "connectorId": 119,
+        "state": false
+      },
+      {
+        "connectorId": 120,
+        "state": false
+      }
+    ]
+  },
+  "state": {
+    "zoomFactor": 1,
+    "panX": 0,
+    "panY": 0
+  },
+  "customSketchesSupportData": []
+}
