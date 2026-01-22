@@ -3,9 +3,9 @@
 import { useEffect } from 'react';
 import { Nuke } from '@/app/v4/modules/nuke';
 
-export default function Error({ error }: { error: Error & { digest?: string } }) {
+export default function Error({ error }: { error?: Error & { digest?: string } }) {
   useEffect(() => {
-    console.error(error);
+    error && console.error(error);
   }, [error]);
 
   return (

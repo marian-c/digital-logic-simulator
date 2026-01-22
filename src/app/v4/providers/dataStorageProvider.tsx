@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import type { FunctionComponentWithChildren } from '@/types/r-ui';
 import { defaultExampleUUID } from '@/app/v4/samples/_';
 import type {
@@ -28,6 +28,7 @@ import { validateSketch } from '@/app/v4/data/validate-sketch';
 import { getCustomBoxByBoxId } from '@/app/v4/data/getters/box';
 import { getSketchFromCustomBox } from '@/app/v4/data/getters/sketch';
 import { getSupportDataFromCustomBox } from '@/app/v4/data/getters/support-data';
+import Error from '@/app/v4/error';
 
 type Methods = {
   $setSelectedSketchUUID: (selectedSketchUUID: string) => void;
@@ -78,6 +79,7 @@ if (isBrowser) {
 const emptySketch: SketchWithSimulation = ensureSimulation(genEmptySketch(), []);
 
 export const DataStorageProvider: FunctionComponentWithChildren = ({ children }) => {
+  const [isFatalError, setIsFatalError] = useState(false);
   const isFirstMount = useFirstMount();
 
   const [_settings, $setSettings, settingsRef] = useStateWithRefImmediate<V4Settings>(() => {
@@ -220,7 +222,7 @@ export const DataStorageProvider: FunctionComponentWithChildren = ({ children })
 
       const selectedSketchIdx = sketches.findIndex((s) => s.uuid === selectedSketchUUID);
       if (selectedSketchIdx === -1) {
-        console.error('Selected sketch not found in sketches');
+        setIsFatalError(true);
         return;
       }
       cleanupAllSketches(sketches, panAndZoomCollection);
@@ -382,6 +384,9 @@ export const DataStorageProvider: FunctionComponentWithChildren = ({ children })
     };
   }, [$setSelectedSketchUUID, selectedSketchRef, settingsRef]);
 
+  if (isFatalError) {
+    return <Error />;
+  }
   return (
     <DataStorageProviderSettings value={settings}>
       <DataStorageProviderData value={selectedSketch}>
