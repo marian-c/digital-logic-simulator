@@ -12,8 +12,10 @@ import { sketch as boxDLatchNand } from '@/app/v4/samples/box-d-latch-nand';
 import { sketch as box4BitRegister } from '@/app/v4/samples/box-4-bit-register';
 import { sketch as boxDFlipFlop } from '@/app/v4/samples/box-d-flip-flop';
 import { sketch as box1BitRegisterClock } from '@/app/v4/samples/box-1-bit-register-clock';
+import { sketch as playground } from '@/app/v4/samples/playground';
 
 export const examplesV4 = [
+  playground,
   boxNand,
   boxOr,
   boxXor,
@@ -30,4 +32,4 @@ export const examplesV4 = [
   box1BitRegisterClock,
 ];
 
-export const defaultExampleUUID = boxSRLatch1.uuid;
+export const defaultExampleUUID = playground.uuid;

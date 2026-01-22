@@ -1,15 +1,14 @@
 import type { SketchForStorageWithPanAndZoom } from '@/app/v4/types/data';
 
 export const sketch: SketchForStorageWithPanAndZoom = {
-  uuid: '019aa85d-66ca-702e-987d-fe61455f4c48',
+  uuid: '0199e1c3-3001-74af-8070-c677061648c9',
   meta: {
-    name: 'D latch (nand)',
+    name: 'PLAYGROUND',
     description: '',
-    isExample: true,
     isChip: true,
   },
   structure: {
-    extra: { nextId: 100 },
+    extra: { nextId: 20 },
     boxes: [
       {
         id: 1,
@@ -20,7 +19,7 @@ export const sketch: SketchForStorageWithPanAndZoom = {
       },
       {
         id: 2,
-        kind: 'output',
+        kind: 'input',
         p: {
           numWires: 1,
         },
@@ -36,68 +35,59 @@ export const sketch: SketchForStorageWithPanAndZoom = {
         id: 4,
         kind: 'custom',
         p: {
-          uuid: '0199e1c4-ff16-710b-869b-88485a93a83e',
-        },
-      },
-      {
-        id: 5,
-        kind: 'custom',
-        p: {
-          uuid: '0199e1c4-ff16-710b-869b-88485a93a83e',
+          uuid: '019aad02-5606-74fb-b2f2-a7314bf4a827',
         },
       },
       {
         id: 6,
-        kind: 'custom',
+        kind: 'output',
         p: {
-          uuid: '0199e1c4-ff16-710b-869b-88485a93a83e',
+          numWires: 1,
         },
       },
       {
         id: 7,
-        kind: 'custom',
-        p: {
-          uuid: '0199e1c4-ff16-710b-869b-88485a93a83e',
-        },
+        kind: 'not',
+        p: 0,
       },
       {
         id: 8,
+        kind: 'and',
+        p: 0,
+      },
+      {
+        id: 9,
+        kind: 'and',
+        p: 0,
+      },
+      {
+        id: 10,
         kind: 'custom',
         p: {
-          uuid: '0199e1c4-ff16-710b-869b-88485a93a83e',
+          uuid: '019a1267-ef5e-7321-8341-578d3a0d66be',
         },
       },
     ],
     connectors: [
       {
-        id: 9,
+        id: 5,
         p: {
           numWires: 1,
         },
-        fromBoxId: 1,
+        fromBoxId: 3,
         fromPortId: 0,
-        toBoxId: 8,
-        toPortId: 4,
-      },
-      {
-        id: 10,
-        p: {
-          numWires: 1,
-        },
-        fromBoxId: 1,
-        fromPortId: 0,
-        toBoxId: 8,
-        toPortId: 6,
+        toBoxId: 4,
+        toPortId: 2,
       },
       {
         id: 11,
         p: {
           numWires: 1,
         },
-        fromBoxId: 1,
-        fromPortId: 0,
+        fromBoxId: 4,
+        fromPortId: 11,
         toBoxId: 6,
-        toPortId: 4,
+        toPortId: 0,
       },
       {
         id: 12,
@@ -105,8 +95,8 @@ export const sketch: SketchForStorageWithPanAndZoom = {
           numWires: 1,
         },
         fromBoxId: 4,
-        fromPortId: 9,
-        toBoxId: 2,
+        fromPortId: 11,
+        toBoxId: 8,
         toPortId: 0,
       },
       {
@@ -114,70 +104,70 @@ export const sketch: SketchForStorageWithPanAndZoom = {
         p: {
           numWires: 1,
         },
-        fromBoxId: 5,
-        fromPortId: 9,
-        toBoxId: 4,
-        toPortId: 6,
+        fromBoxId: 1,
+        fromPortId: 0,
+        toBoxId: 9,
+        toPortId: 1,
       },
       {
         id: 14,
         p: {
           numWires: 1,
         },
-        fromBoxId: 4,
-        fromPortId: 9,
-        toBoxId: 5,
-        toPortId: 4,
+        fromBoxId: 2,
+        fromPortId: 0,
+        toBoxId: 9,
+        toPortId: 0,
       },
       {
         id: 15,
         p: {
           numWires: 1,
         },
-        fromBoxId: 7,
-        fromPortId: 9,
-        toBoxId: 5,
-        toPortId: 6,
+        fromBoxId: 2,
+        fromPortId: 0,
+        toBoxId: 7,
+        toPortId: 0,
       },
       {
         id: 16,
         p: {
           numWires: 1,
         },
-        fromBoxId: 8,
-        fromPortId: 9,
-        toBoxId: 7,
-        toPortId: 6,
+        fromBoxId: 7,
+        fromPortId: 1,
+        toBoxId: 8,
+        toPortId: 1,
       },
       {
         id: 17,
         p: {
           numWires: 1,
         },
-        fromBoxId: 3,
-        fromPortId: 0,
-        toBoxId: 6,
-        toPortId: 6,
+        fromBoxId: 9,
+        fromPortId: 2,
+        toBoxId: 10,
+        toPortId: 2,
       },
       {
         id: 18,
         p: {
           numWires: 1,
         },
-        fromBoxId: 3,
-        fromPortId: 0,
-        toBoxId: 7,
-        toPortId: 4,
+        fromBoxId: 8,
+        fromPortId: 2,
+        toBoxId: 10,
+        toPortId: 1,
       },
       {
         id: 19,
         p: {
           numWires: 1,
         },
-        fromBoxId: 6,
-        fromPortId: 9,
+        fromBoxId: 10,
+        fromPortId: 4,
         toBoxId: 4,
-        toPortId: 4,
+        toPortId: 1,
       },
     ],
   },
@@ -193,73 +183,73 @@ export const sketch: SketchForStorageWithPanAndZoom = {
       {
         boxId: 1,
         pos: {
-          x: 520,
-          y: 210,
+          x: 460,
+          y: 190,
         },
         label: 'Data',
       },
       {
         boxId: 2,
         pos: {
-          x: 1270,
-          y: 310,
-        },
-      },
-      {
-        boxId: 3,
-        pos: {
-          x: 550,
-          y: 340,
+          x: 460,
+          y: 290,
         },
         label: 'Store',
       },
       {
-        boxId: 4,
+        boxId: 3,
         pos: {
-          x: 1000,
-          y: 200,
+          x: 460,
+          y: 370,
         },
+        label: 'Clock',
       },
       {
-        boxId: 5,
+        boxId: 4,
         pos: {
-          x: 1100,
-          y: 390,
+          x: 1040,
+          y: 260,
         },
       },
       {
         boxId: 6,
         pos: {
-          x: 810,
-          y: 160,
+          x: 1490,
+          y: 280,
         },
       },
       {
         boxId: 7,
         pos: {
-          x: 850,
-          y: 370,
+          x: 620,
+          y: 130,
         },
       },
       {
         boxId: 8,
         pos: {
-          x: 700,
-          y: 420,
+          x: 770,
+          y: 50,
+        },
+      },
+      {
+        boxId: 9,
+        pos: {
+          x: 770,
+          y: 160,
+        },
+      },
+      {
+        boxId: 10,
+        pos: {
+          x: 920,
+          y: 100,
         },
       },
     ],
     connectors: [
       {
-        connectorId: 9,
-        bias: {
-          mid: 0,
-          start: 0,
-          end: 0,
-        },
-      },
-      {
-        connectorId: 10,
+        connectorId: 5,
         bias: {
           mid: 0,
           start: 0,
@@ -346,13 +336,17 @@ export const sketch: SketchForStorageWithPanAndZoom = {
       state: { kind: 1, value: [false] },
     },
     {
+      boxId: 2,
+      state: { kind: 1, value: [true] },
+    },
+    {
       boxId: 3,
-      state: { kind: 1, value: [false] },
+      state: { kind: 1, value: [true] },
     },
   ],
   panAndZoom: {
     zoomFactor: 1,
-    panX: 0,
-    panY: 0,
+    panX: 11,
+    panY: -166,
   },
 };

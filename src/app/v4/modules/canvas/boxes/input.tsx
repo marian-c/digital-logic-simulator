@@ -36,7 +36,6 @@ export const BoxInput: FunctionComponent<{ box: InputBoxElement }> = ({ box }) =
   const isActive = activeInfo.active?.id === boxId;
 
   const cursor = isReadOnly ? 'default' : 'grab';
-  const clickableCursor = isReadOnly ? 'default' : 'pointer';
   const state = getBoxSimStateByBoxId(boxId, data);
 
   const clickablePoints: React.ReactElement[] = [];
@@ -46,7 +45,7 @@ export const BoxInput: FunctionComponent<{ box: InputBoxElement }> = ({ box }) =
       clickablePoints.push(
         <rect
           key={0}
-          cursor={clickableCursor}
+          cursor="pointer"
           fill={state.simStatesOutputs[0]!.state.value[0] ? pointColors.on : pointColors.off}
           stroke="white"
           strokeWidth={1}
@@ -54,13 +53,9 @@ export const BoxInput: FunctionComponent<{ box: InputBoxElement }> = ({ box }) =
           height={inputClickableHeight - 2}
           x={-inputClickableWidth / 2 + 1}
           y={-inputClickableHeight / 2 + 1}
-          onMouseUp={
-            isReadOnlyRef.current
-              ? undefined
-              : (mouseEvent) => {
-                  $onInputPointMouseUp(boxId, 0, mouseEvent.button);
-                }
-          }
+          onMouseUp={(mouseEvent) => {
+            $onInputPointMouseUp(boxId, 0, mouseEvent.button);
+          }}
         />,
       );
       break;
@@ -70,7 +65,7 @@ export const BoxInput: FunctionComponent<{ box: InputBoxElement }> = ({ box }) =
           return (
             <rect
               key={i}
-              cursor={clickableCursor}
+              cursor="pointer"
               fill={state.simStatesOutputs[0]!.state.value[i] ? pointColors.on : pointColors.off}
               stroke="white"
               strokeWidth={1}
@@ -80,13 +75,9 @@ export const BoxInput: FunctionComponent<{ box: InputBoxElement }> = ({ box }) =
               y={
                 -inputClickableHeight / 2 + 1 + ((inputClickableHeight - 2) / 2) * Math.floor(i / 2)
               }
-              onMouseUp={
-                isReadOnlyRef.current
-                  ? undefined
-                  : (mouseEvent) => {
-                      $onInputPointMouseUp(boxId, i, mouseEvent.button);
-                    }
-              }
+              onMouseUp={(mouseEvent) => {
+                $onInputPointMouseUp(boxId, i, mouseEvent.button);
+              }}
             />
           );
         }),
@@ -98,7 +89,7 @@ export const BoxInput: FunctionComponent<{ box: InputBoxElement }> = ({ box }) =
           return (
             <rect
               key={i}
-              cursor={clickableCursor}
+              cursor="pointer"
               fill={state.simStatesOutputs[0]!.state.value[i] ? pointColors.on : pointColors.off}
               stroke="white"
               strokeWidth={1}
@@ -108,13 +99,9 @@ export const BoxInput: FunctionComponent<{ box: InputBoxElement }> = ({ box }) =
               y={
                 -inputClickableHeight / 2 + 1 + ((inputClickableHeight - 2) / 2) * Math.floor(i / 4)
               }
-              onMouseUp={
-                isReadOnlyRef.current
-                  ? undefined
-                  : (mouseEvent) => {
-                      $onInputPointMouseUp(boxId, i, mouseEvent.button);
-                    }
-              }
+              onMouseUp={(mouseEvent) => {
+                $onInputPointMouseUp(boxId, i, mouseEvent.button);
+              }}
             />
           );
         }),

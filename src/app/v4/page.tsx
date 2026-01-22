@@ -8,9 +8,10 @@ import {
 import React from 'react';
 import { config } from '@/config';
 import { Simulator } from '@/app/v4/modules/simulator';
-import { assertIsDefined, isBrowser } from '@/helpers/basics';
+import { assertIsDefined } from '@/helpers/basics';
 import { buttonCN, selectCN, textLinkCN } from '@/classnames';
 import { Breadcrumbs } from '@/app/v4/modules/breadcrumbs';
+import { useFirstMount } from '@/hooks/useFirstMount';
 
 function Header() {
   const selectedSketch = useSketchStorageData();
@@ -23,7 +24,7 @@ function Header() {
     assertIsDefined(selectedSketch.meta.indexInList);
     list.splice(selectedSketch.meta.indexInList, 0, selectedSketch);
 
-    console.log(list);
+    console.log('list', list);
     process.env.NEXT_PUBLIC_LOGS_DEBUG && console.groupEnd();
     return list.map((i) => {
       return { value: i.uuid, label: `${i.meta.name}${i.meta.isExample ? '*' : ''}` };
@@ -31,7 +32,8 @@ function Header() {
   }, [otherSketchesRef, selectedSketch]);
 
   let backButton: React.ReactElement | null = null;
-  if (isBrowser && window.history.state?.__APP_V4_PREV_SKETCH) {
+  const isFirstMount = useFirstMount();
+  if (!isFirstMount && window.history.state?.__APP_V4_PREV_SKETCH) {
     backButton = (
       <>
         <button
@@ -56,7 +58,7 @@ function Header() {
         ) ::{' '}
         <h2 data-testid="selected-sketch-title" className="inline">
           {selectedSketch.meta.name}
-          {selectedSketch.meta.isExample && ' [ex]'}
+          {selectedSketch.meta.isExample && ' [read-only example]'}
         </h2>
       </div>
       <div className="text-right">

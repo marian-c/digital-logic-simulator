@@ -3,7 +3,7 @@ import type { SketchForStorageWithPanAndZoom } from '@/app/v4/types/data';
 export const sketch: SketchForStorageWithPanAndZoom = {
   uuid: '019a1295-bf4b-708e-a244-d666353ff74f',
   meta: {
-    name: 'ADDER',
+    name: 'Adder',
     description: '',
     isExample: true,
     isChip: true,

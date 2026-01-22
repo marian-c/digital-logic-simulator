@@ -565,8 +565,8 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     (inputBoxId, stateIdx, mouseButton) => {
       if (
         mouseButton === 0 &&
-        actionRef.current?.kind === 'drag-box' &&
-        !actionRef.current.hasDragged
+        ((actionRef.current?.kind === 'drag-box' && !actionRef.current.hasDragged) ||
+          actionRef.current?.kind !== 'drag-box')
       ) {
         $updateSelectedSketch(
           actionToggleInputState(inputBoxId, stateIdx, selectedSketchRef.current),
@@ -638,7 +638,6 @@ export const InteractionsProvider: FunctionComponentWithChildren = ({ children }
     (el) => {
       _canvasRef.current = el;
       const onWheel = (wheelEvent: WheelEvent) => {
-        console.log('BBB');
         wheelEvent.preventDefault();
         if (wheelEvent.ctrlKey) {
           $handleSvgPinch(wheelEvent.deltaY, wheelEvent.clientX, wheelEvent.clientY);
