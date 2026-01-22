@@ -56,7 +56,8 @@ export const DataStorageProvider: FunctionComponentWithChildren = ({ children })
       selectedSketchUuid: defaultExampleUUID,
     };
     const sane = cleanupAllSketches(r);
-    const rSimulated = simulate(sane);
+    // TODO: handle errors
+    const rSimulated = simulate(sane).data;
     if (isBrowser) {
       (window as any).__DATA__ = rSimulated;
     }
@@ -69,15 +70,19 @@ export const DataStorageProvider: FunctionComponentWithChildren = ({ children })
     sketchDataRef.current = emptyData;
   }
 
+  console.log('sketchDataRef', sketchDataRef.current);
+
   const methods = React.useMemo<MethodsV3>(() => {
     return {
       $setSketchData(ssa) {
+        console.log('setting');
         // TODO: only save when relevant stuff changes, for example simulation data change does not need to save
         //   also, for examples, maybe we don't need to save the input states changes
         safeToLocalStorage(ssa);
 
         // simulate
-        const ssaWithSimulation = simulate(ssa);
+        // TODO: handle errors
+        const ssaWithSimulation = simulate(ssa).data;
         console.log(
           'simulated',
           ssaWithSimulation.sketches.find((s) => s.meta.uuid === ssa.selectedSketchUuid),

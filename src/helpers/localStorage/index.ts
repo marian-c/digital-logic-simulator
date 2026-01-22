@@ -8,6 +8,7 @@ import type {
   SketchStructure,
 } from '@/app/v2/types/data';
 import type { DataV3 } from '@/app/v3/types/data';
+import type { V4Settings } from '@/app/v4/types/other';
 
 export type LocalStorageStructure = {
   v2selectedSketch: string; // single
@@ -19,6 +20,7 @@ export type LocalStorageStructure = {
   v2sketchesSimulation: SketchSimulation; // collection indexed by UUID
   v2sketchesState: SketchState; // collection indexed by UUID
   v3Data: DataV3;
+  v4Settings: V4Settings;
 };
 
 export type LocalStorageKey = keyof LocalStorageStructure;

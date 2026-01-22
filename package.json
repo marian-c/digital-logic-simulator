@@ -17,7 +17,8 @@
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "stress": "npx tsx ./src/app/v3/data/generateStressSample.ts"
+    "stress": "npx tsx ./src/app/v3/data/generateStressSample.ts",
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@dnd-kit/abstract": "0.1.21-beta-20250806121348",
@@ -29,6 +30,8 @@
     "@preact/signals-core": "1.12.1",
     "@preact/signals-react": "3.3.0",
     "lodash": "^4.17.21",
+    "memoize": "^10.2.0",
+    "memoize-one": "^6.0.0",
     "next": "15.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -48,6 +51,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/webpack-env": "^1.18.8",
+    "cypress": "^15.7.0",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
     "eslint-plugin-storybook": "^9.1.8",

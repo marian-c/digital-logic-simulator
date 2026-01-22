@@ -120,37 +120,37 @@ export const sketch: Sketch = {
           params: 'none',
         },
         {
-          id: 49,
+          id: 63,
           kind: 'output',
           params: 'none',
         },
         {
-          id: 51,
+          id: 64,
           kind: 'output',
           params: 'none',
         },
         {
-          id: 53,
+          id: 65,
           kind: 'output',
           params: 'none',
         },
         {
-          id: 55,
+          id: 66,
           kind: 'output',
           params: 'none',
         },
         {
-          id: 56,
+          id: 67,
           kind: 'output',
           params: 'none',
         },
         {
-          id: 57,
+          id: 68,
           kind: 'output',
           params: 'none',
         },
         {
-          id: 58,
+          id: 69,
           kind: 'output',
           params: 'none',
         },
@@ -346,59 +346,59 @@ export const sketch: Sketch = {
           toPortId: 0,
         },
         {
-          id: 50,
+          id: 70,
           fromBoxId: 38,
           fromPortId: 2,
-          toBoxId: 49,
+          toBoxId: 69,
           toPortId: 0,
         },
         {
-          id: 52,
+          id: 71,
           fromBoxId: 13,
           fromPortId: 4,
-          toBoxId: 51,
+          toBoxId: 68,
           toPortId: 0,
         },
         {
-          id: 54,
+          id: 72,
           fromBoxId: 13,
           fromPortId: 8,
-          toBoxId: 53,
+          toBoxId: 67,
           toPortId: 0,
         },
         {
-          id: 59,
-          fromBoxId: 13,
-          fromPortId: 4,
-          toBoxId: 55,
-          toPortId: 0,
-        },
-        {
-          id: 60,
-          fromBoxId: 13,
-          fromPortId: 5,
-          toBoxId: 56,
-          toPortId: 0,
-        },
-        {
-          id: 61,
-          fromBoxId: 13,
-          fromPortId: 6,
-          toBoxId: 57,
-          toPortId: 0,
-        },
-        {
-          id: 62,
+          id: 73,
           fromBoxId: 13,
           fromPortId: 7,
-          toBoxId: 58,
+          toBoxId: 66,
+          toPortId: 0,
+        },
+        {
+          id: 74,
+          fromBoxId: 13,
+          fromPortId: 6,
+          toBoxId: 65,
+          toPortId: 0,
+        },
+        {
+          id: 75,
+          fromBoxId: 13,
+          fromPortId: 5,
+          toBoxId: 64,
+          toPortId: 0,
+        },
+        {
+          id: 76,
+          fromBoxId: 13,
+          fromPortId: 4,
+          toBoxId: 63,
           toPortId: 0,
         },
       ],
     },
   },
   meta: {
-    nextId: 63,
+    nextId: 77,
     uuid: '019a14c8-e0bb-775a-b2d8-632d15517a0b',
     name: 'ALU',
     description: '',
@@ -560,52 +560,52 @@ export const sketch: Sketch = {
         },
       },
       {
-        boxId: 49,
+        boxId: 63,
         pos: {
-          x: 1430,
-          y: 300,
-        },
-      },
-      {
-        boxId: 51,
-        pos: {
-          x: 1430,
-          y: 270,
-        },
-      },
-      {
-        boxId: 53,
-        pos: {
-          x: 1430,
-          y: 240,
-        },
-      },
-      {
-        boxId: 55,
-        pos: {
-          x: 1430,
+          x: 1530,
           y: 80,
         },
       },
       {
-        boxId: 56,
+        boxId: 64,
         pos: {
-          x: 1430,
+          x: 1530,
           y: 120,
         },
       },
       {
-        boxId: 57,
+        boxId: 65,
         pos: {
-          x: 1430,
+          x: 1530,
           y: 160,
         },
       },
       {
-        boxId: 58,
+        boxId: 66,
         pos: {
-          x: 1430,
+          x: 1530,
           y: 200,
+        },
+      },
+      {
+        boxId: 67,
+        pos: {
+          x: 1530,
+          y: 240,
+        },
+      },
+      {
+        boxId: 68,
+        pos: {
+          x: 1530,
+          y: 270,
+        },
+      },
+      {
+        boxId: 69,
+        pos: {
+          x: 1530,
+          y: 300,
         },
       },
     ],
@@ -773,46 +773,46 @@ export const sketch: Sketch = {
         mid: 0,
       },
       {
-        connectorId: 50,
+        connectorId: 70,
+        mid: 0,
         start: 0,
         end: 0,
-        mid: 0,
       },
       {
-        connectorId: 52,
+        connectorId: 71,
+        mid: 0,
         start: 0,
         end: 0,
-        mid: -250,
       },
       {
-        connectorId: 54,
+        connectorId: 72,
+        mid: 0,
         start: 0,
         end: 0,
-        mid: 0,
       },
       {
-        connectorId: 59,
+        connectorId: 73,
+        mid: 0,
         start: 0,
         end: 0,
-        mid: 0,
       },
       {
-        connectorId: 60,
+        connectorId: 74,
+        mid: 0,
         start: 0,
         end: 0,
-        mid: 0,
       },
       {
-        connectorId: 61,
+        connectorId: 75,
+        mid: 0,
         start: 0,
         end: 0,
-        mid: 0,
       },
       {
-        connectorId: 62,
+        connectorId: 76,
+        mid: 0,
         start: 0,
         end: 0,
-        mid: 0,
       },
     ],
   },
@@ -909,6 +909,36 @@ export const sketch: Sketch = {
         ],
       },
       {
+        boxId: 6,
+        simStatesInputs: [],
+        simStatesOutputs: [
+          {
+            portId: 0,
+            state: true,
+          },
+        ],
+      },
+      {
+        boxId: 7,
+        simStatesInputs: [],
+        simStatesOutputs: [
+          {
+            portId: 0,
+            state: false,
+          },
+        ],
+      },
+      {
+        boxId: 8,
+        simStatesInputs: [],
+        simStatesOutputs: [
+          {
+            portId: 0,
+            state: false,
+          },
+        ],
+      },
+      {
         boxId: 9,
         simStatesInputs: [],
         simStatesOutputs: [
@@ -938,16 +968,6 @@ export const sketch: Sketch = {
         ],
       },
       {
-        boxId: 6,
-        simStatesInputs: [],
-        simStatesOutputs: [
-          {
-            portId: 0,
-            state: true,
-          },
-        ],
-      },
-      {
         boxId: 11,
         simStatesInputs: [
           {
@@ -967,16 +987,6 @@ export const sketch: Sketch = {
         ],
       },
       {
-        boxId: 7,
-        simStatesInputs: [],
-        simStatesOutputs: [
-          {
-            portId: 0,
-            state: false,
-          },
-        ],
-      },
-      {
         boxId: 12,
         simStatesInputs: [
           {
@@ -991,16 +1001,6 @@ export const sketch: Sketch = {
         simStatesOutputs: [
           {
             portId: 6,
-            state: false,
-          },
-        ],
-      },
-      {
-        boxId: 8,
-        simStatesInputs: [],
-        simStatesOutputs: [
-          {
-            portId: 0,
             state: false,
           },
         ],
@@ -1118,6 +1118,96 @@ export const sketch: Sketch = {
         ],
       },
       {
+        boxId: 34,
+        simStatesInputs: [
+          {
+            portId: 0,
+            state: true,
+          },
+        ],
+        simStatesOutputs: [
+          {
+            portId: 1,
+            state: false,
+          },
+        ],
+      },
+      {
+        boxId: 35,
+        simStatesInputs: [
+          {
+            portId: 0,
+            state: false,
+          },
+        ],
+        simStatesOutputs: [
+          {
+            portId: 1,
+            state: true,
+          },
+        ],
+      },
+      {
+        boxId: 63,
+        simStatesInputs: [
+          {
+            portId: 0,
+            state: true,
+          },
+        ],
+        simStatesOutputs: [],
+      },
+      {
+        boxId: 64,
+        simStatesInputs: [
+          {
+            portId: 0,
+            state: false,
+          },
+        ],
+        simStatesOutputs: [],
+      },
+      {
+        boxId: 65,
+        simStatesInputs: [
+          {
+            portId: 0,
+            state: true,
+          },
+        ],
+        simStatesOutputs: [],
+      },
+      {
+        boxId: 66,
+        simStatesInputs: [
+          {
+            portId: 0,
+            state: false,
+          },
+        ],
+        simStatesOutputs: [],
+      },
+      {
+        boxId: 67,
+        simStatesInputs: [
+          {
+            portId: 0,
+            state: true,
+          },
+        ],
+        simStatesOutputs: [],
+      },
+      {
+        boxId: 68,
+        simStatesInputs: [
+          {
+            portId: 0,
+            state: true,
+          },
+        ],
+        simStatesOutputs: [],
+      },
+      {
         boxId: 36,
         simStatesInputs: [
           {
@@ -1132,21 +1222,6 @@ export const sketch: Sketch = {
         simStatesOutputs: [
           {
             portId: 2,
-            state: false,
-          },
-        ],
-      },
-      {
-        boxId: 34,
-        simStatesInputs: [
-          {
-            portId: 0,
-            state: true,
-          },
-        ],
-        simStatesOutputs: [
-          {
-            portId: 1,
             state: false,
           },
         ],
@@ -1171,21 +1246,6 @@ export const sketch: Sketch = {
         ],
       },
       {
-        boxId: 35,
-        simStatesInputs: [
-          {
-            portId: 0,
-            state: false,
-          },
-        ],
-        simStatesOutputs: [
-          {
-            portId: 1,
-            state: true,
-          },
-        ],
-      },
-      {
         boxId: 38,
         simStatesInputs: [
           {
@@ -1205,67 +1265,7 @@ export const sketch: Sketch = {
         ],
       },
       {
-        boxId: 49,
-        simStatesInputs: [
-          {
-            portId: 0,
-            state: false,
-          },
-        ],
-        simStatesOutputs: [],
-      },
-      {
-        boxId: 51,
-        simStatesInputs: [
-          {
-            portId: 0,
-            state: true,
-          },
-        ],
-        simStatesOutputs: [],
-      },
-      {
-        boxId: 53,
-        simStatesInputs: [
-          {
-            portId: 0,
-            state: true,
-          },
-        ],
-        simStatesOutputs: [],
-      },
-      {
-        boxId: 55,
-        simStatesInputs: [
-          {
-            portId: 0,
-            state: true,
-          },
-        ],
-        simStatesOutputs: [],
-      },
-      {
-        boxId: 56,
-        simStatesInputs: [
-          {
-            portId: 0,
-            state: false,
-          },
-        ],
-        simStatesOutputs: [],
-      },
-      {
-        boxId: 57,
-        simStatesInputs: [
-          {
-            portId: 0,
-            state: true,
-          },
-        ],
-        simStatesOutputs: [],
-      },
-      {
-        boxId: 58,
+        boxId: 69,
         simStatesInputs: [
           {
             portId: 0,
@@ -1297,6 +1297,18 @@ export const sketch: Sketch = {
         state: true,
       },
       {
+        connectorId: 16,
+        state: true,
+      },
+      {
+        connectorId: 17,
+        state: false,
+      },
+      {
+        connectorId: 18,
+        state: false,
+      },
+      {
         connectorId: 19,
         state: false,
       },
@@ -1321,23 +1333,11 @@ export const sketch: Sketch = {
         state: true,
       },
       {
-        connectorId: 16,
-        state: true,
-      },
-      {
         connectorId: 28,
         state: true,
       },
       {
-        connectorId: 17,
-        state: false,
-      },
-      {
         connectorId: 29,
-        state: false,
-      },
-      {
-        connectorId: 18,
         state: false,
       },
       {
@@ -1349,19 +1349,7 @@ export const sketch: Sketch = {
         state: true,
       },
       {
-        connectorId: 52,
-        state: true,
-      },
-      {
-        connectorId: 59,
-        state: true,
-      },
-      {
         connectorId: 40,
-        state: false,
-      },
-      {
-        connectorId: 60,
         state: false,
       },
       {
@@ -1369,19 +1357,31 @@ export const sketch: Sketch = {
         state: true,
       },
       {
-        connectorId: 61,
-        state: true,
-      },
-      {
         connectorId: 42,
         state: false,
       },
       {
-        connectorId: 62,
+        connectorId: 71,
+        state: true,
+      },
+      {
+        connectorId: 72,
+        state: true,
+      },
+      {
+        connectorId: 73,
         state: false,
       },
       {
-        connectorId: 54,
+        connectorId: 74,
+        state: true,
+      },
+      {
+        connectorId: 75,
+        state: false,
+      },
+      {
+        connectorId: 76,
         state: true,
       },
       {
@@ -1393,15 +1393,7 @@ export const sketch: Sketch = {
         state: true,
       },
       {
-        connectorId: 46,
-        state: false,
-      },
-      {
         connectorId: 45,
-        state: false,
-      },
-      {
-        connectorId: 48,
         state: false,
       },
       {
@@ -1409,15 +1401,7735 @@ export const sketch: Sketch = {
         state: true,
       },
       {
-        connectorId: 50,
+        connectorId: 46,
+        state: false,
+      },
+      {
+        connectorId: 48,
+        state: false,
+      },
+      {
+        connectorId: 70,
         state: false,
       },
     ],
   },
   state: {
     zoomFactor: 0.8430634527156756,
-    panX: 265.7048263753073,
-    panY: -18.37933284604577,
+    panX: 284.6832317948054,
+    panY: -179.69577891178005,
   },
-  customSketchesSupportData: [],
+  customSketchesSupportData: [
+    {
+      boxId: 10,
+      inputs: {
+        inputsState: [
+          {
+            boxId: 8,
+            state: true,
+          },
+          {
+            boxId: 9,
+            state: false,
+          },
+        ],
+      },
+      simulation: {
+        boxSimState: [
+          {
+            boxId: 8,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 9,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 1,
+            simStatesInputs: [
+              {
+                portId: 1,
+                state: true,
+              },
+              {
+                portId: 2,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 4,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 2,
+            simStatesInputs: [
+              {
+                portId: 4,
+                state: true,
+              },
+              {
+                portId: 6,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 9,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 3,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+              {
+                portId: 1,
+                state: true,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 2,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 6,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+            simStatesOutputs: [],
+          },
+        ],
+        connectorSimState: [
+          {
+            connectorId: 10,
+            state: true,
+          },
+          {
+            connectorId: 12,
+            state: true,
+          },
+          {
+            connectorId: 13,
+            state: false,
+          },
+          {
+            connectorId: 14,
+            state: false,
+          },
+          {
+            connectorId: 4,
+            state: true,
+          },
+          {
+            connectorId: 5,
+            state: true,
+          },
+          {
+            connectorId: 7,
+            state: true,
+          },
+        ],
+      },
+      customSketchesSupportData: [
+        {
+          boxId: 1,
+          inputs: {
+            inputsState: [
+              {
+                boxId: 1,
+                state: true,
+              },
+              {
+                boxId: 2,
+                state: false,
+              },
+            ],
+          },
+          simulation: {
+            boxSimState: [
+              {
+                boxId: 1,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 2,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 6,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 7,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 3,
+                simStatesInputs: [
+                  {
+                    portId: 4,
+                    state: false,
+                  },
+                  {
+                    portId: 6,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 9,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 4,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+            ],
+            connectorSimState: [
+              {
+                connectorId: 10,
+                state: true,
+              },
+              {
+                connectorId: 11,
+                state: false,
+              },
+              {
+                connectorId: 9,
+                state: false,
+              },
+              {
+                connectorId: 8,
+                state: true,
+              },
+              {
+                connectorId: 5,
+                state: true,
+              },
+            ],
+          },
+          customSketchesSupportData: [
+            {
+              boxId: 3,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 4,
+                    state: false,
+                  },
+                  {
+                    boxId: 6,
+                    state: true,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 4,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 7,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 2,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 8,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 9,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: false,
+                  },
+                  {
+                    connectorId: 11,
+                    state: true,
+                  },
+                  {
+                    connectorId: 12,
+                    state: false,
+                  },
+                  {
+                    connectorId: 13,
+                    state: true,
+                  },
+                ],
+              },
+              customSketchesSupportData: [],
+            },
+          ],
+        },
+        {
+          boxId: 2,
+          inputs: {
+            inputsState: [
+              {
+                boxId: 4,
+                state: true,
+              },
+              {
+                boxId: 6,
+                state: false,
+              },
+            ],
+          },
+          simulation: {
+            boxSimState: [
+              {
+                boxId: 4,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 6,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 7,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 2,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 8,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 9,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+            ],
+            connectorSimState: [
+              {
+                connectorId: 10,
+                state: true,
+              },
+              {
+                connectorId: 11,
+                state: false,
+              },
+              {
+                connectorId: 12,
+                state: false,
+              },
+              {
+                connectorId: 13,
+                state: true,
+              },
+            ],
+          },
+          customSketchesSupportData: [],
+        },
+      ],
+    },
+    {
+      boxId: 11,
+      inputs: {
+        inputsState: [
+          {
+            boxId: 8,
+            state: true,
+          },
+          {
+            boxId: 9,
+            state: false,
+          },
+        ],
+      },
+      simulation: {
+        boxSimState: [
+          {
+            boxId: 8,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 9,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 1,
+            simStatesInputs: [
+              {
+                portId: 1,
+                state: true,
+              },
+              {
+                portId: 2,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 4,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 2,
+            simStatesInputs: [
+              {
+                portId: 4,
+                state: true,
+              },
+              {
+                portId: 6,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 9,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 3,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+              {
+                portId: 1,
+                state: true,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 2,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 6,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+            simStatesOutputs: [],
+          },
+        ],
+        connectorSimState: [
+          {
+            connectorId: 10,
+            state: true,
+          },
+          {
+            connectorId: 12,
+            state: true,
+          },
+          {
+            connectorId: 13,
+            state: false,
+          },
+          {
+            connectorId: 14,
+            state: false,
+          },
+          {
+            connectorId: 4,
+            state: true,
+          },
+          {
+            connectorId: 5,
+            state: true,
+          },
+          {
+            connectorId: 7,
+            state: true,
+          },
+        ],
+      },
+      customSketchesSupportData: [
+        {
+          boxId: 1,
+          inputs: {
+            inputsState: [
+              {
+                boxId: 1,
+                state: true,
+              },
+              {
+                boxId: 2,
+                state: false,
+              },
+            ],
+          },
+          simulation: {
+            boxSimState: [
+              {
+                boxId: 1,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 2,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 6,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 7,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 3,
+                simStatesInputs: [
+                  {
+                    portId: 4,
+                    state: false,
+                  },
+                  {
+                    portId: 6,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 9,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 4,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+            ],
+            connectorSimState: [
+              {
+                connectorId: 10,
+                state: true,
+              },
+              {
+                connectorId: 11,
+                state: false,
+              },
+              {
+                connectorId: 9,
+                state: false,
+              },
+              {
+                connectorId: 8,
+                state: true,
+              },
+              {
+                connectorId: 5,
+                state: true,
+              },
+            ],
+          },
+          customSketchesSupportData: [
+            {
+              boxId: 3,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 4,
+                    state: false,
+                  },
+                  {
+                    boxId: 6,
+                    state: true,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 4,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 7,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 2,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 8,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 9,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: false,
+                  },
+                  {
+                    connectorId: 11,
+                    state: true,
+                  },
+                  {
+                    connectorId: 12,
+                    state: false,
+                  },
+                  {
+                    connectorId: 13,
+                    state: true,
+                  },
+                ],
+              },
+              customSketchesSupportData: [],
+            },
+          ],
+        },
+        {
+          boxId: 2,
+          inputs: {
+            inputsState: [
+              {
+                boxId: 4,
+                state: true,
+              },
+              {
+                boxId: 6,
+                state: false,
+              },
+            ],
+          },
+          simulation: {
+            boxSimState: [
+              {
+                boxId: 4,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 6,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 7,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 2,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 8,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 9,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+            ],
+            connectorSimState: [
+              {
+                connectorId: 10,
+                state: true,
+              },
+              {
+                connectorId: 11,
+                state: false,
+              },
+              {
+                connectorId: 12,
+                state: false,
+              },
+              {
+                connectorId: 13,
+                state: true,
+              },
+            ],
+          },
+          customSketchesSupportData: [],
+        },
+      ],
+    },
+    {
+      boxId: 12,
+      inputs: {
+        inputsState: [
+          {
+            boxId: 8,
+            state: false,
+          },
+          {
+            boxId: 9,
+            state: false,
+          },
+        ],
+      },
+      simulation: {
+        boxSimState: [
+          {
+            boxId: 8,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 9,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 1,
+            simStatesInputs: [
+              {
+                portId: 1,
+                state: false,
+              },
+              {
+                portId: 2,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 4,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 2,
+            simStatesInputs: [
+              {
+                portId: 4,
+                state: false,
+              },
+              {
+                portId: 6,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 9,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 3,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+              {
+                portId: 1,
+                state: true,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 2,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 6,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [],
+          },
+        ],
+        connectorSimState: [
+          {
+            connectorId: 10,
+            state: false,
+          },
+          {
+            connectorId: 12,
+            state: false,
+          },
+          {
+            connectorId: 13,
+            state: false,
+          },
+          {
+            connectorId: 14,
+            state: false,
+          },
+          {
+            connectorId: 4,
+            state: false,
+          },
+          {
+            connectorId: 5,
+            state: true,
+          },
+          {
+            connectorId: 7,
+            state: false,
+          },
+        ],
+      },
+      customSketchesSupportData: [
+        {
+          boxId: 1,
+          inputs: {
+            inputsState: [
+              {
+                boxId: 1,
+                state: false,
+              },
+              {
+                boxId: 2,
+                state: false,
+              },
+            ],
+          },
+          simulation: {
+            boxSimState: [
+              {
+                boxId: 1,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 2,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 6,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 7,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 3,
+                simStatesInputs: [
+                  {
+                    portId: 4,
+                    state: true,
+                  },
+                  {
+                    portId: 6,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 9,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 4,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+            ],
+            connectorSimState: [
+              {
+                connectorId: 10,
+                state: false,
+              },
+              {
+                connectorId: 11,
+                state: false,
+              },
+              {
+                connectorId: 9,
+                state: true,
+              },
+              {
+                connectorId: 8,
+                state: true,
+              },
+              {
+                connectorId: 5,
+                state: false,
+              },
+            ],
+          },
+          customSketchesSupportData: [
+            {
+              boxId: 3,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 4,
+                    state: true,
+                  },
+                  {
+                    boxId: 6,
+                    state: true,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 4,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 7,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 2,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 8,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 1,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 9,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: true,
+                  },
+                  {
+                    connectorId: 11,
+                    state: true,
+                  },
+                  {
+                    connectorId: 12,
+                    state: true,
+                  },
+                  {
+                    connectorId: 13,
+                    state: false,
+                  },
+                ],
+              },
+              customSketchesSupportData: [],
+            },
+          ],
+        },
+        {
+          boxId: 2,
+          inputs: {
+            inputsState: [
+              {
+                boxId: 4,
+                state: false,
+              },
+              {
+                boxId: 6,
+                state: false,
+              },
+            ],
+          },
+          simulation: {
+            boxSimState: [
+              {
+                boxId: 4,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 6,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 7,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 2,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 8,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 9,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+            ],
+            connectorSimState: [
+              {
+                connectorId: 10,
+                state: false,
+              },
+              {
+                connectorId: 11,
+                state: false,
+              },
+              {
+                connectorId: 12,
+                state: false,
+              },
+              {
+                connectorId: 13,
+                state: true,
+              },
+            ],
+          },
+          customSketchesSupportData: [],
+        },
+      ],
+    },
+    {
+      boxId: 13,
+      inputs: {
+        inputsState: [
+          {
+            boxId: 14,
+            state: true,
+          },
+          {
+            boxId: 15,
+            state: true,
+          },
+          {
+            boxId: 16,
+            state: true,
+          },
+          {
+            boxId: 17,
+            state: false,
+          },
+          {
+            boxId: 18,
+            state: true,
+          },
+          {
+            boxId: 19,
+            state: true,
+          },
+          {
+            boxId: 20,
+            state: false,
+          },
+          {
+            boxId: 21,
+            state: false,
+          },
+          {
+            boxId: 22,
+            state: false,
+          },
+        ],
+      },
+      simulation: {
+        boxSimState: [
+          {
+            boxId: 14,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 15,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 16,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 17,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 18,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 19,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 20,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 21,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 22,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 9,
+            simStatesInputs: [
+              {
+                portId: 1,
+                state: false,
+              },
+              {
+                portId: 2,
+                state: false,
+              },
+              {
+                portId: 3,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 9,
+                state: false,
+              },
+              {
+                portId: 10,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 1,
+            simStatesInputs: [
+              {
+                portId: 1,
+                state: true,
+              },
+              {
+                portId: 2,
+                state: false,
+              },
+              {
+                portId: 3,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 9,
+                state: true,
+              },
+              {
+                portId: 10,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 7,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [],
+          },
+          {
+            boxId: 2,
+            simStatesInputs: [
+              {
+                portId: 1,
+                state: true,
+              },
+              {
+                portId: 2,
+                state: true,
+              },
+              {
+                portId: 3,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 9,
+                state: false,
+              },
+              {
+                portId: 10,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 6,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+            simStatesOutputs: [],
+          },
+          {
+            boxId: 3,
+            simStatesInputs: [
+              {
+                portId: 1,
+                state: true,
+              },
+              {
+                portId: 2,
+                state: true,
+              },
+              {
+                portId: 3,
+                state: true,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 9,
+                state: true,
+              },
+              {
+                portId: 10,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 5,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [],
+          },
+          {
+            boxId: 4,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+            simStatesOutputs: [],
+          },
+          {
+            boxId: 8,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+            simStatesOutputs: [],
+          },
+        ],
+        connectorSimState: [
+          {
+            connectorId: 28,
+            state: true,
+          },
+          {
+            connectorId: 29,
+            state: true,
+          },
+          {
+            connectorId: 30,
+            state: true,
+          },
+          {
+            connectorId: 31,
+            state: false,
+          },
+          {
+            connectorId: 32,
+            state: true,
+          },
+          {
+            connectorId: 33,
+            state: true,
+          },
+          {
+            connectorId: 34,
+            state: false,
+          },
+          {
+            connectorId: 35,
+            state: false,
+          },
+          {
+            connectorId: 23,
+            state: false,
+          },
+          {
+            connectorId: 13,
+            state: false,
+          },
+          {
+            connectorId: 24,
+            state: false,
+          },
+          {
+            connectorId: 12,
+            state: true,
+          },
+          {
+            connectorId: 25,
+            state: false,
+          },
+          {
+            connectorId: 11,
+            state: false,
+          },
+          {
+            connectorId: 26,
+            state: true,
+          },
+          {
+            connectorId: 10,
+            state: true,
+          },
+          {
+            connectorId: 27,
+            state: true,
+          },
+        ],
+      },
+      customSketchesSupportData: [
+        {
+          boxId: 1,
+          inputs: {
+            inputsState: [
+              {
+                boxId: 1,
+                state: true,
+              },
+              {
+                boxId: 2,
+                state: false,
+              },
+              {
+                boxId: 3,
+                state: false,
+              },
+            ],
+          },
+          simulation: {
+            boxSimState: [
+              {
+                boxId: 1,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 2,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 3,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 4,
+                simStatesInputs: [
+                  {
+                    portId: 8,
+                    state: true,
+                  },
+                  {
+                    portId: 9,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 6,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 5,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 2,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 6,
+                simStatesInputs: [
+                  {
+                    portId: 8,
+                    state: true,
+                  },
+                  {
+                    portId: 9,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 6,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 7,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 2,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 8,
+                simStatesInputs: [
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                  {
+                    portId: 2,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 4,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 9,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+              {
+                boxId: 10,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+            ],
+            connectorSimState: [
+              {
+                connectorId: 11,
+                state: true,
+              },
+              {
+                connectorId: 16,
+                state: true,
+              },
+              {
+                connectorId: 13,
+                state: false,
+              },
+              {
+                connectorId: 15,
+                state: false,
+              },
+              {
+                connectorId: 18,
+                state: false,
+              },
+              {
+                connectorId: 20,
+                state: false,
+              },
+              {
+                connectorId: 17,
+                state: true,
+              },
+              {
+                connectorId: 19,
+                state: true,
+              },
+              {
+                connectorId: 21,
+                state: false,
+              },
+              {
+                connectorId: 23,
+                state: true,
+              },
+              {
+                connectorId: 22,
+                state: false,
+              },
+              {
+                connectorId: 24,
+                state: false,
+              },
+            ],
+          },
+          customSketchesSupportData: [
+            {
+              boxId: 4,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 8,
+                    state: true,
+                  },
+                  {
+                    boxId: 9,
+                    state: false,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 8,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 9,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 1,
+                    simStatesInputs: [
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                      {
+                        portId: 2,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 2,
+                    simStatesInputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                      {
+                        portId: 6,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 9,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 3,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 2,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: true,
+                  },
+                  {
+                    connectorId: 12,
+                    state: true,
+                  },
+                  {
+                    connectorId: 13,
+                    state: false,
+                  },
+                  {
+                    connectorId: 14,
+                    state: false,
+                  },
+                  {
+                    connectorId: 4,
+                    state: true,
+                  },
+                  {
+                    connectorId: 5,
+                    state: true,
+                  },
+                  {
+                    connectorId: 7,
+                    state: true,
+                  },
+                ],
+              },
+              customSketchesSupportData: [
+                {
+                  boxId: 1,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 1,
+                        state: true,
+                      },
+                      {
+                        boxId: 2,
+                        state: false,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 1,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 2,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 3,
+                        simStatesInputs: [
+                          {
+                            portId: 4,
+                            state: false,
+                          },
+                          {
+                            portId: 6,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 9,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 4,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: true,
+                      },
+                      {
+                        connectorId: 11,
+                        state: false,
+                      },
+                      {
+                        connectorId: 9,
+                        state: false,
+                      },
+                      {
+                        connectorId: 8,
+                        state: true,
+                      },
+                      {
+                        connectorId: 5,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [
+                    {
+                      boxId: 3,
+                      inputs: {
+                        inputsState: [
+                          {
+                            boxId: 4,
+                            state: false,
+                          },
+                          {
+                            boxId: 6,
+                            state: true,
+                          },
+                        ],
+                      },
+                      simulation: {
+                        boxSimState: [
+                          {
+                            boxId: 4,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 6,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 7,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                              {
+                                portId: 1,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 2,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 8,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 1,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 9,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [],
+                          },
+                        ],
+                        connectorSimState: [
+                          {
+                            connectorId: 10,
+                            state: false,
+                          },
+                          {
+                            connectorId: 11,
+                            state: true,
+                          },
+                          {
+                            connectorId: 12,
+                            state: false,
+                          },
+                          {
+                            connectorId: 13,
+                            state: true,
+                          },
+                        ],
+                      },
+                      customSketchesSupportData: [],
+                    },
+                  ],
+                },
+                {
+                  boxId: 2,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 4,
+                        state: true,
+                      },
+                      {
+                        boxId: 6,
+                        state: false,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 4,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 2,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 8,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 9,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: true,
+                      },
+                      {
+                        connectorId: 11,
+                        state: false,
+                      },
+                      {
+                        connectorId: 12,
+                        state: false,
+                      },
+                      {
+                        connectorId: 13,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [],
+                },
+              ],
+            },
+            {
+              boxId: 6,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 8,
+                    state: true,
+                  },
+                  {
+                    boxId: 9,
+                    state: false,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 8,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 9,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 1,
+                    simStatesInputs: [
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                      {
+                        portId: 2,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 2,
+                    simStatesInputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                      {
+                        portId: 6,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 9,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 3,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 2,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: true,
+                  },
+                  {
+                    connectorId: 12,
+                    state: true,
+                  },
+                  {
+                    connectorId: 13,
+                    state: false,
+                  },
+                  {
+                    connectorId: 14,
+                    state: false,
+                  },
+                  {
+                    connectorId: 4,
+                    state: true,
+                  },
+                  {
+                    connectorId: 5,
+                    state: true,
+                  },
+                  {
+                    connectorId: 7,
+                    state: true,
+                  },
+                ],
+              },
+              customSketchesSupportData: [
+                {
+                  boxId: 1,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 1,
+                        state: true,
+                      },
+                      {
+                        boxId: 2,
+                        state: false,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 1,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 2,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 3,
+                        simStatesInputs: [
+                          {
+                            portId: 4,
+                            state: false,
+                          },
+                          {
+                            portId: 6,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 9,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 4,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: true,
+                      },
+                      {
+                        connectorId: 11,
+                        state: false,
+                      },
+                      {
+                        connectorId: 9,
+                        state: false,
+                      },
+                      {
+                        connectorId: 8,
+                        state: true,
+                      },
+                      {
+                        connectorId: 5,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [
+                    {
+                      boxId: 3,
+                      inputs: {
+                        inputsState: [
+                          {
+                            boxId: 4,
+                            state: false,
+                          },
+                          {
+                            boxId: 6,
+                            state: true,
+                          },
+                        ],
+                      },
+                      simulation: {
+                        boxSimState: [
+                          {
+                            boxId: 4,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 6,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 7,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                              {
+                                portId: 1,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 2,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 8,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 1,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 9,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [],
+                          },
+                        ],
+                        connectorSimState: [
+                          {
+                            connectorId: 10,
+                            state: false,
+                          },
+                          {
+                            connectorId: 11,
+                            state: true,
+                          },
+                          {
+                            connectorId: 12,
+                            state: false,
+                          },
+                          {
+                            connectorId: 13,
+                            state: true,
+                          },
+                        ],
+                      },
+                      customSketchesSupportData: [],
+                    },
+                  ],
+                },
+                {
+                  boxId: 2,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 4,
+                        state: true,
+                      },
+                      {
+                        boxId: 6,
+                        state: false,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 4,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 2,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 8,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 9,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: true,
+                      },
+                      {
+                        connectorId: 11,
+                        state: false,
+                      },
+                      {
+                        connectorId: 12,
+                        state: false,
+                      },
+                      {
+                        connectorId: 13,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [],
+                },
+              ],
+            },
+            {
+              boxId: 8,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 1,
+                    state: false,
+                  },
+                  {
+                    boxId: 2,
+                    state: false,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 1,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 2,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 7,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 3,
+                    simStatesInputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                      {
+                        portId: 6,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 9,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 4,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: false,
+                  },
+                  {
+                    connectorId: 11,
+                    state: false,
+                  },
+                  {
+                    connectorId: 9,
+                    state: true,
+                  },
+                  {
+                    connectorId: 8,
+                    state: true,
+                  },
+                  {
+                    connectorId: 5,
+                    state: false,
+                  },
+                ],
+              },
+              customSketchesSupportData: [
+                {
+                  boxId: 3,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 4,
+                        state: true,
+                      },
+                      {
+                        boxId: 6,
+                        state: true,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 4,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 2,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 8,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 9,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: true,
+                      },
+                      {
+                        connectorId: 11,
+                        state: true,
+                      },
+                      {
+                        connectorId: 12,
+                        state: true,
+                      },
+                      {
+                        connectorId: 13,
+                        state: false,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          boxId: 2,
+          inputs: {
+            inputsState: [
+              {
+                boxId: 1,
+                state: true,
+              },
+              {
+                boxId: 2,
+                state: true,
+              },
+              {
+                boxId: 3,
+                state: false,
+              },
+            ],
+          },
+          simulation: {
+            boxSimState: [
+              {
+                boxId: 1,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 2,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 3,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 4,
+                simStatesInputs: [
+                  {
+                    portId: 8,
+                    state: true,
+                  },
+                  {
+                    portId: 9,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 6,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 5,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 2,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 6,
+                simStatesInputs: [
+                  {
+                    portId: 8,
+                    state: false,
+                  },
+                  {
+                    portId: 9,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 6,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 7,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 2,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 8,
+                simStatesInputs: [
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                  {
+                    portId: 2,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 4,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 9,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+              {
+                boxId: 10,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+            ],
+            connectorSimState: [
+              {
+                connectorId: 11,
+                state: true,
+              },
+              {
+                connectorId: 16,
+                state: true,
+              },
+              {
+                connectorId: 13,
+                state: true,
+              },
+              {
+                connectorId: 15,
+                state: true,
+              },
+              {
+                connectorId: 18,
+                state: false,
+              },
+              {
+                connectorId: 20,
+                state: false,
+              },
+              {
+                connectorId: 17,
+                state: false,
+              },
+              {
+                connectorId: 19,
+                state: false,
+              },
+              {
+                connectorId: 21,
+                state: true,
+              },
+              {
+                connectorId: 23,
+                state: false,
+              },
+              {
+                connectorId: 22,
+                state: false,
+              },
+              {
+                connectorId: 24,
+                state: true,
+              },
+            ],
+          },
+          customSketchesSupportData: [
+            {
+              boxId: 4,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 8,
+                    state: true,
+                  },
+                  {
+                    boxId: 9,
+                    state: true,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 8,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 9,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 1,
+                    simStatesInputs: [
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                      {
+                        portId: 2,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 2,
+                    simStatesInputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                      {
+                        portId: 6,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 9,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 3,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                      {
+                        portId: 1,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 2,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: true,
+                  },
+                  {
+                    connectorId: 12,
+                    state: true,
+                  },
+                  {
+                    connectorId: 13,
+                    state: true,
+                  },
+                  {
+                    connectorId: 14,
+                    state: true,
+                  },
+                  {
+                    connectorId: 4,
+                    state: true,
+                  },
+                  {
+                    connectorId: 5,
+                    state: false,
+                  },
+                  {
+                    connectorId: 7,
+                    state: false,
+                  },
+                ],
+              },
+              customSketchesSupportData: [
+                {
+                  boxId: 1,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 1,
+                        state: true,
+                      },
+                      {
+                        boxId: 2,
+                        state: true,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 1,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 2,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 3,
+                        simStatesInputs: [
+                          {
+                            portId: 4,
+                            state: false,
+                          },
+                          {
+                            portId: 6,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 9,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 4,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: true,
+                      },
+                      {
+                        connectorId: 11,
+                        state: true,
+                      },
+                      {
+                        connectorId: 9,
+                        state: false,
+                      },
+                      {
+                        connectorId: 8,
+                        state: false,
+                      },
+                      {
+                        connectorId: 5,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [
+                    {
+                      boxId: 3,
+                      inputs: {
+                        inputsState: [
+                          {
+                            boxId: 4,
+                            state: false,
+                          },
+                          {
+                            boxId: 6,
+                            state: false,
+                          },
+                        ],
+                      },
+                      simulation: {
+                        boxSimState: [
+                          {
+                            boxId: 4,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 6,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 7,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                              {
+                                portId: 1,
+                                state: false,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 2,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 8,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 1,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 9,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [],
+                          },
+                        ],
+                        connectorSimState: [
+                          {
+                            connectorId: 10,
+                            state: false,
+                          },
+                          {
+                            connectorId: 11,
+                            state: false,
+                          },
+                          {
+                            connectorId: 12,
+                            state: false,
+                          },
+                          {
+                            connectorId: 13,
+                            state: true,
+                          },
+                        ],
+                      },
+                      customSketchesSupportData: [],
+                    },
+                  ],
+                },
+                {
+                  boxId: 2,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 4,
+                        state: true,
+                      },
+                      {
+                        boxId: 6,
+                        state: true,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 4,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 2,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 8,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 9,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: true,
+                      },
+                      {
+                        connectorId: 11,
+                        state: true,
+                      },
+                      {
+                        connectorId: 12,
+                        state: true,
+                      },
+                      {
+                        connectorId: 13,
+                        state: false,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [],
+                },
+              ],
+            },
+            {
+              boxId: 6,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 8,
+                    state: false,
+                  },
+                  {
+                    boxId: 9,
+                    state: false,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 8,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 9,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 1,
+                    simStatesInputs: [
+                      {
+                        portId: 1,
+                        state: false,
+                      },
+                      {
+                        portId: 2,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 4,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 2,
+                    simStatesInputs: [
+                      {
+                        portId: 4,
+                        state: false,
+                      },
+                      {
+                        portId: 6,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 9,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 3,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 2,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: false,
+                  },
+                  {
+                    connectorId: 12,
+                    state: false,
+                  },
+                  {
+                    connectorId: 13,
+                    state: false,
+                  },
+                  {
+                    connectorId: 14,
+                    state: false,
+                  },
+                  {
+                    connectorId: 4,
+                    state: false,
+                  },
+                  {
+                    connectorId: 5,
+                    state: true,
+                  },
+                  {
+                    connectorId: 7,
+                    state: false,
+                  },
+                ],
+              },
+              customSketchesSupportData: [
+                {
+                  boxId: 1,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 1,
+                        state: false,
+                      },
+                      {
+                        boxId: 2,
+                        state: false,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 1,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 2,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 3,
+                        simStatesInputs: [
+                          {
+                            portId: 4,
+                            state: true,
+                          },
+                          {
+                            portId: 6,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 9,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 4,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: false,
+                      },
+                      {
+                        connectorId: 11,
+                        state: false,
+                      },
+                      {
+                        connectorId: 9,
+                        state: true,
+                      },
+                      {
+                        connectorId: 8,
+                        state: true,
+                      },
+                      {
+                        connectorId: 5,
+                        state: false,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [
+                    {
+                      boxId: 3,
+                      inputs: {
+                        inputsState: [
+                          {
+                            boxId: 4,
+                            state: true,
+                          },
+                          {
+                            boxId: 6,
+                            state: true,
+                          },
+                        ],
+                      },
+                      simulation: {
+                        boxSimState: [
+                          {
+                            boxId: 4,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 6,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 7,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                              {
+                                portId: 1,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 2,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 8,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 1,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 9,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                            simStatesOutputs: [],
+                          },
+                        ],
+                        connectorSimState: [
+                          {
+                            connectorId: 10,
+                            state: true,
+                          },
+                          {
+                            connectorId: 11,
+                            state: true,
+                          },
+                          {
+                            connectorId: 12,
+                            state: true,
+                          },
+                          {
+                            connectorId: 13,
+                            state: false,
+                          },
+                        ],
+                      },
+                      customSketchesSupportData: [],
+                    },
+                  ],
+                },
+                {
+                  boxId: 2,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 4,
+                        state: false,
+                      },
+                      {
+                        boxId: 6,
+                        state: false,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 4,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 2,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 8,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 9,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: false,
+                      },
+                      {
+                        connectorId: 11,
+                        state: false,
+                      },
+                      {
+                        connectorId: 12,
+                        state: false,
+                      },
+                      {
+                        connectorId: 13,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [],
+                },
+              ],
+            },
+            {
+              boxId: 8,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 1,
+                    state: false,
+                  },
+                  {
+                    boxId: 2,
+                    state: true,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 1,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 2,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 7,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 1,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 3,
+                    simStatesInputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                      {
+                        portId: 6,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 9,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 4,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: false,
+                  },
+                  {
+                    connectorId: 11,
+                    state: true,
+                  },
+                  {
+                    connectorId: 9,
+                    state: true,
+                  },
+                  {
+                    connectorId: 8,
+                    state: false,
+                  },
+                  {
+                    connectorId: 5,
+                    state: true,
+                  },
+                ],
+              },
+              customSketchesSupportData: [
+                {
+                  boxId: 3,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 4,
+                        state: true,
+                      },
+                      {
+                        boxId: 6,
+                        state: false,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 4,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 2,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 8,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 9,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: true,
+                      },
+                      {
+                        connectorId: 11,
+                        state: false,
+                      },
+                      {
+                        connectorId: 12,
+                        state: false,
+                      },
+                      {
+                        connectorId: 13,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          boxId: 3,
+          inputs: {
+            inputsState: [
+              {
+                boxId: 1,
+                state: true,
+              },
+              {
+                boxId: 2,
+                state: true,
+              },
+              {
+                boxId: 3,
+                state: true,
+              },
+            ],
+          },
+          simulation: {
+            boxSimState: [
+              {
+                boxId: 1,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 2,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 3,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 4,
+                simStatesInputs: [
+                  {
+                    portId: 8,
+                    state: true,
+                  },
+                  {
+                    portId: 9,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 6,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 5,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 2,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 6,
+                simStatesInputs: [
+                  {
+                    portId: 8,
+                    state: false,
+                  },
+                  {
+                    portId: 9,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 6,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 7,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 2,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 8,
+                simStatesInputs: [
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                  {
+                    portId: 2,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 4,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 9,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+              {
+                boxId: 10,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+            ],
+            connectorSimState: [
+              {
+                connectorId: 11,
+                state: true,
+              },
+              {
+                connectorId: 16,
+                state: true,
+              },
+              {
+                connectorId: 13,
+                state: true,
+              },
+              {
+                connectorId: 15,
+                state: true,
+              },
+              {
+                connectorId: 18,
+                state: true,
+              },
+              {
+                connectorId: 20,
+                state: true,
+              },
+              {
+                connectorId: 17,
+                state: false,
+              },
+              {
+                connectorId: 19,
+                state: false,
+              },
+              {
+                connectorId: 21,
+                state: true,
+              },
+              {
+                connectorId: 23,
+                state: true,
+              },
+              {
+                connectorId: 22,
+                state: false,
+              },
+              {
+                connectorId: 24,
+                state: true,
+              },
+            ],
+          },
+          customSketchesSupportData: [
+            {
+              boxId: 4,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 8,
+                    state: true,
+                  },
+                  {
+                    boxId: 9,
+                    state: true,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 8,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 9,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 1,
+                    simStatesInputs: [
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                      {
+                        portId: 2,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 2,
+                    simStatesInputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                      {
+                        portId: 6,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 9,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 3,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                      {
+                        portId: 1,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 2,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: true,
+                  },
+                  {
+                    connectorId: 12,
+                    state: true,
+                  },
+                  {
+                    connectorId: 13,
+                    state: true,
+                  },
+                  {
+                    connectorId: 14,
+                    state: true,
+                  },
+                  {
+                    connectorId: 4,
+                    state: true,
+                  },
+                  {
+                    connectorId: 5,
+                    state: false,
+                  },
+                  {
+                    connectorId: 7,
+                    state: false,
+                  },
+                ],
+              },
+              customSketchesSupportData: [
+                {
+                  boxId: 1,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 1,
+                        state: true,
+                      },
+                      {
+                        boxId: 2,
+                        state: true,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 1,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 2,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 3,
+                        simStatesInputs: [
+                          {
+                            portId: 4,
+                            state: false,
+                          },
+                          {
+                            portId: 6,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 9,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 4,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: true,
+                      },
+                      {
+                        connectorId: 11,
+                        state: true,
+                      },
+                      {
+                        connectorId: 9,
+                        state: false,
+                      },
+                      {
+                        connectorId: 8,
+                        state: false,
+                      },
+                      {
+                        connectorId: 5,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [
+                    {
+                      boxId: 3,
+                      inputs: {
+                        inputsState: [
+                          {
+                            boxId: 4,
+                            state: false,
+                          },
+                          {
+                            boxId: 6,
+                            state: false,
+                          },
+                        ],
+                      },
+                      simulation: {
+                        boxSimState: [
+                          {
+                            boxId: 4,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 6,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 7,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                              {
+                                portId: 1,
+                                state: false,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 2,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 8,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 1,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 9,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [],
+                          },
+                        ],
+                        connectorSimState: [
+                          {
+                            connectorId: 10,
+                            state: false,
+                          },
+                          {
+                            connectorId: 11,
+                            state: false,
+                          },
+                          {
+                            connectorId: 12,
+                            state: false,
+                          },
+                          {
+                            connectorId: 13,
+                            state: true,
+                          },
+                        ],
+                      },
+                      customSketchesSupportData: [],
+                    },
+                  ],
+                },
+                {
+                  boxId: 2,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 4,
+                        state: true,
+                      },
+                      {
+                        boxId: 6,
+                        state: true,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 4,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 2,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 8,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 9,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: true,
+                      },
+                      {
+                        connectorId: 11,
+                        state: true,
+                      },
+                      {
+                        connectorId: 12,
+                        state: true,
+                      },
+                      {
+                        connectorId: 13,
+                        state: false,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [],
+                },
+              ],
+            },
+            {
+              boxId: 6,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 8,
+                    state: false,
+                  },
+                  {
+                    boxId: 9,
+                    state: true,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 8,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 9,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 1,
+                    simStatesInputs: [
+                      {
+                        portId: 1,
+                        state: false,
+                      },
+                      {
+                        portId: 2,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 2,
+                    simStatesInputs: [
+                      {
+                        portId: 4,
+                        state: false,
+                      },
+                      {
+                        portId: 6,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 9,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 3,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 2,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: false,
+                  },
+                  {
+                    connectorId: 12,
+                    state: false,
+                  },
+                  {
+                    connectorId: 13,
+                    state: true,
+                  },
+                  {
+                    connectorId: 14,
+                    state: true,
+                  },
+                  {
+                    connectorId: 4,
+                    state: true,
+                  },
+                  {
+                    connectorId: 5,
+                    state: true,
+                  },
+                  {
+                    connectorId: 7,
+                    state: true,
+                  },
+                ],
+              },
+              customSketchesSupportData: [
+                {
+                  boxId: 1,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 1,
+                        state: false,
+                      },
+                      {
+                        boxId: 2,
+                        state: true,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 1,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 2,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 3,
+                        simStatesInputs: [
+                          {
+                            portId: 4,
+                            state: true,
+                          },
+                          {
+                            portId: 6,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 9,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 4,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: false,
+                      },
+                      {
+                        connectorId: 11,
+                        state: true,
+                      },
+                      {
+                        connectorId: 9,
+                        state: true,
+                      },
+                      {
+                        connectorId: 8,
+                        state: false,
+                      },
+                      {
+                        connectorId: 5,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [
+                    {
+                      boxId: 3,
+                      inputs: {
+                        inputsState: [
+                          {
+                            boxId: 4,
+                            state: true,
+                          },
+                          {
+                            boxId: 6,
+                            state: false,
+                          },
+                        ],
+                      },
+                      simulation: {
+                        boxSimState: [
+                          {
+                            boxId: 4,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 6,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 7,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                              {
+                                portId: 1,
+                                state: false,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 2,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 8,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 1,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 9,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [],
+                          },
+                        ],
+                        connectorSimState: [
+                          {
+                            connectorId: 10,
+                            state: true,
+                          },
+                          {
+                            connectorId: 11,
+                            state: false,
+                          },
+                          {
+                            connectorId: 12,
+                            state: false,
+                          },
+                          {
+                            connectorId: 13,
+                            state: true,
+                          },
+                        ],
+                      },
+                      customSketchesSupportData: [],
+                    },
+                  ],
+                },
+                {
+                  boxId: 2,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 4,
+                        state: false,
+                      },
+                      {
+                        boxId: 6,
+                        state: true,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 4,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 2,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 8,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 9,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: false,
+                      },
+                      {
+                        connectorId: 11,
+                        state: true,
+                      },
+                      {
+                        connectorId: 12,
+                        state: false,
+                      },
+                      {
+                        connectorId: 13,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [],
+                },
+              ],
+            },
+            {
+              boxId: 8,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 1,
+                    state: false,
+                  },
+                  {
+                    boxId: 2,
+                    state: true,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 1,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 2,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 7,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 1,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 3,
+                    simStatesInputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                      {
+                        portId: 6,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 9,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 4,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: false,
+                  },
+                  {
+                    connectorId: 11,
+                    state: true,
+                  },
+                  {
+                    connectorId: 9,
+                    state: true,
+                  },
+                  {
+                    connectorId: 8,
+                    state: false,
+                  },
+                  {
+                    connectorId: 5,
+                    state: true,
+                  },
+                ],
+              },
+              customSketchesSupportData: [
+                {
+                  boxId: 3,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 4,
+                        state: true,
+                      },
+                      {
+                        boxId: 6,
+                        state: false,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 4,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 2,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 8,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 9,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: true,
+                      },
+                      {
+                        connectorId: 11,
+                        state: false,
+                      },
+                      {
+                        connectorId: 12,
+                        state: false,
+                      },
+                      {
+                        connectorId: 13,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          boxId: 9,
+          inputs: {
+            inputsState: [
+              {
+                boxId: 1,
+                state: false,
+              },
+              {
+                boxId: 2,
+                state: false,
+              },
+              {
+                boxId: 3,
+                state: false,
+              },
+            ],
+          },
+          simulation: {
+            boxSimState: [
+              {
+                boxId: 1,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 2,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 3,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 4,
+                simStatesInputs: [
+                  {
+                    portId: 8,
+                    state: false,
+                  },
+                  {
+                    portId: 9,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 6,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 5,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 2,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 6,
+                simStatesInputs: [
+                  {
+                    portId: 8,
+                    state: false,
+                  },
+                  {
+                    portId: 9,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 6,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 7,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 2,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 8,
+                simStatesInputs: [
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                  {
+                    portId: 2,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 4,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 9,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+              {
+                boxId: 10,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+            ],
+            connectorSimState: [
+              {
+                connectorId: 11,
+                state: false,
+              },
+              {
+                connectorId: 16,
+                state: false,
+              },
+              {
+                connectorId: 13,
+                state: false,
+              },
+              {
+                connectorId: 15,
+                state: false,
+              },
+              {
+                connectorId: 18,
+                state: false,
+              },
+              {
+                connectorId: 20,
+                state: false,
+              },
+              {
+                connectorId: 17,
+                state: false,
+              },
+              {
+                connectorId: 19,
+                state: false,
+              },
+              {
+                connectorId: 21,
+                state: false,
+              },
+              {
+                connectorId: 23,
+                state: false,
+              },
+              {
+                connectorId: 22,
+                state: false,
+              },
+              {
+                connectorId: 24,
+                state: false,
+              },
+            ],
+          },
+          customSketchesSupportData: [
+            {
+              boxId: 4,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 8,
+                    state: false,
+                  },
+                  {
+                    boxId: 9,
+                    state: false,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 8,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 9,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 1,
+                    simStatesInputs: [
+                      {
+                        portId: 1,
+                        state: false,
+                      },
+                      {
+                        portId: 2,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 4,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 2,
+                    simStatesInputs: [
+                      {
+                        portId: 4,
+                        state: false,
+                      },
+                      {
+                        portId: 6,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 9,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 3,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 2,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: false,
+                  },
+                  {
+                    connectorId: 12,
+                    state: false,
+                  },
+                  {
+                    connectorId: 13,
+                    state: false,
+                  },
+                  {
+                    connectorId: 14,
+                    state: false,
+                  },
+                  {
+                    connectorId: 4,
+                    state: false,
+                  },
+                  {
+                    connectorId: 5,
+                    state: true,
+                  },
+                  {
+                    connectorId: 7,
+                    state: false,
+                  },
+                ],
+              },
+              customSketchesSupportData: [
+                {
+                  boxId: 1,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 1,
+                        state: false,
+                      },
+                      {
+                        boxId: 2,
+                        state: false,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 1,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 2,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 3,
+                        simStatesInputs: [
+                          {
+                            portId: 4,
+                            state: true,
+                          },
+                          {
+                            portId: 6,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 9,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 4,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: false,
+                      },
+                      {
+                        connectorId: 11,
+                        state: false,
+                      },
+                      {
+                        connectorId: 9,
+                        state: true,
+                      },
+                      {
+                        connectorId: 8,
+                        state: true,
+                      },
+                      {
+                        connectorId: 5,
+                        state: false,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [
+                    {
+                      boxId: 3,
+                      inputs: {
+                        inputsState: [
+                          {
+                            boxId: 4,
+                            state: true,
+                          },
+                          {
+                            boxId: 6,
+                            state: true,
+                          },
+                        ],
+                      },
+                      simulation: {
+                        boxSimState: [
+                          {
+                            boxId: 4,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 6,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 7,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                              {
+                                portId: 1,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 2,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 8,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 1,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 9,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                            simStatesOutputs: [],
+                          },
+                        ],
+                        connectorSimState: [
+                          {
+                            connectorId: 10,
+                            state: true,
+                          },
+                          {
+                            connectorId: 11,
+                            state: true,
+                          },
+                          {
+                            connectorId: 12,
+                            state: true,
+                          },
+                          {
+                            connectorId: 13,
+                            state: false,
+                          },
+                        ],
+                      },
+                      customSketchesSupportData: [],
+                    },
+                  ],
+                },
+                {
+                  boxId: 2,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 4,
+                        state: false,
+                      },
+                      {
+                        boxId: 6,
+                        state: false,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 4,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 2,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 8,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 9,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: false,
+                      },
+                      {
+                        connectorId: 11,
+                        state: false,
+                      },
+                      {
+                        connectorId: 12,
+                        state: false,
+                      },
+                      {
+                        connectorId: 13,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [],
+                },
+              ],
+            },
+            {
+              boxId: 6,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 8,
+                    state: false,
+                  },
+                  {
+                    boxId: 9,
+                    state: false,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 8,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 9,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 1,
+                    simStatesInputs: [
+                      {
+                        portId: 1,
+                        state: false,
+                      },
+                      {
+                        portId: 2,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 4,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 2,
+                    simStatesInputs: [
+                      {
+                        portId: 4,
+                        state: false,
+                      },
+                      {
+                        portId: 6,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 9,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 3,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 2,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: false,
+                  },
+                  {
+                    connectorId: 12,
+                    state: false,
+                  },
+                  {
+                    connectorId: 13,
+                    state: false,
+                  },
+                  {
+                    connectorId: 14,
+                    state: false,
+                  },
+                  {
+                    connectorId: 4,
+                    state: false,
+                  },
+                  {
+                    connectorId: 5,
+                    state: true,
+                  },
+                  {
+                    connectorId: 7,
+                    state: false,
+                  },
+                ],
+              },
+              customSketchesSupportData: [
+                {
+                  boxId: 1,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 1,
+                        state: false,
+                      },
+                      {
+                        boxId: 2,
+                        state: false,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 1,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 2,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 3,
+                        simStatesInputs: [
+                          {
+                            portId: 4,
+                            state: true,
+                          },
+                          {
+                            portId: 6,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 9,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 4,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: false,
+                      },
+                      {
+                        connectorId: 11,
+                        state: false,
+                      },
+                      {
+                        connectorId: 9,
+                        state: true,
+                      },
+                      {
+                        connectorId: 8,
+                        state: true,
+                      },
+                      {
+                        connectorId: 5,
+                        state: false,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [
+                    {
+                      boxId: 3,
+                      inputs: {
+                        inputsState: [
+                          {
+                            boxId: 4,
+                            state: true,
+                          },
+                          {
+                            boxId: 6,
+                            state: true,
+                          },
+                        ],
+                      },
+                      simulation: {
+                        boxSimState: [
+                          {
+                            boxId: 4,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 6,
+                            simStatesInputs: [],
+                            simStatesOutputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 7,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                              {
+                                portId: 1,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 2,
+                                state: true,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 8,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: true,
+                              },
+                            ],
+                            simStatesOutputs: [
+                              {
+                                portId: 1,
+                                state: false,
+                              },
+                            ],
+                          },
+                          {
+                            boxId: 9,
+                            simStatesInputs: [
+                              {
+                                portId: 0,
+                                state: false,
+                              },
+                            ],
+                            simStatesOutputs: [],
+                          },
+                        ],
+                        connectorSimState: [
+                          {
+                            connectorId: 10,
+                            state: true,
+                          },
+                          {
+                            connectorId: 11,
+                            state: true,
+                          },
+                          {
+                            connectorId: 12,
+                            state: true,
+                          },
+                          {
+                            connectorId: 13,
+                            state: false,
+                          },
+                        ],
+                      },
+                      customSketchesSupportData: [],
+                    },
+                  ],
+                },
+                {
+                  boxId: 2,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 4,
+                        state: false,
+                      },
+                      {
+                        boxId: 6,
+                        state: false,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 4,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 2,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 8,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 9,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: false,
+                      },
+                      {
+                        connectorId: 11,
+                        state: false,
+                      },
+                      {
+                        connectorId: 12,
+                        state: false,
+                      },
+                      {
+                        connectorId: 13,
+                        state: true,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [],
+                },
+              ],
+            },
+            {
+              boxId: 8,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 1,
+                    state: false,
+                  },
+                  {
+                    boxId: 2,
+                    state: false,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 1,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 2,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 7,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 3,
+                    simStatesInputs: [
+                      {
+                        portId: 4,
+                        state: true,
+                      },
+                      {
+                        portId: 6,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 9,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 4,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: false,
+                  },
+                  {
+                    connectorId: 11,
+                    state: false,
+                  },
+                  {
+                    connectorId: 9,
+                    state: true,
+                  },
+                  {
+                    connectorId: 8,
+                    state: true,
+                  },
+                  {
+                    connectorId: 5,
+                    state: false,
+                  },
+                ],
+              },
+              customSketchesSupportData: [
+                {
+                  boxId: 3,
+                  inputs: {
+                    inputsState: [
+                      {
+                        boxId: 4,
+                        state: true,
+                      },
+                      {
+                        boxId: 6,
+                        state: true,
+                      },
+                    ],
+                  },
+                  simulation: {
+                    boxSimState: [
+                      {
+                        boxId: 4,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 6,
+                        simStatesInputs: [],
+                        simStatesOutputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 7,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                          {
+                            portId: 1,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 2,
+                            state: true,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 8,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: true,
+                          },
+                        ],
+                        simStatesOutputs: [
+                          {
+                            portId: 1,
+                            state: false,
+                          },
+                        ],
+                      },
+                      {
+                        boxId: 9,
+                        simStatesInputs: [
+                          {
+                            portId: 0,
+                            state: false,
+                          },
+                        ],
+                        simStatesOutputs: [],
+                      },
+                    ],
+                    connectorSimState: [
+                      {
+                        connectorId: 10,
+                        state: true,
+                      },
+                      {
+                        connectorId: 11,
+                        state: true,
+                      },
+                      {
+                        connectorId: 12,
+                        state: true,
+                      },
+                      {
+                        connectorId: 13,
+                        state: false,
+                      },
+                    ],
+                  },
+                  customSketchesSupportData: [],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      boxId: 14,
+      inputs: {
+        inputsState: [
+          {
+            boxId: 8,
+            state: false,
+          },
+          {
+            boxId: 9,
+            state: false,
+          },
+        ],
+      },
+      simulation: {
+        boxSimState: [
+          {
+            boxId: 8,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 9,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 1,
+            simStatesInputs: [
+              {
+                portId: 1,
+                state: false,
+              },
+              {
+                portId: 2,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 4,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 2,
+            simStatesInputs: [
+              {
+                portId: 4,
+                state: false,
+              },
+              {
+                portId: 6,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 9,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 3,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+              {
+                portId: 1,
+                state: true,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 2,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 6,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [],
+          },
+        ],
+        connectorSimState: [
+          {
+            connectorId: 10,
+            state: false,
+          },
+          {
+            connectorId: 12,
+            state: false,
+          },
+          {
+            connectorId: 13,
+            state: false,
+          },
+          {
+            connectorId: 14,
+            state: false,
+          },
+          {
+            connectorId: 4,
+            state: false,
+          },
+          {
+            connectorId: 5,
+            state: true,
+          },
+          {
+            connectorId: 7,
+            state: false,
+          },
+        ],
+      },
+      customSketchesSupportData: [
+        {
+          boxId: 1,
+          inputs: {
+            inputsState: [
+              {
+                boxId: 1,
+                state: false,
+              },
+              {
+                boxId: 2,
+                state: false,
+              },
+            ],
+          },
+          simulation: {
+            boxSimState: [
+              {
+                boxId: 1,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 2,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 6,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 7,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 3,
+                simStatesInputs: [
+                  {
+                    portId: 4,
+                    state: true,
+                  },
+                  {
+                    portId: 6,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 9,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 4,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+            ],
+            connectorSimState: [
+              {
+                connectorId: 10,
+                state: false,
+              },
+              {
+                connectorId: 11,
+                state: false,
+              },
+              {
+                connectorId: 9,
+                state: true,
+              },
+              {
+                connectorId: 8,
+                state: true,
+              },
+              {
+                connectorId: 5,
+                state: false,
+              },
+            ],
+          },
+          customSketchesSupportData: [
+            {
+              boxId: 3,
+              inputs: {
+                inputsState: [
+                  {
+                    boxId: 4,
+                    state: true,
+                  },
+                  {
+                    boxId: 6,
+                    state: true,
+                  },
+                ],
+              },
+              simulation: {
+                boxSimState: [
+                  {
+                    boxId: 4,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 6,
+                    simStatesInputs: [],
+                    simStatesOutputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 7,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                      {
+                        portId: 1,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 2,
+                        state: true,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 8,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: true,
+                      },
+                    ],
+                    simStatesOutputs: [
+                      {
+                        portId: 1,
+                        state: false,
+                      },
+                    ],
+                  },
+                  {
+                    boxId: 9,
+                    simStatesInputs: [
+                      {
+                        portId: 0,
+                        state: false,
+                      },
+                    ],
+                    simStatesOutputs: [],
+                  },
+                ],
+                connectorSimState: [
+                  {
+                    connectorId: 10,
+                    state: true,
+                  },
+                  {
+                    connectorId: 11,
+                    state: true,
+                  },
+                  {
+                    connectorId: 12,
+                    state: true,
+                  },
+                  {
+                    connectorId: 13,
+                    state: false,
+                  },
+                ],
+              },
+              customSketchesSupportData: [],
+            },
+          ],
+        },
+        {
+          boxId: 2,
+          inputs: {
+            inputsState: [
+              {
+                boxId: 4,
+                state: false,
+              },
+              {
+                boxId: 6,
+                state: false,
+              },
+            ],
+          },
+          simulation: {
+            boxSimState: [
+              {
+                boxId: 4,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 6,
+                simStatesInputs: [],
+                simStatesOutputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 7,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                  {
+                    portId: 1,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 2,
+                    state: false,
+                  },
+                ],
+              },
+              {
+                boxId: 8,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: false,
+                  },
+                ],
+                simStatesOutputs: [
+                  {
+                    portId: 1,
+                    state: true,
+                  },
+                ],
+              },
+              {
+                boxId: 9,
+                simStatesInputs: [
+                  {
+                    portId: 0,
+                    state: true,
+                  },
+                ],
+                simStatesOutputs: [],
+              },
+            ],
+            connectorSimState: [
+              {
+                connectorId: 10,
+                state: false,
+              },
+              {
+                connectorId: 11,
+                state: false,
+              },
+              {
+                connectorId: 12,
+                state: false,
+              },
+              {
+                connectorId: 13,
+                state: true,
+              },
+            ],
+          },
+          customSketchesSupportData: [],
+        },
+      ],
+    },
+  ],
 };

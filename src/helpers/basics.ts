@@ -29,3 +29,13 @@ export function assertIsDefined<T>(
     throw new Error(message);
   }
 }
+
+export function assertTrue(condition: boolean, msg?: string): asserts condition {
+  if (!condition) {
+    throw new Error(msg ?? 'Assertion failed');
+  }
+}
+
+export function error(message: string): never {
+  throw new Error(message);
+}

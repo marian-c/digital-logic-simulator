@@ -52,6 +52,7 @@
     "out-dist/types/**/*.ts"
   ],
   "exclude": [
+    "./cypress.config.ts",
     "node_modules",
     ".IGNORED"
   ]

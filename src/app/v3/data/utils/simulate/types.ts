@@ -5,42 +5,20 @@ export type SimulationInput = Pick<
   'structure' | 'inputs' | 'simulation' | 'customSketchesSupportData'
 >;
 
-export type SimulationSuccess<R> = {
-  kind: 'success';
-  data: R;
+export type SimulationErrorNotStable = {
+  kind: 'simulation-not-stable';
+  connectorIds: number[];
 };
 
-export type SimulationErrorConnectorLoopConflict = {
-  kind: 'connector-loop-conflict';
-  connectorId: number;
-  fromState: boolean;
-  toState: boolean;
-};
-export type SimulationErrorType = SimulationErrorConnectorLoopConflict;
-export type SimulationError<R> = {
-  kind: 'error';
-  type: SimulationErrorType;
-  message: string;
-  data: R;
+export type SimulationErrorIncompleteSimulation = {
+  kind: 'incomplete-simulation';
+  deltaBox: number;
+  deltaConnector: number;
 };
 
-export type SimulationResponse<R> = SimulationSuccess<R> | SimulationError<R>;
-export function simulationSuccess<R>(data: R): SimulationSuccess<R> {
-  return { kind: 'success', data };
-}
-export function simulationError<R>({
-  type,
-  message,
-  data,
-}: {
-  type: SimulationErrorType;
-  message: string;
+export type SimulationErrorType = SimulationErrorNotStable | SimulationErrorIncompleteSimulation;
+
+export type SimulationResponse<R> = {
   data: R;
-}): SimulationError<R> {
-  return { kind: 'error', type, message, data };
-}
-export function isSimulationError<R>(
-  response: SimulationResponse<R>,
-): response is SimulationError<R> {
-  return response.kind === 'error';
-}
+  errors: SimulationErrorType[];
+};

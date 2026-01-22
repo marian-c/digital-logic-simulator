@@ -4,7 +4,7 @@ test('simulate - simple', () => {
   // TODO: validate the input
 
   // [input}F---F{not}T---T{output]
-  const result = simulate({
+  const { data: result } = simulate({
     sketches: [
       {
         meta: {
@@ -124,7 +124,7 @@ test('simulate - customBox', () => {
   // active: [input}F---F{custom(first)}T---T{output]
   // active: [input}T---T{custom(first)}F---F{output]
   // first: [input}---F{not}---{output]
-  const result = simulate({
+  const { data: result } = simulate({
     sketches: [
       {
         meta: {
@@ -552,7 +552,7 @@ test('simulate - customBox', () => {
   // active: [input}F---F{custom(first)}T---T{output]
   // active: [input}T---T{custom(first)}F---F{output]
   // first: [input}---F{not}---{output]
-  const result = simulate({
+  const { data: result } = simulate({
     selectedSketchUuid: '019a166a-bbde-72ea-b1ac-91289b0dfb63',
     sketches: [
       {

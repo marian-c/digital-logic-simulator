@@ -1,5 +1,5 @@
 import type { DataV3, Sketch } from '@/app/v3/types/data';
-import { sketch as mainExample } from '@/app/v3/data/samples/box-adder';
+import { sketch as mainExample } from '@/app/v3/data/samples/box-SR-LATCH-1';
 import { generateBoxCustomSketchesSupportData } from '@/app/v3/data/utils/generate';
 import {
   actionRemoveMutateActiveBox,

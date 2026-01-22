@@ -13,7 +13,7 @@ import { assertNever } from '@/helpers/basics';
 import type { BoxElement } from '@/app/v3/types/innerSketchStructure';
 
 function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = false) {
-  process.env.NEXT_PUBLIC_LOGS === '1' && isMain && console.log('=== START SIMULATION ===');
+  process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' && isMain && console.log('=== START SIMULATION ===');
   const randomsSavedForLater: number[] = [];
   const _oldSimBoxState = simulationData.simulation.boxSimState;
   const oldSimConnectorState = simulationData.simulation.connectorSimState;
@@ -28,7 +28,7 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
       simStatesInputs: [],
       simStatesOutputs: [{ portId: 0, state }],
     });
-    process.env.NEXT_PUBLIC_LOGS === '1' &&
+    process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
       isMain &&
       console.log(`[BOX-${inputBox.kind}]: "${inputBox.label}(${inputBox.id})", state: ${state}`);
     const connectors = simulationData.structure.main.connectorElements.filter(
@@ -36,7 +36,7 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
     );
     for (const connector of connectors) {
       simulationData.simulation.connectorSimState.push({ connectorId: connector.id, state });
-      process.env.NEXT_PUBLIC_LOGS === '1' &&
+      process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
         isMain &&
         console.log(
           `[CONNECTOR]: "${getConnectorComputedLabel(connector.id, simulationData.structure)}(${connector.id})", state: ${state}`,
@@ -123,7 +123,7 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
   }
   let guard = 1000;
   while (true && guard > 0) {
-    process.env.NEXT_PUBLIC_LOGS === '1' && isMain && console.log('SIM STEP', 1000 - guard);
+    process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' && isMain && console.log('SIM STEP', 1000 - guard);
     // TODO: alert & handle when guard is hit
     if (guard === 1) {
       console.error('Simulate3b: guard hit!');
@@ -131,7 +131,9 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
     guard--;
     const boxesToSimulate = findNextBoxes();
     if (Array.isArray(boxesToSimulate) && boxesToSimulate.length === 0) {
-      process.env.NEXT_PUBLIC_LOGS === '1' && isMain && console.log(' no more boxes to simulate');
+      process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
+        isMain &&
+        console.log(' no more boxes to simulate');
       break;
     }
     let boxes: BoxElement[] = [];
@@ -142,12 +144,12 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
     if (!Array.isArray(boxesToSimulate)) {
       boxes = [boxesToSimulate.randomBox];
       randomSimData = boxesToSimulate;
-      process.env.NEXT_PUBLIC_LOGS === '1' &&
+      process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
         isMain &&
         console.log(
           `found random box to simulate "${boxesToSimulate.randomBox.label}"(${boxesToSimulate.randomBox.id})`,
         );
-      process.env.NEXT_PUBLIC_LOGS === '1' &&
+      process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
         isMain &&
         boxesToSimulate.connectorsWithOldState.forEach((c) => {
           console.log(
@@ -156,8 +158,10 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
         });
     } else {
       boxes = boxesToSimulate;
-      process.env.NEXT_PUBLIC_LOGS === '1' && isMain && console.log('found some boxes to simulate');
-      process.env.NEXT_PUBLIC_LOGS === '1' &&
+      process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
+        isMain &&
+        console.log('found some boxes to simulate');
+      process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
         isMain &&
         boxes.forEach((b) => {
           console.log(`    box to simulate:  "${b.label}"(${b.id})`);
@@ -292,7 +296,7 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
           break;
         case 'custom':
           {
-            process.env.NEXT_PUBLIC_LOGS === '1' &&
+            process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
               isMain &&
               console.log(`Simulating custom box "${boxToSimulate.label}"(${boxToSimulate.id})`);
             const customSketch = data.sketches.find(
@@ -346,7 +350,7 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
                   );
                 },
               );
-              process.env.NEXT_PUBLIC_LOGS === '1' &&
+              process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
                 isMain &&
                 console.log(
                   'connectors',
@@ -357,10 +361,12 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
                 const found = simulationData.simulation.connectorSimState.find(
                   (css) => css.connectorId === connectorOut.id,
                 );
-                process.env.NEXT_PUBLIC_LOGS === '1' && isMain && console.log('->>found', found);
+                process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
+                  isMain &&
+                  console.log('->>found', found);
                 if (found) {
                   const wasSavedForLater = randomsSavedForLater.includes(boxToSimulate.id);
-                  process.env.NEXT_PUBLIC_LOGS === '1' &&
+                  process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
                     isMain &&
                     console.log('->>wasSavedForLater', wasSavedForLater);
                   if (found.state !== output.state && !wasSavedForLater) {
@@ -375,14 +381,14 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
                       message: `Connector ${getConnectorComputedLabel(connectorOut.id, simulationData.structure)}(${connectorOut.id}) has changed state from ${found.state} to ${output.state} during simulation`,
                     };
                   } else {
-                    process.env.NEXT_PUBLIC_LOGS === '1' &&
-                      process.env.NEXT_PUBLIC_LOGS === '1' &&
+                    process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
+                      process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
                       isMain &&
                       console.log('->>settings state', output.state);
                     found.state = output.state;
                   }
                 } else {
-                  process.env.NEXT_PUBLIC_LOGS === '1' &&
+                  process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
                     isMain &&
                     console.log(`->>pushing state ${connectorOut.id}`, output.state);
                   simulationData.simulation.connectorSimState.push({
@@ -409,12 +415,12 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
       const idx = simulationData.simulation.boxSimState.findIndex(
         (b) => b.boxId === randomSimData.randomBox.id,
       );
-      process.env.NEXT_PUBLIC_LOGS === '1' &&
+      process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
         isMain &&
         console.log(
           `Random box was simulated "${randomSimData.randomBox.label}"(${randomSimData.randomBox.id})"`,
         );
-      process.env.NEXT_PUBLIC_LOGS === '1' &&
+      process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
         isMain &&
         console.log(
           '   removing old state for it: ',
@@ -426,7 +432,7 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
         const idx = simulationData.simulation.connectorSimState.findIndex(
           (c) => c.connectorId === connectorId,
         );
-        process.env.NEXT_PUBLIC_LOGS === '1' &&
+        process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
           isMain &&
           console.log(
             `   and removing old state for connector: ${getConnectorComputedLabel(connectorId, simulationData.structure)}(${connectorId})`,
@@ -437,7 +443,7 @@ function simulateSketch(simulationData: SimulationInput, data: DataV3, isMain = 
       randomsSavedForLater.push(randomSimData.randomBox.id);
     }
   }
-  process.env.NEXT_PUBLIC_LOGS === '1' &&
+  process.env.NEXT_PUBLIC_LOGS_DEBUG === '1' &&
     isMain &&
     console.log(`=== END SIMULATION - ${1000 - guard} guards used ===`);
   return simulationData;

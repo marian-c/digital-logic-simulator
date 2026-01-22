@@ -20,6 +20,10 @@ Digital Sim Circuits
 https://www.youtube.com/playlist?list=PLmYaQynVkBpYavu_MuNQ7cICDuQJHgUx1
 
 
+How to build a computer TUTORIAL
+with actual simulator
+https://www.youtube.com/watch?v=6u2rzB3HtXM
+
 David Black-Schaffer ordered videos
 https://www.youtube.com/playlist?list=PL9b_pbvWZfKjzceHxm8aceOvNR_6icJI-
 

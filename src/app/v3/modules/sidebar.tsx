@@ -236,7 +236,7 @@ function ZoomControls() {
 export function Sidebar() {
   const data = useSketchStorageData();
   const { meta } = getActiveSketch(data);
-  const { $setSketchData } = useSketchStorageMethods();
+  const { $setSketchData, sketchDataRef } = useSketchStorageMethods();
 
   return (
     <div className="flex flex-col w-80 overflow-auto border border-green-500 bg-gray-200">
@@ -250,7 +250,13 @@ export function Sidebar() {
           localstorage.clear()
         </button>
         <br />
-        <button onClick={() => {}}>Simulate</button>
+        <button
+          onClick={() => {
+            $setSketchData(sketchDataRef.current);
+          }}
+        >
+          Simulate
+        </button>
         <br />
         <button onClick={() => {}}>Clear & Simulate</button>
         <br />

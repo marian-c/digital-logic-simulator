@@ -8,11 +8,13 @@ export const sketch: Sketch = {
           id: 1,
           kind: 'input',
           params: 'none',
+          label: 'InputA',
         },
         {
           id: 2,
           kind: 'input',
           params: 'none',
+          label: 'InputB',
         },
         {
           id: 3,
@@ -20,21 +22,25 @@ export const sketch: Sketch = {
           params: {
             uuid: '0199e1c4-ff16-710b-869b-88485a93a83e',
           },
+          label: 'NAND',
         },
         {
           id: 4,
           kind: 'output',
           params: 'none',
+          label: 'Output',
         },
         {
           id: 6,
           kind: 'not',
           params: 'none',
+          label: 'NotA',
         },
         {
           id: 7,
           kind: 'not',
           params: 'none',
+          label: 'NotB',
         },
       ],
       connectorElements: [
@@ -44,6 +50,7 @@ export const sketch: Sketch = {
           fromPortId: 9,
           toBoxId: 4,
           toPortId: 0,
+          label: 'Nand->Output',
         },
         {
           id: 8,
@@ -65,6 +72,7 @@ export const sketch: Sketch = {
           fromPortId: 0,
           toBoxId: 6,
           toPortId: 0,
+          label: 'InputA->NotA',
         },
         {
           id: 11,
@@ -72,6 +80,7 @@ export const sketch: Sketch = {
           fromPortId: 0,
           toBoxId: 7,
           toPortId: 0,
+          label: 'InputB->NotB',
         },
       ],
     },
@@ -135,11 +144,36 @@ export const sketch: Sketch = {
       },
     ],
     connectorBiases: [
-      { connectorId: 5, start: 0, end: 0, mid: 0 },
-      { connectorId: 8, start: 0, end: 0, mid: 0 },
-      { connectorId: 9, start: 0, end: 0, mid: 0 },
-      { connectorId: 10, start: 0, end: 0, mid: 0 },
-      { connectorId: 11, start: 0, end: 0, mid: 0 },
+      {
+        connectorId: 5,
+        start: 0,
+        end: 0,
+        mid: 0,
+      },
+      {
+        connectorId: 8,
+        start: 0,
+        end: 0,
+        mid: 0,
+      },
+      {
+        connectorId: 9,
+        start: 0,
+        end: 0,
+        mid: 0,
+      },
+      {
+        connectorId: 10,
+        start: 0,
+        end: 0,
+        mid: 0,
+      },
+      {
+        connectorId: 11,
+        start: 0,
+        end: 0,
+        mid: 0,
+      },
     ],
   },
   inputs: {
@@ -167,6 +201,16 @@ export const sketch: Sketch = {
         ],
       },
       {
+        boxId: 2,
+        simStatesInputs: [],
+        simStatesOutputs: [
+          {
+            portId: 0,
+            state: false,
+          },
+        ],
+      },
+      {
         boxId: 6,
         simStatesInputs: [
           {
@@ -178,16 +222,6 @@ export const sketch: Sketch = {
           {
             portId: 1,
             state: true,
-          },
-        ],
-      },
-      {
-        boxId: 2,
-        simStatesInputs: [],
-        simStatesOutputs: [
-          {
-            portId: 0,
-            state: false,
           },
         ],
       },
@@ -242,12 +276,12 @@ export const sketch: Sketch = {
         state: false,
       },
       {
-        connectorId: 9,
-        state: true,
-      },
-      {
         connectorId: 11,
         state: false,
+      },
+      {
+        connectorId: 9,
+        state: true,
       },
       {
         connectorId: 8,
@@ -261,8 +295,111 @@ export const sketch: Sketch = {
   },
   state: {
     zoomFactor: 1,
-    panX: -186,
-    panY: -148,
+    panX: -208,
+    panY: -93,
   },
-  customSketchesSupportData: [],
+  customSketchesSupportData: [
+    {
+      boxId: 3,
+      inputs: {
+        inputsState: [
+          {
+            boxId: 4,
+            state: true,
+          },
+          {
+            boxId: 6,
+            state: true,
+          },
+        ],
+      },
+      simulation: {
+        boxSimState: [
+          {
+            boxId: 4,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 6,
+            simStatesInputs: [],
+            simStatesOutputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 7,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+              {
+                portId: 1,
+                state: true,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 2,
+                state: true,
+              },
+            ],
+          },
+          {
+            boxId: 8,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: true,
+              },
+            ],
+            simStatesOutputs: [
+              {
+                portId: 1,
+                state: false,
+              },
+            ],
+          },
+          {
+            boxId: 9,
+            simStatesInputs: [
+              {
+                portId: 0,
+                state: false,
+              },
+            ],
+            simStatesOutputs: [],
+          },
+        ],
+        connectorSimState: [
+          {
+            connectorId: 10,
+            state: true,
+          },
+          {
+            connectorId: 11,
+            state: true,
+          },
+          {
+            connectorId: 12,
+            state: true,
+          },
+          {
+            connectorId: 13,
+            state: false,
+          },
+        ],
+      },
+      customSketchesSupportData: [],
+    },
+  ],
 };

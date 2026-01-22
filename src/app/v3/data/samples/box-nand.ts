@@ -8,26 +8,31 @@ export const sketch: Sketch = {
           id: 4,
           kind: 'input',
           params: 'none',
+          label: 'InputA',
         },
         {
           id: 6,
           kind: 'input',
           params: 'none',
+          label: 'InputB',
         },
         {
           id: 7,
           kind: 'and',
           params: 'none',
+          label: 'AND',
         },
         {
           id: 8,
           kind: 'not',
           params: 'none',
+          label: 'NOT',
         },
         {
           id: 9,
           kind: 'output',
           params: 'none',
+          label: 'Output',
         },
       ],
       connectorElements: [
@@ -37,6 +42,7 @@ export const sketch: Sketch = {
           fromPortId: 0,
           toBoxId: 7,
           toPortId: 0,
+          label: 'InputA->And',
         },
         {
           id: 11,
@@ -44,6 +50,7 @@ export const sketch: Sketch = {
           fromPortId: 0,
           toBoxId: 7,
           toPortId: 1,
+          label: 'InputB->And',
         },
         {
           id: 12,
@@ -51,6 +58,7 @@ export const sketch: Sketch = {
           fromPortId: 2,
           toBoxId: 8,
           toPortId: 0,
+          label: 'And->Not',
         },
         {
           id: 13,
@@ -120,9 +128,24 @@ export const sketch: Sketch = {
         end: 0,
         mid: 0,
       },
-      { connectorId: 11, start: 0, end: 0, mid: 0 },
-      { connectorId: 12, start: 0, end: 0, mid: 0 },
-      { connectorId: 13, start: 0, end: 0, mid: 0 },
+      {
+        connectorId: 11,
+        start: 0,
+        end: 0,
+        mid: 0,
+      },
+      {
+        connectorId: 12,
+        start: 0,
+        end: 0,
+        mid: 0,
+      },
+      {
+        connectorId: 13,
+        start: 0,
+        end: 0,
+        mid: 0,
+      },
     ],
   },
   inputs: {
