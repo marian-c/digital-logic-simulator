@@ -43,7 +43,7 @@ function Header() {
         </h2>
       </div>
       <div className="text-right">
-        {window.history.state?.__APP_V4_PREV_SKETCH && (
+        {window?.history.state?.__APP_V4_PREV_SKETCH && (
           <>
             <button
               className={buttonCN}
