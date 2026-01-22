@@ -25,7 +25,7 @@ export const CanvasV4: FunctionComponentWithChildren = ({ children }) => {
       <div ref={canvasRef} className="flex-grow relative" tabIndex={0}>
         {/* TODO: [perf] pass these in, they don't need to render when panning */}
         {focusPath.length === 0 && <NewBoxes />}
-        {focusPath.length === 0 && <Busses />}
+        {focusPath.length === 0 && process.env.NODE_ENV === 'development' && <Busses />}
         <svg
           className="select-none bg-white bg-grid absolute top-0 left-0"
           width={size.width}
