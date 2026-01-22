@@ -8,7 +8,7 @@ import {
 import React from 'react';
 import { config } from '@/config';
 import { Simulator } from '@/app/v4/modules/simulator';
-import { assertIsDefined } from '@/helpers/basics';
+import { assertIsDefined, isBrowser } from '@/helpers/basics';
 import { buttonCN, selectCN, textLinkCN } from '@/classnames';
 import { Breadcrumbs } from '@/app/v4/modules/breadcrumbs';
 
@@ -29,6 +29,23 @@ function Header() {
       return { value: i.uuid, label: `${i.meta.name}${i.meta.isExample ? '*' : ''}` };
     });
   }, [otherSketchesRef, selectedSketch]);
+
+  let backButton: React.ReactElement | null = null;
+  if (isBrowser && window.history.state?.__APP_V4_PREV_SKETCH) {
+    backButton = (
+      <>
+        <button
+          className={buttonCN}
+          onClick={() => {
+            $setSelectedSketchUUID(window.history.state.__APP_V4_PREV_SKETCH?.uuid);
+          }}
+        >
+          Back to {window.history.state.__APP_V4_PREV_SKETCH.name}
+        </button>{' '}
+      </>
+    );
+  }
+
   return (
     <div className="flex justify-between p-2 bg-gray-200">
       <div>
@@ -43,18 +60,7 @@ function Header() {
         </h2>
       </div>
       <div className="text-right">
-        {window?.history.state?.__APP_V4_PREV_SKETCH && (
-          <>
-            <button
-              className={buttonCN}
-              onClick={() => {
-                $setSelectedSketchUUID(window.history.state.__APP_V4_PREV_SKETCH?.uuid);
-              }}
-            >
-              Back to {window.history.state.__APP_V4_PREV_SKETCH.name}
-            </button>{' '}
-          </>
-        )}
+        {backButton}
         <select
           data-testid="sketch-select"
           className={`${selectCN} mr-2 w-40`}
