@@ -1,3 +1,3 @@
-import Page from '@/app/v3/page';
+import Page from '@/app/v4/page';
 
 export default Page;
