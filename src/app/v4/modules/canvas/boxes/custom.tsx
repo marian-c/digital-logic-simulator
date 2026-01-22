@@ -9,7 +9,7 @@ import {
   useSketchStorageMethods,
 } from '@/app/v4/providers/dataStorageProvider';
 import { getBoxInfoByBoxId } from '@/app/v4/data/getters/info';
-import { customGateColors, notGateColors } from '@/app/v4/config/colors';
+import { customGateColors } from '@/app/v4/config/colors';
 import React from 'react';
 import type { CustomBoxElement } from '@/app/v4/types/innerSketchStructure';
 import { getBoxSimStateByBoxId } from '@/app/v4/data/getters/sim-state';

@@ -480,7 +480,7 @@ describe('Simulation', () => {
             "id": 4,
             "startElementId": 2,
             "startElementOutputId": 0,
-            "state": false,
+            "state": true,
           },
           {
             "connectorKind": "plain",
@@ -490,7 +490,7 @@ describe('Simulation', () => {
             "id": 4,
             "startElementId": 3,
             "startElementOutputId": 0,
-            "state": false,
+            "state": true,
           },
         ],
         "elementKind": "box",

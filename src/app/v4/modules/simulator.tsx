@@ -1,11 +1,6 @@
-import type { FunctionComponent, FunctionComponentWithChildren } from '@/types/r-ui';
-import {
-  useSketchStorageData,
-  useSketchStorageMethods,
-} from '@/app/v4/providers/dataStorageProvider';
-import React, { useState } from 'react';
-import type { SketchWithSimulation } from '@/app/v4/types/data';
-import { buttonCN } from '@/classnames';
+import type { FunctionComponentWithChildren } from '@/types/r-ui';
+import { useSketchStorageData } from '@/app/v4/providers/dataStorageProvider';
+import React from 'react';
 import { InteractionsProvider } from '@/app/v4/providers/interactionsProvider';
 import { Sidebar } from '@/app/v4/modules/sidebar';
 import { CanvasV4 } from '@/app/v4/modules/canvas';

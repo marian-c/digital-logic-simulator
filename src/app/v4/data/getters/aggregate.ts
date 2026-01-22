@@ -2,7 +2,6 @@ import type { ConnectorData, SketchForStorage, SketchWithSimulation } from '@/ap
 import { getConnectorById } from '@/app/v4/data/getters/connector';
 import { getBoxesByBoxesIds } from '@/app/v4/data/getters/box';
 import { getConnectorInfoById, getInfosByBoxesIds } from '@/app/v4/data/getters/info';
-import { info } from 'next/dist/build/output/log';
 import type {
   BoxElement,
   InputBoxElement,

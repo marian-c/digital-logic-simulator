@@ -1,12 +1,8 @@
 import type { SketchForStorage, SketchWithSimulation } from '@/app/v4/types/data';
-import type { BoxElement, BoxElementKind, BoxParams } from '@/app/v4/types/innerSketchStructure';
+import type { BoxElement, BoxParams } from '@/app/v4/types/innerSketchStructure';
 import { assertNever } from '@/helpers/basics';
 import type { InputState } from '@/app/v4/types/innerSketchInputs';
-import { genNumWiresPortState, genNumWiresState } from '@/app/v4/data/gen-empty-sketch';
-import type {
-  BoxSimulationState,
-  CustomSketchesSupportData,
-} from '@/app/v4/types/innerSketchSimulation';
+import { genNumWiresState } from '@/app/v4/data/gen-empty-sketch';
 import { _genBoxSimAndExtra } from '@/app/v4/data/ensure-simulation';
 import type { NumWires } from '@/app/v4/types/other';
 

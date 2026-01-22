@@ -4,7 +4,6 @@ import {
   useSketchStorageFocusData,
   useSketchStorageIsReadOnly,
   useSketchStorageMethods,
-  useSketchStoragePanAndZoom,
 } from '@/app/v4/providers/dataStorageProvider';
 import { buttonCN, sectionHeadingCN, sidebarSectionCN } from '@/classnames';
 import { Nuke } from '@/app/v4/modules/nuke';
@@ -327,8 +326,6 @@ function SketchDetails() {
   const data = useSketchStorageData();
   const isReadOnly = useSketchStorageIsReadOnly();
   const { $updateSelectedSketch, $updatePanAndZoom, panAndZoomRef } = useSketchStorageMethods();
-
-  const zoomAndPan = useSketchStoragePanAndZoom();
 
   const extraEl = (
     <div>

@@ -11,7 +11,6 @@ import {
 import { getBoxInfoByBoxId } from '@/app/v4/data/getters/info';
 import { assertNever } from '@/helpers/basics';
 import { inputGateColors } from '@/app/v4/config/colors';
-import { getInputStateByInputBoxId } from '@/app/v4/data/getters/input';
 import React from 'react';
 import type { InputBoxElement } from '@/app/v4/types/innerSketchStructure';
 import { coordsInput } from '@/app/v4/config/sizes';
