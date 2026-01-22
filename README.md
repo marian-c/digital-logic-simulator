@@ -3,6 +3,8 @@ This is a work in progress in the early stages
 
 https://marian-c.github.io/digital-logic-simulator/
 
+[<img src="public/screenshot.png">](https://marian-c.github.io/digital-logic-simulator/)
+
 ## Development
 
 Your standard Next.js app with the help of Node.js v20.
