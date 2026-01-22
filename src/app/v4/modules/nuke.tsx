@@ -7,7 +7,7 @@ export function Nuke() {
       data-testid="nuke"
       className={buttonCN}
       onClick={() => {
-        const confirmation = window.confirm('Are you sure you want to reset everything? ');
+        const confirmation = window.confirm('Are you sure you want to reset everything?');
         if (!confirmation) {
           return;
         }
